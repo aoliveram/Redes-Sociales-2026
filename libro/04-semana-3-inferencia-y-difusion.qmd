@@ -1,0 +1,138 @@
+# Semana 3 — Inferencia estadística y difusión
+
+::: {.callout-tip icon=false}
+## Conecta con
+Sesión 5 (inferencia estadística en redes: QAP, ERGM e interferencia) y Sesión 6 (difusión, contagio, cascadas e intervención) · **Entrega semanal 3 (25%)** · alimenta el **trabajo final integrador**
+:::
+
+::: {.callout-note}
+## Hilo conductor de la semana: estimar vs. simular
+Esta es la semana donde el curso cierra el círculo. El lunes **estimamos** influencia a partir de datos observados (¿la similitud entre actores predice vínculos? ¿el resultado de mis vecinos predice el mío?); el miércoles **simulamos** difusión sobre estructuras conocidas (¿qué pasa si el contagio requiere dos vecinos en vez de uno?).
+
+Son dos caras de un mismo problema y el aprendizaje está en la tensión entre ellas: con datos observacionales, **homofilia y contagio son casi indistinguibles**; en simulación podemos separarlos por construcción, pero entonces la conclusión vale para el modelo, no para el mundo. Saber qué permite decir cada camino es la competencia central de la semana.
+:::
+
+## Parte teórica
+
+### Inferencia estadística en redes
+
+*(En desarrollo. Temas: dependencia entre observaciones y el problema de la independencia estadística; pruebas de permutación; QAP y MRQAP; introducción a ERGM y sus términos básicos — edges, mutuality, nodematch, triangles, gwesp; homofilia, selección, influencia y contagio; interferencia causal en redes; diferencia entre asociación, influencia e identificación causal.)*
+
+**Cómo se estima influencia.** Vale la pena nombrar la familia completa, aunque en clase solo lleguemos a los primeros escalones:
+
+| Supuesto sobre la red | Modelo | Idea |
+|---|---|---|
+| Red fija, efecto rezagado | Regresión con **exposición** | El resultado de mis vecinos en $t-1$ predice el mío en $t$ |
+| Red fija, efecto contemporáneo | **SAR** (autocorrelación de red) | $y = \rho W y + \theta X + \varepsilon$ |
+| Red fija, conducta endógena | **ALAAM** | Como un ERGM, pero lo aleatorio es el atributo |
+| Red y conducta coevolucionan | **SIENA / SAOM** | Separa selección de influencia con datos de panel |
+
+La exposición de red, $E_i = \frac{\sum_j X_{ij} y_j}{\sum_j X_{ij}}$, es literalmente el mismo objeto que aparece en los modelos de umbral del miércoles. **Esa es la bisagra de la semana.**
+
+### Difusión y contagio
+
+*(En desarrollo. Temas: difusión de innovaciones; contagio simple vs. complejo; umbrales y exposición; modelos SIR y SIS; cascadas; semillas aleatorias vs. semillas centrales; intervenciones sobre redes; remoción de nodos y robustez; comparación entre red observada, red nula y red con comunidades; diferencia entre simulación de difusión e identificación causal de contagio.)*
+
+Materiales que usaremos en vivo:
+
+- **Workshop netdiffuseR** (Vega Yon & Olivera) — datasets clásicos de difusión y simulación con `rdiffnet`.
+- **Revisitando las Encuestas** (Fábrega & Olivera) — homofilia sobre GSS y el modelo de Ising como puente hacia la semana 2.
+
+## Práctica guiada en R
+
+### A. Estimar: ¿la similitud predice vínculos?
+
+```r
+library(igraph)
+
+aristas   <- read.csv("datos/semana2_aristas.csv")
+atributos <- read.csv("datos/semana2_atributos.csv")
+red <- graph_from_data_frame(aristas, directed = FALSE, vertices = atributos)
+
+# QAP: correlación entre la matriz de adyacencia y la de similitud
+A   <- as_adjacency_matrix(red, sparse = FALSE)
+sim <- outer(V(red)$disciplina, V(red)$disciplina, "==") * 1
+obs <- cor(A[lower.tri(A)], sim[lower.tri(sim)])
+
+# El nulo correcto NO es permutar celdas, sino permutar NODOS
+perm <- replicate(1000, {
+  idx <- sample(nrow(A))
+  Ap  <- A[idx, idx]
+  cor(Ap[lower.tri(Ap)], sim[lower.tri(sim)])
+})
+mean(abs(perm) >= abs(obs))   # valor p empírico (QAP)
+```
+
+```r
+library(ergm)
+library(intergraph)
+
+# El mismo resultado, ahora como modelo generativo
+fit <- ergm(asNetwork(red) ~ edges + nodematch("disciplina") + gwesp(0.5, fixed = TRUE))
+summary(fit)
+```
+
+### B. Estimar influencia: exposición de red
+
+```r
+# Simulamos un mundo donde SÍ hay contagio (rho = 0.5) y lo recuperamos
+set.seed(3132)
+n  <- 200
+X  <- as_adjacency_matrix(sample_gnp(n, 0.05), sparse = FALSE)
+w  <- rnorm(n)
+y0 <- rnorm(n)
+
+expo <- (X %*% y0) / rowSums(X)          # exposición: promedio de los vecinos
+y1   <- -1 + 0.5 * expo + 3 * w + rnorm(n)
+
+summary(glm(y1 ~ expo + w, family = "gaussian"))
+```
+
+::: {.callout-warning}
+## La pregunta incómoda
+Ese modelo recupera $\rho \approx 0.5$ porque **nosotros** generamos los datos con contagio. Con datos reales, un $\rho$ significativo es igualmente compatible con homofilia no observada: personas parecidas se juntan *y* se parecen. Ningún paquete de R resuelve esto por ti; se resuelve con diseño (panel, aleatorización, instrumentos) o se declara como límite.
+:::
+
+### C. Simular: contagio simple vs. complejo
+
+```r
+library(netdiffuseR)
+
+# Datos clásicos: médicos y la adopción de tetraciclina (1955)
+data(medInnovationsDiffNet)
+plot_diffnet(medInnovationsDiffNet)
+
+# ¿Importan las semillas? Misma red, distinta estrategia
+sim_random <- rdiffnet(
+  n = 500, t = 10,
+  seed.nodes = "random", seed.p.adopt = 0.05,
+  seed.graph = "small-world", rgraph.args = list(p = 0.2),
+  threshold.dist = function(x) runif(1, 0.3, 0.7)
+)
+
+sim_central <- rdiffnet(
+  n = 500, t = 10,
+  seed.nodes = "central", seed.p.adopt = 0.05,
+  seed.graph = "small-world", rgraph.args = list(p = 0.2),
+  threshold.dist = function(x) runif(1, 0.3, 0.7)
+)
+
+plot_adopters(sim_random)
+plot_adopters(sim_central)
+```
+
+::: {.callout-important}
+## Para jugar con las variables en clase
+Tres perillas y tres lecciones:
+
+1. **Umbral.** Con `threshold.dist = function(x) 0.1` (contagio simple) la difusión atraviesa lazos débiles y llega lejos. Con `0.5` (contagio complejo) necesita refuerzo local: se propaga dentro de comunidades y **se atasca en los puentes**. Es Centola & Macy en dos corridas.
+2. **Rewiring del small-world.** Sube `p` de 0.05 a 0.5: los atajos aceleran el contagio simple y a veces **frenan** el complejo, porque diluyen el refuerzo local.
+3. **Semillas.** Con umbral bajo, semillas centrales ganan cómodamente. Con umbral alto, sembrar en un grupo cohesionado puede ser mejor que sembrar en los nodos más centrales.
+:::
+
+## Hacia la entrega semanal
+
+- ¿Qué tipo de difusión modelaste y qué estructura la amplifica o la contiene?
+- ¿La similitud entre actores predice vínculos? ¿Ese resultado puede interpretarse como influencia?
+- ¿Qué conclusiones **no** pueden inferirse desde la simulación?
+- ¿Qué limitación inferencial declaras explícitamente?

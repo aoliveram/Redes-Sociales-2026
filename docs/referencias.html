@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./04-semana-3-difusion-contagio-y-variables.html" rel="prev">
+<link href="./04-semana-3-inferencia-y-difusion.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -297,14 +297,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-semana-2-posiciones-e-inferencia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Semana 2 — Posiciones, comunidades e inferencia</span></span></a>
+  <a href="./03-semana-2-posiciones-y-redes-de-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Semana 2 — Posiciones, comunidades y redes de variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-semana-3-difusion-contagio-y-variables.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 3 — Difusión, contagio y redes de variables</span></span></a>
+  <a href="./04-semana-3-inferencia-y-difusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 3 — Inferencia estadística y difusión</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -352,13 +352,26 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este libro sigue el orden <strong>con las sesiones 4 y 5 intercambiadas</strong> respecto del syllabus original: psicometría de redes cierra la semana 2 (junto a centralidad y comunidades), e inferencia estadística abre la semana 3 (junto a difusión y contagio). El propósito es que estimar influencia y simular difusión queden en la misma semana y en la misma entrega.</p>
+</div>
+</div>
 <section id="por-sesión-según-syllabus" class="level2">
 <h2 class="anchored" data-anchor-id="por-sesión-según-syllabus">Por sesión (según syllabus)</h2>
 <p><strong>Sesión 1.</strong> Granovetter (1973) <em>The Strength of Weak Ties</em>; Coleman (1988) <em>Social Capital in the Creation of Human Capital</em>; Burt (1992) <em>Structural Holes</em>; Borgatti, Everett &amp; Johnson (2018) <em>Analyzing Social Networks</em>.</p>
 <p><strong>Sesión 2.</strong> Erdős &amp; Rényi (1959); Watts &amp; Strogatz (1998) <em>Nature</em>; Barabási &amp; Albert (1999) <em>Science</em>; Karrer &amp; Newman (2011).</p>
 <p><strong>Sesión 3.</strong> Freeman (1979); Borgatti (2005); Newman (2006) <em>PNAS</em>; Grover &amp; Leskovec (2016) <em>node2vec</em>.</p>
-<p><strong>Sesión 4.</strong> Krackhardt (1988); Robins et al.&nbsp;(2007); Lusher, Koskinen &amp; Robins (2013); Cranmer, Desmarais &amp; Morgan (2021) <em>Inferential Network Analysis</em>.</p>
-<p><strong>Sesión 5.</strong> Borsboom (2017) <em>World Psychiatry</em>; Epskamp, Borsboom &amp; Fried (2018); Fried &amp; Cramer (2017); Dalege et al.&nbsp;(2016).</p>
+<p><strong>Sesión 4</strong> (psicometría de redes, según el nuevo orden). Borsboom (2017) <em>World Psychiatry</em>; Epskamp, Borsboom &amp; Fried (2018); Fried &amp; Cramer (2017); Dalege et al.&nbsp;(2016).</p>
+<p><strong>Sesión 5</strong> (inferencia estadística, según el nuevo orden). Krackhardt (1988); Robins et al.&nbsp;(2007); Lusher, Koskinen &amp; Robins (2013); Cranmer, Desmarais &amp; Morgan (2021) <em>Inferential Network Analysis</em>. Complementarias sobre influencia: Shalizi &amp; Thomas (2011) sobre la confusión homofilia-contagio; Snijders et al.&nbsp;(2010) sobre SAOM/SIENA.</p>
 <p><strong>Sesión 6.</strong> Granovetter (1978) <em>Threshold Models of Collective Behavior</em>; Rogers (2003) <em>Diffusion of Innovations</em>; Centola &amp; Macy (2007); Pastor-Satorras et al.&nbsp;(2015).</p>
 </section>
 <section id="materiales-complementarios-de-las-ayudantías" class="level2">
@@ -801,8 +814,8 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./04-semana-3-difusion-contagio-y-variables.html" class="pagination-link" aria-label="Semana 3 — Difusión, contagio y redes de variables">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 3 — Difusión, contagio y redes de variables</span></span>
+      <a href="./04-semana-3-inferencia-y-difusion.html" class="pagination-link" aria-label="Semana 3 — Inferencia estadística y difusión">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 3 — Inferencia estadística y difusión</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

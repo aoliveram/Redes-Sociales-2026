@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Semana 3 — Difusión, contagio y redes de variables – Redes Sociales — DCCS 2026</title>
+<title>3&nbsp; Semana 2 — Posiciones, comunidades y redes de variables – Redes Sociales — DCCS 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./referencias.html" rel="next">
-<link href="./03-semana-2-posiciones-e-inferencia.html" rel="prev">
+<link href="./04-semana-3-inferencia-y-difusion.html" rel="next">
+<link href="./02-semana-1-fundamentos-y-modelos-nulos.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -284,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-semana-3-difusion-contagio-y-variables.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 3 — Difusión, contagio y redes de variables</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-semana-2-posiciones-y-redes-de-variables.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Semana 2 — Posiciones, comunidades y redes de variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -333,14 +333,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-semana-2-posiciones-e-inferencia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Semana 2 — Posiciones, comunidades e inferencia</span></span></a>
+  <a href="./03-semana-2-posiciones-y-redes-de-variables.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Semana 2 — Posiciones, comunidades y redes de variables</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-semana-3-difusion-contagio-y-variables.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 3 — Difusión, contagio y redes de variables</span></span></a>
+  <a href="./04-semana-3-inferencia-y-difusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 3 — Inferencia estadística y difusión</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -359,9 +359,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#repaso-teórico" id="toc-repaso-teórico" class="nav-link active" data-scroll-target="#repaso-teórico"><span class="header-section-number">4.1</span> Repaso teórico</a></li>
-  <li><a href="#práctica-guiada-en-r" id="toc-práctica-guiada-en-r" class="nav-link" data-scroll-target="#práctica-guiada-en-r"><span class="header-section-number">4.2</span> Práctica guiada en R</a></li>
-  <li><a href="#hacia-la-entrega-semanal" id="toc-hacia-la-entrega-semanal" class="nav-link" data-scroll-target="#hacia-la-entrega-semanal"><span class="header-section-number">4.3</span> Hacia la entrega semanal</a></li>
+  <li><a href="#parte-teórica" id="toc-parte-teórica" class="nav-link active" data-scroll-target="#parte-teórica"><span class="header-section-number">3.1</span> Parte teórica</a>
+  <ul class="collapse">
+  <li><a href="#posiciones-en-redes-de-actores" id="toc-posiciones-en-redes-de-actores" class="nav-link" data-scroll-target="#posiciones-en-redes-de-actores"><span class="header-section-number">3.1.1</span> Posiciones en redes de actores</a></li>
+  <li><a href="#redes-de-variables" id="toc-redes-de-variables" class="nav-link" data-scroll-target="#redes-de-variables"><span class="header-section-number">3.1.2</span> Redes de variables</a></li>
+  </ul></li>
+  <li><a href="#práctica-guiada-en-r" id="toc-práctica-guiada-en-r" class="nav-link" data-scroll-target="#práctica-guiada-en-r"><span class="header-section-number">3.2</span> Práctica guiada en R</a>
+  <ul class="collapse">
+  <li><a href="#a.-posiciones-y-comunidades-en-una-red-de-actores" id="toc-a.-posiciones-y-comunidades-en-una-red-de-actores" class="nav-link" data-scroll-target="#a.-posiciones-y-comunidades-en-una-red-de-actores"><span class="header-section-number">3.2.1</span> A. Posiciones y comunidades en una red de actores</a></li>
+  <li><a href="#b.-una-red-de-variables-sobre-los-mismos-datos-conceptuales" id="toc-b.-una-red-de-variables-sobre-los-mismos-datos-conceptuales" class="nav-link" data-scroll-target="#b.-una-red-de-variables-sobre-los-mismos-datos-conceptuales"><span class="header-section-number">3.2.2</span> B. Una red de variables sobre los mismos datos conceptuales</a></li>
+  </ul></li>
+  <li><a href="#hacia-la-entrega-semanal" id="toc-hacia-la-entrega-semanal" class="nav-link" data-scroll-target="#hacia-la-entrega-semanal"><span class="header-section-number">3.3</span> Hacia la entrega semanal</a></li>
   </ul>
 </nav>
     </div>
@@ -371,7 +379,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 3 — Difusión, contagio y redes de variables</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Semana 2 — Posiciones, comunidades y redes de variables</span></h1>
 </div>
 
 
@@ -398,45 +406,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Sesiones 5 y 6 del curso · <strong>Entrega semanal 3 (25%)</strong> · y alimenta directamente el <strong>trabajo final integrador</strong></p>
+<p>Sesión 3 (centralidad, cohesión, comunidades, roles y embeddings) y Sesión 4 (psicometría de redes y redes de variables) · <strong>Entrega semanal 2 (25%)</strong></p>
 </div>
 </div>
-<section id="repaso-teórico" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="repaso-teórico"><span class="header-section-number">4.1</span> Repaso teórico</h2>
-<p><em>(En desarrollo. Temas: difusión de innovaciones; contagio simple vs.&nbsp;complejo; umbrales y exposición; SIR/SIS; cascadas; semillas aleatorias vs.&nbsp;centrales; intervenciones y remoción de nodos; <strong>estimar influencia vs.&nbsp;simular difusión</strong> — exposición retardada, modelos de autocorrelación de red (SAR) y ALAAM; redes psicométricas: correlaciones parciales, graphical lasso, modelo de Ising, strength centrality y estabilidad.)</em></p>
-<p>Esta semana se apoya en dos materiales que ya existen y probaremos en vivo:</p>
-<ul>
-<li><strong>Workshop netdiffuseR</strong> (Vega Yon &amp; Olivera) — difusión con los datasets clásicos (<code>medInnovations</code>, <code>brfarmers</code>, <code>kfamily</code>) y simulación con <code>rdiffnet</code>.</li>
-<li><strong>Encuestas desde la complejidad</strong> (Fábrega &amp; Olivera) — el modelo de Ising como puente entre redes sociales y redes de variables.</li>
-</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Hilo conductor de la semana
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las dos sesiones responden la misma pregunta con objetos distintos: <strong>¿qué significa ocupar una posición importante en una red?</strong> El lunes los nodos son actores; el miércoles son variables (ítems, síntomas, actitudes). Las mismas herramientas —centralidad, comunidades— cambian de significado al cambiar qué representa un nodo. Ese salto es el aprendizaje de la semana.</p>
+</div>
+</div>
+<section id="parte-teórica" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="parte-teórica"><span class="header-section-number">3.1</span> Parte teórica</h2>
+<section id="posiciones-en-redes-de-actores" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="posiciones-en-redes-de-actores"><span class="header-section-number">3.1.1</span> Posiciones en redes de actores</h3>
+<p><em>(En desarrollo. Temas: centralidad de grado, intermediación, cercanía y eigenvector, y qué pregunta responde cada una; centralidad como acceso, visibilidad, intermediación y prestigio; cohesión, cliques y k-cores; comunidades y modularidad — Louvain, walktrap, greedy; roles estructurales; introducción a graph embeddings y node2vec.)</em></p>
 </section>
-<section id="práctica-guiada-en-r" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="práctica-guiada-en-r"><span class="header-section-number">4.2</span> Práctica guiada en R</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(netdiffuseR)</span>
+<section id="redes-de-variables" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="redes-de-variables"><span class="header-section-number">3.1.2</span> Redes de variables</h3>
+<p><em>(En desarrollo. Temas: nodos como ítems, síntomas o creencias; aristas como asociaciones condicionales; correlaciones parciales; regularización y graphical lasso; el modelo de Ising como intuición para variables binarias; strength centrality; estabilidad de centralidad y bootstrap; redes psicométricas frente a modelos de variable latente; límites causales de las redes de variables.)</em></p>
+</section>
+</section>
+<section id="práctica-guiada-en-r" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="práctica-guiada-en-r"><span class="header-section-number">3.2</span> Práctica guiada en R</h2>
+<section id="a.-posiciones-y-comunidades-en-una-red-de-actores" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="a.-posiciones-y-comunidades-en-una-red-de-actores"><span class="header-section-number">3.2.1</span> A. Posiciones y comunidades en una red de actores</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(igraph)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Umbrales y exposición en un dataset clásico</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(medInnovationsDiffNet)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_diffnet</span>(medInnovationsDiffNet)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Simular difusión: ¿importan las semillas?</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sim_central <span class="ot">&lt;-</span> <span class="fu">rdiffnet</span>(</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="dv">500</span>, <span class="at">t =</span> <span class="dv">10</span>,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed.nodes   =</span> <span class="st">"central"</span>,          <span class="co"># vs "random"</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed.p.adopt =</span> <span class="fl">0.05</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed.graph   =</span> <span class="st">"small-world"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">rgraph.args  =</span> <span class="fu">list</span>(<span class="at">p =</span> <span class="fl">0.2</span>),</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">threshold.dist =</span> <span class="cf">function</span>(x) <span class="fu">runif</span>(<span class="dv">1</span>, <span class="fl">0.3</span>, <span class="fl">0.7</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Red cuasi-real incluida en libro/datos/: 24 doctorandos de tres</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># disciplinas, con vínculos de colaboración y algunos puentes</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>aristas   <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datos/semana2_aristas.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>atributos <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datos/semana2_atributos.csv"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>red <span class="ot">&lt;-</span> <span class="fu">graph_from_data_frame</span>(aristas, <span class="at">directed =</span> <span class="cn">FALSE</span>, <span class="at">vertices =</span> atributos)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. ¿Quién es "importante"? Depende de la métrica</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>cent <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">grado     =</span> <span class="fu">degree</span>(red),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">interm    =</span> <span class="fu">betweenness</span>(red),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">cercania  =</span> <span class="fu">closeness</span>(red),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">eigen     =</span> <span class="fu">eigen_centrality</span>(red)<span class="sc">$</span>vector</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Intervención: remover nodos de alta intermediación y comparar curvas</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<p><em>(En desarrollo: comparación entre red observada, red nula y red con comunidades; red psicométrica con <code>bootnet</code>/<code>qgraph</code> sobre ítems Likert.)</em></p>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>cent[<span class="fu">order</span>(<span class="sc">-</span>cent<span class="sc">$</span>interm), ] <span class="sc">|&gt;</span> <span class="fu">head</span>()</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Comunidades y modularidad: ¿recuperan las disciplinas?</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>com <span class="ot">&lt;-</span> <span class="fu">cluster_louvain</span>(red)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">modularity</span>(com)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">membership</span>(com), <span class="fu">V</span>(red)<span class="sc">$</span>disciplina)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Para jugar con las variables en clase
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los nodos puente (<code>P08</code>, <code>P16</code>, <code>P04</code>, <code>P12</code>) tienen <strong>grado bajo pero intermediación alta</strong>. Si borramos uno, la modularidad sube y el diámetro crece: el actor “poco conectado” era el que mantenía unida la red. Es el argumento de Burt sobre agujeros estructurales, visible en tres líneas de código.</p>
+</div>
+</div>
 </section>
-<section id="hacia-la-entrega-semanal" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="hacia-la-entrega-semanal"><span class="header-section-number">4.3</span> Hacia la entrega semanal</h2>
+<section id="b.-una-red-de-variables-sobre-los-mismos-datos-conceptuales" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="b.-una-red-de-variables-sobre-los-mismos-datos-conceptuales"><span class="header-section-number">3.2.2</span> B. Una red de variables sobre los mismos datos conceptuales</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qgraph)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bootnet)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 220 respuestas a 12 ítems Likert en tres bloques temáticos</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datos/semana2_items_likert.csv"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Correlaciones vs. correlaciones parciales regularizadas</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>net <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(items, <span class="at">default =</span> <span class="st">"EBICglasso"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(net, <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">labels =</span> <span class="fu">colnames</span>(items))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. ¿Qué ítem es más "central"? (strength)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">centralityPlot</span>(net, <span class="at">include =</span> <span class="st">"Strength"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. ¿Es estable esa centralidad? (bootstrap por casos)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span> <span class="fu">bootnet</span>(net, <span class="at">nBoots =</span> <span class="dv">500</span>, <span class="at">type =</span> <span class="st">"case"</span>, <span class="at">statistics =</span> <span class="st">"strength"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(est, <span class="at">statistics =</span> <span class="st">"strength"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Para jugar con las variables en clase
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compara la red de correlaciones simples con la de correlaciones parciales regularizadas: <strong>muchas aristas desaparecen</strong>. Luego sube el parámetro de regularización y observa cómo el orden de <em>strength centrality</em> se vuelve inestable con n pequeño. La lección: en redes de variables, la centralidad es una <strong>estimación</strong>, no un dato.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="hacia-la-entrega-semanal" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="hacia-la-entrega-semanal"><span class="header-section-number">3.3</span> Hacia la entrega semanal</h2>
 <ul>
-<li>¿Qué tipo de difusión modelaste y qué estructura la amplifica o contiene?</li>
-<li>¿Qué conclusiones <strong>no</strong> pueden inferirse desde la simulación?</li>
-<li>¿Qué representa cada nodo y cada arista en tu red de variables?</li>
+<li>¿Qué centralidad es relevante para <strong>tu</strong> pregunta, y por qué esa y no otra?</li>
+<li>¿Las comunidades detectadas son sustantivamente interpretables o son un artefacto del algoritmo?</li>
+<li>En tu red de variables: ¿qué representa cada nodo y cada arista?</li>
+<li>¿Qué resultados son <strong>estructuralmente estables</strong> y cuáles no sobrevivirían a otra muestra?</li>
+<li>¿Qué límites causales debes declarar explícitamente?</li>
 </ul>
 
 
@@ -858,13 +934,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-semana-2-posiciones-e-inferencia.html" class="pagination-link" aria-label="Semana 2 — Posiciones, comunidades e inferencia">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Semana 2 — Posiciones, comunidades e inferencia</span></span>
+      <a href="./02-semana-1-fundamentos-y-modelos-nulos.html" class="pagination-link" aria-label="Semana 1 — Fundamentos, grafos y modelos nulos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Semana 1 — Fundamentos, grafos y modelos nulos</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./referencias.html" class="pagination-link" aria-label="Referencias">
-        <span class="nav-page-text">Referencias</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./04-semana-3-inferencia-y-difusion.html" class="pagination-link" aria-label="Semana 3 — Inferencia estadística y difusión">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Semana 3 — Inferencia estadística y difusión</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

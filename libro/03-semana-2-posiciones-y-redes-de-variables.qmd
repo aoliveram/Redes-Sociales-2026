@@ -1,0 +1,88 @@
+# Semana 2 — Posiciones, comunidades y redes de variables
+
+::: {.callout-tip icon=false}
+## Conecta con
+Sesión 3 (centralidad, cohesión, comunidades, roles y embeddings) y Sesión 4 (psicometría de redes y redes de variables) · **Entrega semanal 2 (25%)**
+:::
+
+::: {.callout-note}
+## Hilo conductor de la semana
+Las dos sesiones responden la misma pregunta con objetos distintos: **¿qué significa ocupar una posición importante en una red?** El lunes los nodos son actores; el miércoles son variables (ítems, síntomas, actitudes). Las mismas herramientas —centralidad, comunidades— cambian de significado al cambiar qué representa un nodo. Ese salto es el aprendizaje de la semana.
+:::
+
+## Parte teórica
+
+### Posiciones en redes de actores
+
+*(En desarrollo. Temas: centralidad de grado, intermediación, cercanía y eigenvector, y qué pregunta responde cada una; centralidad como acceso, visibilidad, intermediación y prestigio; cohesión, cliques y k-cores; comunidades y modularidad — Louvain, walktrap, greedy; roles estructurales; introducción a graph embeddings y node2vec.)*
+
+### Redes de variables
+
+*(En desarrollo. Temas: nodos como ítems, síntomas o creencias; aristas como asociaciones condicionales; correlaciones parciales; regularización y graphical lasso; el modelo de Ising como intuición para variables binarias; strength centrality; estabilidad de centralidad y bootstrap; redes psicométricas frente a modelos de variable latente; límites causales de las redes de variables.)*
+
+## Práctica guiada en R
+
+### A. Posiciones y comunidades en una red de actores
+
+```r
+library(igraph)
+
+# Red cuasi-real incluida en libro/datos/: 24 doctorandos de tres
+# disciplinas, con vínculos de colaboración y algunos puentes
+aristas   <- read.csv("datos/semana2_aristas.csv")
+atributos <- read.csv("datos/semana2_atributos.csv")
+red <- graph_from_data_frame(aristas, directed = FALSE, vertices = atributos)
+
+# 1. ¿Quién es "importante"? Depende de la métrica
+cent <- data.frame(
+  grado     = degree(red),
+  interm    = betweenness(red),
+  cercania  = closeness(red),
+  eigen     = eigen_centrality(red)$vector
+)
+cent[order(-cent$interm), ] |> head()
+
+# 2. Comunidades y modularidad: ¿recuperan las disciplinas?
+com <- cluster_louvain(red)
+modularity(com)
+table(membership(com), V(red)$disciplina)
+```
+
+::: {.callout-important}
+## Para jugar con las variables en clase
+Los nodos puente (`P08`, `P16`, `P04`, `P12`) tienen **grado bajo pero intermediación alta**. Si borramos uno, la modularidad sube y el diámetro crece: el actor "poco conectado" era el que mantenía unida la red. Es el argumento de Burt sobre agujeros estructurales, visible en tres líneas de código.
+:::
+
+### B. Una red de variables sobre los mismos datos conceptuales
+
+```r
+library(qgraph)
+library(bootnet)
+
+# 220 respuestas a 12 ítems Likert en tres bloques temáticos
+items <- read.csv("datos/semana2_items_likert.csv")
+
+# 1. Correlaciones vs. correlaciones parciales regularizadas
+net <- estimateNetwork(items, default = "EBICglasso")
+plot(net, layout = "spring", labels = colnames(items))
+
+# 2. ¿Qué ítem es más "central"? (strength)
+centralityPlot(net, include = "Strength")
+
+# 3. ¿Es estable esa centralidad? (bootstrap por casos)
+est <- bootnet(net, nBoots = 500, type = "case", statistics = "strength")
+plot(est, statistics = "strength")
+```
+
+::: {.callout-important}
+## Para jugar con las variables en clase
+Compara la red de correlaciones simples con la de correlaciones parciales regularizadas: **muchas aristas desaparecen**. Luego sube el parámetro de regularización y observa cómo el orden de *strength centrality* se vuelve inestable con n pequeño. La lección: en redes de variables, la centralidad es una **estimación**, no un dato.
+:::
+
+## Hacia la entrega semanal
+
+- ¿Qué centralidad es relevante para **tu** pregunta, y por qué esa y no otra?
+- ¿Las comunidades detectadas son sustantivamente interpretables o son un artefacto del algoritmo?
+- En tu red de variables: ¿qué representa cada nodo y cada arista?
+- ¿Qué resultados son **estructuralmente estables** y cuáles no sobrevivirían a otra muestra?
+- ¿Qué límites causales debes declarar explícitamente?

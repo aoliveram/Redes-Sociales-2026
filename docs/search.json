@@ -24,7 +24,17 @@
     "href": "index.html#materiales",
     "title": "Redes Sociales — DCCS 2026",
     "section": "Materiales",
-    "text": "Materiales\n\nRepositorio del curso: https://github.com/aoliveram/Redes-Sociales-2026\nDatos de la práctica: carpeta libro/datos/\nSyllabus oficial: en el repositorio.\n\n\n\n\n\n\n\nNota\n\n\n\nEste libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.",
+    "text": "Materiales\n\nRepositorio del curso: https://github.com/aoliveram/Redes-Sociales-2026\nDatos de la práctica: carpeta libro/datos/\nSyllabus oficial: en el repositorio.",
+    "crumbs": [
+      "Bienvenida"
+    ]
+  },
+  {
+    "objectID": "index.html#orden-de-las-semanas",
+    "href": "index.html#orden-de-las-semanas",
+    "title": "Redes Sociales — DCCS 2026",
+    "section": "Orden de las semanas",
+    "text": "Orden de las semanas\n\n\n\n\n\n\n\n\nSemana\nSesiones\nPregunta que articula\n\n\n\n\n1\nGrafos y capital social · Modelos generativos y nulos\n¿Hay más estructura que la esperada por azar?\n\n\n2\nCentralidad, comunidades y roles · Psicometría de redes\n¿Qué significa ser central, y central en qué?\n\n\n3\nInferencia: QAP, ERGM e interferencia · Difusión y contagio\n¿Estimar influencia o simularla?\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nEste libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.\nEl orden anterior intercambia las sesiones 4 y 5 respecto del syllabus original, de modo que estimar influencia y simular difusión ocurran en la misma semana. Es una propuesta de la ayudantía, en revisión con el profesor del curso.",
     "crumbs": [
       "Bienvenida"
     ]
@@ -54,7 +64,17 @@
     "href": "01-setup-computacional.html#uso-crítico-de-la-ia-en-investigación",
     "title": "1  Ayudantía 1 — El kit computacional del investigador",
     "section": "1.3 Uso crítico de la IA en investigación",
-    "text": "1.3 Uso crítico de la IA en investigación\n\n\n\n\n\n\nAdvertenciaLa regla de esta casa\n\n\n\nEl asistente de IA acelera tu trabajo; no piensa por ti. En este curso puedes usar IA en las entregas, pero (1) debes declararlo, (2) debes poder explicar cada línea de tu código y cada decisión analítica sin el asistente, y (3) la interpretación de resultados es siempre tuya.\n\n\nLa evidencia reciente (2024–2026) sobre asistentes de IA en educación apunta en dos direcciones a la vez: los asistentes bien andamiados pueden acelerar el aprendizaje y democratizar la programación para quienes vienen de disciplinas no computacionales, y al mismo tiempo el uso pasivo —aceptar salidas sin verificarlas— se asocia a descarga cognitiva y menor esfuerzo crítico. La conclusión práctica no es prohibir ni adoptar a ciegas, sino usar con reglas.\nLecturas que fundamentan estas reglas:\n\nBastani et al. (2025), PNAS — experimento de campo con ~1.000 estudiantes: el acceso a GPT mejora la práctica pero empeora el examen sin IA… salvo cuando el tutor tiene guardrails pedagógicos, que eliminan el daño.\nKestin et al. (2025), Scientific Reports — RCT en Harvard: un tutor IA diseñado con andamiaje experto superó a la clase activa presencial. El diseño importa más que la herramienta.\nLee et al. (2025), CHI — 319 trabajadores del conocimiento: a mayor confianza ciega en la IA, menos pensamiento crítico; a mayor confianza en el dominio propio, más.\nFan et al. (2025), BJET — “pereza metacognitiva”: con ChatGPT mejora la tarea inmediata, pero no la transferencia de conocimiento.\nPrather et al. (2024), ICER — en programadores novatos la IA amplía la brecha: ayuda a quienes ya tienen estrategias metacognitivas y crea ilusión de competencia en quienes no.\nKosmyna et al. (2025), preprint — el estudio EEG de la “deuda cognitiva” (leer con cautela: preprint con críticas metodológicas).\n\nEn este curso adoptamos estas prácticas:\n\nDeclaración de uso. Cada entrega incluye una nota breve: qué asistente usaste, para qué tareas y qué verificaste tú.\nExplicar sin el asistente. En las ayudantías se te puede pedir explicar cualquier línea de tu código o decisión analítica, con el computador cerrado.\nCritica la salida. Antes de aceptar código o interpretación de la IA, escribe una razón por la que podría estar mal (¿datos?, ¿supuestos?, ¿paquete inventado?).\nPrimero a mano, después con IA. Los conceptos nuevos de cada semana se practican primero sin asistente; la IA entra para acelerar lo que ya entiendes.\nLa interpretación es tuya. La IA puede redactar código; la lectura sustantiva de los resultados —qué significa ese coeficiente en tu red— no se delega.",
+    "text": "1.3 Uso crítico de la IA en investigación\n\n\n\n\n\n\nAdvertenciaLa regla de esta casa\n\n\n\nEl asistente de IA acelera tu trabajo; no piensa por ti. En este curso puedes usar IA en las entregas, pero (1) debes declararlo, (2) debes poder explicar cada línea de tu código y cada decisión analítica sin el asistente, y (3) la interpretación de resultados es siempre tuya.\n\n\nLa evidencia reciente (2024–2026) sobre asistentes de IA en educación apunta en dos direcciones a la vez: los asistentes bien andamiados pueden acelerar el aprendizaje y democratizar la programación para quienes vienen de disciplinas no computacionales, y al mismo tiempo el uso pasivo —aceptar salidas sin verificarlas— se asocia a descarga cognitiva y menor esfuerzo crítico. La conclusión práctica no es prohibir ni adoptar a ciegas, sino usar con reglas.\nLecturas que fundamentan estas reglas:\n\nBastani et al. (2025), PNAS — experimento de campo con ~1.000 estudiantes: el acceso a GPT mejora la práctica pero empeora el examen sin IA… salvo cuando el tutor tiene guardrails pedagógicos, que eliminan el daño.\nKestin et al. (2025), Scientific Reports — RCT en Harvard: un tutor IA diseñado con andamiaje experto superó a la clase activa presencial. El diseño importa más que la herramienta.\nLee et al. (2025), CHI — 319 trabajadores del conocimiento: a mayor confianza ciega en la IA, menos pensamiento crítico; a mayor confianza en el dominio propio, más.\nFan et al. (2025), BJET — “pereza metacognitiva”: con ChatGPT mejora la tarea inmediata, pero no la transferencia de conocimiento.\nPrather et al. (2024), ICER — en programadores novatos la IA amplía la brecha: ayuda a quienes ya tienen estrategias metacognitivas y crea ilusión de competencia en quienes no.\nKosmyna et al. (2025), preprint — el estudio EEG de la “deuda cognitiva” (leer con cautela: preprint con críticas metodológicas).\n\nEn este curso adoptamos estas prácticas:\n\nDeclaración de uso. Cada entrega incluye una nota breve: qué asistente usaste, para qué tareas y qué verificaste tú.\nCritica la salida. Antes de aceptar código o interpretación de la IA, escribe una razón por la que podría estar mal (¿datos?, ¿supuestos?, ¿paquete inventado?).\nPrimero a mano, después con IA. Los conceptos nuevos de cada semana se practican primero sin asistente; la IA entra para acelerar lo que ya entiendes.\nLa interpretación es tuya. La IA puede redactar código; la lectura sustantiva de los resultados —qué significa ese coeficiente en tu red— no se delega.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ayudantía 1 — El kit computacional del investigador</span>"
+    ]
+  },
+  {
+    "objectID": "01-setup-computacional.html#cómo-se-verifica-la-comprensión",
+    "href": "01-setup-computacional.html#cómo-se-verifica-la-comprensión",
+    "title": "1  Ayudantía 1 — El kit computacional del investigador",
+    "section": "1.4 Cómo se verifica la comprensión",
+    "text": "1.4 Cómo se verifica la comprensión\nUsar IA está permitido y es deseable. Lo que no se delega es entender. Por eso las ayudantías incluyen dos mecanismos, ambos anunciados desde hoy para que nadie los reciba de sorpresa:\nDefensa de la entrega. Al cierre de cada semana revisamos entregas y se te puede pedir: “tú escribiste esto en tu entrega; defiende esta decisión”. No es un examen sorpresa ni busca atrapar a nadie: se trata de justificar por qué elegiste ese modelo nulo, esa centralidad o ese umbral, y qué habría pasado con otra opción. Si usaste un asistente para escribir el código, la defensa es exactamente donde demuestras que el razonamiento es tuyo.\nPreguntas por sorteo. Durante las ayudantías las preguntas se asignan con un generador de números aleatorios. El objetivo no es evaluar sino repartir la participación: en cohortes heterogéneas, dejar las preguntas a la mano alzada concentra la palabra en quienes ya venían cómodos con el tema. El sorteo asegura que todos vengan siguiendo el hilo y que las dudas de todos los orígenes disciplinares aparezcan.\n\n\n\n\n\n\nNotaSobre el sorteo: reglas del juego\n\n\n\nLas preguntas son conceptuales, no de memoria (“¿qué te diría este resultado?”, no “¿cuál es la fórmula de X?”). Siempre se puede pasar el turno o pensar en voz alta con ayuda del curso: aquí una respuesta equivocada bien argumentada vale más que una correcta recitada. No hay nota asociada al sorteo.\n\n\n# El sorteo que usaremos en clase (transparente y reproducible)\nset.seed(20260803)          # la semilla se anuncia al inicio de la sesión\nsample(nombres_curso, 1)",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ayudantía 1 — El kit computacional del investigador</span>"
     ]
@@ -63,8 +83,8 @@
     "objectID": "01-setup-computacional.html#verificación-final",
     "href": "01-setup-computacional.html#verificación-final",
     "title": "1  Ayudantía 1 — El kit computacional del investigador",
-    "section": "1.4 Verificación final",
-    "text": "1.4 Verificación final\nAntes de irte, confirma que puedes:\n\nAbrir RStudio y ejecutar 1 + 1 en la consola.\nRenderizar un .qmd de prueba a HTML con Quarto.\nClonar el repositorio del curso desde GitHub.\nHacer una pregunta al asistente de IA desde el editor y evaluar críticamente su respuesta.",
+    "section": "1.5 Verificación final",
+    "text": "1.5 Verificación final\nAntes de irte, confirma que puedes:\n\nAbrir RStudio y ejecutar 1 + 1 en la consola.\nRenderizar un .qmd de prueba a HTML con Quarto.\nClonar el repositorio del curso desde GitHub.\nHacer una pregunta al asistente de IA desde el editor y evaluar críticamente su respuesta.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ayudantía 1 — El kit computacional del investigador</span>"
     ]
@@ -100,73 +120,83 @@
     ]
   },
   {
-    "objectID": "03-semana-2-posiciones-e-inferencia.html",
-    "href": "03-semana-2-posiciones-e-inferencia.html",
-    "title": "3  Semana 2 — Posiciones, comunidades e inferencia",
+    "objectID": "03-semana-2-posiciones-y-redes-de-variables.html",
+    "href": "03-semana-2-posiciones-y-redes-de-variables.html",
+    "title": "3  Semana 2 — Posiciones, comunidades y redes de variables",
     "section": "",
-    "text": "3.1 Repaso teórico\n(En desarrollo. Temas: centralidades — grado, intermediación, cercanía, eigenvector — y qué pregunta responde cada una; cohesión, cliques y k-cores; comunidades y modularidad — Louvain, walktrap; roles estructurales y embeddings — node2vec; dependencia entre observaciones; pruebas de permutación; QAP/MRQAP; introducción a ERGM; homofilia, selección e influencia.)",
+    "text": "3.1 Parte teórica",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Semana 2 — Posiciones, comunidades e inferencia</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Semana 2 — Posiciones, comunidades y redes de variables</span>"
     ]
   },
   {
-    "objectID": "03-semana-2-posiciones-e-inferencia.html#práctica-guiada-en-r",
-    "href": "03-semana-2-posiciones-e-inferencia.html#práctica-guiada-en-r",
-    "title": "3  Semana 2 — Posiciones, comunidades e inferencia",
+    "objectID": "03-semana-2-posiciones-y-redes-de-variables.html#parte-teórica",
+    "href": "03-semana-2-posiciones-y-redes-de-variables.html#parte-teórica",
+    "title": "3  Semana 2 — Posiciones, comunidades y redes de variables",
+    "section": "",
+    "text": "3.1.1 Posiciones en redes de actores\n(En desarrollo. Temas: centralidad de grado, intermediación, cercanía y eigenvector, y qué pregunta responde cada una; centralidad como acceso, visibilidad, intermediación y prestigio; cohesión, cliques y k-cores; comunidades y modularidad — Louvain, walktrap, greedy; roles estructurales; introducción a graph embeddings y node2vec.)\n\n\n3.1.2 Redes de variables\n(En desarrollo. Temas: nodos como ítems, síntomas o creencias; aristas como asociaciones condicionales; correlaciones parciales; regularización y graphical lasso; el modelo de Ising como intuición para variables binarias; strength centrality; estabilidad de centralidad y bootstrap; redes psicométricas frente a modelos de variable latente; límites causales de las redes de variables.)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Semana 2 — Posiciones, comunidades y redes de variables</span>"
+    ]
+  },
+  {
+    "objectID": "03-semana-2-posiciones-y-redes-de-variables.html#práctica-guiada-en-r",
+    "href": "03-semana-2-posiciones-y-redes-de-variables.html#práctica-guiada-en-r",
+    "title": "3  Semana 2 — Posiciones, comunidades y redes de variables",
     "section": "3.2 Práctica guiada en R",
-    "text": "3.2 Práctica guiada en R\nlibrary(igraph)\n\n# Red cuasi-real incluida en libro/datos/: 24 doctorandos de tres\n# disciplinas, con vínculos de colaboración y algunos puentes\naristas   &lt;- read.csv(\"datos/semana2_aristas.csv\")\natributos &lt;- read.csv(\"datos/semana2_atributos.csv\")\nred &lt;- graph_from_data_frame(aristas, directed = FALSE, vertices = atributos)\n\n# 1. ¿Quién es \"importante\"? Depende de la métrica\ncent &lt;- data.frame(\n  grado     = degree(red),\n  interm    = betweenness(red),\n  cercania  = closeness(red),\n  eigen     = eigen_centrality(red)$vector\n)\n\n# 2. Comunidades y modularidad: ¿recuperan las disciplinas?\ncom &lt;- cluster_louvain(red)\nmodularity(com)\ntable(membership(com), V(red)$disciplina)\n\n# 3. QAP: ¿la similitud disciplinar predice vínculos?\nA   &lt;- as_adjacency_matrix(red, sparse = FALSE)\nsim &lt;- outer(V(red)$disciplina, V(red)$disciplina, \"==\") * 1\nobs &lt;- cor(A[lower.tri(A)], sim[lower.tri(sim)])\n\nperm &lt;- replicate(1000, {\n  idx &lt;- sample(nrow(A))\n  Ap  &lt;- A[idx, idx]\n  cor(Ap[lower.tri(Ap)], sim[lower.tri(sim)])\n})\nmean(abs(perm) &gt;= abs(obs))   # valor p empírico (QAP)\n(En desarrollo: ERGM mínimo con ergm — edges + nodematch + gwesp — y cómo NO interpretarlo causalmente.)",
+    "text": "3.2 Práctica guiada en R\n\n3.2.1 A. Posiciones y comunidades en una red de actores\nlibrary(igraph)\n\n# Red cuasi-real incluida en libro/datos/: 24 doctorandos de tres\n# disciplinas, con vínculos de colaboración y algunos puentes\naristas   &lt;- read.csv(\"datos/semana2_aristas.csv\")\natributos &lt;- read.csv(\"datos/semana2_atributos.csv\")\nred &lt;- graph_from_data_frame(aristas, directed = FALSE, vertices = atributos)\n\n# 1. ¿Quién es \"importante\"? Depende de la métrica\ncent &lt;- data.frame(\n  grado     = degree(red),\n  interm    = betweenness(red),\n  cercania  = closeness(red),\n  eigen     = eigen_centrality(red)$vector\n)\ncent[order(-cent$interm), ] |&gt; head()\n\n# 2. Comunidades y modularidad: ¿recuperan las disciplinas?\ncom &lt;- cluster_louvain(red)\nmodularity(com)\ntable(membership(com), V(red)$disciplina)\n\n\n\n\n\n\nImportantePara jugar con las variables en clase\n\n\n\nLos nodos puente (P08, P16, P04, P12) tienen grado bajo pero intermediación alta. Si borramos uno, la modularidad sube y el diámetro crece: el actor “poco conectado” era el que mantenía unida la red. Es el argumento de Burt sobre agujeros estructurales, visible en tres líneas de código.\n\n\n\n\n3.2.2 B. Una red de variables sobre los mismos datos conceptuales\nlibrary(qgraph)\nlibrary(bootnet)\n\n# 220 respuestas a 12 ítems Likert en tres bloques temáticos\nitems &lt;- read.csv(\"datos/semana2_items_likert.csv\")\n\n# 1. Correlaciones vs. correlaciones parciales regularizadas\nnet &lt;- estimateNetwork(items, default = \"EBICglasso\")\nplot(net, layout = \"spring\", labels = colnames(items))\n\n# 2. ¿Qué ítem es más \"central\"? (strength)\ncentralityPlot(net, include = \"Strength\")\n\n# 3. ¿Es estable esa centralidad? (bootstrap por casos)\nest &lt;- bootnet(net, nBoots = 500, type = \"case\", statistics = \"strength\")\nplot(est, statistics = \"strength\")\n\n\n\n\n\n\nImportantePara jugar con las variables en clase\n\n\n\nCompara la red de correlaciones simples con la de correlaciones parciales regularizadas: muchas aristas desaparecen. Luego sube el parámetro de regularización y observa cómo el orden de strength centrality se vuelve inestable con n pequeño. La lección: en redes de variables, la centralidad es una estimación, no un dato.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Semana 2 — Posiciones, comunidades e inferencia</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Semana 2 — Posiciones, comunidades y redes de variables</span>"
     ]
   },
   {
-    "objectID": "03-semana-2-posiciones-e-inferencia.html#hacia-la-entrega-semanal",
-    "href": "03-semana-2-posiciones-e-inferencia.html#hacia-la-entrega-semanal",
-    "title": "3  Semana 2 — Posiciones, comunidades e inferencia",
+    "objectID": "03-semana-2-posiciones-y-redes-de-variables.html#hacia-la-entrega-semanal",
+    "href": "03-semana-2-posiciones-y-redes-de-variables.html#hacia-la-entrega-semanal",
+    "title": "3  Semana 2 — Posiciones, comunidades y redes de variables",
     "section": "3.3 Hacia la entrega semanal",
-    "text": "3.3 Hacia la entrega semanal\n\n¿Qué centralidad es relevante para tu pregunta?\n¿Las comunidades detectadas son sustantivamente interpretables?\n¿La asociación entre similitud y vínculos puede leerse como influencia? ¿Qué limitación inferencial hay que reconocer?",
+    "text": "3.3 Hacia la entrega semanal\n\n¿Qué centralidad es relevante para tu pregunta, y por qué esa y no otra?\n¿Las comunidades detectadas son sustantivamente interpretables o son un artefacto del algoritmo?\nEn tu red de variables: ¿qué representa cada nodo y cada arista?\n¿Qué resultados son estructuralmente estables y cuáles no sobrevivirían a otra muestra?\n¿Qué límites causales debes declarar explícitamente?",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Semana 2 — Posiciones, comunidades e inferencia</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Semana 2 — Posiciones, comunidades y redes de variables</span>"
     ]
   },
   {
-    "objectID": "04-semana-3-difusion-contagio-y-variables.html",
-    "href": "04-semana-3-difusion-contagio-y-variables.html",
-    "title": "4  Semana 3 — Difusión, contagio y redes de variables",
+    "objectID": "04-semana-3-inferencia-y-difusion.html",
+    "href": "04-semana-3-inferencia-y-difusion.html",
+    "title": "4  Semana 3 — Inferencia estadística y difusión",
     "section": "",
-    "text": "4.1 Repaso teórico\n(En desarrollo. Temas: difusión de innovaciones; contagio simple vs. complejo; umbrales y exposición; SIR/SIS; cascadas; semillas aleatorias vs. centrales; intervenciones y remoción de nodos; estimar influencia vs. simular difusión — exposición retardada, modelos de autocorrelación de red (SAR) y ALAAM; redes psicométricas: correlaciones parciales, graphical lasso, modelo de Ising, strength centrality y estabilidad.)\nEsta semana se apoya en dos materiales que ya existen y probaremos en vivo:",
+    "text": "4.1 Parte teórica",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Semana 3 — Difusión, contagio y redes de variables</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Semana 3 — Inferencia estadística y difusión</span>"
     ]
   },
   {
-    "objectID": "04-semana-3-difusion-contagio-y-variables.html#repaso-teórico",
-    "href": "04-semana-3-difusion-contagio-y-variables.html#repaso-teórico",
-    "title": "4  Semana 3 — Difusión, contagio y redes de variables",
+    "objectID": "04-semana-3-inferencia-y-difusion.html#parte-teórica",
+    "href": "04-semana-3-inferencia-y-difusion.html#parte-teórica",
+    "title": "4  Semana 3 — Inferencia estadística y difusión",
     "section": "",
-    "text": "Workshop netdiffuseR (Vega Yon & Olivera) — difusión con los datasets clásicos (medInnovations, brfarmers, kfamily) y simulación con rdiffnet.\nEncuestas desde la complejidad (Fábrega & Olivera) — el modelo de Ising como puente entre redes sociales y redes de variables.",
+    "text": "4.1.1 Inferencia estadística en redes\n(En desarrollo. Temas: dependencia entre observaciones y el problema de la independencia estadística; pruebas de permutación; QAP y MRQAP; introducción a ERGM y sus términos básicos — edges, mutuality, nodematch, triangles, gwesp; homofilia, selección, influencia y contagio; interferencia causal en redes; diferencia entre asociación, influencia e identificación causal.)\nCómo se estima influencia. Vale la pena nombrar la familia completa, aunque en clase solo lleguemos a los primeros escalones:\n\n\n\n\n\n\n\n\nSupuesto sobre la red\nModelo\nIdea\n\n\n\n\nRed fija, efecto rezagado\nRegresión con exposición\nEl resultado de mis vecinos en \\(t-1\\) predice el mío en \\(t\\)\n\n\nRed fija, efecto contemporáneo\nSAR (autocorrelación de red)\n\\(y = \\rho W y + \\theta X + \\varepsilon\\)\n\n\nRed fija, conducta endógena\nALAAM\nComo un ERGM, pero lo aleatorio es el atributo\n\n\nRed y conducta coevolucionan\nSIENA / SAOM\nSepara selección de influencia con datos de panel\n\n\n\nLa exposición de red, \\(E_i = \\frac{\\sum_j X_{ij} y_j}{\\sum_j X_{ij}}\\), es literalmente el mismo objeto que aparece en los modelos de umbral del miércoles. Esa es la bisagra de la semana.\n\n\n4.1.2 Difusión y contagio\n(En desarrollo. Temas: difusión de innovaciones; contagio simple vs. complejo; umbrales y exposición; modelos SIR y SIS; cascadas; semillas aleatorias vs. semillas centrales; intervenciones sobre redes; remoción de nodos y robustez; comparación entre red observada, red nula y red con comunidades; diferencia entre simulación de difusión e identificación causal de contagio.)\nMateriales que usaremos en vivo:\n\nWorkshop netdiffuseR (Vega Yon & Olivera) — datasets clásicos de difusión y simulación con rdiffnet.\nRevisitando las Encuestas (Fábrega & Olivera) — homofilia sobre GSS y el modelo de Ising como puente hacia la semana 2.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Semana 3 — Difusión, contagio y redes de variables</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Semana 3 — Inferencia estadística y difusión</span>"
     ]
   },
   {
-    "objectID": "04-semana-3-difusion-contagio-y-variables.html#práctica-guiada-en-r",
-    "href": "04-semana-3-difusion-contagio-y-variables.html#práctica-guiada-en-r",
-    "title": "4  Semana 3 — Difusión, contagio y redes de variables",
+    "objectID": "04-semana-3-inferencia-y-difusion.html#práctica-guiada-en-r",
+    "href": "04-semana-3-inferencia-y-difusion.html#práctica-guiada-en-r",
+    "title": "4  Semana 3 — Inferencia estadística y difusión",
     "section": "4.2 Práctica guiada en R",
-    "text": "4.2 Práctica guiada en R\nlibrary(netdiffuseR)\n\n# 1. Umbrales y exposición en un dataset clásico\ndata(medInnovationsDiffNet)\nplot_diffnet(medInnovationsDiffNet)\n\n# 2. Simular difusión: ¿importan las semillas?\nsim_central &lt;- rdiffnet(\n  n = 500, t = 10,\n  seed.nodes   = \"central\",          # vs \"random\"\n  seed.p.adopt = 0.05,\n  seed.graph   = \"small-world\",\n  rgraph.args  = list(p = 0.2),\n  threshold.dist = function(x) runif(1, 0.3, 0.7)\n)\n\n# 3. Intervención: remover nodos de alta intermediación y comparar curvas\n(En desarrollo: comparación entre red observada, red nula y red con comunidades; red psicométrica con bootnet/qgraph sobre ítems Likert.)",
+    "text": "4.2 Práctica guiada en R\n\n4.2.1 A. Estimar: ¿la similitud predice vínculos?\nlibrary(igraph)\n\naristas   &lt;- read.csv(\"datos/semana2_aristas.csv\")\natributos &lt;- read.csv(\"datos/semana2_atributos.csv\")\nred &lt;- graph_from_data_frame(aristas, directed = FALSE, vertices = atributos)\n\n# QAP: correlación entre la matriz de adyacencia y la de similitud\nA   &lt;- as_adjacency_matrix(red, sparse = FALSE)\nsim &lt;- outer(V(red)$disciplina, V(red)$disciplina, \"==\") * 1\nobs &lt;- cor(A[lower.tri(A)], sim[lower.tri(sim)])\n\n# El nulo correcto NO es permutar celdas, sino permutar NODOS\nperm &lt;- replicate(1000, {\n  idx &lt;- sample(nrow(A))\n  Ap  &lt;- A[idx, idx]\n  cor(Ap[lower.tri(Ap)], sim[lower.tri(sim)])\n})\nmean(abs(perm) &gt;= abs(obs))   # valor p empírico (QAP)\nlibrary(ergm)\nlibrary(intergraph)\n\n# El mismo resultado, ahora como modelo generativo\nfit &lt;- ergm(asNetwork(red) ~ edges + nodematch(\"disciplina\") + gwesp(0.5, fixed = TRUE))\nsummary(fit)\n\n\n4.2.2 B. Estimar influencia: exposición de red\n# Simulamos un mundo donde SÍ hay contagio (rho = 0.5) y lo recuperamos\nset.seed(3132)\nn  &lt;- 200\nX  &lt;- as_adjacency_matrix(sample_gnp(n, 0.05), sparse = FALSE)\nw  &lt;- rnorm(n)\ny0 &lt;- rnorm(n)\n\nexpo &lt;- (X %*% y0) / rowSums(X)          # exposición: promedio de los vecinos\ny1   &lt;- -1 + 0.5 * expo + 3 * w + rnorm(n)\n\nsummary(glm(y1 ~ expo + w, family = \"gaussian\"))\n\n\n\n\n\n\nAdvertenciaLa pregunta incómoda\n\n\n\nEse modelo recupera \\(\\rho \\approx 0.5\\) porque nosotros generamos los datos con contagio. Con datos reales, un \\(\\rho\\) significativo es igualmente compatible con homofilia no observada: personas parecidas se juntan y se parecen. Ningún paquete de R resuelve esto por ti; se resuelve con diseño (panel, aleatorización, instrumentos) o se declara como límite.\n\n\n\n\n4.2.3 C. Simular: contagio simple vs. complejo\nlibrary(netdiffuseR)\n\n# Datos clásicos: médicos y la adopción de tetraciclina (1955)\ndata(medInnovationsDiffNet)\nplot_diffnet(medInnovationsDiffNet)\n\n# ¿Importan las semillas? Misma red, distinta estrategia\nsim_random &lt;- rdiffnet(\n  n = 500, t = 10,\n  seed.nodes = \"random\", seed.p.adopt = 0.05,\n  seed.graph = \"small-world\", rgraph.args = list(p = 0.2),\n  threshold.dist = function(x) runif(1, 0.3, 0.7)\n)\n\nsim_central &lt;- rdiffnet(\n  n = 500, t = 10,\n  seed.nodes = \"central\", seed.p.adopt = 0.05,\n  seed.graph = \"small-world\", rgraph.args = list(p = 0.2),\n  threshold.dist = function(x) runif(1, 0.3, 0.7)\n)\n\nplot_adopters(sim_random)\nplot_adopters(sim_central)\n\n\n\n\n\n\nImportantePara jugar con las variables en clase\n\n\n\nTres perillas y tres lecciones:\n\nUmbral. Con threshold.dist = function(x) 0.1 (contagio simple) la difusión atraviesa lazos débiles y llega lejos. Con 0.5 (contagio complejo) necesita refuerzo local: se propaga dentro de comunidades y se atasca en los puentes. Es Centola & Macy en dos corridas.\nRewiring del small-world. Sube p de 0.05 a 0.5: los atajos aceleran el contagio simple y a veces frenan el complejo, porque diluyen el refuerzo local.\nSemillas. Con umbral bajo, semillas centrales ganan cómodamente. Con umbral alto, sembrar en un grupo cohesionado puede ser mejor que sembrar en los nodos más centrales.",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Semana 3 — Difusión, contagio y redes de variables</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Semana 3 — Inferencia estadística y difusión</span>"
     ]
   },
   {
-    "objectID": "04-semana-3-difusion-contagio-y-variables.html#hacia-la-entrega-semanal",
-    "href": "04-semana-3-difusion-contagio-y-variables.html#hacia-la-entrega-semanal",
-    "title": "4  Semana 3 — Difusión, contagio y redes de variables",
+    "objectID": "04-semana-3-inferencia-y-difusion.html#hacia-la-entrega-semanal",
+    "href": "04-semana-3-inferencia-y-difusion.html#hacia-la-entrega-semanal",
+    "title": "4  Semana 3 — Inferencia estadística y difusión",
     "section": "4.3 Hacia la entrega semanal",
-    "text": "4.3 Hacia la entrega semanal\n\n¿Qué tipo de difusión modelaste y qué estructura la amplifica o contiene?\n¿Qué conclusiones no pueden inferirse desde la simulación?\n¿Qué representa cada nodo y cada arista en tu red de variables?",
+    "text": "4.3 Hacia la entrega semanal\n\n¿Qué tipo de difusión modelaste y qué estructura la amplifica o la contiene?\n¿La similitud entre actores predice vínculos? ¿Ese resultado puede interpretarse como influencia?\n¿Qué conclusiones no pueden inferirse desde la simulación?\n¿Qué limitación inferencial declaras explícitamente?",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Semana 3 — Difusión, contagio y redes de variables</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Semana 3 — Inferencia estadística y difusión</span>"
     ]
   },
   {
@@ -174,7 +204,7 @@
     "href": "referencias.html",
     "title": "Referencias",
     "section": "",
-    "text": "Por sesión (según syllabus)\nSesión 1. Granovetter (1973) The Strength of Weak Ties; Coleman (1988) Social Capital in the Creation of Human Capital; Burt (1992) Structural Holes; Borgatti, Everett & Johnson (2018) Analyzing Social Networks.\nSesión 2. Erdős & Rényi (1959); Watts & Strogatz (1998) Nature; Barabási & Albert (1999) Science; Karrer & Newman (2011).\nSesión 3. Freeman (1979); Borgatti (2005); Newman (2006) PNAS; Grover & Leskovec (2016) node2vec.\nSesión 4. Krackhardt (1988); Robins et al. (2007); Lusher, Koskinen & Robins (2013); Cranmer, Desmarais & Morgan (2021) Inferential Network Analysis.\nSesión 5. Borsboom (2017) World Psychiatry; Epskamp, Borsboom & Fried (2018); Fried & Cramer (2017); Dalege et al. (2016).\nSesión 6. Granovetter (1978) Threshold Models of Collective Behavior; Rogers (2003) Diffusion of Innovations; Centola & Macy (2007); Pastor-Satorras et al. (2015).",
+    "text": "Por sesión (según syllabus)\nSesión 1. Granovetter (1973) The Strength of Weak Ties; Coleman (1988) Social Capital in the Creation of Human Capital; Burt (1992) Structural Holes; Borgatti, Everett & Johnson (2018) Analyzing Social Networks.\nSesión 2. Erdős & Rényi (1959); Watts & Strogatz (1998) Nature; Barabási & Albert (1999) Science; Karrer & Newman (2011).\nSesión 3. Freeman (1979); Borgatti (2005); Newman (2006) PNAS; Grover & Leskovec (2016) node2vec.\nSesión 4 (psicometría de redes, según el nuevo orden). Borsboom (2017) World Psychiatry; Epskamp, Borsboom & Fried (2018); Fried & Cramer (2017); Dalege et al. (2016).\nSesión 5 (inferencia estadística, según el nuevo orden). Krackhardt (1988); Robins et al. (2007); Lusher, Koskinen & Robins (2013); Cranmer, Desmarais & Morgan (2021) Inferential Network Analysis. Complementarias sobre influencia: Shalizi & Thomas (2011) sobre la confusión homofilia-contagio; Snijders et al. (2010) sobre SAOM/SIENA.\nSesión 6. Granovetter (1978) Threshold Models of Collective Behavior; Rogers (2003) Diffusion of Innovations; Centola & Macy (2007); Pastor-Satorras et al. (2015).",
     "crumbs": [
       "Referencias"
     ]

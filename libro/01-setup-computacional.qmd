@@ -55,10 +55,28 @@ Lecturas que fundamentan estas reglas:
 En este curso adoptamos estas prácticas:
 
 1. **Declaración de uso.** Cada entrega incluye una nota breve: qué asistente usaste, para qué tareas y qué verificaste tú.
-2. **Explicar sin el asistente.** En las ayudantías se te puede pedir explicar cualquier línea de tu código o decisión analítica, con el computador cerrado.
-3. **Critica la salida.** Antes de aceptar código o interpretación de la IA, escribe una razón por la que *podría estar mal* (¿datos?, ¿supuestos?, ¿paquete inventado?).
-4. **Primero a mano, después con IA.** Los conceptos nuevos de cada semana se practican primero sin asistente; la IA entra para acelerar lo que ya entiendes.
-5. **La interpretación es tuya.** La IA puede redactar código; la lectura sustantiva de los resultados —qué significa ese coeficiente en *tu* red— no se delega.
+2. **Critica la salida.** Antes de aceptar código o interpretación de la IA, escribe una razón por la que *podría estar mal* (¿datos?, ¿supuestos?, ¿paquete inventado?).
+3. **Primero a mano, después con IA.** Los conceptos nuevos de cada semana se practican primero sin asistente; la IA entra para acelerar lo que ya entiendes.
+4. **La interpretación es tuya.** La IA puede redactar código; la lectura sustantiva de los resultados —qué significa ese coeficiente en *tu* red— no se delega.
+
+## Cómo se verifica la comprensión
+
+Usar IA está permitido y es deseable. Lo que no se delega es **entender**. Por eso las ayudantías incluyen dos mecanismos, ambos anunciados desde hoy para que nadie los reciba de sorpresa:
+
+**Defensa de la entrega.** Al cierre de cada semana revisamos entregas y se te puede pedir: *"tú escribiste esto en tu entrega; defiende esta decisión"*. No es un examen sorpresa ni busca atrapar a nadie: se trata de justificar por qué elegiste ese modelo nulo, esa centralidad o ese umbral, y qué habría pasado con otra opción. Si usaste un asistente para escribir el código, la defensa es exactamente donde demuestras que el razonamiento es tuyo.
+
+**Preguntas por sorteo.** Durante las ayudantías las preguntas se asignan con un generador de números aleatorios. El objetivo no es evaluar sino **repartir la participación**: en cohortes heterogéneas, dejar las preguntas a la mano alzada concentra la palabra en quienes ya venían cómodos con el tema. El sorteo asegura que todos vengan siguiendo el hilo y que las dudas de todos los orígenes disciplinares aparezcan.
+
+::: {.callout-note}
+## Sobre el sorteo: reglas del juego
+Las preguntas son **conceptuales, no de memoria** ("¿qué te diría este resultado?", no "¿cuál es la fórmula de X?"). Siempre se puede pasar el turno o pensar en voz alta con ayuda del curso: aquí una respuesta equivocada bien argumentada vale más que una correcta recitada. No hay nota asociada al sorteo.
+:::
+
+```r
+# El sorteo que usaremos en clase (transparente y reproducible)
+set.seed(20260803)          # la semilla se anuncia al inicio de la sesión
+sample(nombres_curso, 1)
+```
 
 ## Verificación final
 

@@ -32,8 +32,8 @@ El syllabus completo está en [`syllabus_teoria_redes_sociales_DCCS_2026.pdf`](s
 
 | Semana | Sesiones | Entrega |
 |---|---|---|
-| 1. Fundamentos relacionales, grafos y modelos nulos | S1: Capital social, pensamiento relacional y grafos · S2: Modelos generativos y nulos | Entrega semanal 1 |
-| 2 | S3 · S4 (ver programa) | Entrega semanal 2 |
-| 3 | S5 · S6 (ver programa) | Entrega semanal 3 |
+| 1. Fundamentos relacionales, grafos y modelos nulos | S1 Capital social, pensamiento relacional y grafos · S2 Modelos generativos y nulos | Entrega 1: fundamentos y modelos nulos |
+| 2. Posiciones, comunidades y redes de variables | S3 Centralidad, cohesión, comunidades, roles y embeddings · S4 Psicometría de redes y redes de variables | Entrega 2: posición, comunidad y redes de variables |
+| 3. Inferencia estadística y difusión | S5 Inferencia en redes: QAP, ERGM e interferencia · S6 Difusión, contagio, cascadas e intervención | Entrega 3: estimar vs. simular influencia |
 
-*(Las semanas 2 y 3 se detallarán aquí una vez cerrado el orden definitivo de las sesiones 4–6.)*
+> **Nota sobre el orden.** Este repositorio sigue el orden con las **sesiones 4 y 5 intercambiadas** respecto del syllabus original (propuesta de la ayudantía, en revisión con el profesor). Psicometría de redes pasa a la semana 2, donde comparte herramientas con centralidad y comunidades; e inferencia estadística pasa a la semana 3, quedando consecutiva con difusión y contagio. Así, estimar influencia y simular difusión ocurren en la misma semana y se evalúan en la misma entrega.

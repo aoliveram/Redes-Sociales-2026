@@ -1,5 +1,9 @@
 # Referencias {.unnumbered}
 
+::: {.callout-note}
+Este libro sigue el orden **con las sesiones 4 y 5 intercambiadas** respecto del syllabus original: psicometría de redes cierra la semana 2 (junto a centralidad y comunidades), e inferencia estadística abre la semana 3 (junto a difusión y contagio). El propósito es que estimar influencia y simular difusión queden en la misma semana y en la misma entrega.
+:::
+
 ## Por sesión (según syllabus)
 
 **Sesión 1.** Granovetter (1973) *The Strength of Weak Ties*; Coleman (1988) *Social Capital in the Creation of Human Capital*; Burt (1992) *Structural Holes*; Borgatti, Everett & Johnson (2018) *Analyzing Social Networks*.
@@ -8,9 +12,9 @@
 
 **Sesión 3.** Freeman (1979); Borgatti (2005); Newman (2006) *PNAS*; Grover & Leskovec (2016) *node2vec*.
 
-**Sesión 4.** Krackhardt (1988); Robins et al. (2007); Lusher, Koskinen & Robins (2013); Cranmer, Desmarais & Morgan (2021) *Inferential Network Analysis*.
+**Sesión 4** (psicometría de redes, según el nuevo orden). Borsboom (2017) *World Psychiatry*; Epskamp, Borsboom & Fried (2018); Fried & Cramer (2017); Dalege et al. (2016).
 
-**Sesión 5.** Borsboom (2017) *World Psychiatry*; Epskamp, Borsboom & Fried (2018); Fried & Cramer (2017); Dalege et al. (2016).
+**Sesión 5** (inferencia estadística, según el nuevo orden). Krackhardt (1988); Robins et al. (2007); Lusher, Koskinen & Robins (2013); Cranmer, Desmarais & Morgan (2021) *Inferential Network Analysis*. Complementarias sobre influencia: Shalizi & Thomas (2011) sobre la confusión homofilia-contagio; Snijders et al. (2010) sobre SAOM/SIENA.
 
 **Sesión 6.** Granovetter (1978) *Threshold Models of Collective Behavior*; Rogers (2003) *Diffusion of Innovations*; Centola & Macy (2007); Pastor-Satorras et al. (2015).
 

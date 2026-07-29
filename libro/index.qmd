@@ -18,6 +18,16 @@ Para estudiantes de primer año del doctorado, que vienen de orígenes muy diver
 - Datos de la práctica: carpeta [`libro/datos/`](https://github.com/aoliveram/Redes-Sociales-2026/tree/main/libro/datos)
 - Syllabus oficial: en el repositorio.
 
+## Orden de las semanas {.unnumbered}
+
+| Semana | Sesiones | Pregunta que articula |
+|---|---|---|
+| 1 | Grafos y capital social · Modelos generativos y nulos | ¿Hay más estructura que la esperada por azar? |
+| 2 | Centralidad, comunidades y roles · Psicometría de redes | ¿Qué significa ser central, y central *en qué*? |
+| 3 | Inferencia: QAP, ERGM e interferencia · Difusión y contagio | ¿Estimar influencia o simularla? |
+
 ::: {.callout-note}
 Este libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.
+
+El orden anterior intercambia las **sesiones 4 y 5** respecto del syllabus original, de modo que estimar influencia y simular difusión ocurran en la misma semana. Es una propuesta de la ayudantía, en revisión con el profesor del curso.
 :::
