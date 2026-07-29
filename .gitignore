@@ -1,0 +1,20 @@
+# Archivos de oficina no publicables (igual que 2025)
+*.ppt
+*.pptx
+*.docx
+
+# Sistema y R
+*.DS_Store
+.Rproj.user
+.Rhistory
+.RData
+
+# Material privado del equipo docente
+Revisiones-privado/
+networks-udd2024/
+
+# Artefactos de Quarto (el libro renderizado va en docs/, que SÍ se versiona)
+/libro/.quarto/
+/libro/*_cache/
+/libro/*_files/
+/libro/_freeze/
