@@ -1,0 +1,202 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Redes Sociales — DCCS 2026",
+    "section": "",
+    "text": "Bienvenida\nEste es el libro de ayudantías del curso Teoría de Redes Sociales (DCCS 2026, Universidad del Desarrollo), dictado por el profesor Jorge Fábrega, con ayudantías de Aníbal Olivera Morales.\nEl curso dura 3 semanas (6 sesiones, lunes y miércoles) y cada semana culmina en una entrega práctica breve. Este libro acompaña ese ritmo: cada capítulo corresponde a una semana del curso y sigue la misma estructura:",
+    "crumbs": [
+      "Bienvenida"
+    ]
+  },
+  {
+    "objectID": "index.html#para-quién-es-este-libro",
+    "href": "index.html#para-quién-es-este-libro",
+    "title": "Redes Sociales — DCCS 2026",
+    "section": "¿Para quién es este libro?",
+    "text": "¿Para quién es este libro?\nPara estudiantes de primer año del doctorado, que vienen de orígenes muy diversos: ingeniería, arquitectura, salud, sociología, psicología, entre otros. No se asume experiencia previa en programación. La Ayudantía 1 deja instalado y configurado todo lo necesario.",
+    "crumbs": [
+      "Bienvenida"
+    ]
+  },
+  {
+    "objectID": "index.html#materiales",
+    "href": "index.html#materiales",
+    "title": "Redes Sociales — DCCS 2026",
+    "section": "Materiales",
+    "text": "Materiales\n\nRepositorio del curso: https://github.com/aoliveram/Redes-Sociales-2026\nDatos de la práctica: carpeta libro/datos/\nSyllabus oficial: en el repositorio.\n\n\n\n\n\n\n\nNota\n\n\n\nEste libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.",
+    "crumbs": [
+      "Bienvenida"
+    ]
+  },
+  {
+    "objectID": "01-setup-computacional.html",
+    "href": "01-setup-computacional.html",
+    "title": "1  Ayudantía 1 — El kit computacional del investigador",
+    "section": "",
+    "text": "1.1 ¿Por qué partir por aquí?\nLas entregas semanales de este curso son notebooks reproducibles (R o Python) más un PDF. Ese estándar —código + datos + texto que cualquiera puede volver a ejecutar— es también el estándar de la ciencia actual. Instalar bien las herramientas una sola vez evita perder horas cada semana.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ayudantía 1 — El kit computacional del investigador</span>"
+    ]
+  },
+  {
+    "objectID": "01-setup-computacional.html#instalación-paso-a-paso",
+    "href": "01-setup-computacional.html#instalación-paso-a-paso",
+    "title": "1  Ayudantía 1 — El kit computacional del investigador",
+    "section": "1.2 Instalación paso a paso",
+    "text": "1.2 Instalación paso a paso\n\n1.2.1 1. R y RStudio\n\nR: https://cran.r-project.org/\nRStudio Desktop: https://posit.co/download/rstudio-desktop/\n\n\n\n1.2.2 2. VS Code (o Antigravity) como editor principal\n\nVS Code: https://code.visualstudio.com/\nExtensiones recomendadas: R, Quarto, GitHub Copilot o el asistente que elijas.\n\n\n\n1.2.3 3. Git y GitHub\n\nGit: https://git-scm.com/\nCuenta en https://github.com/ (con correo institucional puedes pedir el Student Developer Pack).\n\n\n\n1.2.4 4. Quarto\n\nhttps://quarto.org/docs/get-started/ — con esto producirás tus entregas en PDF/HTML desde un solo archivo .qmd.\n\n\n\n1.2.5 5. Un asistente de investigación con IA (agéntico)\n(Sección en desarrollo: instalación y primer uso de un asistente agéntico en VS Code.)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ayudantía 1 — El kit computacional del investigador</span>"
+    ]
+  },
+  {
+    "objectID": "01-setup-computacional.html#uso-crítico-de-la-ia-en-investigación",
+    "href": "01-setup-computacional.html#uso-crítico-de-la-ia-en-investigación",
+    "title": "1  Ayudantía 1 — El kit computacional del investigador",
+    "section": "1.3 Uso crítico de la IA en investigación",
+    "text": "1.3 Uso crítico de la IA en investigación\n\n\n\n\n\n\nAdvertenciaLa regla de esta casa\n\n\n\nEl asistente de IA acelera tu trabajo; no piensa por ti. En este curso puedes usar IA en las entregas, pero (1) debes declararlo, (2) debes poder explicar cada línea de tu código y cada decisión analítica sin el asistente, y (3) la interpretación de resultados es siempre tuya.\n\n\nLa evidencia reciente (2024–2026) sobre asistentes de IA en educación apunta en dos direcciones a la vez: los asistentes bien andamiados pueden acelerar el aprendizaje y democratizar la programación para quienes vienen de disciplinas no computacionales, y al mismo tiempo el uso pasivo —aceptar salidas sin verificarlas— se asocia a descarga cognitiva y menor esfuerzo crítico. La conclusión práctica no es prohibir ni adoptar a ciegas, sino usar con reglas.\nLecturas que fundamentan estas reglas:\n\nBastani et al. (2025), PNAS — experimento de campo con ~1.000 estudiantes: el acceso a GPT mejora la práctica pero empeora el examen sin IA… salvo cuando el tutor tiene guardrails pedagógicos, que eliminan el daño.\nKestin et al. (2025), Scientific Reports — RCT en Harvard: un tutor IA diseñado con andamiaje experto superó a la clase activa presencial. El diseño importa más que la herramienta.\nLee et al. (2025), CHI — 319 trabajadores del conocimiento: a mayor confianza ciega en la IA, menos pensamiento crítico; a mayor confianza en el dominio propio, más.\nFan et al. (2025), BJET — “pereza metacognitiva”: con ChatGPT mejora la tarea inmediata, pero no la transferencia de conocimiento.\nPrather et al. (2024), ICER — en programadores novatos la IA amplía la brecha: ayuda a quienes ya tienen estrategias metacognitivas y crea ilusión de competencia en quienes no.\nKosmyna et al. (2025), preprint — el estudio EEG de la “deuda cognitiva” (leer con cautela: preprint con críticas metodológicas).\n\nEn este curso adoptamos estas prácticas:\n\nDeclaración de uso. Cada entrega incluye una nota breve: qué asistente usaste, para qué tareas y qué verificaste tú.\nExplicar sin el asistente. En las ayudantías se te puede pedir explicar cualquier línea de tu código o decisión analítica, con el computador cerrado.\nCritica la salida. Antes de aceptar código o interpretación de la IA, escribe una razón por la que podría estar mal (¿datos?, ¿supuestos?, ¿paquete inventado?).\nPrimero a mano, después con IA. Los conceptos nuevos de cada semana se practican primero sin asistente; la IA entra para acelerar lo que ya entiendes.\nLa interpretación es tuya. La IA puede redactar código; la lectura sustantiva de los resultados —qué significa ese coeficiente en tu red— no se delega.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ayudantía 1 — El kit computacional del investigador</span>"
+    ]
+  },
+  {
+    "objectID": "01-setup-computacional.html#verificación-final",
+    "href": "01-setup-computacional.html#verificación-final",
+    "title": "1  Ayudantía 1 — El kit computacional del investigador",
+    "section": "1.4 Verificación final",
+    "text": "1.4 Verificación final\nAntes de irte, confirma que puedes:\n\nAbrir RStudio y ejecutar 1 + 1 en la consola.\nRenderizar un .qmd de prueba a HTML con Quarto.\nClonar el repositorio del curso desde GitHub.\nHacer una pregunta al asistente de IA desde el editor y evaluar críticamente su respuesta.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Ayudantía 1 — El kit computacional del investigador</span>"
+    ]
+  },
+  {
+    "objectID": "02-semana-1-fundamentos-y-modelos-nulos.html",
+    "href": "02-semana-1-fundamentos-y-modelos-nulos.html",
+    "title": "2  Semana 1 — Fundamentos, grafos y modelos nulos",
+    "section": "",
+    "text": "2.1 Repaso teórico\n(En desarrollo. Temas: pensamiento relacional; capital social; lazos fuertes y débiles; nodos, aristas, matriz de adyacencia; redes dirigidas/ponderadas/bipartitas; grado, densidad, caminos, componentes, transitividad; modelos nulos: Erdős–Rényi, configuración, small-world, preferential attachment, SBM; valor p empírico.)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Semana 1 — Fundamentos, grafos y modelos nulos</span>"
+    ]
+  },
+  {
+    "objectID": "02-semana-1-fundamentos-y-modelos-nulos.html#práctica-guiada-en-r",
+    "href": "02-semana-1-fundamentos-y-modelos-nulos.html#práctica-guiada-en-r",
+    "title": "2  Semana 1 — Fundamentos, grafos y modelos nulos",
+    "section": "2.2 Práctica guiada en R",
+    "text": "2.2 Práctica guiada en R\nLa práctica de esta semana replica, con datos prefabricados, exactamente lo que pide la entrega: construir una red desde cero y compararla con modelos nulos.\nlibrary(igraph)\n\n# 1. Red de participación: 20 actores x 4 espacios de interacción\n#    (matriz actor-evento incluida en libro/datos/)\nactores_eventos &lt;- as.matrix(\n  read.csv(\"datos/semana1_actores_eventos.csv\", row.names = 1)\n)\n\n# 2. Proyección actor-actor\nred &lt;- graph_from_biadjacency_matrix(actores_eventos) |&gt;\n  bipartite_projection(which = \"false\")\n\n# 3. Métricas básicas\nedge_density(red)\ntransitivity(red)\n\n# 4. Comparación con un modelo nulo (Erdős–Rényi de igual densidad)\nnulos &lt;- replicate(1000, {\n  g0 &lt;- sample_gnp(vcount(red), edge_density(red))\n  transitivity(g0)\n})\nmean(nulos &gt;= transitivity(red))   # valor p empírico\n(En desarrollo: interpretación jugando con los parámetros — ¿qué pasa con la transitividad esperada si cambia la densidad?, ¿cuándo conviene un modelo de configuración en lugar de ER?)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Semana 1 — Fundamentos, grafos y modelos nulos</span>"
+    ]
+  },
+  {
+    "objectID": "02-semana-1-fundamentos-y-modelos-nulos.html#hacia-la-entrega-semanal",
+    "href": "02-semana-1-fundamentos-y-modelos-nulos.html#hacia-la-entrega-semanal",
+    "title": "2  Semana 1 — Fundamentos, grafos y modelos nulos",
+    "section": "2.3 Hacia la entrega semanal",
+    "text": "2.3 Hacia la entrega semanal\nPreguntas guía de la entrega y errores frecuentes que veremos en la ayudantía:\n\n¿Qué fenómeno representa tu red y qué se gana/pierde al representarlo como red?\n¿Qué modelo nulo es el adecuado para tu pregunta (no “el que corrió primero”)?\n¿Qué inferencia es válida y cuál no?",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Semana 1 — Fundamentos, grafos y modelos nulos</span>"
+    ]
+  },
+  {
+    "objectID": "03-semana-2-posiciones-e-inferencia.html",
+    "href": "03-semana-2-posiciones-e-inferencia.html",
+    "title": "3  Semana 2 — Posiciones, comunidades e inferencia",
+    "section": "",
+    "text": "3.1 Repaso teórico\n(En desarrollo. Temas: centralidades — grado, intermediación, cercanía, eigenvector — y qué pregunta responde cada una; cohesión, cliques y k-cores; comunidades y modularidad — Louvain, walktrap; roles estructurales y embeddings — node2vec; dependencia entre observaciones; pruebas de permutación; QAP/MRQAP; introducción a ERGM; homofilia, selección e influencia.)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Semana 2 — Posiciones, comunidades e inferencia</span>"
+    ]
+  },
+  {
+    "objectID": "03-semana-2-posiciones-e-inferencia.html#práctica-guiada-en-r",
+    "href": "03-semana-2-posiciones-e-inferencia.html#práctica-guiada-en-r",
+    "title": "3  Semana 2 — Posiciones, comunidades e inferencia",
+    "section": "3.2 Práctica guiada en R",
+    "text": "3.2 Práctica guiada en R\nlibrary(igraph)\n\n# Red cuasi-real incluida en libro/datos/: 24 doctorandos de tres\n# disciplinas, con vínculos de colaboración y algunos puentes\naristas   &lt;- read.csv(\"datos/semana2_aristas.csv\")\natributos &lt;- read.csv(\"datos/semana2_atributos.csv\")\nred &lt;- graph_from_data_frame(aristas, directed = FALSE, vertices = atributos)\n\n# 1. ¿Quién es \"importante\"? Depende de la métrica\ncent &lt;- data.frame(\n  grado     = degree(red),\n  interm    = betweenness(red),\n  cercania  = closeness(red),\n  eigen     = eigen_centrality(red)$vector\n)\n\n# 2. Comunidades y modularidad: ¿recuperan las disciplinas?\ncom &lt;- cluster_louvain(red)\nmodularity(com)\ntable(membership(com), V(red)$disciplina)\n\n# 3. QAP: ¿la similitud disciplinar predice vínculos?\nA   &lt;- as_adjacency_matrix(red, sparse = FALSE)\nsim &lt;- outer(V(red)$disciplina, V(red)$disciplina, \"==\") * 1\nobs &lt;- cor(A[lower.tri(A)], sim[lower.tri(sim)])\n\nperm &lt;- replicate(1000, {\n  idx &lt;- sample(nrow(A))\n  Ap  &lt;- A[idx, idx]\n  cor(Ap[lower.tri(Ap)], sim[lower.tri(sim)])\n})\nmean(abs(perm) &gt;= abs(obs))   # valor p empírico (QAP)\n(En desarrollo: ERGM mínimo con ergm — edges + nodematch + gwesp — y cómo NO interpretarlo causalmente.)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Semana 2 — Posiciones, comunidades e inferencia</span>"
+    ]
+  },
+  {
+    "objectID": "03-semana-2-posiciones-e-inferencia.html#hacia-la-entrega-semanal",
+    "href": "03-semana-2-posiciones-e-inferencia.html#hacia-la-entrega-semanal",
+    "title": "3  Semana 2 — Posiciones, comunidades e inferencia",
+    "section": "3.3 Hacia la entrega semanal",
+    "text": "3.3 Hacia la entrega semanal\n\n¿Qué centralidad es relevante para tu pregunta?\n¿Las comunidades detectadas son sustantivamente interpretables?\n¿La asociación entre similitud y vínculos puede leerse como influencia? ¿Qué limitación inferencial hay que reconocer?",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Semana 2 — Posiciones, comunidades e inferencia</span>"
+    ]
+  },
+  {
+    "objectID": "04-semana-3-difusion-contagio-y-variables.html",
+    "href": "04-semana-3-difusion-contagio-y-variables.html",
+    "title": "4  Semana 3 — Difusión, contagio y redes de variables",
+    "section": "",
+    "text": "4.1 Repaso teórico\n(En desarrollo. Temas: difusión de innovaciones; contagio simple vs. complejo; umbrales y exposición; SIR/SIS; cascadas; semillas aleatorias vs. centrales; intervenciones y remoción de nodos; estimar influencia vs. simular difusión — exposición retardada, modelos de autocorrelación de red (SAR) y ALAAM; redes psicométricas: correlaciones parciales, graphical lasso, modelo de Ising, strength centrality y estabilidad.)\nEsta semana se apoya en dos materiales que ya existen y probaremos en vivo:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Semana 3 — Difusión, contagio y redes de variables</span>"
+    ]
+  },
+  {
+    "objectID": "04-semana-3-difusion-contagio-y-variables.html#repaso-teórico",
+    "href": "04-semana-3-difusion-contagio-y-variables.html#repaso-teórico",
+    "title": "4  Semana 3 — Difusión, contagio y redes de variables",
+    "section": "",
+    "text": "Workshop netdiffuseR (Vega Yon & Olivera) — difusión con los datasets clásicos (medInnovations, brfarmers, kfamily) y simulación con rdiffnet.\nEncuestas desde la complejidad (Fábrega & Olivera) — el modelo de Ising como puente entre redes sociales y redes de variables.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Semana 3 — Difusión, contagio y redes de variables</span>"
+    ]
+  },
+  {
+    "objectID": "04-semana-3-difusion-contagio-y-variables.html#práctica-guiada-en-r",
+    "href": "04-semana-3-difusion-contagio-y-variables.html#práctica-guiada-en-r",
+    "title": "4  Semana 3 — Difusión, contagio y redes de variables",
+    "section": "4.2 Práctica guiada en R",
+    "text": "4.2 Práctica guiada en R\nlibrary(netdiffuseR)\n\n# 1. Umbrales y exposición en un dataset clásico\ndata(medInnovationsDiffNet)\nplot_diffnet(medInnovationsDiffNet)\n\n# 2. Simular difusión: ¿importan las semillas?\nsim_central &lt;- rdiffnet(\n  n = 500, t = 10,\n  seed.nodes   = \"central\",          # vs \"random\"\n  seed.p.adopt = 0.05,\n  seed.graph   = \"small-world\",\n  rgraph.args  = list(p = 0.2),\n  threshold.dist = function(x) runif(1, 0.3, 0.7)\n)\n\n# 3. Intervención: remover nodos de alta intermediación y comparar curvas\n(En desarrollo: comparación entre red observada, red nula y red con comunidades; red psicométrica con bootnet/qgraph sobre ítems Likert.)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Semana 3 — Difusión, contagio y redes de variables</span>"
+    ]
+  },
+  {
+    "objectID": "04-semana-3-difusion-contagio-y-variables.html#hacia-la-entrega-semanal",
+    "href": "04-semana-3-difusion-contagio-y-variables.html#hacia-la-entrega-semanal",
+    "title": "4  Semana 3 — Difusión, contagio y redes de variables",
+    "section": "4.3 Hacia la entrega semanal",
+    "text": "4.3 Hacia la entrega semanal\n\n¿Qué tipo de difusión modelaste y qué estructura la amplifica o contiene?\n¿Qué conclusiones no pueden inferirse desde la simulación?\n¿Qué representa cada nodo y cada arista en tu red de variables?",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Semana 3 — Difusión, contagio y redes de variables</span>"
+    ]
+  },
+  {
+    "objectID": "referencias.html",
+    "href": "referencias.html",
+    "title": "Referencias",
+    "section": "",
+    "text": "Por sesión (según syllabus)\nSesión 1. Granovetter (1973) The Strength of Weak Ties; Coleman (1988) Social Capital in the Creation of Human Capital; Burt (1992) Structural Holes; Borgatti, Everett & Johnson (2018) Analyzing Social Networks.\nSesión 2. Erdős & Rényi (1959); Watts & Strogatz (1998) Nature; Barabási & Albert (1999) Science; Karrer & Newman (2011).\nSesión 3. Freeman (1979); Borgatti (2005); Newman (2006) PNAS; Grover & Leskovec (2016) node2vec.\nSesión 4. Krackhardt (1988); Robins et al. (2007); Lusher, Koskinen & Robins (2013); Cranmer, Desmarais & Morgan (2021) Inferential Network Analysis.\nSesión 5. Borsboom (2017) World Psychiatry; Epskamp, Borsboom & Fried (2018); Fried & Cramer (2017); Dalege et al. (2016).\nSesión 6. Granovetter (1978) Threshold Models of Collective Behavior; Rogers (2003) Diffusion of Innovations; Centola & Macy (2007); Pastor-Satorras et al. (2015).",
+    "crumbs": [
+      "Referencias"
+    ]
+  },
+  {
+    "objectID": "referencias.html#materiales-complementarios-de-las-ayudantías",
+    "href": "referencias.html#materiales-complementarios-de-las-ayudantías",
+    "title": "Referencias",
+    "section": "Materiales complementarios de las ayudantías",
+    "text": "Materiales complementarios de las ayudantías\n\nWorkshop netdiffuseR (Vega Yon & Olivera, Sunbelt): https://github.com/USCCANA/netdiffuser-workshop — difusión de innovaciones: teoría, datos clásicos, estadística y simulación con rdiffnet (incluye multi-difusión y desadopción).\nRevisitando las Encuestas (Fábrega & Olivera, PoliCICS): https://github.com/PoliCICS/revisiting-surveys-workshop — homofilia (Smith et al. 2014, GSS), imputación de contexto social e Ising/psicometría, en español.\nStatistical inference in networks (G. Vega Yon, UDD 2024): curso completo en Quarto — random graphs, ERGMs, coevolución red-comportamiento (exposición, SAR, ALAAM, Siena).",
+    "crumbs": [
+      "Referencias"
+    ]
+  },
+  {
+    "objectID": "referencias.html#libros-y-tutoriales-online-con-ejercicios-y-datos-listos",
+    "href": "referencias.html#libros-y-tutoriales-online-con-ejercicios-y-datos-listos",
+    "title": "Referencias",
+    "section": "Libros y tutoriales online con ejercicios y datos listos",
+    "text": "Libros y tutoriales online con ejercicios y datos listos\n\nNetwork Analysis in R (Rawlings, Smith, Moody & McFarland, 2023) — tutoriales completos y gratuitos del libro de Cambridge; datos incluidos; cubre desde descriptivos hasta ERGM, SIENA y difusión.\nWorkshops de statnet — tutoriales autocontenidos con datos para ERGM, ERGM egocéntrico y redes temporales.\nTutoriales de Katya Ognyanova — visualización y análisis con igraph, con código y datos descargables y un catálogo de datasets.\nApplied Network Science with R (G. Vega Yon) — Quarto 100% reproducible; igraph, statnet y netdiffuseR.\nMethods for Network Analysis (M. Hoffman) — bookdown gratuito, muy amable para quienes parten de cero.\nUserNetR (D. Luke) — paquete con todos los datasets del libro A User’s Guide to Network Analysis in R.\nRSiena (Snijders, Oxford) — scripts y tutoriales oficiales para separar selección de influencia.\nEn español: vignette oficial de igraph y el curso abierto de ARS en RStudio de S. Vallejo.",
+    "crumbs": [
+      "Referencias"
+    ]
+  }
+]
