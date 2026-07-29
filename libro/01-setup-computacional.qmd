@@ -1,0 +1,70 @@
+# Ayudantía 1 — El kit computacional del investigador
+
+::: {.callout-tip icon=false}
+## Objetivo de la sesión
+Salir de esta ayudantía con un entorno de investigación completo y funcionando: R, un editor moderno, control de versiones y un asistente de investigación con IA — el mismo kit que usarás durante todo el doctorado.
+:::
+
+## ¿Por qué partir por aquí?
+
+Las entregas semanales de este curso son **notebooks reproducibles** (R o Python) más un PDF. Ese estándar —código + datos + texto que cualquiera puede volver a ejecutar— es también el estándar de la ciencia actual. Instalar bien las herramientas una sola vez evita perder horas cada semana.
+
+## Instalación paso a paso
+
+### 1. R y RStudio
+
+- R: <https://cran.r-project.org/>
+- RStudio Desktop: <https://posit.co/download/rstudio-desktop/>
+
+### 2. VS Code (o Antigravity) como editor principal
+
+- VS Code: <https://code.visualstudio.com/>
+- Extensiones recomendadas: *R*, *Quarto*, *GitHub Copilot* o el asistente que elijas.
+
+### 3. Git y GitHub
+
+- Git: <https://git-scm.com/>
+- Cuenta en <https://github.com/> (con correo institucional puedes pedir el [Student Developer Pack](https://education.github.com/pack)).
+
+### 4. Quarto
+
+- <https://quarto.org/docs/get-started/> — con esto producirás tus entregas en PDF/HTML desde un solo archivo `.qmd`.
+
+### 5. Un asistente de investigación con IA (agéntico)
+
+*(Sección en desarrollo: instalación y primer uso de un asistente agéntico en VS Code.)*
+
+## Uso crítico de la IA en investigación
+
+::: {.callout-warning}
+## La regla de esta casa
+El asistente de IA **acelera** tu trabajo; no **piensa** por ti. En este curso puedes usar IA en las entregas, pero (1) debes declararlo, (2) debes poder explicar cada línea de tu código y cada decisión analítica sin el asistente, y (3) la interpretación de resultados es siempre tuya.
+:::
+
+La evidencia reciente (2024–2026) sobre asistentes de IA en educación apunta en dos direcciones a la vez: los asistentes bien andamiados pueden **acelerar el aprendizaje y democratizar la programación** para quienes vienen de disciplinas no computacionales, y al mismo tiempo el uso pasivo —aceptar salidas sin verificarlas— se asocia a **descarga cognitiva y menor esfuerzo crítico**. La conclusión práctica no es prohibir ni adoptar a ciegas, sino usar con reglas.
+
+Lecturas que fundamentan estas reglas:
+
+- [Bastani et al. (2025), *PNAS*](https://www.pnas.org/doi/10.1073/pnas.2422633122) — experimento de campo con ~1.000 estudiantes: el acceso a GPT mejora la práctica pero **empeora el examen sin IA**… salvo cuando el tutor tiene *guardrails* pedagógicos, que eliminan el daño.
+- [Kestin et al. (2025), *Scientific Reports*](https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/) — RCT en Harvard: un tutor IA **diseñado con andamiaje experto** superó a la clase activa presencial. El diseño importa más que la herramienta.
+- [Lee et al. (2025), *CHI*](https://dl.acm.org/doi/full/10.1145/3706598.3713778) — 319 trabajadores del conocimiento: a mayor confianza ciega en la IA, menos pensamiento crítico; a mayor confianza en el dominio propio, más.
+- [Fan et al. (2025), *BJET*](https://bera-journals.onlinelibrary.wiley.com/doi/10.1111/bjet.13544) — "pereza metacognitiva": con ChatGPT mejora la tarea inmediata, pero no la transferencia de conocimiento.
+- [Prather et al. (2024), *ICER*](https://dl.acm.org/doi/10.1145/3632620.3671116) — en programadores novatos la IA **amplía la brecha**: ayuda a quienes ya tienen estrategias metacognitivas y crea ilusión de competencia en quienes no.
+- [Kosmyna et al. (2025), preprint](https://arxiv.org/abs/2506.08872) — el estudio EEG de la "deuda cognitiva" (leer con cautela: preprint con críticas metodológicas).
+
+En este curso adoptamos estas prácticas:
+
+1. **Declaración de uso.** Cada entrega incluye una nota breve: qué asistente usaste, para qué tareas y qué verificaste tú.
+2. **Explicar sin el asistente.** En las ayudantías se te puede pedir explicar cualquier línea de tu código o decisión analítica, con el computador cerrado.
+3. **Critica la salida.** Antes de aceptar código o interpretación de la IA, escribe una razón por la que *podría estar mal* (¿datos?, ¿supuestos?, ¿paquete inventado?).
+4. **Primero a mano, después con IA.** Los conceptos nuevos de cada semana se practican primero sin asistente; la IA entra para acelerar lo que ya entiendes.
+5. **La interpretación es tuya.** La IA puede redactar código; la lectura sustantiva de los resultados —qué significa ese coeficiente en *tu* red— no se delega.
+
+## Verificación final
+
+Antes de irte, confirma que puedes:
+
+- [ ] Abrir RStudio y ejecutar `1 + 1` en la consola.
+- [ ] Renderizar un `.qmd` de prueba a HTML con Quarto.
+- [ ] Clonar el repositorio del curso desde GitHub.
+- [ ] Hacer una pregunta al asistente de IA desde el editor y evaluar críticamente su respuesta.

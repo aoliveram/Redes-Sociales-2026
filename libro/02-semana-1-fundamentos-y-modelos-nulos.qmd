@@ -1,0 +1,49 @@
+# Semana 1 — Fundamentos, grafos y modelos nulos
+
+::: {.callout-tip icon=false}
+## Conecta con
+Sesiones 1 y 2 del curso · **Entrega semanal 1: Fundamentos y modelos nulos (25%)**
+:::
+
+## Repaso teórico
+
+*(En desarrollo. Temas: pensamiento relacional; capital social; lazos fuertes y débiles; nodos, aristas, matriz de adyacencia; redes dirigidas/ponderadas/bipartitas; grado, densidad, caminos, componentes, transitividad; modelos nulos: Erdős–Rényi, configuración, small-world, preferential attachment, SBM; valor p empírico.)*
+
+## Práctica guiada en R
+
+La práctica de esta semana replica, con datos prefabricados, exactamente lo que pide la entrega: **construir una red desde cero y compararla con modelos nulos**.
+
+```r
+library(igraph)
+
+# 1. Red de participación: 20 actores x 4 espacios de interacción
+#    (matriz actor-evento incluida en libro/datos/)
+actores_eventos <- as.matrix(
+  read.csv("datos/semana1_actores_eventos.csv", row.names = 1)
+)
+
+# 2. Proyección actor-actor
+red <- graph_from_biadjacency_matrix(actores_eventos) |>
+  bipartite_projection(which = "false")
+
+# 3. Métricas básicas
+edge_density(red)
+transitivity(red)
+
+# 4. Comparación con un modelo nulo (Erdős–Rényi de igual densidad)
+nulos <- replicate(1000, {
+  g0 <- sample_gnp(vcount(red), edge_density(red))
+  transitivity(g0)
+})
+mean(nulos >= transitivity(red))   # valor p empírico
+```
+
+*(En desarrollo: interpretación jugando con los parámetros — ¿qué pasa con la transitividad esperada si cambia la densidad?, ¿cuándo conviene un modelo de configuración en lugar de ER?)*
+
+## Hacia la entrega semanal
+
+Preguntas guía de la entrega y errores frecuentes que veremos en la ayudantía:
+
+- ¿Qué fenómeno representa tu red y qué se gana/pierde al representarlo como red?
+- ¿Qué modelo nulo es el adecuado **para tu pregunta** (no "el que corrió primero")?
+- ¿Qué inferencia es válida y cuál no?

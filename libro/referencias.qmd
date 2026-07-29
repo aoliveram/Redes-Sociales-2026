@@ -1,0 +1,32 @@
+# Referencias {.unnumbered}
+
+## Por sesión (según syllabus)
+
+**Sesión 1.** Granovetter (1973) *The Strength of Weak Ties*; Coleman (1988) *Social Capital in the Creation of Human Capital*; Burt (1992) *Structural Holes*; Borgatti, Everett & Johnson (2018) *Analyzing Social Networks*.
+
+**Sesión 2.** Erdős & Rényi (1959); Watts & Strogatz (1998) *Nature*; Barabási & Albert (1999) *Science*; Karrer & Newman (2011).
+
+**Sesión 3.** Freeman (1979); Borgatti (2005); Newman (2006) *PNAS*; Grover & Leskovec (2016) *node2vec*.
+
+**Sesión 4.** Krackhardt (1988); Robins et al. (2007); Lusher, Koskinen & Robins (2013); Cranmer, Desmarais & Morgan (2021) *Inferential Network Analysis*.
+
+**Sesión 5.** Borsboom (2017) *World Psychiatry*; Epskamp, Borsboom & Fried (2018); Fried & Cramer (2017); Dalege et al. (2016).
+
+**Sesión 6.** Granovetter (1978) *Threshold Models of Collective Behavior*; Rogers (2003) *Diffusion of Innovations*; Centola & Macy (2007); Pastor-Satorras et al. (2015).
+
+## Materiales complementarios de las ayudantías
+
+- **Workshop netdiffuseR** (Vega Yon & Olivera, Sunbelt): <https://github.com/USCCANA/netdiffuser-workshop> — difusión de innovaciones: teoría, datos clásicos, estadística y simulación con `rdiffnet` (incluye multi-difusión y desadopción).
+- **Revisitando las Encuestas** (Fábrega & Olivera, PoliCICS): <https://github.com/PoliCICS/revisiting-surveys-workshop> — homofilia (Smith et al. 2014, GSS), imputación de contexto social e Ising/psicometría, en español.
+- **Statistical inference in networks** (G. Vega Yon, UDD 2024): curso completo en Quarto — random graphs, ERGMs, coevolución red-comportamiento (exposición, SAR, ALAAM, Siena).
+
+## Libros y tutoriales online con ejercicios y datos listos
+
+- [Network Analysis in R (Rawlings, Smith, Moody & McFarland, 2023)](https://inarwhal.github.io/NetworkAnalysisR-book/) — tutoriales completos y gratuitos del libro de Cambridge; datos incluidos; cubre desde descriptivos hasta ERGM, SIENA y difusión.
+- [Workshops de statnet](https://github.com/statnet/Workshops/wiki) — tutoriales autocontenidos con datos para [ERGM](https://statnet.org/workshop-ergm/ergm_tutorial.html), ERGM egocéntrico y redes temporales.
+- [Tutoriales de Katya Ognyanova](https://kateto.net/tutorials/) — visualización y análisis con igraph, con [código y datos descargables](https://kateto.net/network-visualization/) y un [catálogo de datasets](https://kateto.net/network-datasets/).
+- [Applied Network Science with R (G. Vega Yon)](https://gvegayon.github.io/appliedsnar/) — Quarto 100% reproducible; igraph, statnet y netdiffuseR.
+- [Methods for Network Analysis (M. Hoffman)](https://bookdown.org/markhoff/social_network_analysis/) — bookdown gratuito, muy amable para quienes parten de cero.
+- [UserNetR (D. Luke)](http://dougluke.github.io/UserNetR/) — paquete con todos los datasets del libro *A User's Guide to Network Analysis in R*.
+- [RSiena (Snijders, Oxford)](https://www.stats.ox.ac.uk/~snijders/siena/) — scripts y tutoriales oficiales para separar selección de influencia.
+- En español: [vignette oficial de igraph](https://r.igraph.org/articles/igraph_ES.html) y el [curso abierto de ARS en RStudio de S. Vallejo](https://github.com/svallejovera/sergio_arboleda_analisis_de_redes).

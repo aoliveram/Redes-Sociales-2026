@@ -1,0 +1,32 @@
+project:
+  type: book
+  output-dir: ../docs
+
+lang: es
+
+book:
+  title: "Redes Sociales — DCCS 2026"
+  subtitle: "Libro de ayudantías · Teoría de Redes Sociales"
+  author: "Aníbal Olivera Morales"
+  date: today
+  repo-url: https://github.com/aoliveram/Redes-Sociales-2026
+  site-url: https://aoliveram.github.io/Redes-Sociales-2026/
+  sidebar:
+    search: true
+  chapters:
+    - index.qmd
+    - 01-setup-computacional.qmd
+    - 02-semana-1-fundamentos-y-modelos-nulos.qmd
+    - 03-semana-2-posiciones-e-inferencia.qmd
+    - 04-semana-3-difusion-contagio-y-variables.qmd
+    - referencias.qmd
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    code-overflow: wrap

@@ -1,0 +1,23 @@
+# Bienvenida {.unnumbered}
+
+Este es el **libro de ayudantías** del curso *Teoría de Redes Sociales* (DCCS 2026, Universidad del Desarrollo), dictado por el profesor Jorge Fábrega, con ayudantías de Aníbal Olivera Morales.
+
+El curso dura **3 semanas** (6 sesiones, lunes y miércoles) y cada semana culmina en una **entrega práctica breve**. Este libro acompaña ese ritmo: cada capítulo corresponde a una semana del curso y sigue la misma estructura:
+
+1. **Repaso teórico** — los conceptos centrales de la semana, sin tecnicismos innecesarios.
+2. **Práctica guiada en R** — código reproducible paso a paso, con **datos incluidos** en el repositorio, aplicando los conceptos a casos cuasi-reales.
+3. **Conexión con la entrega semanal** — qué se espera, preguntas guía y errores comunes.
+
+## ¿Para quién es este libro? {.unnumbered}
+
+Para estudiantes de primer año del doctorado, que vienen de orígenes muy diversos: ingeniería, arquitectura, salud, sociología, psicología, entre otros. **No se asume experiencia previa en programación.** La [Ayudantía 1](01-setup-computacional.qmd) deja instalado y configurado todo lo necesario.
+
+## Materiales {.unnumbered}
+
+- Repositorio del curso: <https://github.com/aoliveram/Redes-Sociales-2026>
+- Datos de la práctica: carpeta [`libro/datos/`](https://github.com/aoliveram/Redes-Sociales-2026/tree/main/libro/datos)
+- Syllabus oficial: en el repositorio.
+
+::: {.callout-note}
+Este libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.
+:::

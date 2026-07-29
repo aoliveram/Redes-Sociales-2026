@@ -1,0 +1,55 @@
+# Semana 2 — Posiciones, comunidades e inferencia
+
+::: {.callout-tip icon=false}
+## Conecta con
+Sesiones 3 y 4 del curso · **Entrega semanal 2 (25%)**
+:::
+
+## Repaso teórico
+
+*(En desarrollo. Temas: centralidades — grado, intermediación, cercanía, eigenvector — y qué pregunta responde cada una; cohesión, cliques y k-cores; comunidades y modularidad — Louvain, walktrap; roles estructurales y embeddings — node2vec; dependencia entre observaciones; pruebas de permutación; QAP/MRQAP; introducción a ERGM; homofilia, selección e influencia.)*
+
+## Práctica guiada en R
+
+```r
+library(igraph)
+
+# Red cuasi-real incluida en libro/datos/: 24 doctorandos de tres
+# disciplinas, con vínculos de colaboración y algunos puentes
+aristas   <- read.csv("datos/semana2_aristas.csv")
+atributos <- read.csv("datos/semana2_atributos.csv")
+red <- graph_from_data_frame(aristas, directed = FALSE, vertices = atributos)
+
+# 1. ¿Quién es "importante"? Depende de la métrica
+cent <- data.frame(
+  grado     = degree(red),
+  interm    = betweenness(red),
+  cercania  = closeness(red),
+  eigen     = eigen_centrality(red)$vector
+)
+
+# 2. Comunidades y modularidad: ¿recuperan las disciplinas?
+com <- cluster_louvain(red)
+modularity(com)
+table(membership(com), V(red)$disciplina)
+
+# 3. QAP: ¿la similitud disciplinar predice vínculos?
+A   <- as_adjacency_matrix(red, sparse = FALSE)
+sim <- outer(V(red)$disciplina, V(red)$disciplina, "==") * 1
+obs <- cor(A[lower.tri(A)], sim[lower.tri(sim)])
+
+perm <- replicate(1000, {
+  idx <- sample(nrow(A))
+  Ap  <- A[idx, idx]
+  cor(Ap[lower.tri(Ap)], sim[lower.tri(sim)])
+})
+mean(abs(perm) >= abs(obs))   # valor p empírico (QAP)
+```
+
+*(En desarrollo: ERGM mínimo con `ergm` — edges + nodematch + gwesp — y cómo NO interpretarlo causalmente.)*
+
+## Hacia la entrega semanal
+
+- ¿Qué centralidad es relevante para **tu** pregunta?
+- ¿Las comunidades detectadas son sustantivamente interpretables?
+- ¿La asociación entre similitud y vínculos puede leerse como influencia? ¿Qué limitación inferencial hay que reconocer?
