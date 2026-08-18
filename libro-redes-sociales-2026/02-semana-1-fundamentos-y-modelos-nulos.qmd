@@ -1,7 +1,8 @@
 # Semana 1 — Fundamentos, grafos y modelos nulos
 
-::: {.callout-tip icon=false}
+::: {.callout-tip icon="false"}
 ## Conecta con
+
 Sesiones 1 y 2 del curso · **Entrega semanal 1: Fundamentos y modelos nulos (25%)**
 :::
 
@@ -13,7 +14,7 @@ Sesiones 1 y 2 del curso · **Entrega semanal 1: Fundamentos y modelos nulos (25
 
 La práctica de esta semana replica, con datos prefabricados, exactamente lo que pide la entrega: **construir una red desde cero y compararla con modelos nulos**.
 
-```r
+``` r
 library(igraph)
 
 # 1. Red de participación: 20 actores x 4 espacios de interacción
@@ -44,6 +45,6 @@ mean(nulos >= transitivity(red))   # valor p empírico
 
 Preguntas guía de la entrega y errores frecuentes que veremos en la ayudantía:
 
-- ¿Qué fenómeno representa tu red y qué se gana/pierde al representarlo como red?
-- ¿Qué modelo nulo es el adecuado **para tu pregunta** (no "el que corrió primero")?
-- ¿Qué inferencia es válida y cuál no?
+-   ¿Qué fenómeno representa tu red y qué se gana/pierde al representarlo como red?
+-   ¿Qué modelo nulo es el adecuado **para tu pregunta** (no "el que corrió primero")?
+-   ¿Qué inferencia es válida y cuál no?

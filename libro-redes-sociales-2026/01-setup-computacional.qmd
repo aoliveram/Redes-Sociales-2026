@@ -1,0 +1,288 @@
+# Ayudantía 1 — El kit computacional del investigador
+
+::: {.callout-tip icon="false"}
+## Objetivo de la sesión
+
+Salir de esta ayudantía con dos cosas: (1) un entorno de investigación completo y funcionando —R, un editor con asistente de IA agéntico, Git y Quarto—, y (2) claridad total sobre las reglas del juego del curso: cómo se usa la IA, cómo se evalúa y qué es lo que nunca se delega.
+:::
+
+## Por qué esta sesión existe
+
+Todos ustedes ya usan IA. En este curso, lejos de prohibir su uso, la alentamos, así que debe hacerse bien. Usar la IA en una **ventana de chat** está, para investigadores, obsoleto. En el chat el asistente no ve tu proyecto completo: responde sobre una *descripción* de tu problema. Además, usando chatbox se pierde la reproducibilidad de tu trabajo.
+
+Un asistente **integrado en un IDE (Integrated Development Enviroment)** trabaja distinto: lee los archivos de tu proyecto, escribe y ejecuta código ahí mismo, ve el error que produce y lo corrige. Es más parecido a un ayudante de investigación que a un mero chat. Este curso —y probablemente el resto de tu doctorado— funciona mejor con esa segunda forma de trabajo.
+
+La contracara es que un asistente más capaz hace más fácil producir resultados que no entiendes.
+
+## Estructura de la sesión (80 minutos)
+
+| Bloque | Tiempo | Contenido |
+|------------------------|------------------------|------------------------|
+| 1\. Demo: qué se puede hacer con IDE + IA | 0:00–0:10 | De un Excel de encuesta a un reporte de redes con dos prompts |
+| 2\. Instalación: IDE, extensiones y GitHub | 0:10–0:45 | IDE según suscripción, kit por terminal, extensiones y llave SSH |
+| 3\. Primera misión con el agente | 0:45–1:05 | Clonar el repo del curso y ejecutar un análisis explicado |
+| 4\. Las reglas del juego | 1:05–1:20 | Propiedad epistémica y cómo se evalúa este curso |
+
+## Primeros pasos
+
+-   [ ] Crea una cuenta en [GitHub](https://github.com/) con tu correo institucional (así puedes pedir el [Student Developer Pack](https://education.github.com/pack)) (después puedes agregar tu correo personal).
+-   [ ] Averigua **qué suscripción de IA tienes o tendrás**: ¿Claude (Anthropic)? ¿ChatGPT/Codex (OpenAI)? ¿Google AI Pro? Eso define tu ruta en el Bloque 2. Si no tienes ninguna, avísame antes de la sesión y lo resolvemos con planes gratuitos.
+-   [ ] Si puedes, descarga los instaladores con anticipación (el wifi de la sala no es heroico): [R](https://cran.r-project.org/), [Quarto](https://quarto.org/docs/get-started/), [Git](https://git-scm.com/), y el editor de tu ruta ([VS Code](https://code.visualstudio.com/) o [Antigravity](https://antigravity.google/)).
+
+## Demo: qué se puede hacer con IDE + IA
+
+Veamos un ejemplo de lo que podemos hacer con una encuesta (ficticia) en Excel.
+
+Leeremos el archivo `libro-redes-sociales-2026/datos/encuesta_nominaciones.xlsx`. Tiene columnas:
+-   `sexo`
+-   `edad`
+-   `disciplina`
+-   `nom_1` a `nom_7`. 
+
+Cada fila es un ego y cada nominación un vínculo dirigido.
+
+**Primer prompt** (texto plano: pasa el cursor por el bloque y aparece el botón de copiar):
+
+``` txt
+Lee el archivo libro-redes-sociales-2026/datos/encuesta_nominaciones.xlsx. Es una encuesta con generador de nombres: las columnas nom_1 a nom_7 contienen las personas nominadas por cada encuestado (red dirigida; las demás columnas son atributos). En R: (1) construye la matriz de adyacencia dirigida a partir de las nominaciones; (2) calcula la densidad, el grado de entrada y de salida de cada persona, y la reciprocidad/balance de la red; (3) ajusta un ERGM bien especificado con términos estructurales (edges, mutual, geométricamente ponderados tipo gwesp) y de homofilia (nodematch por disciplina y por sexo); (4) reporta e interpreta los coeficientes con cautela, indicando qué NO se puede concluir.
+```
+
+**Segundo prompt**:
+
+``` txt
+Ahora escribe un reporte en formato Markdown en libro-redes-sociales-2026/outputs/reports/reporte_encuesta.md que incluya: descripción de los datos, tabla con las métricas por persona, resultados del ERGM en tabla, y una sección final con tres advertencias de interpretación.
+```
+
+Esto es, básicamente, lo que veremos en este curso. Ahora, ¿quién entendió el ERGM?
+
+# Instalación IDE, extensiones, y comunicación con GitHub
+
+## 1. El IDE
+
+### Ruta A — VS Code, para quienes usan Claude, ChatGPT/Codex o Copilot
+
+1.  Instala [VS Code](https://code.visualstudio.com/).
+2.  Activa tu agente según suscripción:
+    -   **Claude**: extensión *Claude Code* (`anthropic.claude-code`); inicia sesión con tu cuenta.
+    -   **OpenAI**: extensión *Codex* (`openai.chatgpt`); inicia sesión con tu cuenta de ChatGPT.
+    -   **GitHub Copilot**: ya viene **integrado** en VS Code (panel de *Chat*); inicia sesión con tu cuenta de GitHub. Con el [Student Developer Pack](https://education.github.com/pack), Copilot Pro es gratis — la ruta natural si no pagas ninguna otra suscripción.
+
+### Ruta B — Antigravity, para quienes tienen Google AI Pro
+
+1.  Instala [Antigravity](https://antigravity.google/) (el IDE agéntico de Google; es un derivado de VS Code, así que casi todo lo de la Ruta A aplica igual).
+2.  Inicia sesión con tu cuenta Google del plan Pro: el agente (Gemini) viene integrado, sin extensiones adicionales.
+
+::: callout-note
+El curso es **agnóstico a la herramienta**: elegimos según la suscripción que ya tienes, no al revés. Todo lo que haremos (leer archivos, ejecutar R, renderizar Quarto, criticar resultados) funciona igual en ambas rutas.
+:::
+
+## 2. El kit que se instala desde la terminal
+
+El IDE trae una **terminal integrada** (menú *Terminal → New Terminal*): una ventana donde operas programas escribiendo comandos. Desde aquí instalaremos el resto del kit — y desde aquí harás buena parte del trabajo del curso.
+
+**En macOS** (usa [Homebrew](https://brew.sh/); si no lo tienes, instálalo primero con el comando de su página):
+
+``` bash
+brew install --cask r quarto
+brew install git
+```
+
+**En Windows** (PowerShell; `winget` viene incluido en Windows 10/11):
+
+``` powershell
+winget install -e --id RProject.R
+winget install -e --id Posit.Quarto
+winget install -e --id Git.Git
+```
+
+¿Qué acabamos de instalar? **R** (el lenguaje del curso), **Quarto** (tus entregas: notebook + PDF desde un solo `.qmd`) y **Git** (control de versiones: la diferencia entre `tesis_final_v7_AHORA_SI.R` y un historial ordenado). RStudio es opcional; el flujo principal del curso es el IDE con agente.
+
+Plan B sin terminal (o con mal wifi): los instaladores gráficos de [R](https://cran.r-project.org/), [Quarto](https://quarto.org/docs/get-started/) y [Git](https://git-scm.com/), idealmente descargados antes de la sesión.
+
+::: callout-warning
+Después de instalar, **cierra y reabre el IDE**: las extensiones detectan R, Python y Git al arrancar.
+:::
+
+### Prueba mínima: tu máquina responde
+
+**R desde la terminal:**
+
+``` bash
+R                # abre la consola de R
+```
+
+``` r
+1 + 1            # debería responder [1] 2
+q(save = "no")   # salir
+```
+
+**Python desde la terminal:**
+
+``` bash
+python3          # abre el intérprete (en Windows: python)
+```
+
+``` python
+1 + 1            # debería responder 2
+exit()
+```
+
+Si ambos respondieron `2`, tu máquina ya habla los dos idiomas del curso.
+
+## 3. Extensiones imprescindibles
+
+Se instalan desde el ícono de bloques de la barra lateral. El **identificador** (`editor.nombre`) es el nombre único de cada extensión: pégalo tal cual en el buscador para instalar exactamente la correcta — los nombres a secas se repiten entre extensiones parecidas; el identificador no.
+
+| Extensión | Identificador | Para qué |
+|------------------------|------------------------|------------------------|
+| R | `REditorSupport.r` | Intérprete y soporte de R |
+| R Syntax Highlighting | `reditorsupport.r-syntax` | Resaltado moderno de R |
+| Python | `ms-python.python` | Intérprete de Python (instala Pylance solo) |
+| Jupyter | `ms-toolsai.jupyter` | Notebooks `.ipynb` |
+| Quarto | `quarto.quarto` | Renderizar tus entregas `.qmd` |
+| LaTeX Workshop | `James-Yu.latex-workshop` | Compilar PDF vía LaTeX |
+| Markdown PDF | `yzane.markdown-pdf` | Exportar reportes `.md` a PDF |
+| Tu agente de IA | `anthropic.claude-code` · `openai.chatgpt` | Copilot no necesita extensión: viene integrado |
+
+Útiles pero opcionales: **Rainbow CSV** (`mechatroner.rainbow-csv`, colorea columnas de CSV), **Markdown All in One** (`yzhang.markdown-all-in-one`), **R Debugger** (`rdebugger.r-debugger`) y **vscode-pdf** (`tomoki1207.pdf`, ver PDFs dentro del editor).
+
+## 4. Comunicación con GitHub (llave SSH)
+
+Tu cuenta de GitHub ya existe; falta que **tu computador pueda enviarle cambios** (hacer *push* de tus commits) sin pedirte contraseña a cada rato. Para eso se usa una **llave SSH**: un par de archivos donde la llave *privada* nunca sale de tu máquina y la *pública* se registra en GitHub. Cuando ambas calzan, GitHub sabe que eres tú.
+
+Los comandos van en la terminal integrada (macOS y Windows por igual, salvo donde se indica):
+
+1.  **Preséntate a Git** — este nombre y correo quedan firmados en cada commit tuyo (usa el mismo correo de tu cuenta GitHub):
+
+    ``` bash
+    git config --global user.name "Tu Nombre"
+    git config --global user.email "tu-correo@institucional.cl"
+    ```
+
+2.  **Genera tu par de llaves** (presiona Enter a todas las preguntas; dejar la *passphrase* vacía está bien para empezar):
+
+    ``` bash
+    ssh-keygen -t ed25519 -C "tu-correo@institucional.cl"
+    ```
+
+3.  **Copia la llave pública** al portapapeles (la que termina en `.pub`; la privada no se comparte jamás):
+
+    ``` bash
+    # macOS
+    pbcopy < ~/.ssh/id_ed25519.pub
+    ```
+
+    ``` powershell
+    # Windows (PowerShell)
+    Get-Content ~\.ssh\id_ed25519.pub | clip
+    ```
+
+4.  **Regístrala en GitHub**: ve a [github.com/settings/keys](https://github.com/settings/keys) → *New SSH key* → ponle un título ("laptop-doctorado") → pega la llave → *Add SSH key*.
+
+5.  **Prueba el saludo**:
+
+    ``` bash
+    ssh -T git@github.com
+    ```
+
+    La primera vez preguntará si confías en el servidor: responde `yes`. El éxito se ve así: `Hi tu-usuario! You've successfully authenticated...`
+
+6.  **Desde ahora, clona con la URL SSH** (botón verde *Code → SSH* en cualquier repo):
+
+    ``` bash
+    git clone git@github.com:aoliveram/Redes-Sociales-2026.git
+    ```
+
+7.  **Tu primer ciclo completo** — el ritmo que usarás todo el doctorado:
+
+    ``` bash
+    git status                          # ¿qué cambió?
+    git add archivo_que_cambiaste.qmd   # preparar
+    git commit -m "Mi primer commit"    # guardar con mensaje
+    git push                            # enviar a GitHub
+    ```
+
+## Bloque 3 — Primera misión con el agente
+
+Con el entorno listo, cada uno ejecuta esta secuencia:
+
+1.  **Clona el repositorio del curso.** En el terminal integrado del editor:
+
+    ``` bash
+    git clone git@github.com:aoliveram/Redes-Sociales-2026.git
+    ```
+
+2.  **Abre la carpeta y dale contexto al agente.** Pídele: *"Lee `libro-redes-sociales-2026/datos/semana1_actores_eventos.csv` y descríbeme qué contiene."* Nota que el agente responde sobre **tus** datos, no sobre datos imaginarios.
+
+3.  **Ejecuta un análisis explicado.** Pídele: *"Construye la proyección actor-actor de esta matriz con igraph, calcula densidad y transitividad, y explícame cada línea como si fuera mi primer día con R."* — porque lo es, para varios.
+
+4.  **Renderiza tu primer Quarto.** Crea `prueba.qmd` con un título, una frase y un chunk de R, y pídele al agente que lo renderice a HTML.
+
+5.  **Micro-ejercicio de crítica** (el más importante): pídele al agente *"¿puedo concluir que el actor más central es el más influyente del grupo?"*. La respuesta correcta es **no** (centralidad ≠ influencia causal; lo veremos en la semana 3). Evalúa: ¿tu agente te frenó o te dio la razón? Comparte con el resto lo que respondió el tuyo.
+
+## Bloque 4 — Las reglas del juego
+
+### La idea que ordena todo: propiedad epistémica
+
+Este curso adopta el marco del profesor Fábrega sobre **propiedad epistémica** (*epistemic ownership*, Fábrega, en revisión): usar GenAI está bien —es parte de cómo se investiga hoy— pero el producto final es tuyo solo si mantienes el **mando justificatorio** sobre él: la capacidad de reconstruir sus razones, integrarlas a tu argumento y **defenderlas ante preguntas**. La falla característica no es usar IA, sino la *desposesión justificatoria*: quedarte con un producto correcto cuyas razones no puedes reconstruir.
+
+De ahí salen las cuatro prácticas del curso:
+
+1.  **Declaración de uso.** Cada entrega incluye una nota breve: qué asistente usaste, para qué tareas y qué verificaste tú.
+2.  **Critica la salida.** Antes de aceptar código o interpretación de la IA, escribe una razón por la que *podría estar mal* (¿datos?, ¿supuestos?, ¿paquete inventado?).
+3.  **Primero a mano, después con IA.** Los conceptos nuevos de cada semana se practican primero sin asistente; la IA entra para acelerar lo que ya entiendes. (La evidencia muestra que la propiedad se sostiene mejor cuando tu intento propio **precede** a la asistencia.)
+4.  **La interpretación es tuya.** La IA puede redactar código; la lectura sustantiva de los resultados —qué significa ese coeficiente en *tu* red— no se delega.
+
+### Cómo se evalúa: entrega + defensa
+
+El ciclo semanal tiene dos tiempos:
+
+1.  **La entrega.** Desarrollas la actividad fijada y la envías (notebook reproducible + PDF). **Se espera y se alienta que uses IA**: no está penalizado, y preferimos que aprendas a usarla bien antes que simular que no existe. Declara su uso como indica la regla 1.
+2.  **La defensa.** Después de recibir las entregas, las reviso y preparo un set de preguntas **personalizado para cada uno**, sobre su propio trabajo: *"tú escribiste esto; defiende esta decisión"*. Por qué ese modelo nulo y no otro, qué habría pasado con otra métrica, qué significa ese coeficiente aquí. La defensa es individual y es donde demuestras que el razonamiento es tuyo, hayas usado IA o no.
+
+En términos del marco anterior: la entrega mide la calidad del producto; la defensa mide tu **capacidad de responder por él**. Las dos cosas juntas son la nota.
+
+### Preguntas relámpago por sorteo (15–20% de la nota final)
+
+Durante las sesiones haremos preguntas conceptuales breves, asignadas con un **generador de números aleatorios**. Esto sí lleva nota — el porcentaje exacto (15% o 20%) quedará fijado en el syllabus actualizado. Las reglas:
+
+-   **Equidad garantizada por diseño.** Cada ronda es aleatoria, pero el sorteo es *sin reposición*: nadie repite hasta que los cinco hayan respondido. Al final del curso, todos habrán respondido **exactamente la misma cantidad de preguntas** (fijamos el total de preguntas por sesión como múltiplo de 5).
+-   **Conceptuales, no de memoria.** "¿Qué te diría este resultado?", no "¿cuál es la fórmula de X?". Se evalúa el razonamiento, no la recitación: una respuesta equivocada bien argumentada vale más que una correcta sin argumento.
+-   **Transparencia.** La semilla del generador se anuncia al inicio de cada sesión, así el sorteo es verificablemente aleatorio y reproducible por cualquiera.
+-   Si alguien falta, sus preguntas se difieren a la sesión siguiente (no se re-sortean), para mantener las cuotas iguales.
+
+El mecanismo exacto, en el R que ya tienes instalado:
+
+``` r
+sortear_preguntas <- function(nombres, n_preguntas, semilla) {
+  stopifnot(n_preguntas %% length(nombres) == 0)  # cuotas iguales garantizadas
+  set.seed(semilla)                               # semilla anunciada al inicio
+  rondas <- n_preguntas / length(nombres)
+  unlist(lapply(seq_len(rondas), function(r) sample(nombres)))
+}
+
+curso <- c("A", "B", "C", "D", "E")               # los 5 nombres reales en clase
+sortear_preguntas(curso, n_preguntas = 10, semilla = 20260803)
+# dentro de cada ronda de 5, orden aleatorio; entre rondas, re-sorteo
+```
+
+### La evidencia detrás de estas reglas
+
+Lecturas que fundamentan este diseño (todas verificadas, 2024–2026):
+
+-   [Bastani et al. (2025), *PNAS*](https://www.pnas.org/doi/10.1073/pnas.2422633122) — experimento de campo con \~1.000 estudiantes: el acceso a GPT mejora la práctica pero **empeora el examen sin IA**… salvo cuando el tutor tiene *guardrails* pedagógicos, que eliminan el daño.
+-   [Kestin et al. (2025), *Scientific Reports*](https://pmc.ncbi.nlm.nih.gov/articles/PMC12179260/) — RCT en Harvard: un tutor IA **diseñado con andamiaje experto** superó a la clase activa presencial. El diseño importa más que la herramienta.
+-   [Lee et al. (2025), *CHI*](https://dl.acm.org/doi/full/10.1145/3706598.3713778) — 319 trabajadores del conocimiento: a mayor confianza ciega en la IA, menos pensamiento crítico; a mayor confianza en el dominio propio, más.
+-   [Fan et al. (2025), *BJET*](https://bera-journals.onlinelibrary.wiley.com/doi/10.1111/bjet.13544) — "pereza metacognitiva": con ChatGPT mejora la tarea inmediata, pero no la transferencia de conocimiento.
+-   [Prather et al. (2024), *ICER*](https://dl.acm.org/doi/10.1145/3632620.3671116) — en programadores novatos la IA **amplía la brecha**: ayuda a quienes ya tienen estrategias metacognitivas y crea ilusión de competencia en quienes no.
+-   Fábrega (en revisión), *Epistemic Ownership in Human-AI Cognition* — el marco conceptual del curso: propiedad epistémica, la firma cognitiva y la desposesión justificatoria.
+
+## Verificación final
+
+Antes de irte, confirma que puedes:
+
+-   [ ] Ejecutar `1 + 1` en R desde el terminal o consola de tu editor.
+-   [ ] Renderizar `prueba.qmd` a HTML con Quarto.
+-   [ ] Ver el repositorio del curso clonado en tu máquina.
+-   [ ] Pedirle algo al agente **sobre un archivo del proyecto** y evaluar críticamente su respuesta.
+-   [ ] Explicar con tus palabras qué es la desposesión justificatoria y por qué la defensa oral existe en este curso.

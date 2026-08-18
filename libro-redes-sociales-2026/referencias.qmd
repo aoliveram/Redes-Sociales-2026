@@ -1,7 +1,7 @@
 # Referencias {.unnumbered}
 
 ::: {.callout-note}
-Este libro sigue el orden **con las sesiones 4 y 5 intercambiadas** respecto del syllabus original: psicometría de redes cierra la semana 2 (junto a centralidad y comunidades), e inferencia estadística abre la semana 3 (junto a difusión y contagio). El propósito es que estimar influencia y simular difusión queden en la misma semana y en la misma entrega.
+Este libro sigue el orden **con las sesiones 4 y 5 intercambiadas** respecto del syllabus original (acordado con el profesor del curso): psicometría de redes cierra la semana 2 (junto a centralidad y comunidades), e inferencia estadística abre la semana 3 (junto a difusión y contagio). El propósito es que estimar influencia y simular difusión queden en la misma semana y en la misma entrega.
 :::
 
 ## Por sesión (según syllabus)

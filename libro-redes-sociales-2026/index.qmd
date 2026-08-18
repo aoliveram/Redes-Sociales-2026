@@ -15,7 +15,7 @@ Para estudiantes de primer año del doctorado, que vienen de orígenes muy diver
 ## Materiales {.unnumbered}
 
 - Repositorio del curso: <https://github.com/aoliveram/Redes-Sociales-2026>
-- Datos de la práctica: carpeta [`libro/datos/`](https://github.com/aoliveram/Redes-Sociales-2026/tree/main/libro/datos)
+- Datos de la práctica: carpeta [`libro-redes-sociales-2026/datos/`](https://github.com/aoliveram/Redes-Sociales-2026/tree/main/libro-redes-sociales-2026/datos)
 - Syllabus oficial: en el repositorio.
 
 ## Orden de las semanas {.unnumbered}
@@ -29,5 +29,5 @@ Para estudiantes de primer año del doctorado, que vienen de orígenes muy diver
 ::: {.callout-note}
 Este libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.
 
-El orden anterior intercambia las **sesiones 4 y 5** respecto del syllabus original, de modo que estimar influencia y simular difusión ocurran en la misma semana. Es una propuesta de la ayudantía, en revisión con el profesor del curso.
+El orden anterior intercambia las **sesiones 4 y 5** respecto del syllabus original, de modo que estimar influencia y simular difusión ocurran en la misma semana. Este orden fue acordado con el profesor del curso (el syllabus actualizado está en preparación).
 :::

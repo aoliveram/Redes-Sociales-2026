@@ -14,7 +14,7 @@ Revisiones-privado/
 networks-udd2024/
 
 # Artefactos de Quarto (el libro renderizado va en docs/, que SÍ se versiona)
-/libro/.quarto/
-/libro/*_cache/
-/libro/*_files/
-/libro/_freeze/
+/libro-redes-sociales-2026/.quarto/
+/libro-redes-sociales-2026/*_cache/
+/libro-redes-sociales-2026/*_files/
+/libro-redes-sociales-2026/_freeze/
