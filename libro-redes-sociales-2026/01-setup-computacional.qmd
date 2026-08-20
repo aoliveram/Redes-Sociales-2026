@@ -1,9 +1,9 @@
-# Ayudantía 1 — El kit computacional del investigador
+# Semana 1 — El kit computacional del investigador
 
 ::: {.callout-tip icon="false"}
 ## Objetivo de la sesión
 
-Salir de esta ayudantía con dos cosas: (1) un entorno de investigación completo y funcionando —R, un editor con asistente de IA agéntico, Git y Quarto—, y (2) claridad total sobre las reglas del juego del curso: cómo se usa la IA, cómo se evalúa y qué es lo que nunca se delega.
+Salir de esta ayudantía con dos cosas: (1) un entorno de investigación completo y funcionando —R, un editor con asistente de IA agéntico, Git y Quarto—, y (2) claridad sobre las reglas del juego del curso con respecto a la IA: cómo son las guias y cómo se evalúa.
 :::
 
 ## Por qué esta sesión existe

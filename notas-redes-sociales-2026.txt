@@ -1,0 +1,4 @@
+1. Trabajo práctico semana 1 --> Objetivo de la ayudantía 1. 
+2. Si deben entregar un nootebook, ¿que funcione con R o con Python?
+3. Ayudantía 2 -> Fundamento matemático. 
+4. Tarea para IA 1. 

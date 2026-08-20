@@ -1,12 +1,11 @@
 # Bienvenida {.unnumbered}
 
-Este es el **libro de ayudantías** del curso *Teoría de Redes Sociales* (DCCS 2026, Universidad del Desarrollo), dictado por el profesor Jorge Fábrega, con ayudantías de Aníbal Olivera Morales.
+Este es el libro de ayudantías del curso *Teoría de Redes Sociales* (DCCS 2026), dictado por el Jorge Fábrega y Aníbal Olivera.
 
-El curso dura **3 semanas** (6 sesiones, lunes y miércoles) y cada semana culmina en una **entrega práctica breve**. Este libro acompaña ese ritmo: cada capítulo corresponde a una semana del curso y sigue la misma estructura:
+El curso dura 3 semanas (6 sesiones, lunes y miércoles) y cada semana culmina en una entrega práctica breve. Este libro tiene la estructura:
 
-1. **Repaso teórico** — los conceptos centrales de la semana, sin tecnicismos innecesarios.
-2. **Práctica guiada en R** — código reproducible paso a paso, con **datos incluidos** en el repositorio, aplicando los conceptos a casos cuasi-reales.
-3. **Conexión con la entrega semanal** — qué se espera, preguntas guía y errores comunes.
+1. Repaso teórico — los conceptos centrales de la semana.
+2. Práctica guiada en R — código reproducible paso a paso, aplicando los conceptos a casos cuasi-reales.
 
 ## ¿Para quién es este libro? {.unnumbered}
 
@@ -16,18 +15,8 @@ Para estudiantes de primer año del doctorado, que vienen de orígenes muy diver
 
 - Repositorio del curso: <https://github.com/aoliveram/Redes-Sociales-2026>
 - Datos de la práctica: carpeta [`libro-redes-sociales-2026/datos/`](https://github.com/aoliveram/Redes-Sociales-2026/tree/main/libro-redes-sociales-2026/datos)
-- Syllabus oficial: en el repositorio.
-
-## Orden de las semanas {.unnumbered}
-
-| Semana | Sesiones | Pregunta que articula |
-|---|---|---|
-| 1 | Grafos y capital social · Modelos generativos y nulos | ¿Hay más estructura que la esperada por azar? |
-| 2 | Centralidad, comunidades y roles · Psicometría de redes | ¿Qué significa ser central, y central *en qué*? |
-| 3 | Inferencia: QAP, ERGM e interferencia · Difusión y contagio | ¿Estimar influencia o simularla? |
+- Bibliografía: carpeta [`libro-redes-sociales-2026/bibliografia/`](https://github.com/aoliveram/Redes-Sociales-2026/tree/main/libro-redes-sociales-2026/bibliografia)
 
 ::: {.callout-note}
 Este libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.
-
-El orden anterior intercambia las **sesiones 4 y 5** respecto del syllabus original, de modo que estimar influencia y simular difusión ocurran en la misma semana. Este orden fue acordado con el profesor del curso (el syllabus actualizado está en preparación).
 :::
