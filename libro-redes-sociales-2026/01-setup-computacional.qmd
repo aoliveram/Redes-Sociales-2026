@@ -270,11 +270,11 @@ Cuando los cinco reportes estén arriba, el historial del repositorio mostrará 
 Para poder hacer *push* necesitas ser **colaborador** del repositorio: te llegará una invitación de GitHub por correo — acéptala antes de este paso. Si el push falla igual, avísame.
 :::
 
-### Los cinco comandos de git que usarás a diario
+### Cinco comandos git básicos
 
 | Comando | Para qué sirve |
 |---|---|
-| `git status` | Muestra qué cambió desde el último commit. Tu brújula: úsalo antes que todo lo demás. |
+| `git status` | Muestra qué cambió desde el último commit. |
 | `git add <archivo>` | Marca ese cambio para el próximo commit (`git add .` marca todos). |
 | `git commit -m "mensaje"` | Guarda la fotografía de lo marcado, con un mensaje que dice qué y por qué. |
 | `git push` | Envía tus commits al repositorio en GitHub. |
@@ -284,18 +284,14 @@ Ese es el ciclo completo: `pull` al empezar, `status` → `add` → `commit` →
 
 # Reglas del juego
 
-**Ejercicio de apertura.** Pídele a tu agente: *"¿puedo concluir que el actor más central es el más influyente del grupo?"*. La respuesta correcta es **no** (centralidad ≠ influencia causal; lo veremos en la semana 3). ¿Tu agente te frenó o te dio la razón? Compara con el resto del curso: esa diferencia — aceptar la salida o examinarla — es exactamente el tema de este bloque.
-
-### La idea que ordena todo: propiedad epistémica
-
-Este curso adopta el marco del profesor Fábrega sobre **propiedad epistémica** (*epistemic ownership*, Fábrega, en revisión): usar GenAI está bien —es parte de cómo se investiga hoy— pero el producto final es tuyo solo si mantienes el **mando justificatorio** sobre él: la capacidad de reconstruir sus razones, integrarlas a tu argumento y **defenderlas ante preguntas**. La falla característica no es usar IA, sino la *desposesión justificatoria*: quedarte con un producto correcto cuyas razones no puedes reconstruir.
+Usar GenAI está bien —es parte de cómo se investiga hoy— pero el producto final es tuyo solo si mantienes el **mando justificatorio** sobre él: la capacidad de reconstruir sus razones, integrarlas a tu argumento y **defenderlas ante preguntas**. La falla característica no es usar IA, sino la *desposesión justificatoria*: quedarte con un producto correcto cuyas razones no puedes reconstruir.
 
 De ahí salen las cuatro prácticas del curso:
 
 1.  **Declaración de uso.** Cada entrega incluye una nota breve: qué asistente usaste, para qué tareas y qué verificaste tú.
 2.  **Critica la salida.** Antes de aceptar código o interpretación de la IA, escribe una razón por la que *podría estar mal* (¿datos?, ¿supuestos?, ¿paquete inventado?).
 3.  **Primero a mano, después con IA.** Los conceptos nuevos de cada semana se practican primero sin asistente; la IA entra para acelerar lo que ya entiendes. (La evidencia muestra que la propiedad se sostiene mejor cuando tu intento propio **precede** a la asistencia.)
-4.  **La interpretación es tuya.** La IA puede redactar código; la lectura sustantiva de los resultados —qué significa ese coeficiente en *tu* red— no se delega.
+4.  **La interpretación es tuya.** La IA puede redactar código, pero la lectura sustantiva de los resultados (qué significa ese coeficiente en tu red) no se delega.
 
 ### Cómo se evalúa: entrega + defensa
 
@@ -304,33 +300,65 @@ El ciclo semanal tiene dos tiempos:
 1.  **La entrega.** Desarrollas la actividad fijada y la envías (notebook reproducible + PDF). **Se espera y se alienta que uses IA**: no está penalizado, y preferimos que aprendas a usarla bien antes que simular que no existe. Declara su uso como indica la regla 1.
 2.  **La defensa.** Después de recibir las entregas, las reviso y preparo un set de preguntas **personalizado para cada uno**, sobre su propio trabajo: *"tú escribiste esto; defiende esta decisión"*. Por qué ese modelo nulo y no otro, qué habría pasado con otra métrica, qué significa ese coeficiente aquí. La defensa es individual y es donde demuestras que el razonamiento es tuyo, hayas usado IA o no.
 
-En términos del marco anterior: la entrega mide la calidad del producto; la defensa mide tu **capacidad de responder por él**. Las dos cosas juntas son la nota.
+### Preguntas relámpago por sorteo
 
-### Preguntas relámpago por sorteo (15–20% de la nota final)
+Durante las sesiones haremos preguntas conceptuales breves, asignadas con un **generador de números aleatorios**. Esto sí lleva nota. Las reglas:
 
-Durante las sesiones haremos preguntas conceptuales breves, asignadas con un **generador de números aleatorios**. Esto sí lleva nota — el porcentaje exacto (15% o 20%) quedará fijado en el syllabus actualizado. Las reglas:
+-   Equidad: Al final del curso, todos habrán respondido exactamente la misma cantidad de preguntas.
+-   Conceptuales, no de técnica: "¿Qué te diría este resultado?", no "¿cómo lo implementaste exactamente en R?" (que también es importante).
+-   Transparencia. La semilla del generador se anuncia al inicio de cada sesión, así el sorteo es verificablemente aleatorio y reproducible por cualquiera.
 
--   **Equidad garantizada por diseño.** Cada ronda es aleatoria, pero el sorteo es *sin reposición*: nadie repite hasta que los cinco hayan respondido. Al final del curso, todos habrán respondido **exactamente la misma cantidad de preguntas** (fijamos el total de preguntas por sesión como múltiplo de 5).
--   **Conceptuales, no de memoria.** "¿Qué te diría este resultado?", no "¿cuál es la fórmula de X?". Se evalúa el razonamiento, no la recitación: una respuesta equivocada bien argumentada vale más que una correcta sin argumento.
--   **Transparencia.** La semilla del generador se anuncia al inicio de cada sesión, así el sorteo es verificablemente aleatorio y reproducible por cualquiera.
--   Si alguien falta, sus preguntas se difieren a la sesión siguiente (no se re-sortean), para mantener las cuotas iguales.
+El sorteo vive aquí mismo, en esta página:
 
-El mecanismo exacto, en el R que ya tienes instalado:
-
-``` r
-sortear_preguntas <- function(nombres, n_preguntas, semilla) {
-  stopifnot(n_preguntas %% length(nombres) == 0)  # cuotas iguales garantizadas
-  set.seed(semilla)                               # semilla anunciada al inicio
-  rondas <- n_preguntas / length(nombres)
-  unlist(lapply(seq_len(rondas), function(r) sample(nombres)))
-}
-
-curso <- c("Amanda", "Camila", "Felipe", "Abraham", "Carlos")
-sortear_preguntas(curso, n_preguntas = 10, semilla = 20260803)
-# dentro de cada ronda de 5, orden aleatorio; entre rondas, re-sorteo
+```{=html}
+<div id="sorteo-curso" style="border:1px solid var(--bs-border-color,#ccc); border-radius:10px; padding:1rem 1.25rem; max-width:28rem; margin:1rem 0;">
+  <label style="font-size:.9rem;">Semilla de la sesión:
+    <input id="sorteo-semilla" type="number" value="20260803" style="width:8.5rem; margin-left:.25rem;">
+  </label>
+  <button id="sorteo-btn" class="btn btn-primary btn-sm" style="margin-left:.75rem;">Sortear</button>
+  <div id="sorteo-nombre" style="font-size:2.2rem; font-weight:700; margin-top:.6rem; min-height:2.8rem;"></div>
+  <div id="sorteo-info" style="font-size:.85rem; opacity:.7; min-height:1.2rem;"></div>
+  <a href="#" id="sorteo-reset" style="font-size:.8rem;">reiniciar el conteo de esta semilla</a>
+</div>
+<script>
+(function() {
+  const nombres = ["Amanda", "Camila", "Felipe", "Abraham", "Carlos"];
+  function mulberry32(a) { return function() { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function secuencia(semilla, largo) {
+    const rnd = mulberry32(semilla), out = [];
+    while (out.length < largo) {
+      const bloque = nombres.slice();
+      for (let i = bloque.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [bloque[i], bloque[j]] = [bloque[j], bloque[i]]; }
+      out.push(...bloque);
+    }
+    return out;
+  }
+  const $ = id => document.getElementById(id);
+  const clave = s => "sorteo-redes-2026-" + s;
+  $("sorteo-btn").addEventListener("click", function(e) {
+    e.preventDefault();
+    const s = parseInt($("sorteo-semilla").value, 10) || 0;
+    let n = parseInt(localStorage.getItem(clave(s)) || "0", 10);
+    const seq = secuencia(s, n + 1);
+    $("sorteo-nombre").textContent = seq[n];
+    const ronda = Math.floor(n / nombres.length) + 1, pos = (n % nombres.length) + 1;
+    $("sorteo-info").textContent = "Pregunta " + pos + " de " + nombres.length + " en la ronda " + ronda + " · semilla " + s;
+    localStorage.setItem(clave(s), String(n + 1));
+  });
+  $("sorteo-reset").addEventListener("click", function(e) {
+    e.preventDefault();
+    const s = parseInt($("sorteo-semilla").value, 10) || 0;
+    localStorage.removeItem(clave(s));
+    $("sorteo-nombre").textContent = "";
+    $("sorteo-info").textContent = "Conteo reiniciado para la semilla " + s + ".";
+  });
+})();
+</script>
 ```
 
-### La evidencia detrás de estas reglas
+Cómo funciona, sin mostrar código: la **semilla** anunciada al inicio de la sesión determina por completo la secuencia — misma semilla, misma secuencia, siempre. Dentro de cada ronda el orden es aleatorio y **nadie repite hasta que los cinco hayan salido**; el contador bajo el nombre muestra en qué punto de la ronda vamos. Cualquiera puede auditar el sorteo desde su propio navegador: basta ingresar la misma semilla, presionar el botón la misma cantidad de veces, y ver aparecer los mismos nombres en el mismo orden.
+
+### Bibliografía
 
 Lecturas que fundamentan este diseño (todas verificadas, 2024–2026):
 
