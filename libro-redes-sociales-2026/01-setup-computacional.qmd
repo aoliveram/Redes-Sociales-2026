@@ -14,26 +14,21 @@ Un asistente **integrado en un IDE (Integrated Development Enviroment)** trabaja
 
 La contracara es que un asistente más capaz hace más fácil producir resultados que no entiendes.
 
-## Estructura de la sesión (80 minutos)
+## Estructura de la sesión
 
 | Bloque | Tiempo | Contenido |
-|------------------------|------------------------|------------------------|
-| 1\. Demo: qué se puede hacer con IDE + IA | 0:00–0:10 | De un Excel de encuesta a un reporte de redes con dos prompts |
-| 2\. Instalación: IDE, extensiones y GitHub | 0:10–0:45 | IDE según suscripción, kit por terminal, extensiones y llave SSH |
-| 3\. Primera misión con el agente | 0:45–1:05 | Clonar el repo del curso y ejecutar un análisis explicado |
-| 4\. Las reglas del juego | 1:05–1:20 | Propiedad epistémica y cómo se evalúa este curso |
-
-## Primeros pasos
-
--   [ ] Crea una cuenta en [GitHub](https://github.com/) con tu correo institucional (así puedes pedir el [Student Developer Pack](https://education.github.com/pack)) (después puedes agregar tu correo personal).
--   [ ] Averigua **qué suscripción de IA tienes o tendrás**: ¿Claude (Anthropic)? ¿ChatGPT/Codex (OpenAI)? ¿Google AI Pro? Eso define tu ruta en el Bloque 2. Si no tienes ninguna, avísame antes de la sesión y lo resolvemos con planes gratuitos.
--   [ ] Si puedes, descarga los instaladores con anticipación (el wifi de la sala no es heroico): [R](https://cran.r-project.org/), [Quarto](https://quarto.org/docs/get-started/), [Git](https://git-scm.com/), y el editor de tu ruta ([VS Code](https://code.visualstudio.com/) o [Antigravity](https://antigravity.google/)).
+|------------------------|-------------|------------------------|
+| 1\. Demo: qué se puede hacer con IDE + IA | 0:00–0:10 | De Excel de encuesta a un reporte de redes, publicado en el repo |
+| 2\. Instalación: IDE, kit y extensiones | 0:10–0:40 | IDE según suscripción, herramientas por terminal, extensiones |
+| 3\. Comunicación con GitHub | 0:40–1:05 | Cuenta, llave SSH, clonar el curso y correr tu primer script |
+| 4\. Reglas del juego | 1:05–1:20 | Propiedad epistémica y cómo se evalúa este curso |
 
 ## Demo: qué se puede hacer con IDE + IA
 
 Veamos un ejemplo de lo que podemos hacer con una encuesta (ficticia) en Excel.
 
 Leeremos el archivo `libro-redes-sociales-2026/datos/encuesta_nominaciones.xlsx`. Tiene columnas:
+
 -   `sexo`
 -   `edad`
 -   `disciplina`
@@ -53,32 +48,50 @@ Lee el archivo libro-redes-sociales-2026/datos/encuesta_nominaciones.xlsx. Es un
 Ahora escribe un reporte en formato Markdown en libro-redes-sociales-2026/outputs/reports/reporte_encuesta.md que incluya: descripción de los datos, tabla con las métricas por persona, resultados del ERGM en tabla, y una sección final con tres advertencias de interpretación.
 ```
 
-Esto es, básicamente, lo que veremos en este curso. Ahora, ¿quién entendió el ERGM?
+**Tercer prompt** (el trabajo no existe hasta que está en el repositorio):
+
+``` txt
+Haz commit del reporte y push al repositorio Redes-Sociales-2026, con un mensaje que describa lo que se creó.
+```
+
+Esto es, básicamente, lo que veremos en este curso — y el ciclo completo del trabajo reproducible: datos → análisis → reporte → publicado con su historial. Ahora, **¿quién entendió el ERGM?**
 
 # Instalación IDE, extensiones, y comunicación con GitHub
 
 ## 1. El IDE
 
+Lo primero es saber **qué suscripción de IA tienes o tendrás** — ¿Claude (Anthropic)? ¿ChatGPT/Codex (OpenAI)? ¿Google AI Pro? — porque eso define tu ruta. Si no tienes ninguna, avísame: la ruta gratuita es GitHub Copilot con el [Student Developer Pack](https://education.github.com/pack).
+
 ### Ruta A — VS Code, para quienes usan Claude, ChatGPT/Codex o Copilot
 
 1.  Instala [VS Code](https://code.visualstudio.com/).
 2.  Activa tu agente según suscripción:
-    -   **Claude**: extensión *Claude Code* (`anthropic.claude-code`); inicia sesión con tu cuenta.
-    -   **OpenAI**: extensión *Codex* (`openai.chatgpt`); inicia sesión con tu cuenta de ChatGPT.
-    -   **GitHub Copilot**: ya viene **integrado** en VS Code (panel de *Chat*); inicia sesión con tu cuenta de GitHub. Con el [Student Developer Pack](https://education.github.com/pack), Copilot Pro es gratis — la ruta natural si no pagas ninguna otra suscripción.
+    -   **Claude**: extensión *Claude Code* (`anthropic.claude-code`).
+    -   **OpenAI**: extensión *Codex* (`openai.chatgpt`).
+    -   **GitHub Copilot**: ya viene *integrado* en VS Code.
 
 ### Ruta B — Antigravity, para quienes tienen Google AI Pro
 
-1.  Instala [Antigravity](https://antigravity.google/) (el IDE agéntico de Google; es un derivado de VS Code, así que casi todo lo de la Ruta A aplica igual).
-2.  Inicia sesión con tu cuenta Google del plan Pro: el agente (Gemini) viene integrado, sin extensiones adicionales.
+Es el IDE agéntico de Google; es un derivado de VS Code, así que casi todo lo de la Ruta A aplica igual.
+
+1.  Instala [Antigravity](https://antigravity.google/).
+2.  Inicia sesión con tu cuenta Google del plan Pro: el agente (Gemini) viene integrado.
 
 ::: callout-note
-El curso es **agnóstico a la herramienta**: elegimos según la suscripción que ya tienes, no al revés. Todo lo que haremos (leer archivos, ejecutar R, renderizar Quarto, criticar resultados) funciona igual en ambas rutas.
+El curso es agnóstico a la herramienta. Todo lo que haremos (leer archivos, ejecutar R, renderizar Quarto, criticar resultados) funciona igual en ambas rutas.
 :::
 
 ## 2. El kit que se instala desde la terminal
 
-El IDE trae una **terminal integrada** (menú *Terminal → New Terminal*): una ventana donde operas programas escribiendo comandos. Desde aquí instalaremos el resto del kit — y desde aquí harás buena parte del trabajo del curso.
+El IDE trae una **terminal integrada** para ejecutar comandos (menú *Terminal → New Terminal*; atajo: `` ⌃⇧` `` en macOS, `` Ctrl+Shift+` `` en Windows).
+
+Las tres herramientas que instalaremos desde ahí, y para qué sirve cada una:
+
+- **R** — el lenguaje de análisis del curso: métricas de redes, modelos y visualizaciones.
+- **Quarto** — el sistema de publicación científica: un solo archivo `.qmd` mezcla texto y código, y al *renderizarlo* ejecuta el código e inserta los resultados en un HTML o PDF. El formato de tus entregas (y de este libro).
+- **Git** — el control de versiones: registra la historia de cambios de tu proyecto, commit a commit. La diferencia entre `tesis_final_v7_AHORA_SI.R` y un historial ordenado al que siempre puedes volver.
+
+(RStudio es opcional; el flujo principal del curso es el IDE con agente.)
 
 **En macOS** (usa [Homebrew](https://brew.sh/); si no lo tienes, instálalo primero con el comando de su página):
 
@@ -95,9 +108,9 @@ winget install -e --id Posit.Quarto
 winget install -e --id Git.Git
 ```
 
-¿Qué acabamos de instalar? **R** (el lenguaje del curso), **Quarto** (tus entregas: notebook + PDF desde un solo `.qmd`) y **Git** (control de versiones: la diferencia entre `tesis_final_v7_AHORA_SI.R` y un historial ordenado). RStudio es opcional; el flujo principal del curso es el IDE con agente.
-
-Plan B sin terminal (o con mal wifi): los instaladores gráficos de [R](https://cran.r-project.org/), [Quarto](https://quarto.org/docs/get-started/) y [Git](https://git-scm.com/), idealmente descargados antes de la sesión.
+::: callout-note
+Plan B sin terminal (o si el wifi de la sala no coopera): los instaladores gráficos de [R](https://cran.r-project.org/), [Quarto](https://quarto.org/docs/get-started/) y [Git](https://git-scm.com/) — ideal traerlos descargados de antes.
+:::
 
 ::: callout-warning
 Después de instalar, **cierra y reabre el IDE**: las extensiones detectan R, Python y Git al arrancar.
@@ -146,9 +159,20 @@ Se instalan desde el ícono de bloques de la barra lateral. El **identificador**
 
 Útiles pero opcionales: **Rainbow CSV** (`mechatroner.rainbow-csv`, colorea columnas de CSV), **Markdown All in One** (`yzhang.markdown-all-in-one`), **R Debugger** (`rdebugger.r-debugger`) y **vscode-pdf** (`tomoki1207.pdf`, ver PDFs dentro del editor).
 
+### Atajos esenciales (macOS / Windows)
+
+| Acción | macOS | Windows |
+|---|---|---|
+| Paleta de comandos | `⇧⌘P` | `Ctrl+Shift+P` |
+| Vista previa de Markdown | `⇧⌘V` | `Ctrl+Shift+V` |
+| Guardar archivo | `⌘S` | `Ctrl+S` |
+| Buscar en todo el proyecto | `⇧⌘F` | `Ctrl+Shift+F` |
+
 ## 4. Comunicación con GitHub (llave SSH)
 
-Tu cuenta de GitHub ya existe; falta que **tu computador pueda enviarle cambios** (hacer *push* de tus commits) sin pedirte contraseña a cada rato. Para eso se usa una **llave SSH**: un par de archivos donde la llave *privada* nunca sale de tu máquina y la *pública* se registra en GitHub. Cuando ambas calzan, GitHub sabe que eres tú.
+Primero, la cuenta: créala en [GitHub](https://github.com/) con tu **correo institucional** — así puedes pedir el [Student Developer Pack](https://education.github.com/pack), que entre otras cosas te da Copilot Pro gratis (después puedes agregar tu correo personal).
+
+Con la cuenta creada, falta que **tu computador pueda enviarle cambios** (hacer *push* de tus commits) sin pedirte contraseña a cada rato. Para eso se usa una **llave SSH**: un par de archivos donde la llave *privada* nunca sale de tu máquina y la *pública* se registra en GitHub. Cuando ambas calzan, GitHub sabe que eres tú.
 
 Los comandos van en la terminal integrada (macOS y Windows por igual, salvo donde se indica):
 
@@ -202,25 +226,65 @@ Los comandos van en la terminal integrada (macOS y Windows por igual, salvo dond
     git push                            # enviar a GitHub
     ```
 
-## Bloque 3 — Primera misión con el agente
+### Tu primer script sobre el repositorio clonado
 
-Con el entorno listo, cada uno ejecuta esta secuencia:
+Ya tienes el curso completo en tu máquina. Lo que hiciste hasta ahora en la terminal fue *interactivo*: tú escribes, el intérprete responde. El trabajo real corre de otra forma: un **script** — un archivo con código que se ejecuta completo, de principio a fin. Esa es la unidad básica de un análisis reproducible: mismo archivo, mismos datos, mismo resultado.
 
-1.  **Clona el repositorio del curso.** En el terminal integrado del editor:
+El repositorio trae dos scripts gemelos (uno en R, otro en Python) que generan y comparan tres redes clásicas — **aleatoria** (Erdős–Rényi), **mundo pequeño** (Watts–Strogatz) y **libre de escala** (Barabási–Albert) — y guardan la tabla comparativa en `outputs/`. Desde la carpeta raíz del repositorio clonado:
 
-    ``` bash
-    git clone git@github.com:aoliveram/Redes-Sociales-2026.git
-    ```
+**Con R:**
 
-2.  **Abre la carpeta y dale contexto al agente.** Pídele: *"Lee `libro-redes-sociales-2026/datos/semana1_actores_eventos.csv` y descríbeme qué contiene."* Nota que el agente responde sobre **tus** datos, no sobre datos imaginarios.
+``` bash
+Rscript libro-redes-sociales-2026/scripts/compara_redes.R
+```
 
-3.  **Ejecuta un análisis explicado.** Pídele: *"Construye la proyección actor-actor de esta matriz con igraph, calcula densidad y transitividad, y explícame cada línea como si fuera mi primer día con R."* — porque lo es, para varios.
+**Con Python** (requiere `pip install networkx` la primera vez):
 
-4.  **Renderiza tu primer Quarto.** Crea `prueba.qmd` con un título, una frase y un chunk de R, y pídele al agente que lo renderice a HTML.
+``` bash
+python3 libro-redes-sociales-2026/scripts/compara_redes.py
+```
 
-5.  **Micro-ejercicio de crítica** (el más importante): pídele al agente *"¿puedo concluir que el actor más central es el más influyente del grupo?"*. La respuesta correcta es **no** (centralidad ≠ influencia causal; lo veremos en la semana 3). Evalúa: ¿tu agente te frenó o te dio la razón? Comparte con el resto lo que respondió el tuyo.
+Ambos imprimen una tabla como esta y dejan un `.csv` en `libro-redes-sociales-2026/outputs/`:
 
-## Bloque 4 — Las reglas del juego
+|red|nodos|aristas|densidad|transitividad|dist_media|grado_max|
+|---|---|---|---|---|---|---|
+|aleatoria|200|600|0.030|0.024|3.14|13|
+|mundo_pequeno|200|600|0.030|**0.445**|4.50|8|
+|libre_escala|200|594|0.030|0.055|**2.94**|**33**|
+
+Misma cantidad de nodos y aristas, tres mundos distintos: el mundo pequeño concentra **transitividad** (tus amigos son amigos entre sí), la libre de escala produce **hubs** (un nodo con grado 33 donde la aleatoria llega a 13) y las **distancias más cortas**. Abre los scripts en el editor y míralos: son ~30 líneas cada uno, y es exactamente el tipo de código que escribirás en la semana 1. Cuando los hayas corrido, pídele a tu agente que te explique el script línea por línea — es tu primera conversación con él sobre código real.
+
+### Tu primera contribución al repositorio
+
+Cada estudiante tiene una **carpeta personal** dentro de `Proyectos-Estudiantes/`: `Amanda/`, `Camila/`, `Felipe/`, `Abraham/` y `Carlos/`. Todo lo que produzcas en el curso vive ahí, y la razón es práctica: si los cinco hacen commit **del mismo archivo en la misma ruta**, git genera conflictos que hay que resolver a mano; si cada uno escribe **solo en su carpeta**, los cinco pushes conviven sin pelearse.
+
+El resultado de tu primera conversación con el agente se sube ahí. Pídele (reemplazando `TU-NOMBRE` por el nombre de tu carpeta):
+
+``` txt
+Corre el script libro-redes-sociales-2026/scripts/compara_redes.R y escribe un reporte breve en Markdown en Proyectos-Estudiantes/TU-NOMBRE/01_comparacion_redes.md que incluya: qué hace el script, qué distingue a cada una de las tres redes, y una pregunta que te haya quedado dando vueltas. Después haz commit y push con un mensaje descriptivo.
+```
+
+Cuando los cinco reportes estén arriba, el historial del repositorio mostrará la primera foto del curso completo trabajando — cinco commits, cinco carpetas, cero conflictos.
+
+::: callout-note
+Para poder hacer *push* necesitas ser **colaborador** del repositorio: te llegará una invitación de GitHub por correo — acéptala antes de este paso. Si el push falla igual, avísame.
+:::
+
+### Los cinco comandos de git que usarás a diario
+
+| Comando | Para qué sirve |
+|---|---|
+| `git status` | Muestra qué cambió desde el último commit. Tu brújula: úsalo antes que todo lo demás. |
+| `git add <archivo>` | Marca ese cambio para el próximo commit (`git add .` marca todos). |
+| `git commit -m "mensaje"` | Guarda la fotografía de lo marcado, con un mensaje que dice qué y por qué. |
+| `git push` | Envía tus commits al repositorio en GitHub. |
+| `git pull` | Trae desde GitHub los commits nuevos de los demás. Siempre **antes** de ponerte a trabajar. |
+
+Ese es el ciclo completo: `pull` al empezar, `status` → `add` → `commit` → `push` al terminar. Todo lo demás de git es refinamiento.
+
+# Reglas del juego
+
+**Ejercicio de apertura.** Pídele a tu agente: *"¿puedo concluir que el actor más central es el más influyente del grupo?"*. La respuesta correcta es **no** (centralidad ≠ influencia causal; lo veremos en la semana 3). ¿Tu agente te frenó o te dio la razón? Compara con el resto del curso: esa diferencia — aceptar la salida o examinarla — es exactamente el tema de este bloque.
 
 ### La idea que ordena todo: propiedad epistémica
 
@@ -261,7 +325,7 @@ sortear_preguntas <- function(nombres, n_preguntas, semilla) {
   unlist(lapply(seq_len(rondas), function(r) sample(nombres)))
 }
 
-curso <- c("A", "B", "C", "D", "E")               # los 5 nombres reales en clase
+curso <- c("Amanda", "Camila", "Felipe", "Abraham", "Carlos")
 sortear_preguntas(curso, n_preguntas = 10, semilla = 20260803)
 # dentro de cada ronda de 5, orden aleatorio; entre rondas, re-sorteo
 ```
@@ -277,12 +341,23 @@ Lecturas que fundamentan este diseño (todas verificadas, 2024–2026):
 -   [Prather et al. (2024), *ICER*](https://dl.acm.org/doi/10.1145/3632620.3671116) — en programadores novatos la IA **amplía la brecha**: ayuda a quienes ya tienen estrategias metacognitivas y crea ilusión de competencia en quienes no.
 -   Fábrega (en revisión), *Epistemic Ownership in Human-AI Cognition* — el marco conceptual del curso: propiedad epistémica, la firma cognitiva y la desposesión justificatoria.
 
-## Verificación final
+# Diccionario mínimo
 
-Antes de irte, confirma que puedes:
+Los términos que usaremos todo el curso, en una línea cada uno:
 
--   [ ] Ejecutar `1 + 1` en R desde el terminal o consola de tu editor.
--   [ ] Renderizar `prueba.qmd` a HTML con Quarto.
--   [ ] Ver el repositorio del curso clonado en tu máquina.
--   [ ] Pedirle algo al agente **sobre un archivo del proyecto** y evaluar críticamente su respuesta.
--   [ ] Explicar con tus palabras qué es la desposesión justificatoria y por qué la defensa oral existe en este curso.
+- **Terminal** — la ventana de texto donde escribes comandos y el sistema responde. La del IDE es la misma del sistema, embebida en la ventana del editor.
+- **CLI** (*command-line interface*) — un programa que se opera escribiendo comandos en la terminal: `git`, `quarto`, `Rscript`, `ssh`… y también `claude`. Sin ventanas ni botones.
+- **IDE** (*integrated development environment*) — la aplicación gráfica que integra editor de código, explorador de archivos, terminal y extensiones: VS Code, Antigravity, RStudio.
+- **Extensión** — módulo que agrega capacidades al IDE: soporte de R, render de Quarto, un agente de IA. Se identifica con su nombre único `editor.nombre`.
+- **Script** — archivo con código que se ejecuta completo, de principio a fin (`compara_redes.R`). La unidad básica del análisis reproducible.
+- **Git** — el programa (una CLI) de control de versiones: registra la historia de cambios de una carpeta, commit a commit.
+- **Repositorio** (*repo*) — una carpeta cuya historia rastrea Git: el proyecto completo con su memoria incorporada.
+- **Commit** — una fotografía del repositorio en un instante, acompañada de un mensaje que explica qué cambió y por qué.
+- **Push / pull** — enviar tus commits al repositorio remoto / traer a tu máquina los commits nuevos.
+- **Clonar** — copiar un repositorio remoto a tu máquina, con toda su historia incluida.
+- **GitHub** — el servicio web donde viven las copias remotas de los repositorios: respaldo, colaboración y portafolio público de tu trabajo.
+- **SSH / llave SSH** — canal cifrado y par de llaves (privada en tu máquina, pública en GitHub) con que tu computador se identifica sin contraseñas.
+- **GitHub Pages** — el hosting gratuito de GitHub que convierte una carpeta del repo en un sitio web. Este libro que estás leyendo es un GitHub Pages.
+- **Markdown** (`.md`) — texto plano con marcas simples (`#`, `**`, `-`) que se convierte en documento formateado. El formato de los reportes que genera el agente.
+- **Quarto** (`.qmd`) — Markdown más bloques de código ejecutable: al renderizar, corre el código e inserta los resultados en el documento (HTML o PDF). El formato de tus entregas.
+

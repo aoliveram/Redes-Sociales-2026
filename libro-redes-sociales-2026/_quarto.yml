@@ -16,9 +16,10 @@ book:
   chapters:
     - index.qmd
     - 01-setup-computacional.qmd
-    - 02-semana-1-fundamentos-y-modelos-nulos.qmd
-    - 03-semana-2-posiciones-y-redes-de-variables.qmd
-    - 04-semana-3-inferencia-y-difusion.qmd
+    # Capítulos en preparación (esqueleto local, aún no publicados):
+    # - 02-semana-1-fundamentos-y-modelos-nulos.qmd
+    # - 03-semana-2-posiciones-y-redes-de-variables.qmd
+    # - 04-semana-3-inferencia-y-difusion.qmd
     - referencias.qmd
 
 format:
