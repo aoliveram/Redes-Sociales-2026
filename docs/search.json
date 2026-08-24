@@ -30,83 +30,313 @@
     ]
   },
   {
-    "objectID": "index.html#orden-de-las-semanas",
-    "href": "index.html#orden-de-las-semanas",
-    "title": "Redes Sociales — DCCS 2026",
-    "section": "Orden de las semanas",
-    "text": "Orden de las semanas\n\n\n\n\n\n\n\n\nSemana\nSesiones\nPregunta que articula\n\n\n\n\n1\nGrafos y capital social · Modelos generativos y nulos\n¿Hay más estructura que la esperada por azar?\n\n\n2\nCentralidad, comunidades y roles · Psicometría de redes\n¿Qué significa ser central, y central en qué?\n\n\n3\nInferencia: QAP, ERGM e interferencia · Difusión y contagio\n¿Estimar influencia o simularla?\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nEste libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.\nEl orden anterior intercambia las sesiones 4 y 5 respecto del syllabus original, de modo que estimar influencia y simular difusión ocurran en la misma semana. Este orden fue acordado con el profesor del curso (el syllabus actualizado está en preparación).",
-    "crumbs": [
-      "Bienvenida"
-    ]
-  },
-  {
     "objectID": "01-setup-computacional.html",
     "href": "01-setup-computacional.html",
-    "title": "1  Semana 1 — El kit computacional del investigador",
+    "title": "1  Kit computacional recomendado para el investigador",
     "section": "",
     "text": "1.1 Por qué esta sesión existe\nTodos ustedes ya usan IA. En este curso, lejos de prohibir su uso, la alentamos, así que debe hacerse bien. Usar la IA en una ventana de chat está, para investigadores, obsoleto. En el chat el asistente no ve tu proyecto completo: responde sobre una descripción de tu problema. Además, usando chatbox se pierde la reproducibilidad de tu trabajo.\nUn asistente integrado en un IDE (Integrated Development Enviroment) trabaja distinto: lee los archivos de tu proyecto, escribe y ejecuta código ahí mismo, ve el error que produce y lo corrige. Es más parecido a un ayudante de investigación que a un mero chat. Este curso —y probablemente el resto de tu doctorado— funciona mejor con esa segunda forma de trabajo.\nLa contracara es que un asistente más capaz hace más fácil producir resultados que no entiendes.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Semana 1 — El kit computacional del investigador</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Kit computacional recomendado para el investigador</span>"
     ]
   },
   {
     "objectID": "01-setup-computacional.html#estructura-de-la-sesión",
     "href": "01-setup-computacional.html#estructura-de-la-sesión",
-    "title": "1  Semana 1 — El kit computacional del investigador",
+    "title": "1  Kit computacional recomendado para el investigador",
     "section": "1.2 Estructura de la sesión",
     "text": "1.2 Estructura de la sesión\n\n\n\n\n\n\n\n\nBloque\nTiempo\nContenido\n\n\n\n\n1. Demo: qué se puede hacer con IDE + IA\n0:00–0:10\nDe Excel de encuesta a un reporte de redes, publicado en el repo\n\n\n2. Instalación: IDE, kit y extensiones\n0:10–0:40\nIDE según suscripción, herramientas por terminal, extensiones\n\n\n3. Comunicación con GitHub\n0:40–1:05\nCuenta, llave SSH, clonar el curso y correr tu primer script\n\n\n4. Reglas del juego\n1:05–1:20\nPropiedad epistémica y cómo se evalúa este curso",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Semana 1 — El kit computacional del investigador</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Kit computacional recomendado para el investigador</span>"
     ]
   },
   {
     "objectID": "01-setup-computacional.html#demo-qué-se-puede-hacer-con-ide-ia",
     "href": "01-setup-computacional.html#demo-qué-se-puede-hacer-con-ide-ia",
-    "title": "1  Semana 1 — El kit computacional del investigador",
+    "title": "1  Kit computacional recomendado para el investigador",
     "section": "1.3 Demo: qué se puede hacer con IDE + IA",
     "text": "1.3 Demo: qué se puede hacer con IDE + IA\nVeamos un ejemplo de lo que podemos hacer con una encuesta (ficticia) en Excel.\nLeeremos el archivo libro-redes-sociales-2026/datos/encuesta_nominaciones.xlsx. Tiene columnas:\n\nsexo\nedad\ndisciplina\nnom_1 a nom_7.\n\nCada fila es un ego y cada nominación un vínculo dirigido.\nPrimer prompt (texto plano: pasa el cursor por el bloque y aparece el botón de copiar):\nLee el archivo libro-redes-sociales-2026/datos/encuesta_nominaciones.xlsx. Es una encuesta con generador de nombres: las columnas nom_1 a nom_7 contienen las personas nominadas por cada encuestado (red dirigida; las demás columnas son atributos). En R: (1) construye la matriz de adyacencia dirigida a partir de las nominaciones; (2) calcula la densidad, el grado de entrada y de salida de cada persona, y la reciprocidad/balance de la red; (3) ajusta un ERGM bien especificado con términos estructurales (edges, mutual, geométricamente ponderados tipo gwesp) y de homofilia (nodematch por disciplina y por sexo); (4) reporta e interpreta los coeficientes con cautela, indicando qué NO se puede concluir.\nSegundo prompt:\nAhora escribe un reporte en formato Markdown en libro-redes-sociales-2026/outputs/reports/reporte_encuesta.md que incluya: descripción de los datos, tabla con las métricas por persona, resultados del ERGM en tabla, y una sección final con tres advertencias de interpretación.\nTercer prompt (el trabajo no existe hasta que está en el repositorio):\nHaz commit del reporte y push al repositorio Redes-Sociales-2026, con un mensaje que describa lo que se creó.\nEsto es, básicamente, lo que veremos en este curso — y el ciclo completo del trabajo reproducible: datos → análisis → reporte → publicado con su historial. Ahora, ¿quién entendió el ERGM?",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Semana 1 — El kit computacional del investigador</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Kit computacional recomendado para el investigador</span>"
     ]
   },
   {
     "objectID": "01-setup-computacional.html#el-ide",
     "href": "01-setup-computacional.html#el-ide",
-    "title": "1  Semana 1 — El kit computacional del investigador",
+    "title": "1  Kit computacional recomendado para el investigador",
     "section": "2.1 1. El IDE",
     "text": "2.1 1. El IDE\nLo primero es saber qué suscripción de IA tienes o tendrás — ¿Claude (Anthropic)? ¿ChatGPT/Codex (OpenAI)? ¿Google AI Pro? — porque eso define tu ruta. Si no tienes ninguna, avísame: la ruta gratuita es GitHub Copilot con el Student Developer Pack.\n\n2.1.1 Ruta A — VS Code, para quienes usan Claude, ChatGPT/Codex o Copilot\n\nInstala VS Code.\nActiva tu agente según suscripción:\n\nClaude: extensión Claude Code (anthropic.claude-code).\nOpenAI: extensión Codex (openai.chatgpt).\nGitHub Copilot: ya viene integrado en VS Code.\n\n\n\n\n2.1.2 Ruta B — Antigravity, para quienes tienen Google AI Pro\nEs el IDE agéntico de Google; es un derivado de VS Code, así que casi todo lo de la Ruta A aplica igual.\n\nInstala Antigravity.\nInicia sesión con tu cuenta Google del plan Pro: el agente (Gemini) viene integrado.\n\n\n\n\n\n\n\nNota\n\n\n\nEl curso es agnóstico a la herramienta. Todo lo que haremos (leer archivos, ejecutar R, renderizar Quarto, criticar resultados) funciona igual en ambas rutas.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Semana 1 — El kit computacional del investigador</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Kit computacional recomendado para el investigador</span>"
     ]
   },
   {
     "objectID": "01-setup-computacional.html#el-kit-que-se-instala-desde-la-terminal",
     "href": "01-setup-computacional.html#el-kit-que-se-instala-desde-la-terminal",
-    "title": "1  Semana 1 — El kit computacional del investigador",
+    "title": "1  Kit computacional recomendado para el investigador",
     "section": "2.2 2. El kit que se instala desde la terminal",
     "text": "2.2 2. El kit que se instala desde la terminal\nEl IDE trae una terminal integrada para ejecutar comandos (menú Terminal → New Terminal; atajo: ⌃⇧` en macOS, Ctrl+Shift+` en Windows).\nLas tres herramientas que instalaremos desde ahí, y para qué sirve cada una:\n\nR — el lenguaje de análisis del curso: métricas de redes, modelos y visualizaciones.\nQuarto — el sistema de publicación científica: un solo archivo .qmd mezcla texto y código, y al renderizarlo ejecuta el código e inserta los resultados en un HTML o PDF. El formato de tus entregas (y de este libro).\nGit — el control de versiones: registra la historia de cambios de tu proyecto, commit a commit. La diferencia entre tesis_final_v7_AHORA_SI.R y un historial ordenado al que siempre puedes volver.\n\n(RStudio es opcional; el flujo principal del curso es el IDE con agente.)\nEn macOS (usa Homebrew; si no lo tienes, instálalo primero con el comando de su página):\nbrew install --cask r quarto\nbrew install git\nEn Windows (PowerShell; winget viene incluido en Windows 10/11):\nwinget install -e --id RProject.R\nwinget install -e --id Posit.Quarto\nwinget install -e --id Git.Git\n\n\n\n\n\n\nNota\n\n\n\nPlan B sin terminal (o si el wifi de la sala no coopera): los instaladores gráficos de R, Quarto y Git — ideal traerlos descargados de antes.\n\n\n\n\n\n\n\n\nAdvertencia\n\n\n\nDespués de instalar, cierra y reabre el IDE: las extensiones detectan R, Python y Git al arrancar.\n\n\n\n2.2.1 Prueba mínima: tu máquina responde\nR desde la terminal:\nR                # abre la consola de R\n1 + 1            # debería responder [1] 2\nq(save = \"no\")   # salir\nPython desde la terminal:\npython3          # abre el intérprete (en Windows: python)\n1 + 1            # debería responder 2\nexit()\nSi ambos respondieron 2, tu máquina ya habla los dos idiomas del curso.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Semana 1 — El kit computacional del investigador</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Kit computacional recomendado para el investigador</span>"
     ]
   },
   {
     "objectID": "01-setup-computacional.html#extensiones-imprescindibles",
     "href": "01-setup-computacional.html#extensiones-imprescindibles",
-    "title": "1  Semana 1 — El kit computacional del investigador",
+    "title": "1  Kit computacional recomendado para el investigador",
     "section": "2.3 3. Extensiones imprescindibles",
     "text": "2.3 3. Extensiones imprescindibles\nSe instalan desde el ícono de bloques de la barra lateral. El identificador (editor.nombre) es el nombre único de cada extensión: pégalo tal cual en el buscador para instalar exactamente la correcta — los nombres a secas se repiten entre extensiones parecidas; el identificador no.\n\n\n\n\n\n\n\n\nExtensión\nIdentificador\nPara qué\n\n\n\n\nR\nREditorSupport.r\nIntérprete y soporte de R\n\n\nR Syntax Highlighting\nreditorsupport.r-syntax\nResaltado moderno de R\n\n\nPython\nms-python.python\nIntérprete de Python (instala Pylance solo)\n\n\nJupyter\nms-toolsai.jupyter\nNotebooks .ipynb\n\n\nQuarto\nquarto.quarto\nRenderizar tus entregas .qmd\n\n\nLaTeX Workshop\nJames-Yu.latex-workshop\nCompilar PDF vía LaTeX\n\n\nMarkdown PDF\nyzane.markdown-pdf\nExportar reportes .md a PDF\n\n\nTu agente de IA\nanthropic.claude-code · openai.chatgpt\nCopilot no necesita extensión: viene integrado\n\n\n\nÚtiles pero opcionales: Rainbow CSV (mechatroner.rainbow-csv, colorea columnas de CSV), Markdown All in One (yzhang.markdown-all-in-one), R Debugger (rdebugger.r-debugger) y vscode-pdf (tomoki1207.pdf, ver PDFs dentro del editor).\n\n2.3.1 Atajos esenciales (macOS / Windows)\n\n\n\nAcción\nmacOS\nWindows\n\n\n\n\nPaleta de comandos\n⇧⌘P\nCtrl+Shift+P\n\n\nVista previa de Markdown\n⇧⌘V\nCtrl+Shift+V\n\n\nGuardar archivo\n⌘S\nCtrl+S\n\n\nBuscar en todo el proyecto\n⇧⌘F\nCtrl+Shift+F",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Semana 1 — El kit computacional del investigador</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Kit computacional recomendado para el investigador</span>"
     ]
   },
   {
     "objectID": "01-setup-computacional.html#comunicación-con-github-llave-ssh",
     "href": "01-setup-computacional.html#comunicación-con-github-llave-ssh",
-    "title": "1  Semana 1 — El kit computacional del investigador",
+    "title": "1  Kit computacional recomendado para el investigador",
     "section": "2.4 4. Comunicación con GitHub (llave SSH)",
     "text": "2.4 4. Comunicación con GitHub (llave SSH)\nPrimero, la cuenta: créala en GitHub con tu correo institucional — así puedes pedir el Student Developer Pack, que entre otras cosas te da Copilot Pro gratis (después puedes agregar tu correo personal).\nCon la cuenta creada, falta que tu computador pueda enviarle cambios (hacer push de tus commits) sin pedirte contraseña a cada rato. Para eso se usa una llave SSH: un par de archivos donde la llave privada nunca sale de tu máquina y la pública se registra en GitHub. Cuando ambas calzan, GitHub sabe que eres tú.\nLos comandos van en la terminal integrada (macOS y Windows por igual, salvo donde se indica):\n\nPreséntate a Git — este nombre y correo quedan firmados en cada commit tuyo (usa el mismo correo de tu cuenta GitHub):\ngit config --global user.name \"Tu Nombre\"\ngit config --global user.email \"tu-correo@institucional.cl\"\nGenera tu par de llaves (presiona Enter a todas las preguntas; dejar la passphrase vacía está bien para empezar):\nssh-keygen -t ed25519 -C \"tu-correo@institucional.cl\"\nCopia la llave pública al portapapeles (la que termina en .pub; la privada no se comparte jamás):\n# macOS\npbcopy &lt; ~/.ssh/id_ed25519.pub\n# Windows (PowerShell)\nGet-Content ~\\.ssh\\id_ed25519.pub | clip\nRegístrala en GitHub: ve a github.com/settings/keys → New SSH key → ponle un título (“laptop-doctorado”) → pega la llave → Add SSH key.\nPrueba el saludo:\nssh -T git@github.com\nLa primera vez preguntará si confías en el servidor: responde yes. El éxito se ve así: Hi tu-usuario! You've successfully authenticated...\nDesde ahora, clona con la URL SSH (botón verde Code → SSH en cualquier repo):\ngit clone git@github.com:aoliveram/Redes-Sociales-2026.git\nTu primer ciclo completo — el ritmo que usarás todo el doctorado:\ngit status                          # ¿qué cambió?\ngit add archivo_que_cambiaste.qmd   # preparar\ngit commit -m \"Mi primer commit\"    # guardar con mensaje\ngit push                            # enviar a GitHub\n\n\n2.4.1 Tu primer script sobre el repositorio clonado\nYa tienes el curso completo en tu máquina. Lo que hiciste hasta ahora en la terminal fue interactivo: tú escribes, el intérprete responde. El trabajo real corre de otra forma: un script — un archivo con código que se ejecuta completo, de principio a fin. Esa es la unidad básica de un análisis reproducible: mismo archivo, mismos datos, mismo resultado.\nEl repositorio trae dos scripts gemelos (uno en R, otro en Python) que generan y comparan tres redes clásicas — aleatoria (Erdős–Rényi), mundo pequeño (Watts–Strogatz) y libre de escala (Barabási–Albert) — y guardan la tabla comparativa en outputs/. Desde la carpeta raíz del repositorio clonado:\nCon R:\nRscript libro-redes-sociales-2026/scripts/compara_redes.R\nCon Python (requiere pip install networkx la primera vez):\npython3 libro-redes-sociales-2026/scripts/compara_redes.py\nAmbos imprimen una tabla como esta y dejan un .csv en libro-redes-sociales-2026/outputs/:\n\n\n\nred\nnodos\naristas\ndensidad\ntransitividad\ndist_media\ngrado_max\n\n\n\n\naleatoria\n200\n600\n0.030\n0.024\n3.14\n13\n\n\nmundo_pequeno\n200\n600\n0.030\n0.445\n4.50\n8\n\n\nlibre_escala\n200\n594\n0.030\n0.055\n2.94\n33\n\n\n\nMisma cantidad de nodos y aristas, tres mundos distintos: el mundo pequeño concentra transitividad (tus amigos son amigos entre sí), la libre de escala produce hubs (un nodo con grado 33 donde la aleatoria llega a 13) y las distancias más cortas. Abre los scripts en el editor y míralos: son ~30 líneas cada uno, y es exactamente el tipo de código que escribirás en la semana 1. Cuando los hayas corrido, pídele a tu agente que te explique el script línea por línea — es tu primera conversación con él sobre código real.\n\n\n2.4.2 Tu primera contribución al repositorio\nCada estudiante tiene una carpeta personal dentro de Proyectos-Estudiantes/: Amanda/, Camila/, Felipe/, Abraham/ y Carlos/. Todo lo que produzcas en el curso vive ahí, y la razón es práctica: si los cinco hacen commit del mismo archivo en la misma ruta, git genera conflictos que hay que resolver a mano; si cada uno escribe solo en su carpeta, los cinco pushes conviven sin pelearse.\nEl resultado de tu primera conversación con el agente se sube ahí. Pídele (reemplazando TU-NOMBRE por el nombre de tu carpeta):\nCorre el script libro-redes-sociales-2026/scripts/compara_redes.R y escribe un reporte breve en Markdown en Proyectos-Estudiantes/TU-NOMBRE/01_comparacion_redes.md que incluya: qué hace el script, qué distingue a cada una de las tres redes, y una pregunta que te haya quedado dando vueltas. Después haz commit y push con un mensaje descriptivo.\nCuando los cinco reportes estén arriba, el historial del repositorio mostrará la primera foto del curso completo trabajando — cinco commits, cinco carpetas, cero conflictos.\n\n\n\n\n\n\nNota\n\n\n\nPara poder hacer push necesitas ser colaborador del repositorio: te llegará una invitación de GitHub por correo — acéptala antes de este paso. Si el push falla igual, avísame.\n\n\n\n\n2.4.3 Cinco comandos git básicos\n\n\n\n\n\n\n\nComando\nPara qué sirve\n\n\n\n\ngit status\nMuestra qué cambió desde el último commit.\n\n\ngit add &lt;archivo&gt;\nMarca ese cambio para el próximo commit (git add . marca todos).\n\n\ngit commit -m \"mensaje\"\nGuarda la fotografía de lo marcado, con un mensaje que dice qué y por qué.\n\n\ngit push\nEnvía tus commits al repositorio en GitHub.\n\n\ngit pull\nTrae desde GitHub los commits nuevos de los demás. Siempre antes de ponerte a trabajar.\n\n\n\nEse es el ciclo completo: pull al empezar, status → add → commit → push al terminar. Todo lo demás de git es refinamiento.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Semana 1 — El kit computacional del investigador</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Kit computacional recomendado para el investigador</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentos-matemáticos.html",
+    "href": "02-fundamentos-matemáticos.html",
+    "title": "2  Fundamentos matemáticos en teoría de redes",
+    "section": "",
+    "text": "3 Matemáticas de redes",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamentos matemáticos en teoría de redes</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentos-matemáticos.html#matriz-de-adyacencia-y-aplicaciones",
+    "href": "02-fundamentos-matemáticos.html#matriz-de-adyacencia-y-aplicaciones",
+    "title": "2  Fundamentos matemáticos en teoría de redes",
+    "section": "3.1 Matriz de adyacencia y aplicaciones",
+    "text": "3.1 Matriz de adyacencia y aplicaciones\n\nNotación:\n\n\\(n\\) : número de nodos en una red\n\\(m\\) : número de enlaces en una red\n\nGran parte de las redes de interés:\n\ntienen como máximo 1 enlace por par de nodos. En caso que haya más de un enlace entre par de nodos, llamamos a esos enlaces multi-lazos (multi-edge).\nno tienen lazos que conecten nodos a ellos mismos. En caso que sí lo haya, lo llamamos self-loops.\nun grafo sin multi-edges ni self-loops es llamado grafo simple.\n\n\n\n\n\n\n\n\n3.1.1 Red no dirigida\n\nMatriz de adyacencia:\n\nRepresentación fundamental de una red.\nMatriz \\(n \\times n\\) con elementos (red no dirigida):\n\n\n\\[\nA_{ij} = \\begin{cases} 1 & \\text{if there is an edge between nodes } i \\text{ and } j, \\\\ 0 & \\text{otherwise.} \\end{cases}\n\\]\n\n\n\n\\[\n\\mathbf{A} = \\begin{pmatrix}\n0 & 1 & 0 & 0 & 1 & 0 \\\\\n1 & 0 & 1 & 1 & 0 & 0 \\\\\n0 & 1 & 0 & 1 & 1 & 1 \\\\\n0 & 1 & 1 & 0 & 0 & 0 \\\\\n1 & 0 & 1 & 0 & 0 & 0 \\\\\n0 & 0 & 1 & 0 & 0 & 0\n\\end{pmatrix}\n\\]\n\n\n\n\n\n\n\nPara redes con doble lazo entre \\(i\\) y \\(j\\): \\(A_{ij} = A_{ji} = 2\\)\nPara redes con self-loop: \\(A_{ii} = 2\\)\n\n\n\n3.1.2 Red no dirigida ponderada\n\nMatriz \\(n \\times n\\) con elementos (red no dirigida ponderada) (weighted network):\n\n\\[\nA_{ij} = \\alpha \\in \\mathbb{R}\n\\]\n\\[\n\\mathbf{A} = \\begin{pmatrix}\n0 & 0 & 2 & 0 & 1 \\\\\n0 & 0 & 0 & 0.3 & 0 \\\\\n2 & 0 & 0 & 0 & 0.5 \\\\\n0 & 0.3 & 0 & 0 & 0 \\\\\n1 & 0 & 0.5 & 0 & 0\n\\end{pmatrix}\n\\]\n\nGeneralmente los pesos son positivos, pero no hay ninguna razón por la que no puedan ser negativos. En una red social un peso positivo puede ser amistad, mientras que un peso negativo puede ser animosidad.\n\n\n\n3.1.3 Red dirigida\n\nMatriz \\(n \\times n\\) con elementos (red dirigida):\n\n\\[\nA_{ij} = \\begin{cases} 1 & \\text{if there is an edge from } j \\text{ to } i \\\\ 0 & \\text{otherwise} \\end{cases}\n\\]\n\n\n\n\\[\n\\mathbf{A} = \\begin{pmatrix}\n0 & 0 & 0 & 1 & 0 & 0 \\\\\n0 & 0 & 1 & 0 & 0 & 0 \\\\\n1 & 0 & 0 & 0 & 1 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 1 \\\\\n0 & 0 & 0 & 1 & 0 & 1 \\\\\n0 & 1 & 0 & 0 & 0 & 0\n\\end{pmatrix}\n\\]\n\n\n\n\n\n\n\nPor lo general son asimétricas.\nPara self-loops ahora: \\(A_{ii} = 1\\)\n\n\n\n3.1.4 Red dirigida acíclica\n\nMatriz \\(n \\times n\\) con elementos (red dirigida acíclica):\n\n\n\n\n\\[\n\\mathbf{A} = \\begin{pmatrix}\n0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\n\\end{pmatrix}\n\\]\n\n\n\n\n\nEl eje vertical de la figura representa el tiempo (Time, creciendo hacia arriba).\n\n\n\n\n\n\nUna red acíclica se puede escribir como una matriz triangular superior, y se puede dibujar manteniendo todos los lazos apuntando hacia abajo.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamentos matemáticos en teoría de redes</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentos-matemáticos.html#matriz-de-incidencia-y-redes-bipartitas",
+    "href": "02-fundamentos-matemáticos.html#matriz-de-incidencia-y-redes-bipartitas",
+    "title": "2  Fundamentos matemáticos en teoría de redes",
+    "section": "3.2 Matriz de incidencia y redes bipartitas",
+    "text": "3.2 Matriz de incidencia y redes bipartitas\n\nHay dos tipos de nodos, y lazos que solo van entre nodos de distinto tipo.\nTambién llamadas redes filiativas en literatura sociológica.\nLas personas están representadas por un conjunto de nodos, y los grupos por otros nodos. Los lazos identifican los grupos a los que pertenecen las personas.\nRedes actores-películas, lectores-libros, autores-paper, etc.\n\n\n\n\n\n\n\n3.2.1 Matriz de incidencia\n\nNotación:\n\n\\(n\\) : número de nodos en una red\n\\(g\\) : número de grupos\n\nEl equivalente a la matriz de adyacencia para red bipartita (no dirigida, no ponderada) es llamada matriz de incidencia, que es una matriz \\(g \\times n\\) tal que:\n\n\\[\nB_{ij} = \\begin{cases} 1 & \\text{if item } j \\text{ belongs to group } i \\\\ 0 & \\text{otherwise} \\end{cases}\n\\]\n\n\n\n\\[\n\\mathbf{B} = \\begin{pmatrix}\n1 & 0 & 0 & 1 & 0 \\\\\n1 & 1 & 1 & 1 & 0 \\\\\n0 & 1 & 1 & 0 & 1 \\\\\n0 & 0 & 1 & 1 & 1\n\\end{pmatrix}\n\\]\n\n\n\n\n\nArriba: Groups. Abajo: Item.\n\n\n\n\n\n\n\n3.2.2 Proyecciones a un modo\nPreguntas:\n\n¿Cómo obtengo los nodos que comparten al menos un grupo?\n¿Cómo sé cuántos comparten?\n¿Qué grupos tienen al menos un miembro en común?\n¿Cuántos comparten?\n\n\n\n\n\nEl número total de grupos a los que pertenecen tanto \\(i\\) como \\(j\\):\n\n\\[\nP_{ij} = \\sum_{k=1}^{g} B_{ki} B_{kj} = \\sum_{k=1}^{g} B^{T}_{ik} B_{kj}\n\\]\n\\[\n\\mathbf{P} = \\mathbf{B}^{T}\\mathbf{B} \\quad \\ldots \\text{ con traza 0 !}\n\\]\n\nMatriz cuadrada \\(n \\times n\\) — one mode projection\n\n\nEl número de grupos a los que pertenece el nodo \\(i\\):\n\n\\[\nP_{ii} = \\sum_{k=1}^{g} B_{ki}^{2} = \\sum_{k=1}^{g} B_{ki}\n\\]\n\n\n\n\n\nProjection onto items\n\n\n\n\n\n\n\n\n\nNúmero de miembros en común entre los grupos \\(i\\) y \\(j\\):\n\n\\[\n\\mathbf{P}' = \\mathbf{B}\\mathbf{B}^{T} \\quad \\ldots \\text{ con traza 0 !}\n\\]\n\nMatriz cuadrada \\(g \\times g\\) — one mode projection\n\n\nEl número total de grupos a los que pertenecen tanto \\(i\\) como \\(j\\):\n\n\\[\n\\mathbf{P} = \\mathbf{B}^{T}\\mathbf{B} \\quad \\ldots \\text{ con traza 0 !}\n\\]\n\nMatriz cuadrada \\(n \\times n\\) — one mode projection\n\n\n\n\n\n\nArriba: Projection onto groups. Centro: red bipartita. Abajo: Projection onto items.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamentos matemáticos en teoría de redes</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentos-matemáticos.html#redes-multicapa",
+    "href": "02-fundamentos-matemáticos.html#redes-multicapa",
+    "title": "2  Fundamentos matemáticos en teoría de redes",
+    "section": "3.3 Redes multicapa",
+    "text": "3.3 Redes multicapa\n\nUna red multicapa es un conjunto de redes individuales, cada una representando nodos de un tipo particular y sus lazos; más sus entre-lazos entre las distintas redes.\n\n\n\n\n(a) Multilayer · (b) Multiplex\n\n\n\nLas redes multiplex es un caso especial de redes multilayer en donde los nodos representan el mismo conjunto de objetos o personas en cada red.\nUn ejemplo arquetípico es una red social, donde cada capa representa una esfera social distinta de las mismas personas, o una red de transporte, mismos lugares.\n\n\n3.3.1 Redes temporales\n\n\n\n\nUn caso especial son las redes temporales, cuyas estructuras de red cambian a lo largo del tiempo (ej: WWW, redes sociales, redes ecológicas).\nEn la mayoría de los casos solo los lazos cambian, por lo que tenemos redes multiplex.\nMatemáticamente:\n\n\\[\n\\mathbf{A}^{\\alpha}, \\text{ one for each layer } \\alpha\n\\]\n\\[\nn_\\alpha \\times n_\\alpha\n\\]\n\\[\nA^{\\alpha}_{ij} \\quad \\text{elementos representados como 'tensores' (matrices)}\n\\]\n\\[\n\\mathbf{B}^{\\alpha\\beta}, \\qquad n_\\alpha \\times n_\\beta, \\qquad B^{\\alpha\\beta}_{ij}\n\\]\n\n\n\n\n\nTemporal Network (el eje vertical es el tiempo).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamentos matemáticos en teoría de redes</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentos-matemáticos.html#grado",
+    "href": "02-fundamentos-matemáticos.html#grado",
+    "title": "2  Fundamentos matemáticos en teoría de redes",
+    "section": "3.4 Grado",
+    "text": "3.4 Grado\n\nEl grado de un nodo en una red no dirigida es el número de lazos con conectan con él.\n\n\n\n\nIzquierda: 5 vecinos, grado 5. Derecha: 5 vecinos, grado 8.\n\n\n\nEn términos de la matriz de adyacencia:\n\n\\[\nk_i = \\sum_{j=1}^{n} A_{ij}\n\\]\n\nEn una red no dirigida, cada lazo tiene dos extremos, por lo que, si hay \\(m\\) lazos, entonces habrán \\(2m\\) extremos de lazos. El total de extremos de lazos debe ser igual a la suma de todos los grados:\n\n\\[\n2m = \\sum_{i=1}^{n} k_i = \\sum_{ij} A_{ij},\n\\]\n\n3.4.1 Grado y densidad\n\nDefinimos al grado medio de la red como \\(c\\)\n\n\\[\nc = \\frac{1}{n}\\sum_{i=1}^{n} k_i\n\\]\n\\[\nc = \\frac{2m}{n}\n\\]\n\nLa cantidad máxima de lazos en una red simple\n\n\\[\n\\binom{n}{2} = \\frac{1}{2} n(n-1).\n\\]\n\nLa densidad es la tasa de lazos que están en la red\n\n\\[\n\\rho = \\frac{m}{\\binom{n}{2}} = \\frac{2m}{n(n-1)} = \\frac{c}{n-1} \\;\\rightarrow\\; \\rho = \\frac{c}{n}\n\\]\n\nSe dice que la red es densa cuando, al aumentar \\(n\\), la densidad no se va a cero\n\n\\[\n\\rho \\;\\xrightarrow{N \\to \\infty}\\; \\epsilon &gt; 0\n\\]\n\nSe dice que la red es dispersa cuando, al aumentar \\(n\\), la densidad sí se va a cero\n\n\\[\n\\rho \\;\\xrightarrow{N \\to \\infty}\\; 0\n\\]\n\nSin embargo, en redes reales es difícil testear esto. Coloquialmente, se dice que una red es dispersa simplemente cuando\n\n\\[\n\\rho \\ll 1\n\\]\n\n\n3.4.2 Grado en redes dirigidas\n\nPara redes dirigidas hay que definir\n\n\\[\nk_i^{\\text{in}} = \\sum_{j=1}^{n} A_{ij} \\qquad k_j^{\\text{out}} = \\sum_{i=1}^{n} A_{ij}.\n\\]\n\nEn este caso solo hay un extremo (== final) por cada enlace, por lo que la suma de los grados será igual a la cantidad de lazos \\(m\\)\n\n\\[\nm = \\sum_{i=1}^{n} k_i^{\\text{in}} = \\sum_{j=1}^{n} k_j^{\\text{out}} = \\sum_{ij} A_{ij}.\n\\]\n\nY, como cada lazo que sale tiene que llegar a alguna parte\n\n\\[\nc_{\\text{in}} = \\frac{1}{n}\\sum_{i=1}^{n} k_i^{\\text{in}} = c_{\\text{out}} = \\frac{1}{n}\\sum_{j=1}^{n} k_j^{\\text{out}} = c = \\frac{m}{n}\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamentos matemáticos en teoría de redes</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentos-matemáticos.html#paseos-walks-y-caminos-paths",
+    "href": "02-fundamentos-matemáticos.html#paseos-walks-y-caminos-paths",
+    "title": "2  Fundamentos matemáticos en teoría de redes",
+    "section": "3.5 Paseos (Walks) y Caminos (Paths)",
+    "text": "3.5 Paseos (Walks) y Caminos (Paths)\n\nUn paseo es cualquier secuencia de nodos tal que cada para de nodos consecutivos están unidos por un lazo.\nEl largo de un paseo es la cantidad de lazos por los que pasa.\nUn paseo que no se interseca consigo mismo es llamado camino (paths).\nConsidera una matriz de adyacencia \\(A_{ij}\\):\n\nEl producto \\(A_{ik}A_{kj}\\) es 1 solo si hay un paseo de longitud 2 de \\(i\\) a \\(j\\), pasando por \\(k\\).\n¿Cuántos paseos de longitud 2 hay en total entre los nodos \\(i\\) y \\(j\\)?\n\n\n\\[\nN^{(2)}_{ij} = \\sum_{k=1}^{n} A_{ik}A_{kj} = \\left[\\mathbf{A}^2\\right]_{ij}\n\\]\n\n¿Cuántos paseos de longitud \\(r\\) hay entre los nodos \\(i\\) y \\(j\\)?\n\n\\[\nN^{(r)}_{ij} = \\left[\\mathbf{A}^r\\right]_{ij}\n\\]\n\n3.5.1 Geodésicas\n\nEl camino más corto entre los nodos \\(i\\) y \\(j\\) es llamada geodésica, y es simplemente un problema de minimización de \\(r\\) tal que\n\n\\[\n\\left[\\mathbf{A}^r\\right]_{ij} &gt; 0\n\\]\n\n\n\nUna geodésica no puede intersectarse.\n\n\n\nEl diámetro de una red es la longitud de la geodésica más larga.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamentos matemáticos en teoría de redes</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentos-matemáticos.html#centralidad-de-grado",
+    "href": "02-fundamentos-matemáticos.html#centralidad-de-grado",
+    "title": "2  Fundamentos matemáticos en teoría de redes",
+    "section": "4.1 Centralidad de grado",
+    "text": "4.1 Centralidad de grado\n\nCentralidad: ¿cuál es el nodo más importante?\nLa más básica: centralidad de grado\n\n\\[\nk_i = \\sum_{j=1}^{n} A_{ij}\n\\]\n\nAunque básica, puede ser muy informativa en redes de amistad o en citación de papers.\n\n\n\n\nIzquierda: 5 vecinos, grado 5. Derecha: 5 vecinos, grado 8.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamentos matemáticos en teoría de redes</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentos-matemáticos.html#centralidad-de-autovector",
+    "href": "02-fundamentos-matemáticos.html#centralidad-de-autovector",
+    "title": "2  Fundamentos matemáticos en teoría de redes",
+    "section": "4.2 Centralidad de autovector",
+    "text": "4.2 Centralidad de autovector\n\nTu puedes tener solo 1 amigo en el mundo, pero si ese amigo es el presidente de EEUU, entonces tú debes ser alguien importante.\nEn vez de premiar con ‘1 punto’ por cada vecino que tiene un nodo, la centralidad de autovector premia con un número de puntos proporcional al puntaje de centralidad de cada vecino.\nSea \\(x_i\\) el valor numérico de la centralidad del nodo \\(i\\), definido como\n\n\\[\nx_i = \\kappa^{-1} \\sum_{\\substack{\\text{nodes } j \\text{ that are} \\\\ \\text{neighbors of } i}} x_j\n\\]\n\\[\nx_i = \\kappa^{-1} \\sum_{j=1}^{n} A_{ij} x_j.\n\\]\n\\[\n\\mathbf{x} = \\kappa^{-1}\\mathbf{A}\\mathbf{x}\n\\]\n\\[\n\\mathbf{A}\\mathbf{x} = \\kappa\\mathbf{x}\n\\]\n\nUna ecuación de autovalores puede tener varios autovectores y autovalores, pero \\(\\mathbf{x}\\) debe ser el autovector correspondiente al autovalor positivo más grande. Por lo tanto \\(\\kappa\\) debe ser aquel autovalor más grande.\n\n\\[\nx_i = \\kappa^{-1} \\sum_{j} A_{ij} x_j\n\\]\n\nPara redes dirigidas podemos encontrarnos con un problema grave:\n\n\n\n\n\n\n\n\nEl nodo A solo tiene lazos outgoing. Entonces la debería tener centralidad 0.\nEl nodo B solo tiene 1 lazo ingoing. Pero ese lazo es A. Tiene centralidad 0.\nEntonces, ¿todos los demás nodos tienen centralidad 0?\nLa solución es agregar ‘un poco de centralidad’, creando lo que se llama centralidad de Katz:\n\n\\[\nx_i = \\alpha \\sum_{j} A_{ij} x_j + \\beta,\n\\]\n\nSupongamos ahora que hay un nodo con centralidad muy alta, que apunta a un millón de otros nodos. ¿Deberían esos nodos tener también una centralidad muy alta? Centralidad PageRank\n\n\\[\nx_i = \\alpha \\sum_{j} A_{ij} \\frac{x_j}{k_j^{\\text{out}}} + \\beta\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamentos matemáticos en teoría de redes</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentos-matemáticos.html#centralidad-de-cercanía",
+    "href": "02-fundamentos-matemáticos.html#centralidad-de-cercanía",
+    "title": "2  Fundamentos matemáticos en teoría de redes",
+    "section": "4.3 Centralidad de cercanía",
+    "text": "4.3 Centralidad de cercanía\n\nMedida que calcula la distancia media de un nodo al resto de nodos.\nDistancia == geodésica == \\(d_{ij}\\)\nEntonces la distancia media:\n\n\\[\n\\ell_i = \\frac{1}{n} \\sum_{j} d_{ij}\n\\]\n\nPara que la centralidad sea mayor para los que tienen menor distancia:\n\n\\[\nC_i = \\frac{1}{\\ell_i} = \\frac{n}{\\sum_j d_{ij}}\n\\]\n\nUsando datos de películas, la centralidad de cercanía más alta es de 0.4143 para el actor Christopher Lee. Él no fue tan famoso ni tuvo tanto éxito como algunos de sus contemporáneos. Sin embargo, apareció en un número extraordinario de películas: más de 200. Esto por sí solo tiende a reducir su distancia promedio a otros nodos en la red al aumentar el número de sus conexiones. La centralidad de cercanía tiene correlación positiva con la centralidad de grado.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamentos matemáticos en teoría de redes</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentos-matemáticos.html#centralidad-de-intermediación",
+    "href": "02-fundamentos-matemáticos.html#centralidad-de-intermediación",
+    "title": "2  Fundamentos matemáticos en teoría de redes",
+    "section": "4.4 Centralidad de intermediación",
+    "text": "4.4 Centralidad de intermediación\n\nSupongamos que necesito pasar con cierta urgencia una carta a un nodo del Grupo 2. De seguro esa carta recorrerá una geodésica. Ahora, gran número de las geodésicas pasan por A.\n\n\n\n\n\n\n\nLa centralidad de intermediación es una medida proporcional al número de geodésicas en las que está aquel nodo.\nEn grupos distintos, el nodo A puede obtener un montón de poder y riqueza dada su posición en la red.\nSea \\(n^{i}_{jk} = 1\\) si el nodo \\(i\\) está en la geodésica entre \\(j\\) y \\(k\\).\n\n\\[\nx_i = \\sum_{jk} n^{i}_{jk}\n\\]\n\nPero también hay casos donde hay más de una geodésica entre dos nodos.\n\n\n\n\n\n\n\nSea \\(g_{jk}\\) el número de geodésicas entre \\(j\\) y \\(k\\).\n\n\\[\nx_i = \\sum_{jk} \\frac{n^{i}_{jk}}{g_{jk}}\n\\]\n\nCuriosamente, no se usa mucho betweenness para redes dirigidas. El ejemplo de la carta usa las redes sociales ya construidas (no dirigidas).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamentos matemáticos en teoría de redes</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentos-matemáticos.html#transitividad",
+    "href": "02-fundamentos-matemáticos.html#transitividad",
+    "title": "2  Fundamentos matemáticos en teoría de redes",
+    "section": "4.5 Transitividad",
+    "text": "4.5 Transitividad\n\nEs una noción importante particularmente en redes sociales.\nLa relación \\(&gt;\\) es transitiva, pues\n\n\\[\na &gt; b \\;\\wedge\\; b &gt; c \\;\\Longrightarrow\\; a &gt; c\n\\]\n\nTambién \\(=\\), pues\n\n\\[\na = b \\;\\wedge\\; b = c \\;\\Longrightarrow\\; a = c\n\\]\n\n¿Qué pasa si lo extendemos a redes sociales?\n\n\n\n\n\\[\nA_{uv} = 1 \\;\\wedge\\; A_{vw} = 1 \\;\\overset{?}{\\Longrightarrow}\\; A_{uw} = 1\n\\]\n\n\n\n\n\n\n\nPara cuantificar la transitividad en una red, definimos el índice de clusterización como la fracción de caminos (paths) de longitud 2 que están cerrados.\n\n\\[\nC = \\frac{(\\text{number of closed paths of length two})}{(\\text{number of paths of length two})}\n\\]\n\n\n\n\nYa que cada triángulo contiene exactamente 6 caminos de longitud 2:\n\n\\[\nC = \\frac{(\\text{number of triangles}) \\times 6}{(\\text{number of paths of length two})}.\n\\]\n\nOjo que por cada par de caminos de longitud 2, tenemos un triplete conectado\n\n\\[\nC = \\frac{(\\text{number of triangles}) \\times 3}{(\\text{number of connected triples})}.\n\\]\n\n\n\nUn triplete conectado.\n\n\n\n\n\n\n\nLos 6 caminos de longitud 2 de un triángulo.\n\n\n\n\n\n\n4.5.1 Clusterización local\n\nLas redes sociales tienden a tener una mayor clusterización global (\\(C \\approx 0.1\\)) que otros tipos de redes (por ejemplo redes informáticas \\(C \\approx 0.01\\)).\nTambién podemos definir la noción de transitividad para nodos aislados.\n\n\\[\nC_i = \\frac{(\\text{number of pairs of neighbors of } i \\text{ that are connected})}{(\\text{number of pairs of neighbors of } i)}.\n\\]\n\n\n\n\nLa clusterización local presenta una correlación negativa con la medida de grado.\nCuando no encontramos la cantidad esperada de conecciones entre los vecinos de un nodo, decimos que hay structural holes.\nLa clusterización local es una medida del poder en el flujo de info. en ese vecindario. Es como una versión local de betweenness.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamentos matemáticos en teoría de redes</span>"
+    ]
+  },
+  {
+    "objectID": "02-fundamentos-matemáticos.html#balance-estructural",
+    "href": "02-fundamentos-matemáticos.html#balance-estructural",
+    "title": "2  Fundamentos matemáticos en teoría de redes",
+    "section": "4.6 Balance estructural",
+    "text": "4.6 Balance estructural\n\nPara redes ponderadas, \\(A_{ij} = \\alpha \\in \\mathbb{R}\\). Es decir, pueden tener valores negativos.\n‘El amigo de mi amigo es mi amigo’: \\(\\;+ * + = +\\)\n‘El amigo de mi enemigo es mi enemigo’: \\(\\;+ * - = -\\)\n‘El enemigo de mi enemigo es mi amigo’: \\(\\;- * - = +\\)\nAquellos con un número par de ‘\\(-\\)’, se dice balanceada al ser más estable.\nEsta regla se mantiene para configuraciones de loops más grandes.\nPara redes no ponderadas, las triadas balanceadas son aquellas con un número par de lazos, es decir, 0 lazos o 2 lazos.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamentos matemáticos en teoría de redes</span>"
+    ]
+  },
+  {
+    "objectID": "03-mecanismos-de-formacion.html",
+    "href": "03-mecanismos-de-formacion.html",
+    "title": "3  Mecanismos de Formación",
+    "section": "",
+    "text": "4 Redes aleatorias",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Mecanismos de Formación</span>"
+    ]
+  },
+  {
+    "objectID": "03-mecanismos-de-formacion.html#definición",
+    "href": "03-mecanismos-de-formacion.html#definición",
+    "title": "3  Mecanismos de Formación",
+    "section": "4.1 Definición",
+    "text": "4.1 Definición\n\nNomenclatura:\n\n\nRedes aleatorias == Erdös–Rényi model == Gilbert model\n\n\nDefiniciones:\n\n\\(G(N, L)\\) Model — \\(N\\) nodos y \\(L\\) enlaces, ala Erdös–Rényi\n\\(G(N, p)\\) Model — \\(N\\) nodos y \\(p\\) probabilidad de enlace, ala Gilbert (el que usaremos)\n\nDefinición:\n\n\nA random network consists of \\(N\\) nodes where each node pair is connected with probability \\(p\\).\n\n\nComienza con \\(N\\) nodos aislados.\nSelecciona un par de nodos y genera un número aleatorio entre \\(0\\) y \\(1\\). Si el número excede \\(p\\), conecta el par de nodos seleccionado con un enlace; de lo contrario, déjalos desconectados.\nRepite el paso (2) para cada uno de los \\(N(N-1)/2\\) pares de nodos.\n\n\nErdös papers:\n\n\n\n\n\n\n\nErdős & Rényi (1959), On random graphs I.\n\n\n\n\n\n\n\nErdős & Rényi (1960), On the evolution of random graphs.\n\n\n\n\n\n\n\n\nCitas por año de ambos papers.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Mecanismos de Formación</span>"
+    ]
+  },
+  {
+    "objectID": "03-mecanismos-de-formacion.html#número-de-enlaces",
+    "href": "03-mecanismos-de-formacion.html#número-de-enlaces",
+    "title": "3  Mecanismos de Formación",
+    "section": "4.2 Número de enlaces",
+    "text": "4.2 Número de enlaces\n\nSi una red tienen \\(N\\) nodos, entonces existen \\(N(N-1)/2\\) pares de nodos.\nProbabilidad que obtener \\(x\\) sellos al tirar \\(N\\) veces una moneda:\n\n\\[\np_x = \\underbrace{\\binom{N}{x}}_{\\substack{\\text{Número de maneras} \\\\ \\text{distintas de tener } x \\text{ éxitos} \\\\ \\text{en } N \\text{ lanzamientos}}}\n\\;\\underbrace{p^{x}}_{\\substack{\\text{Probabilidad que } x \\\\ \\text{lanzamientos hayan} \\\\ \\text{sido sello}}}\n\\;\\underbrace{(1-p)^{N-x}}_{\\substack{\\text{Probabilidad que } N \\\\ \\text{lanzamientos hayan} \\\\ \\text{sido cara}}}\n\\]\n\nProbabilidad que una realización tenga exactamente \\(L\\) enlaces:\n\n\\[\np_L = \\underbrace{\\binom{\\frac{N(N-1)}{2}}{L}}_{\\substack{\\text{Número de formas de} \\\\ \\text{colocar } L \\text{ enlaces} \\\\ \\text{entre } N(N-1)/2 \\text{ pares}}}\n\\;\\underbrace{p^{L}}_{\\substack{\\text{Probabilidad que } L \\\\ \\text{intentos hayan} \\\\ \\text{resultado en enlaces}}}\n\\;\\underbrace{(1-p)^{\\frac{N(N-1)}{2}-L}}_{\\substack{\\text{Probabilidad que los} \\\\ \\text{restantes } N(N-1)/2 - L \\\\ \\text{pares no hayan} \\\\ \\text{terminado con enlace}}}\n\\]\n\n\n\nTres realizaciones de una red aleatoria con los mismos \\(N\\) y \\(p\\).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Mecanismos de Formación</span>"
+    ]
+  },
+  {
+    "objectID": "03-mecanismos-de-formacion.html#grado-medio",
+    "href": "03-mecanismos-de-formacion.html#grado-medio",
+    "title": "3  Mecanismos de Formación",
+    "section": "4.3 Grado medio",
+    "text": "4.3 Grado medio\n\nPor lo que el número de enlaces esperados en red aleatoria:\n\n\\[\n\\langle L \\rangle = \\sum_{L=0}^{N} L\\, p_L = p\\,\\frac{N(N-1)}{2}\n\\]\n\nY el grado medio en red aleatoria:\n\n\\[\n\\langle k \\rangle = \\frac{2\\langle L \\rangle}{N} = p(N-1)\n\\]\n\nQue es equivalente al número de enlaces esperado para 1 solo nodo.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Mecanismos de Formación</span>"
+    ]
+  },
+  {
+    "objectID": "03-mecanismos-de-formacion.html#distribución-de-grado",
+    "href": "03-mecanismos-de-formacion.html#distribución-de-grado",
+    "title": "3  Mecanismos de Formación",
+    "section": "4.4 Distribución de grado",
+    "text": "4.4 Distribución de grado\n\nEn una red aleatoria, la probabilidad que un nodo \\(i\\) tenga exactamente \\(k\\) vecinos:\n\n\\[\np_k = \\underbrace{\\binom{N-1}{k}}_{\\substack{\\text{Número de formas de} \\\\ \\text{tener } k \\text{ enlaces entre} \\\\ N-1 \\text{ nodos}}}\n\\;\\underbrace{p^{k}}_{\\substack{\\text{Probabilidad de tener} \\\\ k \\text{ enlaces presentes} \\\\ \\text{en esa realización}}}\n\\;\\underbrace{(1-p)^{N-1-k}}_{\\substack{\\text{Probabilidad que los} \\\\ \\text{restantes } N-1-k \\text{ nodos no} \\\\ \\text{presenten enlace}}}\n\\]\n\n\n\nDistribución binomial y su aproximación de Poisson: mismo pico en \\(k = \\langle k \\rangle\\), ancho \\(\\sigma_k\\).\n\n\n\nAhora bien, la mayoría de las redes son dispersas: \\(\\langle k \\rangle \\ll N\\)\n\n\\[\np_k = \\binom{N-1}{k} p^{k} (1-p)^{N-1-k} \\quad\\longrightarrow\\quad p_k = e^{-\\langle k \\rangle}\\,\\frac{\\langle k \\rangle^{k}}{k!}\n\\]\n\nNo depende de \\(N\\), por lo que es agnóstica del tamaño.\nDepende de un solo parámetro, \\(\\langle k \\rangle\\).\nLas redes sociales reales no son aleatorias.\n\n\\[\n\\langle k \\rangle \\approx 1{,}000 \\;\\rightarrow\\; \\sigma_k = 31.62\n\\]\n\nO sea que las personas tienen entre 968 y 1032 conocidos, pero está documentado que Franklin Delano Roosevelt (US President) tenía ~22000 conocidos.\nDe hecho, no solo las redes sociales no son aleatorias:\n\n\n\n\nPuntos: data empírica. Línea verde: predicción aleatoria (Poisson). (a) Internet, (b) colaboración científica, (c) interacciones de proteínas.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Mecanismos de Formación</span>"
+    ]
+  },
+  {
+    "objectID": "03-mecanismos-de-formacion.html#coeficiente-de-clusterización",
+    "href": "03-mecanismos-de-formacion.html#coeficiente-de-clusterización",
+    "title": "3  Mecanismos de Formación",
+    "section": "4.5 Coeficiente de clusterización",
+    "text": "4.5 Coeficiente de clusterización\n\nRecordemos que la clusterización local se definía como:\n\n\\[\nC_i = \\frac{(\\text{number of pairs of neighbors of } i \\text{ that are connected})}{(\\text{number of pairs of neighbors of } i)}.\n\\]\n\nAhora, notemos que\n\n\\[\n\\langle L_i \\rangle \\;\\rightarrow\\; \\substack{\\text{Número esperado de} \\\\ \\text{links entre los } k \\\\ \\text{vecinos de un nodo } i}\n\\qquad\\qquad\n\\frac{1}{2}k_i(k_i - 1) \\;\\rightarrow\\; \\substack{\\text{Número de posibles} \\\\ \\text{links entre los } k \\\\ \\text{vecinos del nodo } i}\n\\]\n\nPero en una aleatoria simplemente se creará una fracción de los posibles\n\n\\[\n\\langle L_i \\rangle = p\\,\\frac{k_i(k_i-1)}{2}\n\\]\n\nEntonces\n\n\\[\nC_i = \\frac{\\langle L_i \\rangle}{\\frac{1}{2}k_i(k_i-1)} = p = \\frac{\\langle k \\rangle}{N}.\n\\]\n\nNotemos que:\n\nPara redes aleatorias, la clusterización global debe ser igual a la local.\nSi las redes fueras aleatorias, la clusterización debería decrecer según \\(1/N\\).\nLa clusterización no depende de \\(k\\), sino que del término global \\(\\langle k \\rangle\\).\n\nComparemos con redes reales:\n\n\n\n\n\n\n\n\n\n\n(a) Todas las redes: \\(\\langle C \\rangle / \\langle k \\rangle\\) vs \\(N\\) · (b) Internet: \\(C(k)\\)\n\n\n\n\n\n\n\n\n(c) Colaboración científica · (d) Interacciones de proteínas. La línea verde es la predicción de la red aleatoria.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Mecanismos de Formación</span>"
+    ]
+  },
+  {
+    "objectID": "03-mecanismos-de-formacion.html#componente-principal",
+    "href": "03-mecanismos-de-formacion.html#componente-principal",
+    "title": "3  Mecanismos de Formación",
+    "section": "4.6 Componente principal",
+    "text": "4.6 Componente principal\n\nEn 1959, Erdös descubrió que la emergencia de una componente principal no es suave.\n\n\n\n\nTamaño relativo de la componente gigante \\(N_G/N\\) según \\(\\langle k \\rangle\\): (b) régimen subcrítico \\(\\langle k \\rangle &lt; 1\\), (c) punto crítico \\(\\langle k \\rangle = 1\\), (d) régimen supercrítico \\(\\langle k \\rangle &gt; 1\\), (e) régimen conectado \\(\\langle k \\rangle \\gg \\ln N\\).\n\n\n\nCuando \\(\\langle k \\rangle &gt; 1\\) se reconoce una red.\nCuando \\(\\langle k \\rangle \\gg \\ln N\\), se espera solo 1 componente.\n\n\n\n\nTabla 4.1: Redes reales: en todas \\(\\langle k \\rangle &gt; 1\\), pero ninguna alcanza \\(\\langle k \\rangle \\gg \\ln N\\).\n\n\n\n\n\n\n\n\n\n\n\n\nNETWORK\n\\(N\\)\n\\(L\\)\n\\(\\langle k \\rangle\\)\n\\(\\ln N\\)\n\n\n\n\nInternet\n192,244\n609,066\n6.34\n12.17\n\n\nPower Grid\n4,941\n6,594\n2.67\n8.51\n\n\nScience Collaboration\n23,133\n94,439\n8.08\n10.05\n\n\nActor Network\n702,388\n29,397,908\n83.71\n13.46\n\n\nProtein Interactions\n2,018\n2,930\n2.90\n7.61",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Mecanismos de Formación</span>"
+    ]
+  },
+  {
+    "objectID": "03-mecanismos-de-formacion.html#propiedad-de-mundo-pequeño",
+    "href": "03-mecanismos-de-formacion.html#propiedad-de-mundo-pequeño",
+    "title": "3  Mecanismos de Formación",
+    "section": "5.1 Propiedad de mundo pequeño",
+    "text": "5.1 Propiedad de mundo pequeño\n\nMilgram: Seis grados de separación -&gt; longitud de camino corta -&gt; ¿comparado con qué?\nEn una red aleatoria, ¿cuántas personas están a una distancia \\(d\\)?\n\n\\(\\langle k \\rangle\\) nodos a distancia uno (\\(d = 1\\)).\n\\(\\langle k \\rangle^2\\) nodos a distancia dos (\\(d = 2\\)).\n\\(\\langle k \\rangle^3\\) nodos a distancia tres (\\(d = 3\\))…\n… \\(\\langle k \\rangle^d\\) nodos a distancia \\(d\\).\n\nPor lo tanto, el número total de nodos que están como máximo a distancia \\(d\\)\n\n\\[\nN(d) \\approx 1 + \\langle k \\rangle + \\langle k \\rangle^2 + \\ldots + \\langle k \\rangle^d = \\frac{\\langle k \\rangle^{d+1} - 1}{\\langle k \\rangle - 1}\n\\]\n\\[\n\\rightarrow \\langle k \\rangle^{d_{\\max}} \\approx N. \\qquad\\qquad \\rightarrow d_{\\max} \\approx \\frac{\\ln N}{\\ln \\langle k \\rangle} \\quad \\text{(diámetro de red aleatoria)}\n\\]\n\n\\(\\langle d \\rangle \\sim \\ln N\\) — propiedad mundo pequeño\n\n\nComparemos el diámetro esperado en redes aleatorias vs redes regulares\n\n\n\n\nDistancia media \\(\\langle d \\rangle\\) según \\(N\\) para lattices 1D, 2D, 3D y una red aleatoria.\n\n\n\nEn general, para una red regular \\(d\\)-dimensional\n\n\\[\n\\langle d \\rangle \\sim N^{1/d}\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Mecanismos de Formación</span>"
+    ]
+  },
+  {
+    "objectID": "03-mecanismos-de-formacion.html#modelo-watts-strogatz",
+    "href": "03-mecanismos-de-formacion.html#modelo-watts-strogatz",
+    "title": "3  Mecanismos de Formación",
+    "section": "5.2 Modelo Watts-Strogatz",
+    "text": "5.2 Modelo Watts-Strogatz\n\n\n\n\nAnimados por:\n\nCoeficiente de clusterización alto para redes reales según varía \\(N\\).\nDiámetro con crecimiento logarítmico con respecto a \\(N\\).\n\nNotaron que:\n\nRedes regulares: alta clusterización, baja propiedad mundo pequeño\nRedes aleatorias: baja clusterización, alta propiedad mundo pequeño\n\nSin embargo adolece de:\n\nDistribución de grado Poisson similar a red aleatoria → no hubs\nClusterización similar a red regular → no dependencia en \\(k\\).\n\n\n\n\n\n\n\n(a) Regular, (b) small-world, (c) aleatoria, al aumentar la probabilidad de recableado \\(p\\). (d) Clusterización relativa \\(\\langle C(p) \\rangle / \\langle C(0) \\rangle\\) y distancia relativa \\(d(p)/d(0)\\) según \\(p\\).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Mecanismos de Formación</span>"
+    ]
+  },
+  {
+    "objectID": "03-mecanismos-de-formacion.html#propiedad-libre-de-escala",
+    "href": "03-mecanismos-de-formacion.html#propiedad-libre-de-escala",
+    "title": "3  Mecanismos de Formación",
+    "section": "6.1 Propiedad libre de escala",
+    "text": "6.1 Propiedad libre de escala\n\nAl ver la distribución de grado de la red WWW en un plot log-log, vemos que quedaría bien descrita por\n\n\\[\n\\log p_k \\sim -\\gamma \\log k \\quad\\longrightarrow\\quad p_k \\sim k^{-\\gamma}\n\\]\n\n\n\nDistribución de grado de entrada (a) y de salida (b) de la WWW; la pendiente es \\(\\gamma_{\\text{in}}\\) y \\(\\gamma_{\\text{out}}\\). Línea verde: predicción aleatoria.\n\n\n\nLa red aleatoria\n\nSub-estima la cantidad de nodos con low-degree.\nSobre-estima la cantidad de nodos con \\(k \\sim \\langle k \\rangle\\).\nSub-estima el número de nodos con high-degree (hubs).\n\nEl hecho que la recta no dependa del \\(N\\) de la red, hace que se llame libre de escala.\n\n\n\n\nPoisson (verde) vs \\(p_k \\sim k^{-2.1}\\) (morado), en escala lineal (izquierda) y log-log (derecha).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Mecanismos de Formación</span>"
+    ]
+  },
+  {
+    "objectID": "03-mecanismos-de-formacion.html#significado-de-libre-de-escala",
+    "href": "03-mecanismos-de-formacion.html#significado-de-libre-de-escala",
+    "title": "3  Mecanismos de Formación",
+    "section": "6.2 Significado de libre de escala",
+    "text": "6.2 Significado de libre de escala\n\n\n\n\nPara una red con distribución power-law, su \\(n\\)-ésimo momento:\n\n\\[\n\\langle k^n \\rangle = \\int_{k_{\\min}}^{k_{\\max}} k^n p(k)\\,dk = C\\,\\frac{k_{\\max}^{\\,n-\\gamma+1} - k_{\\min}^{\\,n-\\gamma+1}}{n-\\gamma+1}\n\\]\n\nQueremos ver el comportamiento para \\(k_{\\max} \\to \\infty\\)\n\nTodos los momentos con \\(n &lt; \\gamma - 1\\) son finitos.\nTodos los momentos con \\(n &gt; \\gamma - 1\\) son infinitos.\n\nLa desviación estándar corresponde al momento \\(n = 2\\).\nTípicamente, estas redes tienen \\(2 &lt; \\gamma &lt; 3\\).\nPor lo tanto, el grado de un nodo seleccionado aleatoriamente\n\n\\[\nk = \\langle k \\rangle \\pm \\sigma_k \\in [\\,{}^{-}\\infty, {}^{+}\\infty\\,]\n\\]\n\n\n\\[\n\\langle x \\rangle = \\sum_{x=0}^{N} x\\,p_x\n\\]\n\\[\n\\langle x^2 \\rangle = \\sum_{x=0}^{N} x^2\\,p_x\n\\]\n\\[\n\\sigma_x = \\sqrt{\\langle x^2 \\rangle - \\langle x \\rangle^2}\n\\]\n\n\n\n\n\n\nRandom Network — nodo elegido al azar: \\(k = \\langle k \\rangle \\pm \\langle k \\rangle^{1/2}\\) (más pequeño que \\(\\langle k \\rangle\\)); escala: \\(\\langle k \\rangle\\). Scale-Free Network — nodo elegido al azar: \\(k = \\langle k \\rangle \\pm \\infty\\); escala: ninguna.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Mecanismos de Formación</span>"
+    ]
+  },
+  {
+    "objectID": "03-mecanismos-de-formacion.html#modelo-albert-barábasi",
+    "href": "03-mecanismos-de-formacion.html#modelo-albert-barábasi",
+    "title": "3  Mecanismos de Formación",
+    "section": "6.3 Modelo Albert-Barábasi",
+    "text": "6.3 Modelo Albert-Barábasi\n\nNomenclatura:\n\n\nModelo Albert-Barábasi == Modelo BA == Modelo scale-free\n\n\nEs un mecanismo de formación que sigue un preferential-attachment. Antigua idea del fenómeno rich-gets-richer.\nModelo:\n\nComenzamos con \\(q\\) nodos y \\(q\\) enlaces.\nEn cada paso un nuevo nodo se conecta a otros \\(m\\) nodos ya existentes, siguiendo preferential-attachment:\n\n\n\\[\n\\Pi(k_i) = \\frac{k_i}{\\sum_j k_j}\n\\]\n\nDespués de \\(t\\) pasos, tenemos un total de nodos \\(N = q + t\\), y un total de enlaces \\(q + mt\\).\n\n\n6.3.1 Crecimiento de una red Barabási–Albert\n\n\n\nCrecimiento de una red Barabási–Albert (\\(m = 3\\)) y su distribución de grado.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Mecanismos de Formación</span>"
     ]
   },
   {

@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aníbal Olivera Morales">
+
+<title>2&nbsp; Fundamentos matemáticos en teoría de redes – Redes Sociales — DCCS 2026</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03-mecanismos-de-formacion.html" rel="next">
+<link href="./01-setup-computacional.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bf8030b5a8b8f2de5bceddfb8bf38a1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-2a6abe4c656e78118c5caf32e94a2824.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-bf8030b5a8b8f2de5bceddfb8bf38a1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-fundamentos-matemáticos.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos matemáticos en teoría de redes</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Redes Sociales — DCCS 2026</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/aoliveram/Redes-Sociales-2026" title="Ejecutar el código" class="quarto-navigation-tool px-1" aria-label="Ejecutar el código"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bienvenida</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-setup-computacional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Kit computacional recomendado para el investigador</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-fundamentos-matemáticos.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos matemáticos en teoría de redes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-mecanismos-de-formacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Mecanismos de Formación</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./referencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#matemáticas-de-redes" id="toc-matemáticas-de-redes" class="nav-link active" data-scroll-target="#matemáticas-de-redes"><span class="header-section-number">3</span> Matemáticas de redes</a>
+  <ul class="collapse">
+  <li><a href="#matriz-de-adyacencia-y-aplicaciones" id="toc-matriz-de-adyacencia-y-aplicaciones" class="nav-link" data-scroll-target="#matriz-de-adyacencia-y-aplicaciones"><span class="header-section-number">3.1</span> Matriz de adyacencia y aplicaciones</a>
+  <ul class="collapse">
+  <li><a href="#red-no-dirigida" id="toc-red-no-dirigida" class="nav-link" data-scroll-target="#red-no-dirigida"><span class="header-section-number">3.1.1</span> Red no dirigida</a></li>
+  <li><a href="#red-no-dirigida-ponderada" id="toc-red-no-dirigida-ponderada" class="nav-link" data-scroll-target="#red-no-dirigida-ponderada"><span class="header-section-number">3.1.2</span> Red no dirigida ponderada</a></li>
+  <li><a href="#red-dirigida" id="toc-red-dirigida" class="nav-link" data-scroll-target="#red-dirigida"><span class="header-section-number">3.1.3</span> Red dirigida</a></li>
+  <li><a href="#red-dirigida-acíclica" id="toc-red-dirigida-acíclica" class="nav-link" data-scroll-target="#red-dirigida-acíclica"><span class="header-section-number">3.1.4</span> Red dirigida acíclica</a></li>
+  </ul></li>
+  <li><a href="#matriz-de-incidencia-y-redes-bipartitas" id="toc-matriz-de-incidencia-y-redes-bipartitas" class="nav-link" data-scroll-target="#matriz-de-incidencia-y-redes-bipartitas"><span class="header-section-number">3.2</span> Matriz de incidencia y redes bipartitas</a>
+  <ul class="collapse">
+  <li><a href="#matriz-de-incidencia" id="toc-matriz-de-incidencia" class="nav-link" data-scroll-target="#matriz-de-incidencia"><span class="header-section-number">3.2.1</span> Matriz de incidencia</a></li>
+  <li><a href="#proyecciones-a-un-modo" id="toc-proyecciones-a-un-modo" class="nav-link" data-scroll-target="#proyecciones-a-un-modo"><span class="header-section-number">3.2.2</span> Proyecciones a un modo</a></li>
+  </ul></li>
+  <li><a href="#redes-multicapa" id="toc-redes-multicapa" class="nav-link" data-scroll-target="#redes-multicapa"><span class="header-section-number">3.3</span> Redes multicapa</a>
+  <ul class="collapse">
+  <li><a href="#redes-temporales" id="toc-redes-temporales" class="nav-link" data-scroll-target="#redes-temporales"><span class="header-section-number">3.3.1</span> Redes temporales</a></li>
+  </ul></li>
+  <li><a href="#grado" id="toc-grado" class="nav-link" data-scroll-target="#grado"><span class="header-section-number">3.4</span> Grado</a>
+  <ul class="collapse">
+  <li><a href="#grado-y-densidad" id="toc-grado-y-densidad" class="nav-link" data-scroll-target="#grado-y-densidad"><span class="header-section-number">3.4.1</span> Grado y densidad</a></li>
+  <li><a href="#grado-en-redes-dirigidas" id="toc-grado-en-redes-dirigidas" class="nav-link" data-scroll-target="#grado-en-redes-dirigidas"><span class="header-section-number">3.4.2</span> Grado en redes dirigidas</a></li>
+  </ul></li>
+  <li><a href="#paseos-walks-y-caminos-paths" id="toc-paseos-walks-y-caminos-paths" class="nav-link" data-scroll-target="#paseos-walks-y-caminos-paths"><span class="header-section-number">3.5</span> Paseos (<em>Walks</em>) y Caminos (<em>Paths</em>)</a>
+  <ul class="collapse">
+  <li><a href="#geodésicas" id="toc-geodésicas" class="nav-link" data-scroll-target="#geodésicas"><span class="header-section-number">3.5.1</span> Geodésicas</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#medidas-y-métricas" id="toc-medidas-y-métricas" class="nav-link" data-scroll-target="#medidas-y-métricas"><span class="header-section-number">4</span> Medidas y métricas</a>
+  <ul class="collapse">
+  <li><a href="#centralidad-de-grado" id="toc-centralidad-de-grado" class="nav-link" data-scroll-target="#centralidad-de-grado"><span class="header-section-number">4.1</span> Centralidad de grado</a></li>
+  <li><a href="#centralidad-de-autovector" id="toc-centralidad-de-autovector" class="nav-link" data-scroll-target="#centralidad-de-autovector"><span class="header-section-number">4.2</span> Centralidad de autovector</a></li>
+  <li><a href="#centralidad-de-cercanía" id="toc-centralidad-de-cercanía" class="nav-link" data-scroll-target="#centralidad-de-cercanía"><span class="header-section-number">4.3</span> Centralidad de cercanía</a></li>
+  <li><a href="#centralidad-de-intermediación" id="toc-centralidad-de-intermediación" class="nav-link" data-scroll-target="#centralidad-de-intermediación"><span class="header-section-number">4.4</span> Centralidad de intermediación</a></li>
+  <li><a href="#transitividad" id="toc-transitividad" class="nav-link" data-scroll-target="#transitividad"><span class="header-section-number">4.5</span> Transitividad</a>
+  <ul class="collapse">
+  <li><a href="#clusterización-local" id="toc-clusterización-local" class="nav-link" data-scroll-target="#clusterización-local"><span class="header-section-number">4.5.1</span> Clusterización local</a></li>
+  </ul></li>
+  <li><a href="#balance-estructural" id="toc-balance-estructural" class="nav-link" data-scroll-target="#balance-estructural"><span class="header-section-number">4.6</span> Balance estructural</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos matemáticos en teoría de redes</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aníbal Olivera Morales </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">agosto 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Contenidos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Matemáticas de redes</strong></p>
+<ol type="1">
+<li>Matriz de adyacencia y aplicaciones</li>
+<li>Matriz de incidencia y redes bipartitas</li>
+<li>Redes multicapas</li>
+<li>Grado</li>
+<li>Paseos y caminos</li>
+</ol>
+<p><strong>Medidas y métricas</strong></p>
+<ol type="1">
+<li>Centralidad de grado</li>
+<li>Centralidad de autovalor</li>
+<li>Centralidad de cercanía</li>
+<li>Centralidad de intermediación</li>
+<li>Transitividad y coef. de clusterización</li>
+<li>Balance estructural</li>
+</ol>
+</div>
+</div>
+<section id="matemáticas-de-redes" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Matemáticas de redes</h1>
+<section id="matriz-de-adyacencia-y-aplicaciones" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="matriz-de-adyacencia-y-aplicaciones"><span class="header-section-number">3.1</span> Matriz de adyacencia y aplicaciones</h2>
+<ul>
+<li>Notación:
+<ul>
+<li><span class="math inline">\(n\)</span> : número de <strong>nodos</strong> en una red</li>
+<li><span class="math inline">\(m\)</span> : número de <strong>enlaces</strong> en una red</li>
+</ul></li>
+<li>Gran parte de las redes de interés:
+<ul>
+<li>tienen como máximo 1 enlace por par de nodos. En caso que haya más de un enlace entre par de nodos, llamamos a esos enlaces multi-lazos (<strong><em>multi-edge</em></strong>).</li>
+<li>no tienen lazos que conecten nodos a ellos mismos. En caso que sí lo haya, lo llamamos <strong><em>self-loops</em></strong>.</li>
+<li>un grafo sin <em>multi-edges</em> ni <em>self-loops</em> es llamado <strong><em>grafo simple</em></strong>.</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/01-grafo-simple-y-multigrafo.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+<section id="red-no-dirigida" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="red-no-dirigida"><span class="header-section-number">3.1.1</span> Red no dirigida</h3>
+<ul>
+<li>Matriz de adyacencia:
+<ul>
+<li>Representación fundamental de una red.</li>
+<li>Matriz <span class="math inline">\(n \times n\)</span> con elementos <strong>(red no dirigida)</strong>:</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+A_{ij} = \begin{cases} 1 &amp; \text{if there is an edge between nodes } i \text{ and } j, \\ 0 &amp; \text{otherwise.} \end{cases}
+\]</span></p>
+<div class="quarto-layout-panel" data-layout="[55,45]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 55.0%;justify-content: flex-start;">
+<p><span class="math display">\[
+\mathbf{A} = \begin{pmatrix}
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 1 &amp; 1 &amp; 1 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}
+\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 45.0%;justify-content: center;">
+<p><img src="figs/fundamentos/02-red-no-dirigida.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<ul>
+<li>Para redes con doble lazo entre <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span>: <span class="math inline">\(A_{ij} = A_{ji} = 2\)</span></li>
+<li>Para redes con <em>self-loop</em>: <span class="math inline">\(A_{ii} = 2\)</span></li>
+</ul>
+</section>
+<section id="red-no-dirigida-ponderada" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="red-no-dirigida-ponderada"><span class="header-section-number">3.1.2</span> Red no dirigida ponderada</h3>
+<ul>
+<li>Matriz <span class="math inline">\(n \times n\)</span> con elementos <strong>(red no dirigida ponderada)</strong> (<em>weighted network</em>):</li>
+</ul>
+<p><span class="math display">\[
+A_{ij} = \alpha \in \mathbb{R}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{A} = \begin{pmatrix}
+0 &amp; 0 &amp; 2 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0.3 &amp; 0 \\
+2 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 \\
+0 &amp; 0.3 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0
+\end{pmatrix}
+\]</span></p>
+<ul>
+<li>Generalmente los pesos son positivos, pero no hay ninguna razón por la que no puedan ser negativos. En una red social un peso positivo puede ser <strong>amistad</strong>, mientras que un peso negativo puede ser <strong>animosidad</strong>.</li>
+</ul>
+</section>
+<section id="red-dirigida" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="red-dirigida"><span class="header-section-number">3.1.3</span> Red dirigida</h3>
+<ul>
+<li>Matriz <span class="math inline">\(n \times n\)</span> con elementos <strong>(red dirigida)</strong>:</li>
+</ul>
+<p><span class="math display">\[
+A_{ij} = \begin{cases} 1 &amp; \text{if there is an edge from } j \text{ to } i \\ 0 &amp; \text{otherwise} \end{cases}
+\]</span></p>
+<div class="quarto-layout-panel" data-layout="[55,45]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 55.0%;justify-content: flex-start;">
+<p><span class="math display">\[
+\mathbf{A} = \begin{pmatrix}
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}
+\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 45.0%;justify-content: center;">
+<p><img src="figs/fundamentos/03-red-dirigida.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<ul>
+<li>Por lo general son <strong>asimétricas</strong>.</li>
+<li>Para <em>self-loops</em> ahora: <span class="math inline">\(A_{ii} = 1\)</span></li>
+</ul>
+</section>
+<section id="red-dirigida-acíclica" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="red-dirigida-acíclica"><span class="header-section-number">3.1.4</span> Red dirigida acíclica</h3>
+<ul>
+<li>Matriz <span class="math inline">\(n \times n\)</span> con elementos <strong>(red dirigida acíclica)</strong>:</li>
+</ul>
+<div class="quarto-layout-panel" data-layout="[60,40]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
+<p><span class="math display">\[
+\mathbf{A} = \begin{pmatrix}
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}
+\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/04-red-aciclica.png" class="img-fluid figure-img"></p>
+<figcaption>El eje vertical de la figura representa el tiempo (<em>Time</em>, creciendo hacia arriba).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>Una red acíclica se puede escribir como una matriz <strong>triangular superior</strong>, y se puede dibujar manteniendo todos los lazos apuntando hacia <strong>abajo</strong>.</li>
+</ul>
+</section>
+</section>
+<section id="matriz-de-incidencia-y-redes-bipartitas" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="matriz-de-incidencia-y-redes-bipartitas"><span class="header-section-number">3.2</span> Matriz de incidencia y redes bipartitas</h2>
+<ul>
+<li>Hay dos tipos de nodos, y lazos que solo van entre nodos de distinto tipo.</li>
+<li>También llamadas <strong>redes filiativas</strong> en literatura sociológica.</li>
+<li>Las personas están representadas por un conjunto de nodos, y los grupos por otros nodos. Los lazos identifican los grupos a los que pertenecen las personas.</li>
+<li>Redes actores-películas, lectores-libros, autores-paper, etc.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/05-red-bipartita.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+<section id="matriz-de-incidencia" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="matriz-de-incidencia"><span class="header-section-number">3.2.1</span> Matriz de incidencia</h3>
+<ul>
+<li>Notación:
+<ul>
+<li><span class="math inline">\(n\)</span> : número de <strong>nodos</strong> en una red</li>
+<li><span class="math inline">\(g\)</span> : número de <strong>grupos</strong></li>
+</ul></li>
+<li>El equivalente a la matriz de adyacencia para red bipartita (no dirigida, no ponderada) es llamada <strong>matriz de incidencia</strong>, que es una matriz <span class="math inline">\(g \times n\)</span> tal que:</li>
+</ul>
+<p><span class="math display">\[
+B_{ij} = \begin{cases} 1 &amp; \text{if item } j \text{ belongs to group } i \\ 0 &amp; \text{otherwise} \end{cases}
+\]</span></p>
+<div class="quarto-layout-panel" data-layout="[45,55]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 45.0%;justify-content: flex-start;">
+<p><span class="math display">\[
+\mathbf{B} = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+1 &amp; 1 &amp; 1 &amp; 1 &amp; 0 \\
+0 &amp; 1 &amp; 1 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 1 &amp; 1 &amp; 1
+\end{pmatrix}
+\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 55.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/06-bipartita-4-grupos-5-items.png" class="img-fluid figure-img"></p>
+<figcaption>Arriba: <em>Groups</em>. Abajo: <em>Item</em>.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="proyecciones-a-un-modo" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="proyecciones-a-un-modo"><span class="header-section-number">3.2.2</span> Proyecciones a un modo</h3>
+<p>Preguntas:</p>
+<ul>
+<li>¿Cómo obtengo los nodos que comparten al menos un grupo?</li>
+<li>¿Cómo sé cuántos comparten?</li>
+<li>¿Qué grupos tienen al menos un miembro en común?</li>
+<li>¿Cuántos comparten?</li>
+</ul>
+<div class="quarto-layout-panel" data-layout="[55,45]">
+<div class="quarto-layout-row">
+<div id="proj-items" class="quarto-layout-cell" style="flex-basis: 55.0%;justify-content: flex-start;">
+<ul>
+<li>El número total de grupos a los que pertenecen tanto <span class="math inline">\(i\)</span> como <span class="math inline">\(j\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+P_{ij} = \sum_{k=1}^{g} B_{ki} B_{kj} = \sum_{k=1}^{g} B^{T}_{ik} B_{kj}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{P} = \mathbf{B}^{T}\mathbf{B} \quad \ldots \text{ con traza 0 !}
+\]</span></p>
+<blockquote class="blockquote">
+<p>Matriz cuadrada <span class="math inline">\(n \times n\)</span> — <strong><em>one mode projection</em></strong></p>
+</blockquote>
+<ul>
+<li>El número de grupos a los que pertenece el nodo <span class="math inline">\(i\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+P_{ii} = \sum_{k=1}^{g} B_{ki}^{2} = \sum_{k=1}^{g} B_{ki}
+\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 45.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/07-proyeccion-items.png" class="img-fluid figure-img"></p>
+<figcaption><em>Projection onto items</em></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div class="quarto-layout-panel" data-layout="[55,45]">
+<div class="quarto-layout-row">
+<div id="proj-groups" class="quarto-layout-cell" style="flex-basis: 55.0%;justify-content: flex-start;">
+<ul>
+<li>Número de miembros en común entre los grupos <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+\mathbf{P}' = \mathbf{B}\mathbf{B}^{T} \quad \ldots \text{ con traza 0 !}
+\]</span></p>
+<blockquote class="blockquote">
+<p>Matriz cuadrada <span class="math inline">\(g \times g\)</span> — <strong><em>one mode projection</em></strong></p>
+</blockquote>
+<ul>
+<li>El número total de grupos a los que pertenecen tanto <span class="math inline">\(i\)</span> como <span class="math inline">\(j\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+\mathbf{P} = \mathbf{B}^{T}\mathbf{B} \quad \ldots \text{ con traza 0 !}
+\]</span></p>
+<blockquote class="blockquote">
+<p>Matriz cuadrada <span class="math inline">\(n \times n\)</span> — <strong><em>one mode projection</em></strong></p>
+</blockquote>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 45.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/08-proyecciones-grupos-e-items.png" class="img-fluid figure-img"></p>
+<figcaption>Arriba: <em>Projection onto groups</em>. Centro: red bipartita. Abajo: <em>Projection onto items</em>.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="redes-multicapa" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="redes-multicapa"><span class="header-section-number">3.3</span> Redes multicapa</h2>
+<ul>
+<li>Una red multicapa es un conjunto de redes individuales, cada una representando nodos de un tipo particular y sus lazos; más sus <em>entre</em>-lazos entre las distintas redes.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/09-multilayer-multiplex.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>(a) <em>Multilayer</em> · (b) <em>Multiplex</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Las redes <strong><em>multiplex</em></strong> es un caso especial de redes <em>multilayer</em> en donde los nodos representan el mismo conjunto de objetos o personas en <strong>cada red</strong>.</li>
+<li>Un ejemplo arquetípico es una red social, donde cada capa representa una esfera social distinta de <strong>las mismas personas</strong>, o una red de transporte, <strong>mismos lugares</strong>.</li>
+</ul>
+<section id="redes-temporales" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="redes-temporales"><span class="header-section-number">3.3.1</span> Redes temporales</h3>
+<div class="quarto-layout-panel" data-layout="[60,40]">
+<div class="quarto-layout-row">
+<div id="temporal" class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
+<ul>
+<li>Un caso especial son las <em>redes temporales</em>, cuyas estructuras de red cambian a lo largo del tiempo (ej: WWW, redes sociales, redes ecológicas).</li>
+<li>En la mayoría de los casos solo los lazos cambian, por lo que tenemos redes <strong><em>multiplex</em></strong>.</li>
+<li>Matemáticamente:</li>
+</ul>
+<p><span class="math display">\[
+\mathbf{A}^{\alpha}, \text{ one for each layer } \alpha
+\]</span></p>
+<p><span class="math display">\[
+n_\alpha \times n_\alpha
+\]</span></p>
+<p><span class="math display">\[
+A^{\alpha}_{ij} \quad \text{elementos representados como 'tensores' (matrices)}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{B}^{\alpha\beta}, \qquad n_\alpha \times n_\beta, \qquad B^{\alpha\beta}_{ij}
+\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 40.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/10-red-temporal.png" class="img-fluid figure-img"></p>
+<figcaption><em>Temporal Network</em> (el eje vertical es el tiempo).</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="grado" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="grado"><span class="header-section-number">3.4</span> Grado</h2>
+<ul>
+<li>El <em>grado</em> de un nodo en una red no dirigida es el número de lazos con conectan con él.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/11-grado-5-y-8.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Izquierda: 5 vecinos, grado 5. Derecha: 5 vecinos, grado 8.</figcaption>
+</figure>
+</div>
+<ul>
+<li>En términos de la matriz de adyacencia:</li>
+</ul>
+<p><span class="math display">\[
+k_i = \sum_{j=1}^{n} A_{ij}
+\]</span></p>
+<ul>
+<li>En una red no dirigida, cada lazo tiene <strong>dos extremos</strong>, por lo que, si hay <span class="math inline">\(m\)</span> lazos, entonces habrán <span class="math inline">\(2m\)</span> extremos de lazos. El total de extremos de lazos debe ser igual a la suma de todos los grados:</li>
+</ul>
+<p><span class="math display">\[
+2m = \sum_{i=1}^{n} k_i = \sum_{ij} A_{ij},
+\]</span></p>
+<section id="grado-y-densidad" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="grado-y-densidad"><span class="header-section-number">3.4.1</span> Grado y densidad</h3>
+<ul>
+<li>Definimos al <strong>grado medio</strong> de la red como <span class="math inline">\(c\)</span></li>
+</ul>
+<p><span class="math display">\[
+c = \frac{1}{n}\sum_{i=1}^{n} k_i
+\]</span></p>
+<p><span class="math display">\[
+c = \frac{2m}{n}
+\]</span></p>
+<ul>
+<li>La cantidad máxima de lazos en una <em>red simple</em></li>
+</ul>
+<p><span class="math display">\[
+\binom{n}{2} = \frac{1}{2} n(n-1).
+\]</span></p>
+<ul>
+<li>La <strong>densidad</strong> es la tasa de lazos que están en la red</li>
+</ul>
+<p><span class="math display">\[
+\rho = \frac{m}{\binom{n}{2}} = \frac{2m}{n(n-1)} = \frac{c}{n-1} \;\rightarrow\; \rho = \frac{c}{n}
+\]</span></p>
+<ul>
+<li>Se dice que la red es <strong>densa</strong> cuando, al aumentar <span class="math inline">\(n\)</span>, la densidad no se va a cero</li>
+</ul>
+<p><span class="math display">\[
+\rho \;\xrightarrow{N \to \infty}\; \epsilon &gt; 0
+\]</span></p>
+<ul>
+<li>Se dice que la red es <strong>dispersa</strong> cuando, al aumentar <span class="math inline">\(n\)</span>, la densidad sí se va a cero</li>
+</ul>
+<p><span class="math display">\[
+\rho \;\xrightarrow{N \to \infty}\; 0
+\]</span></p>
+<ul>
+<li>Sin embargo, en redes reales es difícil testear esto. Coloquialmente, se dice que una red es <strong>dispersa</strong> simplemente cuando</li>
+</ul>
+<p><span class="math display">\[
+\rho \ll 1
+\]</span></p>
+</section>
+<section id="grado-en-redes-dirigidas" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="grado-en-redes-dirigidas"><span class="header-section-number">3.4.2</span> Grado en redes dirigidas</h3>
+<ul>
+<li>Para <strong>redes dirigidas</strong> hay que definir</li>
+</ul>
+<p><span class="math display">\[
+k_i^{\text{in}} = \sum_{j=1}^{n} A_{ij} \qquad k_j^{\text{out}} = \sum_{i=1}^{n} A_{ij}.
+\]</span></p>
+<ul>
+<li>En este caso solo hay un extremo (== final) por cada enlace, por lo que la suma de los grados será igual a la cantidad de lazos <span class="math inline">\(m\)</span></li>
+</ul>
+<p><span class="math display">\[
+m = \sum_{i=1}^{n} k_i^{\text{in}} = \sum_{j=1}^{n} k_j^{\text{out}} = \sum_{ij} A_{ij}.
+\]</span></p>
+<ul>
+<li>Y, como cada lazo que sale tiene que llegar a alguna parte</li>
+</ul>
+<p><span class="math display">\[
+c_{\text{in}} = \frac{1}{n}\sum_{i=1}^{n} k_i^{\text{in}} = c_{\text{out}} = \frac{1}{n}\sum_{j=1}^{n} k_j^{\text{out}} = c = \frac{m}{n}
+\]</span></p>
+</section>
+</section>
+<section id="paseos-walks-y-caminos-paths" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="paseos-walks-y-caminos-paths"><span class="header-section-number">3.5</span> Paseos (<em>Walks</em>) y Caminos (<em>Paths</em>)</h2>
+<ul>
+<li>Un <strong>paseo</strong> es cualquier secuencia de nodos tal que cada para de nodos consecutivos están unidos por un lazo.</li>
+<li>El <strong>largo de un paseo</strong> es la cantidad de lazos por los que pasa.</li>
+<li>Un paseo que no se interseca consigo mismo es llamado <strong>camino (<em>paths</em>)</strong>.</li>
+<li>Considera una matriz de adyacencia <span class="math inline">\(A_{ij}\)</span>:
+<ul>
+<li>El producto <span class="math inline">\(A_{ik}A_{kj}\)</span> es 1 solo si hay un paseo de longitud 2 de <span class="math inline">\(i\)</span> a <span class="math inline">\(j\)</span>, <strong>pasando por</strong> <span class="math inline">\(k\)</span>.</li>
+<li>¿Cuántos paseos de longitud 2 hay en total entre los nodos <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span>?</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[
+N^{(2)}_{ij} = \sum_{k=1}^{n} A_{ik}A_{kj} = \left[\mathbf{A}^2\right]_{ij}
+\]</span></p>
+<ul>
+<li>¿Cuántos paseos de longitud <span class="math inline">\(r\)</span> hay entre los nodos <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span>?</li>
+</ul>
+<p><span class="math display">\[
+N^{(r)}_{ij} = \left[\mathbf{A}^r\right]_{ij}
+\]</span></p>
+<section id="geodésicas" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="geodésicas"><span class="header-section-number">3.5.1</span> Geodésicas</h3>
+<ul>
+<li>El camino más corto entre los nodos <span class="math inline">\(i\)</span> y <span class="math inline">\(j\)</span> es llamada <strong>geodésica</strong>, y es simplemente un problema de minimización de <span class="math inline">\(r\)</span> tal que</li>
+</ul>
+<p><span class="math display">\[
+\left[\mathbf{A}^r\right]_{ij} &gt; 0
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/12-geodesica.png" class="img-fluid figure-img" style="width:30.0%"></p>
+<figcaption>Una geodésica no puede intersectarse.</figcaption>
+</figure>
+</div>
+<ul>
+<li>El <strong>diámetro</strong> de una red es la longitud de la <strong>geodésica más larga</strong>.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="medidas-y-métricas" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Medidas y métricas</h1>
+<section id="centralidad-de-grado" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="centralidad-de-grado"><span class="header-section-number">4.1</span> Centralidad de grado</h2>
+<ul>
+<li>Centralidad: ¿cuál es el nodo más importante?</li>
+<li>La más básica: centralidad de grado</li>
+</ul>
+<p><span class="math display">\[
+k_i = \sum_{j=1}^{n} A_{ij}
+\]</span></p>
+<ul>
+<li>Aunque básica, puede ser muy informativa en redes de amistad o en <strong>citación de papers</strong>.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/11-grado-5-y-8.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Izquierda: 5 vecinos, grado 5. Derecha: 5 vecinos, grado 8.</figcaption>
+</figure>
+</div>
+</section>
+<section id="centralidad-de-autovector" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="centralidad-de-autovector"><span class="header-section-number">4.2</span> Centralidad de autovector</h2>
+<ul>
+<li>Tu puedes tener solo 1 amigo en el mundo, pero si ese amigo es el presidente de EEUU, entonces tú debes ser alguien importante.</li>
+<li>En vez de premiar con ‘1 punto’ por cada vecino que tiene un nodo, la centralidad de <strong>autovector</strong> premia con un número de puntos <strong>proporcional al puntaje de centralidad</strong> de cada vecino.</li>
+<li>Sea <span class="math inline">\(x_i\)</span> el valor numérico de la centralidad del nodo <span class="math inline">\(i\)</span>, definido como</li>
+</ul>
+<p><span class="math display">\[
+x_i = \kappa^{-1} \sum_{\substack{\text{nodes } j \text{ that are} \\ \text{neighbors of } i}} x_j
+\]</span></p>
+<p><span class="math display">\[
+x_i = \kappa^{-1} \sum_{j=1}^{n} A_{ij} x_j.
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{x} = \kappa^{-1}\mathbf{A}\mathbf{x}
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{A}\mathbf{x} = \kappa\mathbf{x}
+\]</span></p>
+<ul>
+<li>Una ecuación de autovalores puede tener varios autovectores y autovalores, pero <span class="math inline">\(\mathbf{x}\)</span> debe ser el autovector correspondiente al autovalor positivo más grande. Por lo tanto <span class="math inline">\(\kappa\)</span> debe ser aquel autovalor más grande.</li>
+</ul>
+<p><span class="math display">\[
+x_i = \kappa^{-1} \sum_{j} A_{ij} x_j
+\]</span></p>
+<ul>
+<li>Para <strong>redes dirigidas</strong> podemos encontrarnos con un problema grave:</li>
+</ul>
+<div class="quarto-layout-panel" data-layout="[35,65]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 35.0%;justify-content: center;">
+<p><img src="figs/fundamentos/13-autovector-red-dirigida.png" class="img-fluid"></p>
+</div>
+<div id="autovector-problema" class="quarto-layout-cell" style="flex-basis: 65.0%;justify-content: flex-start;">
+<ul>
+<li>El nodo A solo tiene lazos <em>outgoing</em>. Entonces la debería tener centralidad 0.</li>
+<li>El nodo B solo tiene 1 lazo <em>ingoing</em>. Pero ese lazo es A. Tiene centralidad 0.</li>
+<li>Entonces, ¿todos los demás nodos tienen centralidad 0?</li>
+<li>La solución es agregar ‘un poco de centralidad’, creando lo que se llama <strong>centralidad de Katz:</strong></li>
+</ul>
+<p><span class="math display">\[
+x_i = \alpha \sum_{j} A_{ij} x_j + \beta,
+\]</span></p>
+<ul>
+<li>Supongamos ahora que hay un nodo con centralidad muy alta, que apunta a un millón de otros nodos. ¿Deberían esos nodos tener también una centralidad muy alta? <strong>Centralidad PageRank</strong></li>
+</ul>
+<p><span class="math display">\[
+x_i = \alpha \sum_{j} A_{ij} \frac{x_j}{k_j^{\text{out}}} + \beta
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="centralidad-de-cercanía" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="centralidad-de-cercanía"><span class="header-section-number">4.3</span> Centralidad de cercanía</h2>
+<ul>
+<li>Medida que calcula la distancia media de un nodo al resto de nodos.</li>
+<li>Distancia == geodésica == <span class="math inline">\(d_{ij}\)</span></li>
+<li>Entonces la distancia media:</li>
+</ul>
+<p><span class="math display">\[
+\ell_i = \frac{1}{n} \sum_{j} d_{ij}
+\]</span></p>
+<ul>
+<li>Para que la centralidad sea mayor para los que tienen menor distancia:</li>
+</ul>
+<p><span class="math display">\[
+C_i = \frac{1}{\ell_i} = \frac{n}{\sum_j d_{ij}}
+\]</span></p>
+<ul>
+<li>Usando datos de películas, la centralidad de cercanía más alta es de 0.4143 para el actor Christopher Lee. Él no fue tan famoso ni tuvo tanto éxito como algunos de sus contemporáneos. Sin embargo, apareció en un número extraordinario de películas: más de 200. Esto por sí solo tiende a reducir su distancia promedio a otros nodos en la red al aumentar el número de sus conexiones. La centralidad de <strong>cercanía</strong> tiene <strong>correlación positiva</strong> con la centralidad de <strong>grado</strong>.</li>
+</ul>
+</section>
+<section id="centralidad-de-intermediación" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="centralidad-de-intermediación"><span class="header-section-number">4.4</span> Centralidad de intermediación</h2>
+<ul>
+<li>Supongamos que necesito pasar con cierta urgencia una carta a un nodo del Grupo 2. De seguro esa carta recorrerá una geodésica. Ahora, gran número de las <strong>geodésicas pasan por A</strong>.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/14-intermediacion-grupos.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
+</figure>
+</div>
+<ul>
+<li>La centralidad de intermediación es una medida proporcional al número de geodésicas en las que está aquel nodo.</li>
+<li>En grupos distintos, el nodo A puede obtener un montón de poder y riqueza dada su posición en la red.</li>
+<li>Sea <span class="math inline">\(n^{i}_{jk} = 1\)</span> si el nodo <span class="math inline">\(i\)</span> está en la geodésica entre <span class="math inline">\(j\)</span> y <span class="math inline">\(k\)</span>.</li>
+</ul>
+<p><span class="math display">\[
+x_i = \sum_{jk} n^{i}_{jk}
+\]</span></p>
+<ul>
+<li>Pero también hay casos donde hay <strong>más de una geodésica</strong> entre dos nodos.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/15-geodesicas-multiples.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Sea <span class="math inline">\(g_{jk}\)</span> el número de geodésicas entre <span class="math inline">\(j\)</span> y <span class="math inline">\(k\)</span>.</li>
+</ul>
+<p><span class="math display">\[
+x_i = \sum_{jk} \frac{n^{i}_{jk}}{g_{jk}}
+\]</span></p>
+<ul>
+<li>Curiosamente, no se usa mucho <em>betweenness</em> para redes dirigidas. El ejemplo de la carta <strong>usa</strong> las redes sociales ya construidas (no dirigidas).</li>
+</ul>
+</section>
+<section id="transitividad" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="transitividad"><span class="header-section-number">4.5</span> Transitividad</h2>
+<ul>
+<li>Es una noción importante particularmente en redes sociales.</li>
+<li>La relación <span class="math inline">\(&gt;\)</span> es transitiva, pues</li>
+</ul>
+<p><span class="math display">\[
+a &gt; b \;\wedge\; b &gt; c \;\Longrightarrow\; a &gt; c
+\]</span></p>
+<ul>
+<li>También <span class="math inline">\(=\)</span>, pues</li>
+</ul>
+<p><span class="math display">\[
+a = b \;\wedge\; b = c \;\Longrightarrow\; a = c
+\]</span></p>
+<ul>
+<li>¿Qué pasa si lo extendemos a redes sociales?</li>
+</ul>
+<div class="quarto-layout-panel" data-layout="[70,30]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 70.0%;justify-content: flex-start;">
+<p><span class="math display">\[
+A_{uv} = 1 \;\wedge\; A_{vw} = 1 \;\overset{?}{\Longrightarrow}\; A_{uw} = 1
+\]</span></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 30.0%;justify-content: center;">
+<p><img src="figs/fundamentos/16-triangulo-uvw.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<ul>
+<li>Para cuantificar la <strong><em>transitividad</em></strong> en una red, definimos el <strong>índice de clusterización</strong> como la fracción de caminos (paths) de longitud 2 que están <em>cerrados</em>.</li>
+</ul>
+<p><span class="math display">\[
+C = \frac{(\text{number of closed paths of length two})}{(\text{number of paths of length two})}
+\]</span></p>
+<div class="quarto-layout-panel" data-layout="[75,25]">
+<div class="quarto-layout-row">
+<div id="transitividad-formulas" class="quarto-layout-cell" style="flex-basis: 75.0%;justify-content: flex-start;">
+<ul>
+<li>Ya que cada triángulo contiene exactamente 6 caminos de longitud 2:</li>
+</ul>
+<p><span class="math display">\[
+C = \frac{(\text{number of triangles}) \times 6}{(\text{number of paths of length two})}.
+\]</span></p>
+<ul>
+<li>Ojo que por cada par de caminos de longitud 2, tenemos un <strong>triplete conectado</strong></li>
+</ul>
+<p><span class="math display">\[
+C = \frac{(\text{number of triangles}) \times 3}{(\text{number of connected triples})}.
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/18-triplete-conectado.png" class="img-fluid figure-img" style="width:25.0%"></p>
+<figcaption>Un triplete conectado.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/17-triangulo-seis-caminos.png" class="img-fluid figure-img"></p>
+<figcaption>Los 6 caminos de longitud 2 de un triángulo.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<section id="clusterización-local" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="clusterización-local"><span class="header-section-number">4.5.1</span> Clusterización local</h3>
+<ul>
+<li>Las redes sociales tienden a tener una mayor clusterización global (<span class="math inline">\(C \approx 0.1\)</span>) que otros tipos de redes (por ejemplo redes informáticas <span class="math inline">\(C \approx 0.01\)</span>).</li>
+<li>También podemos definir la noción de transitividad para nodos aislados.</li>
+</ul>
+<p><span class="math display">\[
+C_i = \frac{(\text{number of pairs of neighbors of } i \text{ that are connected})}{(\text{number of pairs of neighbors of } i)}.
+\]</span></p>
+<div class="quarto-layout-panel" data-layout="[65,35]">
+<div class="quarto-layout-row">
+<div id="clusterizacion-local" class="quarto-layout-cell" style="flex-basis: 65.0%;justify-content: flex-start;">
+<ul>
+<li>La <strong>clusterización local</strong> presenta una correlación <strong>negativa</strong> con la medida de grado.</li>
+<li>Cuando no encontramos la cantidad esperada de conecciones <strong>entre</strong> los vecinos de un nodo, decimos que hay <strong><em>structural holes</em></strong>.</li>
+<li>La clusterización local es una medida del poder en el flujo de info. en ese vecindario. Es como una versión local de <em>betweenness</em>.</li>
+</ul>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 35.0%;justify-content: center;">
+<p><img src="figs/fundamentos/19-structural-holes.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="balance-estructural" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="balance-estructural"><span class="header-section-number">4.6</span> Balance estructural</h2>
+<ul>
+<li>Para redes ponderadas, <span class="math inline">\(A_{ij} = \alpha \in \mathbb{R}\)</span>. Es decir, pueden tener <strong>valores negativos</strong>.</li>
+<li>‘El amigo de mi amigo es mi amigo’: <span class="math inline">\(\;+ * + = +\)</span></li>
+<li>‘El amigo de mi enemigo es mi enemigo’: <span class="math inline">\(\;+ * - = -\)</span></li>
+<li>‘El enemigo de mi enemigo es mi amigo’: <span class="math inline">\(\;- * - = +\)</span></li>
+<li>Aquellos con un número <strong>par</strong> de ‘<span class="math inline">\(-\)</span>’, se dice <strong>balanceada</strong> al ser más estable.</li>
+<li>Esta regla se mantiene para configuraciones de <em>loops</em> más grandes.</li>
+<li>Para redes no ponderadas, las triadas balanceadas son aquellas con un número par de lazos, es decir, 0 lazos o 2 lazos.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/fundamentos/20-triadas-balance.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aoliveram\.github\.io\/Redes-Sociales-2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01-setup-computacional.html" class="pagination-link" aria-label="Kit computacional recomendado para el investigador">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Kit computacional recomendado para el investigador</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03-mecanismos-de-formacion.html" class="pagination-link" aria-label="Mecanismos de Formación">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Mecanismos de Formación</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

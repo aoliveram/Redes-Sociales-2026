@@ -1,4 +1,9 @@
-# Semana 1 — El kit computacional del investigador
+---
+author: "Aníbal Olivera Morales"
+date: "2026-08-01"
+---
+
+# Kit computacional recomendado para el investigador
 
 ::: {.callout-tip icon="false"}
 ## Objetivo de la sesión
