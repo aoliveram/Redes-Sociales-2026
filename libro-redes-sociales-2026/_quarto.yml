@@ -17,7 +17,7 @@ book:
   chapters:
     - index.qmd
     - 01-setup-computacional.qmd
-    - 02-fundamentos-matemáticos.qmd
+    - 02-fundamentos-matematicos.qmd
     - 03-mecanismos-de-formacion.qmd
     # Capítulos en preparación (esqueleto local, aún no publicados):
     # - 03-semana-2-posiciones-y-redes-de-variables.qmd

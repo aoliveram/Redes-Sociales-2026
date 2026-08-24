@@ -100,8 +100,8 @@
     ]
   },
   {
-    "objectID": "02-fundamentos-matemáticos.html",
-    "href": "02-fundamentos-matemáticos.html",
+    "objectID": "02-fundamentos-matematicos.html",
+    "href": "02-fundamentos-matematicos.html",
     "title": "2  Fundamentos matemáticos en teoría de redes",
     "section": "",
     "text": "3 Matemáticas de redes",
@@ -110,8 +110,8 @@
     ]
   },
   {
-    "objectID": "02-fundamentos-matemáticos.html#matriz-de-adyacencia-y-aplicaciones",
-    "href": "02-fundamentos-matemáticos.html#matriz-de-adyacencia-y-aplicaciones",
+    "objectID": "02-fundamentos-matematicos.html#matriz-de-adyacencia-y-aplicaciones",
+    "href": "02-fundamentos-matematicos.html#matriz-de-adyacencia-y-aplicaciones",
     "title": "2  Fundamentos matemáticos en teoría de redes",
     "section": "3.1 Matriz de adyacencia y aplicaciones",
     "text": "3.1 Matriz de adyacencia y aplicaciones\n\nNotación:\n\n\\(n\\) : número de nodos en una red\n\\(m\\) : número de enlaces en una red\n\nGran parte de las redes de interés:\n\ntienen como máximo 1 enlace por par de nodos. En caso que haya más de un enlace entre par de nodos, llamamos a esos enlaces multi-lazos (multi-edge).\nno tienen lazos que conecten nodos a ellos mismos. En caso que sí lo haya, lo llamamos self-loops.\nun grafo sin multi-edges ni self-loops es llamado grafo simple.\n\n\n\n\n\n\n\n\n3.1.1 Red no dirigida\n\nMatriz de adyacencia:\n\nRepresentación fundamental de una red.\nMatriz \\(n \\times n\\) con elementos (red no dirigida):\n\n\n\\[\nA_{ij} = \\begin{cases} 1 & \\text{if there is an edge between nodes } i \\text{ and } j, \\\\ 0 & \\text{otherwise.} \\end{cases}\n\\]\n\n\n\n\\[\n\\mathbf{A} = \\begin{pmatrix}\n0 & 1 & 0 & 0 & 1 & 0 \\\\\n1 & 0 & 1 & 1 & 0 & 0 \\\\\n0 & 1 & 0 & 1 & 1 & 1 \\\\\n0 & 1 & 1 & 0 & 0 & 0 \\\\\n1 & 0 & 1 & 0 & 0 & 0 \\\\\n0 & 0 & 1 & 0 & 0 & 0\n\\end{pmatrix}\n\\]\n\n\n\n\n\n\n\nPara redes con doble lazo entre \\(i\\) y \\(j\\): \\(A_{ij} = A_{ji} = 2\\)\nPara redes con self-loop: \\(A_{ii} = 2\\)\n\n\n\n3.1.2 Red no dirigida ponderada\n\nMatriz \\(n \\times n\\) con elementos (red no dirigida ponderada) (weighted network):\n\n\\[\nA_{ij} = \\alpha \\in \\mathbb{R}\n\\]\n\\[\n\\mathbf{A} = \\begin{pmatrix}\n0 & 0 & 2 & 0 & 1 \\\\\n0 & 0 & 0 & 0.3 & 0 \\\\\n2 & 0 & 0 & 0 & 0.5 \\\\\n0 & 0.3 & 0 & 0 & 0 \\\\\n1 & 0 & 0.5 & 0 & 0\n\\end{pmatrix}\n\\]\n\nGeneralmente los pesos son positivos, pero no hay ninguna razón por la que no puedan ser negativos. En una red social un peso positivo puede ser amistad, mientras que un peso negativo puede ser animosidad.\n\n\n\n3.1.3 Red dirigida\n\nMatriz \\(n \\times n\\) con elementos (red dirigida):\n\n\\[\nA_{ij} = \\begin{cases} 1 & \\text{if there is an edge from } j \\text{ to } i \\\\ 0 & \\text{otherwise} \\end{cases}\n\\]\n\n\n\n\\[\n\\mathbf{A} = \\begin{pmatrix}\n0 & 0 & 0 & 1 & 0 & 0 \\\\\n0 & 0 & 1 & 0 & 0 & 0 \\\\\n1 & 0 & 0 & 0 & 1 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 1 \\\\\n0 & 0 & 0 & 1 & 0 & 1 \\\\\n0 & 1 & 0 & 0 & 0 & 0\n\\end{pmatrix}\n\\]\n\n\n\n\n\n\n\nPor lo general son asimétricas.\nPara self-loops ahora: \\(A_{ii} = 1\\)\n\n\n\n3.1.4 Red dirigida acíclica\n\nMatriz \\(n \\times n\\) con elementos (red dirigida acíclica):\n\n\n\n\n\\[\n\\mathbf{A} = \\begin{pmatrix}\n0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\n\\end{pmatrix}\n\\]\n\n\n\n\n\nEl eje vertical de la figura representa el tiempo (Time, creciendo hacia arriba).\n\n\n\n\n\n\nUna red acíclica se puede escribir como una matriz triangular superior, y se puede dibujar manteniendo todos los lazos apuntando hacia abajo.",
@@ -120,8 +120,8 @@
     ]
   },
   {
-    "objectID": "02-fundamentos-matemáticos.html#matriz-de-incidencia-y-redes-bipartitas",
-    "href": "02-fundamentos-matemáticos.html#matriz-de-incidencia-y-redes-bipartitas",
+    "objectID": "02-fundamentos-matematicos.html#matriz-de-incidencia-y-redes-bipartitas",
+    "href": "02-fundamentos-matematicos.html#matriz-de-incidencia-y-redes-bipartitas",
     "title": "2  Fundamentos matemáticos en teoría de redes",
     "section": "3.2 Matriz de incidencia y redes bipartitas",
     "text": "3.2 Matriz de incidencia y redes bipartitas\n\nHay dos tipos de nodos, y lazos que solo van entre nodos de distinto tipo.\nTambién llamadas redes filiativas en literatura sociológica.\nLas personas están representadas por un conjunto de nodos, y los grupos por otros nodos. Los lazos identifican los grupos a los que pertenecen las personas.\nRedes actores-películas, lectores-libros, autores-paper, etc.\n\n\n\n\n\n\n\n3.2.1 Matriz de incidencia\n\nNotación:\n\n\\(n\\) : número de nodos en una red\n\\(g\\) : número de grupos\n\nEl equivalente a la matriz de adyacencia para red bipartita (no dirigida, no ponderada) es llamada matriz de incidencia, que es una matriz \\(g \\times n\\) tal que:\n\n\\[\nB_{ij} = \\begin{cases} 1 & \\text{if item } j \\text{ belongs to group } i \\\\ 0 & \\text{otherwise} \\end{cases}\n\\]\n\n\n\n\\[\n\\mathbf{B} = \\begin{pmatrix}\n1 & 0 & 0 & 1 & 0 \\\\\n1 & 1 & 1 & 1 & 0 \\\\\n0 & 1 & 1 & 0 & 1 \\\\\n0 & 0 & 1 & 1 & 1\n\\end{pmatrix}\n\\]\n\n\n\n\n\nArriba: Groups. Abajo: Item.\n\n\n\n\n\n\n\n3.2.2 Proyecciones a un modo\nPreguntas:\n\n¿Cómo obtengo los nodos que comparten al menos un grupo?\n¿Cómo sé cuántos comparten?\n¿Qué grupos tienen al menos un miembro en común?\n¿Cuántos comparten?\n\n\n\n\n\nEl número total de grupos a los que pertenecen tanto \\(i\\) como \\(j\\):\n\n\\[\nP_{ij} = \\sum_{k=1}^{g} B_{ki} B_{kj} = \\sum_{k=1}^{g} B^{T}_{ik} B_{kj}\n\\]\n\\[\n\\mathbf{P} = \\mathbf{B}^{T}\\mathbf{B} \\quad \\ldots \\text{ con traza 0 !}\n\\]\n\nMatriz cuadrada \\(n \\times n\\) — one mode projection\n\n\nEl número de grupos a los que pertenece el nodo \\(i\\):\n\n\\[\nP_{ii} = \\sum_{k=1}^{g} B_{ki}^{2} = \\sum_{k=1}^{g} B_{ki}\n\\]\n\n\n\n\n\nProjection onto items\n\n\n\n\n\n\n\n\n\nNúmero de miembros en común entre los grupos \\(i\\) y \\(j\\):\n\n\\[\n\\mathbf{P}' = \\mathbf{B}\\mathbf{B}^{T} \\quad \\ldots \\text{ con traza 0 !}\n\\]\n\nMatriz cuadrada \\(g \\times g\\) — one mode projection\n\n\nEl número total de grupos a los que pertenecen tanto \\(i\\) como \\(j\\):\n\n\\[\n\\mathbf{P} = \\mathbf{B}^{T}\\mathbf{B} \\quad \\ldots \\text{ con traza 0 !}\n\\]\n\nMatriz cuadrada \\(n \\times n\\) — one mode projection\n\n\n\n\n\n\nArriba: Projection onto groups. Centro: red bipartita. Abajo: Projection onto items.",
@@ -130,8 +130,8 @@
     ]
   },
   {
-    "objectID": "02-fundamentos-matemáticos.html#redes-multicapa",
-    "href": "02-fundamentos-matemáticos.html#redes-multicapa",
+    "objectID": "02-fundamentos-matematicos.html#redes-multicapa",
+    "href": "02-fundamentos-matematicos.html#redes-multicapa",
     "title": "2  Fundamentos matemáticos en teoría de redes",
     "section": "3.3 Redes multicapa",
     "text": "3.3 Redes multicapa\n\nUna red multicapa es un conjunto de redes individuales, cada una representando nodos de un tipo particular y sus lazos; más sus entre-lazos entre las distintas redes.\n\n\n\n\n(a) Multilayer · (b) Multiplex\n\n\n\nLas redes multiplex es un caso especial de redes multilayer en donde los nodos representan el mismo conjunto de objetos o personas en cada red.\nUn ejemplo arquetípico es una red social, donde cada capa representa una esfera social distinta de las mismas personas, o una red de transporte, mismos lugares.\n\n\n3.3.1 Redes temporales\n\n\n\n\nUn caso especial son las redes temporales, cuyas estructuras de red cambian a lo largo del tiempo (ej: WWW, redes sociales, redes ecológicas).\nEn la mayoría de los casos solo los lazos cambian, por lo que tenemos redes multiplex.\nMatemáticamente:\n\n\\[\n\\mathbf{A}^{\\alpha}, \\text{ one for each layer } \\alpha\n\\]\n\\[\nn_\\alpha \\times n_\\alpha\n\\]\n\\[\nA^{\\alpha}_{ij} \\quad \\text{elementos representados como 'tensores' (matrices)}\n\\]\n\\[\n\\mathbf{B}^{\\alpha\\beta}, \\qquad n_\\alpha \\times n_\\beta, \\qquad B^{\\alpha\\beta}_{ij}\n\\]\n\n\n\n\n\nTemporal Network (el eje vertical es el tiempo).",
@@ -140,8 +140,8 @@
     ]
   },
   {
-    "objectID": "02-fundamentos-matemáticos.html#grado",
-    "href": "02-fundamentos-matemáticos.html#grado",
+    "objectID": "02-fundamentos-matematicos.html#grado",
+    "href": "02-fundamentos-matematicos.html#grado",
     "title": "2  Fundamentos matemáticos en teoría de redes",
     "section": "3.4 Grado",
     "text": "3.4 Grado\n\nEl grado de un nodo en una red no dirigida es el número de lazos con conectan con él.\n\n\n\n\nIzquierda: 5 vecinos, grado 5. Derecha: 5 vecinos, grado 8.\n\n\n\nEn términos de la matriz de adyacencia:\n\n\\[\nk_i = \\sum_{j=1}^{n} A_{ij}\n\\]\n\nEn una red no dirigida, cada lazo tiene dos extremos, por lo que, si hay \\(m\\) lazos, entonces habrán \\(2m\\) extremos de lazos. El total de extremos de lazos debe ser igual a la suma de todos los grados:\n\n\\[\n2m = \\sum_{i=1}^{n} k_i = \\sum_{ij} A_{ij},\n\\]\n\n3.4.1 Grado y densidad\n\nDefinimos al grado medio de la red como \\(c\\)\n\n\\[\nc = \\frac{1}{n}\\sum_{i=1}^{n} k_i\n\\]\n\\[\nc = \\frac{2m}{n}\n\\]\n\nLa cantidad máxima de lazos en una red simple\n\n\\[\n\\binom{n}{2} = \\frac{1}{2} n(n-1).\n\\]\n\nLa densidad es la tasa de lazos que están en la red\n\n\\[\n\\rho = \\frac{m}{\\binom{n}{2}} = \\frac{2m}{n(n-1)} = \\frac{c}{n-1} \\;\\rightarrow\\; \\rho = \\frac{c}{n}\n\\]\n\nSe dice que la red es densa cuando, al aumentar \\(n\\), la densidad no se va a cero\n\n\\[\n\\rho \\;\\xrightarrow{N \\to \\infty}\\; \\epsilon &gt; 0\n\\]\n\nSe dice que la red es dispersa cuando, al aumentar \\(n\\), la densidad sí se va a cero\n\n\\[\n\\rho \\;\\xrightarrow{N \\to \\infty}\\; 0\n\\]\n\nSin embargo, en redes reales es difícil testear esto. Coloquialmente, se dice que una red es dispersa simplemente cuando\n\n\\[\n\\rho \\ll 1\n\\]\n\n\n3.4.2 Grado en redes dirigidas\n\nPara redes dirigidas hay que definir\n\n\\[\nk_i^{\\text{in}} = \\sum_{j=1}^{n} A_{ij} \\qquad k_j^{\\text{out}} = \\sum_{i=1}^{n} A_{ij}.\n\\]\n\nEn este caso solo hay un extremo (== final) por cada enlace, por lo que la suma de los grados será igual a la cantidad de lazos \\(m\\)\n\n\\[\nm = \\sum_{i=1}^{n} k_i^{\\text{in}} = \\sum_{j=1}^{n} k_j^{\\text{out}} = \\sum_{ij} A_{ij}.\n\\]\n\nY, como cada lazo que sale tiene que llegar a alguna parte\n\n\\[\nc_{\\text{in}} = \\frac{1}{n}\\sum_{i=1}^{n} k_i^{\\text{in}} = c_{\\text{out}} = \\frac{1}{n}\\sum_{j=1}^{n} k_j^{\\text{out}} = c = \\frac{m}{n}\n\\]",
@@ -150,8 +150,8 @@
     ]
   },
   {
-    "objectID": "02-fundamentos-matemáticos.html#paseos-walks-y-caminos-paths",
-    "href": "02-fundamentos-matemáticos.html#paseos-walks-y-caminos-paths",
+    "objectID": "02-fundamentos-matematicos.html#paseos-walks-y-caminos-paths",
+    "href": "02-fundamentos-matematicos.html#paseos-walks-y-caminos-paths",
     "title": "2  Fundamentos matemáticos en teoría de redes",
     "section": "3.5 Paseos (Walks) y Caminos (Paths)",
     "text": "3.5 Paseos (Walks) y Caminos (Paths)\n\nUn paseo es cualquier secuencia de nodos tal que cada para de nodos consecutivos están unidos por un lazo.\nEl largo de un paseo es la cantidad de lazos por los que pasa.\nUn paseo que no se interseca consigo mismo es llamado camino (paths).\nConsidera una matriz de adyacencia \\(A_{ij}\\):\n\nEl producto \\(A_{ik}A_{kj}\\) es 1 solo si hay un paseo de longitud 2 de \\(i\\) a \\(j\\), pasando por \\(k\\).\n¿Cuántos paseos de longitud 2 hay en total entre los nodos \\(i\\) y \\(j\\)?\n\n\n\\[\nN^{(2)}_{ij} = \\sum_{k=1}^{n} A_{ik}A_{kj} = \\left[\\mathbf{A}^2\\right]_{ij}\n\\]\n\n¿Cuántos paseos de longitud \\(r\\) hay entre los nodos \\(i\\) y \\(j\\)?\n\n\\[\nN^{(r)}_{ij} = \\left[\\mathbf{A}^r\\right]_{ij}\n\\]\n\n3.5.1 Geodésicas\n\nEl camino más corto entre los nodos \\(i\\) y \\(j\\) es llamada geodésica, y es simplemente un problema de minimización de \\(r\\) tal que\n\n\\[\n\\left[\\mathbf{A}^r\\right]_{ij} &gt; 0\n\\]\n\n\n\nUna geodésica no puede intersectarse.\n\n\n\nEl diámetro de una red es la longitud de la geodésica más larga.",
@@ -160,8 +160,8 @@
     ]
   },
   {
-    "objectID": "02-fundamentos-matemáticos.html#centralidad-de-grado",
-    "href": "02-fundamentos-matemáticos.html#centralidad-de-grado",
+    "objectID": "02-fundamentos-matematicos.html#centralidad-de-grado",
+    "href": "02-fundamentos-matematicos.html#centralidad-de-grado",
     "title": "2  Fundamentos matemáticos en teoría de redes",
     "section": "4.1 Centralidad de grado",
     "text": "4.1 Centralidad de grado\n\nCentralidad: ¿cuál es el nodo más importante?\nLa más básica: centralidad de grado\n\n\\[\nk_i = \\sum_{j=1}^{n} A_{ij}\n\\]\n\nAunque básica, puede ser muy informativa en redes de amistad o en citación de papers.\n\n\n\n\nIzquierda: 5 vecinos, grado 5. Derecha: 5 vecinos, grado 8.",
@@ -170,8 +170,8 @@
     ]
   },
   {
-    "objectID": "02-fundamentos-matemáticos.html#centralidad-de-autovector",
-    "href": "02-fundamentos-matemáticos.html#centralidad-de-autovector",
+    "objectID": "02-fundamentos-matematicos.html#centralidad-de-autovector",
+    "href": "02-fundamentos-matematicos.html#centralidad-de-autovector",
     "title": "2  Fundamentos matemáticos en teoría de redes",
     "section": "4.2 Centralidad de autovector",
     "text": "4.2 Centralidad de autovector\n\nTu puedes tener solo 1 amigo en el mundo, pero si ese amigo es el presidente de EEUU, entonces tú debes ser alguien importante.\nEn vez de premiar con ‘1 punto’ por cada vecino que tiene un nodo, la centralidad de autovector premia con un número de puntos proporcional al puntaje de centralidad de cada vecino.\nSea \\(x_i\\) el valor numérico de la centralidad del nodo \\(i\\), definido como\n\n\\[\nx_i = \\kappa^{-1} \\sum_{\\substack{\\text{nodes } j \\text{ that are} \\\\ \\text{neighbors of } i}} x_j\n\\]\n\\[\nx_i = \\kappa^{-1} \\sum_{j=1}^{n} A_{ij} x_j.\n\\]\n\\[\n\\mathbf{x} = \\kappa^{-1}\\mathbf{A}\\mathbf{x}\n\\]\n\\[\n\\mathbf{A}\\mathbf{x} = \\kappa\\mathbf{x}\n\\]\n\nUna ecuación de autovalores puede tener varios autovectores y autovalores, pero \\(\\mathbf{x}\\) debe ser el autovector correspondiente al autovalor positivo más grande. Por lo tanto \\(\\kappa\\) debe ser aquel autovalor más grande.\n\n\\[\nx_i = \\kappa^{-1} \\sum_{j} A_{ij} x_j\n\\]\n\nPara redes dirigidas podemos encontrarnos con un problema grave:\n\n\n\n\n\n\n\n\nEl nodo A solo tiene lazos outgoing. Entonces la debería tener centralidad 0.\nEl nodo B solo tiene 1 lazo ingoing. Pero ese lazo es A. Tiene centralidad 0.\nEntonces, ¿todos los demás nodos tienen centralidad 0?\nLa solución es agregar ‘un poco de centralidad’, creando lo que se llama centralidad de Katz:\n\n\\[\nx_i = \\alpha \\sum_{j} A_{ij} x_j + \\beta,\n\\]\n\nSupongamos ahora que hay un nodo con centralidad muy alta, que apunta a un millón de otros nodos. ¿Deberían esos nodos tener también una centralidad muy alta? Centralidad PageRank\n\n\\[\nx_i = \\alpha \\sum_{j} A_{ij} \\frac{x_j}{k_j^{\\text{out}}} + \\beta\n\\]",
@@ -180,8 +180,8 @@
     ]
   },
   {
-    "objectID": "02-fundamentos-matemáticos.html#centralidad-de-cercanía",
-    "href": "02-fundamentos-matemáticos.html#centralidad-de-cercanía",
+    "objectID": "02-fundamentos-matematicos.html#centralidad-de-cercanía",
+    "href": "02-fundamentos-matematicos.html#centralidad-de-cercanía",
     "title": "2  Fundamentos matemáticos en teoría de redes",
     "section": "4.3 Centralidad de cercanía",
     "text": "4.3 Centralidad de cercanía\n\nMedida que calcula la distancia media de un nodo al resto de nodos.\nDistancia == geodésica == \\(d_{ij}\\)\nEntonces la distancia media:\n\n\\[\n\\ell_i = \\frac{1}{n} \\sum_{j} d_{ij}\n\\]\n\nPara que la centralidad sea mayor para los que tienen menor distancia:\n\n\\[\nC_i = \\frac{1}{\\ell_i} = \\frac{n}{\\sum_j d_{ij}}\n\\]\n\nUsando datos de películas, la centralidad de cercanía más alta es de 0.4143 para el actor Christopher Lee. Él no fue tan famoso ni tuvo tanto éxito como algunos de sus contemporáneos. Sin embargo, apareció en un número extraordinario de películas: más de 200. Esto por sí solo tiende a reducir su distancia promedio a otros nodos en la red al aumentar el número de sus conexiones. La centralidad de cercanía tiene correlación positiva con la centralidad de grado.",
@@ -190,8 +190,8 @@
     ]
   },
   {
-    "objectID": "02-fundamentos-matemáticos.html#centralidad-de-intermediación",
-    "href": "02-fundamentos-matemáticos.html#centralidad-de-intermediación",
+    "objectID": "02-fundamentos-matematicos.html#centralidad-de-intermediación",
+    "href": "02-fundamentos-matematicos.html#centralidad-de-intermediación",
     "title": "2  Fundamentos matemáticos en teoría de redes",
     "section": "4.4 Centralidad de intermediación",
     "text": "4.4 Centralidad de intermediación\n\nSupongamos que necesito pasar con cierta urgencia una carta a un nodo del Grupo 2. De seguro esa carta recorrerá una geodésica. Ahora, gran número de las geodésicas pasan por A.\n\n\n\n\n\n\n\nLa centralidad de intermediación es una medida proporcional al número de geodésicas en las que está aquel nodo.\nEn grupos distintos, el nodo A puede obtener un montón de poder y riqueza dada su posición en la red.\nSea \\(n^{i}_{jk} = 1\\) si el nodo \\(i\\) está en la geodésica entre \\(j\\) y \\(k\\).\n\n\\[\nx_i = \\sum_{jk} n^{i}_{jk}\n\\]\n\nPero también hay casos donde hay más de una geodésica entre dos nodos.\n\n\n\n\n\n\n\nSea \\(g_{jk}\\) el número de geodésicas entre \\(j\\) y \\(k\\).\n\n\\[\nx_i = \\sum_{jk} \\frac{n^{i}_{jk}}{g_{jk}}\n\\]\n\nCuriosamente, no se usa mucho betweenness para redes dirigidas. El ejemplo de la carta usa las redes sociales ya construidas (no dirigidas).",
@@ -200,8 +200,8 @@
     ]
   },
   {
-    "objectID": "02-fundamentos-matemáticos.html#transitividad",
-    "href": "02-fundamentos-matemáticos.html#transitividad",
+    "objectID": "02-fundamentos-matematicos.html#transitividad",
+    "href": "02-fundamentos-matematicos.html#transitividad",
     "title": "2  Fundamentos matemáticos en teoría de redes",
     "section": "4.5 Transitividad",
     "text": "4.5 Transitividad\n\nEs una noción importante particularmente en redes sociales.\nLa relación \\(&gt;\\) es transitiva, pues\n\n\\[\na &gt; b \\;\\wedge\\; b &gt; c \\;\\Longrightarrow\\; a &gt; c\n\\]\n\nTambién \\(=\\), pues\n\n\\[\na = b \\;\\wedge\\; b = c \\;\\Longrightarrow\\; a = c\n\\]\n\n¿Qué pasa si lo extendemos a redes sociales?\n\n\n\n\n\\[\nA_{uv} = 1 \\;\\wedge\\; A_{vw} = 1 \\;\\overset{?}{\\Longrightarrow}\\; A_{uw} = 1\n\\]\n\n\n\n\n\n\n\nPara cuantificar la transitividad en una red, definimos el índice de clusterización como la fracción de caminos (paths) de longitud 2 que están cerrados.\n\n\\[\nC = \\frac{(\\text{number of closed paths of length two})}{(\\text{number of paths of length two})}\n\\]\n\n\n\n\nYa que cada triángulo contiene exactamente 6 caminos de longitud 2:\n\n\\[\nC = \\frac{(\\text{number of triangles}) \\times 6}{(\\text{number of paths of length two})}.\n\\]\n\nOjo que por cada par de caminos de longitud 2, tenemos un triplete conectado\n\n\\[\nC = \\frac{(\\text{number of triangles}) \\times 3}{(\\text{number of connected triples})}.\n\\]\n\n\n\nUn triplete conectado.\n\n\n\n\n\n\n\nLos 6 caminos de longitud 2 de un triángulo.\n\n\n\n\n\n\n4.5.1 Clusterización local\n\nLas redes sociales tienden a tener una mayor clusterización global (\\(C \\approx 0.1\\)) que otros tipos de redes (por ejemplo redes informáticas \\(C \\approx 0.01\\)).\nTambién podemos definir la noción de transitividad para nodos aislados.\n\n\\[\nC_i = \\frac{(\\text{number of pairs of neighbors of } i \\text{ that are connected})}{(\\text{number of pairs of neighbors of } i)}.\n\\]\n\n\n\n\nLa clusterización local presenta una correlación negativa con la medida de grado.\nCuando no encontramos la cantidad esperada de conecciones entre los vecinos de un nodo, decimos que hay structural holes.\nLa clusterización local es una medida del poder en el flujo de info. en ese vecindario. Es como una versión local de betweenness.",
@@ -210,8 +210,8 @@
     ]
   },
   {
-    "objectID": "02-fundamentos-matemáticos.html#balance-estructural",
-    "href": "02-fundamentos-matemáticos.html#balance-estructural",
+    "objectID": "02-fundamentos-matematicos.html#balance-estructural",
+    "href": "02-fundamentos-matematicos.html#balance-estructural",
     "title": "2  Fundamentos matemáticos en teoría de redes",
     "section": "4.6 Balance estructural",
     "text": "4.6 Balance estructural\n\nPara redes ponderadas, \\(A_{ij} = \\alpha \\in \\mathbb{R}\\). Es decir, pueden tener valores negativos.\n‘El amigo de mi amigo es mi amigo’: \\(\\;+ * + = +\\)\n‘El amigo de mi enemigo es mi enemigo’: \\(\\;+ * - = -\\)\n‘El enemigo de mi enemigo es mi amigo’: \\(\\;- * - = +\\)\nAquellos con un número par de ‘\\(-\\)’, se dice balanceada al ser más estable.\nEsta regla se mantiene para configuraciones de loops más grandes.\nPara redes no ponderadas, las triadas balanceadas son aquellas con un número par de lazos, es decir, 0 lazos o 2 lazos.",
