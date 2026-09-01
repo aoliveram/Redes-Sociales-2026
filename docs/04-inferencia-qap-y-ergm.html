@@ -495,9 +495,9 @@ window.Quarto = {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">vertices =</span> enc[, <span class="fu">c</span>(<span class="st">"nombre"</span>,<span class="st">"sexo"</span>,<span class="st">"edad"</span>,<span class="st">"disciplina"</span>)])</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>red_i</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH f4f12c9 DN-- 30 149 -- 
+<pre><code>IGRAPH 12adf7f DN-- 30 149 -- 
 + attr: name (v/c), sexo (v/c), edad (v/n), disciplina (v/c)
-+ edges from f4f12c9 (vertex names):
++ edges from 12adf7f (vertex names):
  [1] Amanda Rojas -&gt;Karin Morales   Amanda Rojas -&gt;Lucas Paredes  
  [3] Bastian Soto -&gt;Javier Espinoza Bastian Soto -&gt;Lucas Paredes  
  [5] Bastian Soto -&gt;Pablo Guzman    Bastian Soto -&gt;Valentina Cruz 
@@ -568,6 +568,7 @@ fuera_diag(S)  1.770450  0.1959303   9.036122 1.623279e-19</code></pre>
 </div>
 </div>
 <p>En general <span class="math inline">\(Cov(Y_{ij}, Y_{ik}) \neq 0\)</span>, y un test que asume independencia <strong>exagera la cantidad de información disponible</strong>: los p-values salen más chicos de lo que corresponde.</p>
+<p><em>opregunta 1</em></p>
 </section>
 <section id="la-idea-central-barajar-etiquetas-no-celdas" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="la-idea-central-barajar-etiquetas-no-celdas"><span class="header-section-number">5.2</span> La idea central: barajar etiquetas, no celdas</h2>
@@ -604,6 +605,7 @@ Figura&nbsp;5.1: La misma estructura tres veces. L1 (A→D, B→E, C→C, D→A,
 </div>
 </div>
 <p>La permutación se aplica <strong>simultáneamente a filas y columnas</strong> de la matriz, porque renombrar personas = permutar fila y columna juntas; cualquier otra cosa rompería también la topología.</p>
+<p><em>pregunta 2</em></p>
 </section>
 <section id="qap-paso-a-paso" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="qap-paso-a-paso"><span class="header-section-number">5.3</span> QAP paso a paso</h2>
@@ -653,6 +655,7 @@ Figura&nbsp;5.2: La distribución nula de QAP y el valor observado. La pregunta 
 </div>
 </div>
 <p>En 2.000 mundos donde la disciplina se repartió al azar, <strong>ninguno</strong> alcanzó la asociación observada (el más extremo llegó apenas a ~0.16, la mitad de lo observado), así que la asociación entre “compartir disciplina” y “nominarse” es real.</p>
+<p><em>pregunta 3</em></p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -663,7 +666,12 @@ Figura&nbsp;5.2: La distribución nula de QAP y el valor observado. La pregunta 
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>QAP estableció una <strong>asociación</strong>, no un mecanismo. El mismo patrón es compatible con al menos tres historias: 1. <strong>selección</strong> (elijo a los parecidos), 2. <strong>influencia</strong> (me parezco a quienes frecuento) y 3. <strong>causa común</strong> (algo externo produce el vínculo y la similitud — p.&nbsp;ej., compartir oficina).</p>
+<p>QAP estableció una <strong>asociación</strong>, no un mecanismo. El mismo patrón es compatible con al menos tres historias:</p>
+<ol type="1">
+<li><strong>Selección</strong> — elijo a los parecidos.</li>
+<li><strong>Influencia</strong> — me parezco a quienes frecuento.</li>
+<li><strong>Causa común</strong> — algo externo produce el vínculo y la similitud (p.&nbsp;ej., compartir oficina).</li>
+</ol>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -694,6 +702,28 @@ Figura&nbsp;5.2: La distribución nula de QAP y el valor observado. La pregunta 
 <p><span class="math display">\[
 P_\theta(Y = y) = \frac{1}{\kappa(\theta)}\, \exp\Big(\sum_H \theta_H\, g_H(y)\Big)
 \]</span></p>
+<p>Vale la pena desarmarla pieza por pieza, porque cada símbolo corresponde a una decisión conceptual:</p>
+<ul>
+<li><span class="math inline">\(Y\)</span> — la <strong>variable aleatoria es la red completa</strong>, no un lazo ni un nodo: la matriz de adyacencia entera. Y <span class="math inline">\(y\)</span> es <em>una</em> realización: la red que efectivamente observamos. Esto es lo que distingue a un ERGM de una regresión común, donde cada fila sería una observación independiente.</li>
+<li><span class="math inline">\(g_H(y)\)</span> — los <strong>estadísticos</strong>: cuentan cuántas veces aparece la configuración <span class="math inline">\(H\)</span> en la red <span class="math inline">\(y\)</span> (cuántas aristas, cuántas díadas recíprocas, cuántos pares de la misma disciplina conectados). Son <em>el único lugar por donde el modelo mira la red</em>: dos redes con los mismos estadísticos son, para el modelo, indistinguibles.</li>
+<li><span class="math inline">\(\theta_H\)</span> — los <strong>parámetros</strong>: cuánto pesa cada configuración. Es lo que estimamos, y lo que interpretamos como log-odds.</li>
+<li><span class="math inline">\(\exp(\cdot)\)</span> — la <strong>exponencial</strong> garantiza que toda red tenga probabilidad positiva y hace que el logaritmo de la probabilidad sea <em>lineal</em> en los parámetros — por eso los <span class="math inline">\(\theta\)</span> se leen como en una regresión. No es una elección estética: es la única forma posible si uno pide “la distribución menos comprometida que reproduzca estos estadísticos”. <em>(A quienes vengan de física: es exactamente la distribución de Boltzmann, con <span class="math inline">\(-\theta^{\mathsf{T}}s(y)\)</span> jugando el papel de la energía.)</em></li>
+<li><span class="math inline">\(\kappa(\theta)\)</span> — la <strong>constante de normalización</strong>: la suma de <span class="math inline">\(\exp(\theta^{\mathsf{T}} s(y'))\)</span> sobre <strong>todas las redes posibles</strong> <span class="math inline">\(y'\)</span>. Es lo que convierte la expresión en una probabilidad que suma 1… y es el problema central de estimar estos modelos.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>¿Por qué <span class="math inline">\(\kappa(\theta)\)</span> es intratable?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Con <span class="math inline">\(n\)</span> nodos y red dirigida hay <span class="math inline">\(n(n-1)\)</span> díadas, cada una encendida o apagada: <span class="math inline">\(2^{n(n-1)}\)</span> redes posibles. Nuestra encuesta tiene <strong>30 personas</strong> → 870 díadas → <span class="math inline">\(2^{870} \approx 10^{262}\)</span> redes. Para dimensionarlo: el universo observable tiene del orden de <span class="math inline">\(10^{80}\)</span> átomos.</p>
+<p>Calcular <span class="math inline">\(\kappa\)</span> sumando término a término es, literalmente, imposible. Por eso <code>ergm::ergm()</code> <strong>no la calcula</strong>: simula redes con MCMC y compara estadísticos, un procedimiento donde <span class="math inline">\(\kappa\)</span> se cancela porque solo se necesitan <em>cocientes</em> de probabilidades. (Con redes diminutas —5 nodos dirigida, <span class="math inline">\(2^{20} \approx\)</span> un millón de redes— sí se puede enumerar todo: ese es el truco de los <em>ergmitos</em>.)</p>
+</div>
+</div>
 <p>Piénsenlo como <strong>una regresión de configuraciones</strong>,</p>
 <pre><code>red ~ edges + mutual + nodematch + gwesp</code></pre>
 <p>donde cada término es una hipótesis sobre la formación de vínculos, y cada coeficiente <span class="math inline">\(\theta\)</span> dice si esa configuración aparece <strong>más o menos de lo esperable</strong> dado el resto del modelo. La interpretación operativa es vía <em>change statistics</em>: <span class="math inline">\(\theta\)</span> es el cambio en el log-odds de un vínculo cuando agregarlo crea esa configuración.</p>
@@ -857,6 +887,8 @@ P(\text{te nomino} \mid \text{tú ya me nominaste}) = \operatorname{plogis}(\hat
 </div>
 <p>La probabilidad de que te nomine aumenta de ~9% a ~54%. Y en <strong>odds</strong>, la nominación de vuelta multiplica por <span class="math inline">\(e^{2.40} \approx 11\)</span>. (Ojo: lo que se multiplica por 11 son los odds, no la probabilidad — por eso conviene reportar ambos.)</p>
 <p>Nota que <code>edges</code> <strong>bajó</strong> al agregar <code>mutual</code>: parte de la densidad que M0 atribuía al “costo basal” era, en realidad, reciprocidad.</p>
+<p><em>pregunta 5</em></p>
+<p><em>pregunta 6</em></p>
 </section>
 <section id="m2-nodematch" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="m2-nodematch"><span class="header-section-number">6.5</span> M2 — <code>+ nodematch</code></h2>
