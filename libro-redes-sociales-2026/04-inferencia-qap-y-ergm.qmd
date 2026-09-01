@@ -91,6 +91,8 @@ summary(naive)$coefficients
 
 En general $Cov(Y_{ij}, Y_{ik}) \neq 0$, y un test que asume independencia **exagera la cantidad de información disponible**: los p-values salen más chicos de lo que corresponde.
 
+*opregunta 1*
+
 ## La idea central: barajar etiquetas, no celdas
 
 Con QAP **construimos el mundo nulo a mano**, respetando la estructura de la red.
@@ -120,6 +122,8 @@ plot(g, layout = xy, vertex.label = L2[V(g)$name],
 ```
 
 La permutación se aplica **simultáneamente a filas y columnas** de la matriz, porque renombrar personas = permutar fila y columna juntas; cualquier otra cosa rompería también la topología.
+
+*pregunta 2*
 
 ## QAP paso a paso
 
@@ -166,12 +170,15 @@ p_emp
 
 En 2.000 mundos donde la disciplina se repartió al azar, **ninguno** alcanzó la asociación observada (el más extremo llegó apenas a ~0.16, la mitad de lo observado), así que la asociación entre "compartir disciplina" y "nominarse" es real.
 
+*pregunta 3*
+
 ::: {.callout-warning}
 ## Qué NO dice este resultado
 QAP estableció una **asociación**, no un mecanismo. El mismo patrón es compatible con al menos tres historias:
-1.  **selección** (elijo a los parecidos), 
-2.  **influencia** (me parezco a quienes frecuento) y 
-3.  **causa común** (algo externo produce el vínculo y la similitud — p. ej., compartir oficina).
+
+1.  **Selección** — elijo a los parecidos.
+2.  **Influencia** — me parezco a quienes frecuento.
+3.  **Causa común** — algo externo produce el vínculo y la similitud (p. ej., compartir oficina).
 :::
 
 ::: {.callout-note}
@@ -192,6 +199,21 @@ Un ERGM (*Exponential-family Random Graph Model*) trata la red entera como **una
 $$
 P_\theta(Y = y) = \frac{1}{\kappa(\theta)}\, \exp\Big(\sum_H \theta_H\, g_H(y)\Big)
 $$
+
+Vale la pena desarmarla pieza por pieza, porque cada símbolo corresponde a una decisión conceptual:
+
+-   $Y$ — la **variable aleatoria es la red completa**, no un lazo ni un nodo: la matriz de adyacencia entera. Y $y$ es *una* realización: la red que efectivamente observamos. Esto es lo que distingue a un ERGM de una regresión común, donde cada fila sería una observación independiente.
+-   $g_H(y)$ — los **estadísticos**: cuentan cuántas veces aparece la configuración $H$ en la red $y$ (cuántas aristas, cuántas díadas recíprocas, cuántos pares de la misma disciplina conectados). Son *el único lugar por donde el modelo mira la red*: dos redes con los mismos estadísticos son, para el modelo, indistinguibles.
+-   $\theta_H$ — los **parámetros**: cuánto pesa cada configuración. Es lo que estimamos, y lo que interpretamos como log-odds.
+-   $\exp(\cdot)$ — la **exponencial** garantiza que toda red tenga probabilidad positiva y hace que el logaritmo de la probabilidad sea *lineal* en los parámetros — por eso los $\theta$ se leen como en una regresión. No es una elección estética: es la única forma posible si uno pide "la distribución menos comprometida que reproduzca estos estadísticos". *(A quienes vengan de física: es exactamente la distribución de Boltzmann, con $-\theta^{\mathsf{T}}s(y)$ jugando el papel de la energía.)*
+-   $\kappa(\theta)$ — la **constante de normalización**: la suma de $\exp(\theta^{\mathsf{T}} s(y'))$ sobre **todas las redes posibles** $y'$. Es lo que convierte la expresión en una probabilidad que suma 1… y es el problema central de estimar estos modelos.
+
+::: callout-note
+## ¿Por qué $\kappa(\theta)$ es intratable?
+Con $n$ nodos y red dirigida hay $n(n-1)$ díadas, cada una encendida o apagada: $2^{n(n-1)}$ redes posibles. Nuestra encuesta tiene **30 personas** → 870 díadas → $2^{870} \approx 10^{262}$ redes. Para dimensionarlo: el universo observable tiene del orden de $10^{80}$ átomos.
+
+Calcular $\kappa$ sumando término a término es, literalmente, imposible. Por eso `ergm::ergm()` **no la calcula**: simula redes con MCMC y compara estadísticos, un procedimiento donde $\kappa$ se cancela porque solo se necesitan *cocientes* de probabilidades. (Con redes diminutas —5 nodos dirigida, $2^{20} \approx$ un millón de redes— sí se puede enumerar todo: ese es el truco de los *ergmitos*.)
+:::
 
 Piénsenlo como **una regresión de configuraciones**,
 
@@ -307,6 +329,10 @@ c(sin_nominacion_de_vuelta = unname(plogis(b1["edges"])),
 La probabilidad de que te nomine aumenta de ~9% a ~54%. Y en **odds**, la nominación de vuelta multiplica por $e^{2.40} \approx 11$. (Ojo: lo que se multiplica por 11 son los odds, no la probabilidad — por eso conviene reportar ambos.) 
 
 Nota que `edges` **bajó** al agregar `mutual`: parte de la densidad que M0 atribuía al "costo basal" era, en realidad, reciprocidad.
+
+*pregunta 5*
+
+*pregunta 6*
 
 ## M2 — `+ nodematch`
 
