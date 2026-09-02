@@ -559,7 +559,7 @@ par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
 plot(gof_hom)
 ```
 
-Ahí está la falla: en el grado 3 observamos **32** nodos y el modelo espera **~13** (p = 0.00). Y como espejo, el grado 4 también se sale: los nodos que se acumularon en 3 se los robó a sus vecinos. El GOF no dijo "algo anda mal": dijo **dónde**. Agreguemos el término que falta y repitamos:
+Ahí está la falla: en el grado 3 observamos **32** nodos y el modelo espera **~13** (p = 0.00). Agreguemos el término que falta y repitamos:
 
 ```{r}
 #| label: experimento-bien
@@ -599,7 +599,6 @@ Primero le pedimos al modelo que genere dos redes nuevas:
 #| label: gemelas-simular
 #| message: false
 sims <- simulate(m2, nsim = 2, seed = 2026)   # genérica de stats; despacha al método de ergm
-sims
 ```
 
 Y ahora las dibujamos junto a la original:

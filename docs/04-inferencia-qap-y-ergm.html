@@ -494,9 +494,9 @@ window.Quarto = {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">vertices =</span> enc[, <span class="fu">c</span>(<span class="st">"nombre"</span>,<span class="st">"sexo"</span>,<span class="st">"edad"</span>,<span class="st">"disciplina"</span>)])</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>red_i</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH be8f2eb DN-- 30 149 -- 
+<pre><code>IGRAPH 1e2519e DN-- 30 149 -- 
 + attr: name (v/c), sexo (v/c), edad (v/n), disciplina (v/c)
-+ edges from be8f2eb (vertex names):
++ edges from 1e2519e (vertex names):
  [1] Amanda Rojas -&gt;Karin Morales   Amanda Rojas -&gt;Lucas Paredes  
  [3] Bastian Soto -&gt;Javier Espinoza Bastian Soto -&gt;Lucas Paredes  
  [5] Bastian Soto -&gt;Pablo Guzman    Bastian Soto -&gt;Valentina Cruz 
@@ -1207,7 +1207,7 @@ Figura&nbsp;6.2: GOF del modelo de homofilia: razonable en distancias y socios c
 </div>
 </div>
 </div>
-<p>Ahí está la falla: en el grado 3 observamos <strong>32</strong> nodos y el modelo espera <strong>~13</strong> (p = 0.00). Y como espejo, el grado 4 también se sale: los nodos que se acumularon en 3 se los robó a sus vecinos. El GOF no dijo “algo anda mal”: dijo <strong>dónde</strong>. Agreguemos el término que falta y repitamos:</p>
+<p>Ahí está la falla: en el grado 3 observamos <strong>32</strong> nodos y el modelo espera <strong>~13</strong> (p = 0.00). Agreguemos el término que falta y repitamos:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>m_com <span class="ot">&lt;-</span> ergm<span class="sc">::</span><span class="fu">ergm</span>(red_exp <span class="sc">~</span> edges <span class="sc">+</span> <span class="fu">nodematch</span>(<span class="st">"sexo"</span>) <span class="sc">+</span> <span class="fu">nodematch</span>(<span class="st">"disciplina"</span>) <span class="sc">+</span> <span class="fu">degree</span>(<span class="dv">3</span>),</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">control =</span> ergm<span class="sc">::</span><span class="fu">control.ergm</span>(<span class="at">seed =</span> <span class="dv">404</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1249,27 +1249,20 @@ Figura&nbsp;6.3: GOF del modelo corregido: la aguja del grado 3 quedó capturada
 <p>La prueba final es visual: si el modelo entendió la red, debería poder <strong>fabricar redes hermanas</strong> que se le parezcan:</p>
 <p>Primero le pedimos al modelo que genere dos redes nuevas:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="fu">simulate</span>(m2, <span class="at">nsim =</span> <span class="dv">2</span>, <span class="at">seed =</span> <span class="dv">2026</span>)   <span class="co"># genérica de stats; despacha al método de ergm</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>sims</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>List of  2  Networks
-Model: red_n ~ edges + mutual + nodematch("disciplina") + nodematch("sexo") 
-Reference: ~Bernoulli 
-Constraints: ~. ~. - observed </code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="fu">simulate</span>(m2, <span class="at">nsim =</span> <span class="dv">2</span>, <span class="at">seed =</span> <span class="dv">2026</span>)   <span class="co"># genérica de stats; despacha al método de ergm</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Y ahora las dibujamos junto a la original:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (red_k <span class="cf">in</span> <span class="fu">list</span>(<span class="at">Observada =</span> red_i,</span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">Simulada 1</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">asIgraph</span>(sims[[<span class="dv">1</span>]]),</span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">Simulada 2</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">asIgraph</span>(sims[[<span class="dv">2</span>]]))) {</span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  nombre_attr <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="st">"disciplina"</span> <span class="sc">%in%</span> <span class="fu">vertex_attr_names</span>(red_k)) <span class="st">"disciplina"</span> <span class="cf">else</span> <span class="cn">NULL</span></span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(red_k, <span class="at">vertex.color =</span> colores_disc[<span class="fu">vertex_attr</span>(red_k, <span class="st">"disciplina"</span>)],</span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">vertex.size =</span> <span class="dv">9</span>, <span class="at">vertex.label =</span> <span class="cn">NA</span>,</span>
-<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">edge.arrow.size =</span> <span class="fl">0.15</span>, <span class="at">edge.color =</span> <span class="st">"gray70"</span>)</span>
-<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Observada  |  Simulada 1  |  Simulada 2"</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">line =</span> <span class="sc">-</span><span class="fl">1.5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (red_k <span class="cf">in</span> <span class="fu">list</span>(<span class="at">Observada =</span> red_i,</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">Simulada 1</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">asIgraph</span>(sims[[<span class="dv">1</span>]]),</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">Simulada 2</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">asIgraph</span>(sims[[<span class="dv">2</span>]]))) {</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  nombre_attr <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="st">"disciplina"</span> <span class="sc">%in%</span> <span class="fu">vertex_attr_names</span>(red_k)) <span class="st">"disciplina"</span> <span class="cf">else</span> <span class="cn">NULL</span></span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(red_k, <span class="at">vertex.color =</span> colores_disc[<span class="fu">vertex_attr</span>(red_k, <span class="st">"disciplina"</span>)],</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">vertex.size =</span> <span class="dv">9</span>, <span class="at">vertex.label =</span> <span class="cn">NA</span>,</span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">edge.arrow.size =</span> <span class="fl">0.15</span>, <span class="at">edge.color =</span> <span class="st">"gray70"</span>)</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Observada  |  Simulada 1  |  Simulada 2"</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">line =</span> <span class="sc">-</span><span class="fl">1.5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-gemelas" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
