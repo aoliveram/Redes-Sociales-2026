@@ -406,7 +406,7 @@ window.Quarto = {
   <li><a href="#m3-gwesp" id="toc-m3-gwesp" class="nav-link" data-scroll-target="#m3-gwesp"><span class="header-section-number">6.6</span> M3 — <code>+ gwesp</code></a></li>
   <li><a href="#resumen-modelos" id="toc-resumen-modelos" class="nav-link" data-scroll-target="#resumen-modelos"><span class="header-section-number">6.7</span> Resumen modelos</a>
   <ul class="collapse">
-  <li><a href="#la-fábrica-a-la-vista" id="toc-la-fábrica-a-la-vista" class="nav-link" data-scroll-target="#la-fábrica-a-la-vista"><span class="header-section-number">6.7.1</span> La fábrica, a la vista</a></li>
+  <li><a href="#cómo-se-fabricó-esta-red" id="toc-cómo-se-fabricó-esta-red" class="nav-link" data-scroll-target="#cómo-se-fabricó-esta-red"><span class="header-section-number">6.7.1</span> Cómo se fabricó esta red</a></li>
   </ul></li>
   <li><a href="#gof-el-modelo-fabrica-redes-creíbles" id="toc-gof-el-modelo-fabrica-redes-creíbles" class="nav-link" data-scroll-target="#gof-el-modelo-fabrica-redes-creíbles"><span class="header-section-number">6.8</span> GOF — ¿El modelo fabrica redes creíbles?</a></li>
   <li><a href="#gof-como-detector-de-términos-ausentes" id="toc-gof-como-detector-de-términos-ausentes" class="nav-link" data-scroll-target="#gof-como-detector-de-términos-ausentes"><span class="header-section-number">6.9</span> GOF como detector de términos ausentes</a></li>
@@ -494,9 +494,9 @@ window.Quarto = {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">vertices =</span> enc[, <span class="fu">c</span>(<span class="st">"nombre"</span>,<span class="st">"sexo"</span>,<span class="st">"edad"</span>,<span class="st">"disciplina"</span>)])</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>red_i</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>IGRAPH b6d85eb DN-- 30 149 -- 
+<pre><code>IGRAPH be8f2eb DN-- 30 149 -- 
 + attr: name (v/c), sexo (v/c), edad (v/n), disciplina (v/c)
-+ edges from b6d85eb (vertex names):
++ edges from be8f2eb (vertex names):
  [1] Amanda Rojas -&gt;Karin Morales   Amanda Rojas -&gt;Lucas Paredes  
  [3] Bastian Soto -&gt;Javier Espinoza Bastian Soto -&gt;Lucas Paredes  
  [5] Bastian Soto -&gt;Pablo Guzman    Bastian Soto -&gt;Valentina Cruz 
@@ -1036,9 +1036,14 @@ Log Likelihood        -398.36      -365.48      -330.09      -330.38
 <li>La reciprocidad y la homofilia disciplinar se mantienen firmes en cada peldaño;</li>
 <li>El AIC <strong>mejora hasta M2 y empeora en M3</strong> — agregar cierre no compra nada. El mejor modelo es el más simple que captura los mecanismos reales.</li>
 </ol>
-<section id="la-fábrica-a-la-vista" class="level3" data-number="6.7.1">
-<h3 data-number="6.7.1" class="anchored" data-anchor-id="la-fábrica-a-la-vista"><span class="header-section-number">6.7.1</span> La fábrica, a la vista</h3>
-<p>Estos datos son ficticios, y el motor que los cró usó tres cosas: 1. nominaciones <strong>fuertemente</strong> sesgadas hacia la misma disciplina (peso <code>4</code> por compartir disciplina), 2. <strong>levemente</strong> sesgadas hacia el mismo sexo (peso <code>1.5</code> por compartir sexo), y 3. una dosis de reciprocidad (probabilidad de <code>0.35</code> de devolver cada nominación).</p>
+<section id="cómo-se-fabricó-esta-red" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="cómo-se-fabricó-esta-red"><span class="header-section-number">6.7.1</span> Cómo se fabricó esta red</h3>
+<p>Estos datos son ficticios, y el motor que los cró usó tres cosas:</p>
+<ol type="1">
+<li>nominaciones <strong>fuertemente</strong> sesgadas hacia la misma disciplina (peso <code>4</code> por compartir disciplina),</li>
+<li><strong>levemente</strong> sesgadas hacia el mismo sexo (peso <code>1.5</code> por compartir sexo), y</li>
+<li>una dosis de reciprocidad (probabilidad de <code>0.35</code> de devolver cada nominación).</li>
+</ol>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>nombres <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Amanda Rojas"</span>,<span class="st">"Bastian Soto"</span>,<span class="st">"Carla Munoz"</span>,<span class="st">"Diego Herrera"</span>,<span class="st">"Elisa Fuentes"</span>,</span>
@@ -1137,8 +1142,21 @@ Figura&nbsp;6.1: Bondad de ajuste de M2: la línea negra (red observada) debe ca
 </div>
 </div>
 </div>
-<p>Si la línea observada se escapa sistemáticamente de las cajas en algún panel, el modelo está ciego a algo — y ese panel te dice qué término considerar.</p>
+<p>Si la línea observada se escapa sistemáticamente de las cajas en algún panel, el modelo está ciego a algo.</p>
 <p><em>pregunta 10</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Para jugar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Corre <code>ergm::mcmc.diagnostics(m2)</code>: las cadenas deben verse como ruido sin tendencia. Así se chequea que la maquinaria de simulación convergió — es el equivalente, en el mundo de la simulación, a revisar los residuos de una regresión.</p>
+</div>
+</div>
 </section>
 <section id="gof-como-detector-de-términos-ausentes" class="level2" data-number="6.9">
 <h2 data-number="6.9" class="anchored" data-anchor-id="gof-como-detector-de-términos-ausentes"><span class="header-section-number">6.9</span> GOF como detector de términos ausentes</h2>
@@ -1152,17 +1170,16 @@ Figura&nbsp;6.1: Bondad de ajuste de M2: la línea negra (red observada) debe ca
 <span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>red_exp <span class="ot">&lt;-</span> <span class="fu">simulate</span>(</span>
 <span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>  base <span class="sc">~</span> edges <span class="sc">+</span> <span class="fu">nodematch</span>(<span class="st">"sexo"</span>) <span class="sc">+</span> <span class="fu">nodematch</span>(<span class="st">"disciplina"</span>) <span class="sc">+</span> <span class="fu">degree</span>(<span class="dv">3</span>),</span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">coef =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.2</span>, <span class="fl">0.4</span>, <span class="fl">1.2</span>, <span class="fl">2.2</span>),   <span class="co"># &lt;- las cuatro perillas de fábrica</span></span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">coef =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.2</span>, <span class="fl">0.4</span>, <span class="fl">1.2</span>, <span class="fl">1.0</span>),   <span class="co"># &lt;- las cuatro perillas de fábrica</span></span>
 <span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> <span class="dv">404</span></span>
 <span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(red_exp <span class="sc">~</span> <span class="fu">degree</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">8</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>degree0 degree1 degree2 degree3 degree4 degree5 degree6 degree7 degree8 
-      1       3       6      41       3       3       2       1       0 </code></pre>
+      1       3       6      32       4      10       2       1       1 </code></pre>
 </div>
 </div>
-<p>41 de los 60 nodos tienen grado 3: una campana con una aguja clavada en el 3.</p>
-<p>Ahora ajustemos un modelo <strong>razonable pero incompleto</strong>: solo las dos homofilias. Es el tipo de modelo que uno escribiría de buena fe — de hecho, es el mismo tipo de modelo que ajustamos para la encuesta:</p>
+<p>32 de los 60 nodos tienen grado 3 — más del doble de los que habría sin ese ingrediente. No es una aguja absurda: es una joroba, del tipo que uno encuentra en redes reales (piensa en un reglamento que obliga a formar equipos de cuatro). Ahora ajustemos un modelo razonable pero con homofilias:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>m_hom <span class="ot">&lt;-</span> ergm<span class="sc">::</span><span class="fu">ergm</span>(red_exp <span class="sc">~</span> edges <span class="sc">+</span> <span class="fu">nodematch</span>(<span class="st">"sexo"</span>) <span class="sc">+</span> <span class="fu">nodematch</span>(<span class="st">"disciplina"</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -1170,25 +1187,13 @@ Figura&nbsp;6.1: Bondad de ajuste de M2: la línea negra (red observada) debe ca
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">coef</span>(m_hom), <span class="dv">2</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               edges       nodematch.sexo nodematch.disciplina 
-               -3.56                 0.56                 0.83 </code></pre>
+               -4.02                 0.87                 1.50 </code></pre>
 </div>
 </div>
-<p>Los coeficientes se ven <strong>bien</strong>: recupera ambas homofilias con los signos correctos. Un analista apurado se quedaría aquí. Pero pidamos el GOF completo:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>gof_hom <span class="ot">&lt;-</span> ergm<span class="sc">::</span><span class="fu">gof</span>(m_hom, <span class="at">control =</span> ergm<span class="sc">::</span><span class="fu">control.gof.ergm</span>(<span class="at">seed =</span> <span class="dv">404</span>))</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gof_hom)</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(gof_hom<span class="sc">$</span>pval.deg[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, ], <span class="dv">2</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  obs min  mean max MC p-value
-0   1   0  2.51  11       0.68
-1   3   2  8.18  16       0.14
-2   6   5 13.41  25       0.04
-3  41   5 13.62  21       0.00
-4   3   3 10.87  18       0.02
-5   3   0  6.47  15       0.30
-6   2   0  3.08   7       0.98</code></pre>
-</div>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gof_hom)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-gof-mal" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1196,41 +1201,30 @@ Figura&nbsp;6.1: Bondad de ajuste de M2: la línea negra (red observada) debe ca
 <img src="04-inferencia-qap-y-ergm_files/figure-html/fig-gof-mal-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gof-mal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;6.2: GOF del modelo de homofilia: razonable en distancias y socios compartidos… y gritando exactamente en el grado 3 (y en sus vecinos, 2 y 4).
+Figura&nbsp;6.2: GOF del modelo de homofilia: razonable en distancias y socios compartidos… y gritando exactamente en el grado 3 (y en su vecino, el 4).
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Ahí está la falla: en el grado 3 observamos <strong>41</strong> nodos y el modelo espera <strong>~14</strong> (p = 0.00). Y como espejo, los grados vecinos (2 y 4) también se salen — el exceso de nodos en 3 se los robó. El GOF no dijo “algo anda mal”: dijo <strong>dónde</strong>. Agreguemos el término que falta y repitamos:</p>
+<p>Ahí está la falla: en el grado 3 observamos <strong>32</strong> nodos y el modelo espera <strong>~13</strong> (p = 0.00). Y como espejo, el grado 4 también se sale: los nodos que se acumularon en 3 se los robó a sus vecinos. El GOF no dijo “algo anda mal”: dijo <strong>dónde</strong>. Agreguemos el término que falta y repitamos:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>m_com <span class="ot">&lt;-</span> ergm<span class="sc">::</span><span class="fu">ergm</span>(red_exp <span class="sc">~</span> edges <span class="sc">+</span> <span class="fu">nodematch</span>(<span class="st">"sexo"</span>) <span class="sc">+</span> <span class="fu">nodematch</span>(<span class="st">"disciplina"</span>) <span class="sc">+</span> <span class="fu">degree</span>(<span class="dv">3</span>),</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">control =</span> ergm<span class="sc">::</span><span class="fu">control.ergm</span>(<span class="at">seed =</span> <span class="dv">404</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>m_com <span class="ot">&lt;-</span> ergm<span class="sc">::</span><span class="fu">ergm</span>(red_exp <span class="sc">~</span> edges <span class="sc">+</span> <span class="fu">nodematch</span>(<span class="st">"sexo"</span>) <span class="sc">+</span> <span class="fu">nodematch</span>(<span class="st">"disciplina"</span>) <span class="sc">+</span> <span class="fu">degree</span>(<span class="dv">3</span>),</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">control =</span> ergm<span class="sc">::</span><span class="fu">control.ergm</span>(<span class="at">seed =</span> <span class="dv">404</span>))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">coef</span>(m_com), <span class="dv">2</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">coef</span>(m_com), <span class="dv">2</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               edges       nodematch.sexo nodematch.disciplina 
-               -3.47                 0.56                 0.80 
+               -3.84                 0.84                 1.50 
              degree3 
-                1.98 </code></pre>
+                1.40 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>gof_com <span class="ot">&lt;-</span> ergm<span class="sc">::</span><span class="fu">gof</span>(m_com, <span class="at">control =</span> ergm<span class="sc">::</span><span class="fu">control.gof.ergm</span>(<span class="at">seed =</span> <span class="dv">404</span>))</span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gof_com)</span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(gof_com<span class="sc">$</span>pval.deg[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>, ], <span class="dv">2</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  obs min  mean max MC p-value
-0   1   0  0.99   4       1.00
-1   3   0  2.95   7       1.00
-2   6   1  5.31  13       0.76
-3  41  31 41.54  49       0.96
-4   3   0  4.58  10       0.58
-5   3   0  2.48   9       0.88
-6   2   0  1.22   4       0.76</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>gof_com <span class="ot">&lt;-</span> ergm<span class="sc">::</span><span class="fu">gof</span>(m_com, <span class="at">control =</span> ergm<span class="sc">::</span><span class="fu">control.gof.ergm</span>(<span class="at">seed =</span> <span class="dv">404</span>))</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gof_com)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-gof-bien" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1244,28 +1238,38 @@ Figura&nbsp;6.3: GOF del modelo corregido: la aguja del grado 3 quedó capturada
 </div>
 </div>
 </div>
-<p>La fila del grado 3 pasó de p = 0.00 a p ≈ 0.96: el modelo ahora espera ~41 nodos de grado 3, porque se lo pedimos. Y fíjate en dos detalles:</p>
+<p>La fila del grado 3 pasó de p = 0.00 a p = 1.00: el modelo ahora espera ~32 nodos de grado 3, porque se lo pedimos. Y fíjate en dos detalles:</p>
 <ul>
-<li><strong>Los coeficientes de homofilia casi no se movieron</strong> (≈ 0.56 y ≈ 0.80 en ambos modelos). El modelo incompleto no estaba <em>equivocado</em> sobre la homofilia: estaba <strong>ciego</strong> a otra cosa. Por eso mirar solo los coeficientes no basta.</li>
-<li><strong>El AIC baja de ~708 a ~655</strong>: el término que el GOF nos señaló era real, no un capricho.</li>
+<li><strong>Los coeficientes de homofilia casi no se movieron</strong> (0.87 → 0.84 y 1.50 → 1.50). El modelo incompleto no estaba <em>equivocado</em> sobre la homofilia: estaba <strong>ciego</strong> a otra cosa. Por eso mirar solo los coeficientes no basta.</li>
+<li><strong>El AIC baja de ~720 a ~695</strong>: el término que el GOF nos señaló era real, no un capricho.</li>
 </ul>
-<p><strong>Moraleja: el GOF es un detector de términos ausentes.</strong> Cuando un panel se escapa, el nombre del panel te dice qué hipótesis de formación te faltó considerar.</p>
 </section>
 <section id="fabricación-de-redes-equivalentes" class="level2" data-number="6.10">
 <h2 data-number="6.10" class="anchored" data-anchor-id="fabricación-de-redes-equivalentes"><span class="header-section-number">6.10</span> Fabricación de redes equivalentes</h2>
 <p>La prueba final es visual: si el modelo entendió la red, debería poder <strong>fabricar redes hermanas</strong> que se le parezcan:</p>
+<p>Primero le pedimos al modelo que genere dos redes nuevas:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="fu">simulate</span>(m2, <span class="at">nsim =</span> <span class="dv">2</span>, <span class="at">seed =</span> <span class="dv">2026</span>)   <span class="co"># genérica de stats; despacha al método de ergm</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (red_k <span class="cf">in</span> <span class="fu">list</span>(<span class="at">Observada =</span> red_i,</span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">Simulada 1</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">asIgraph</span>(sims[[<span class="dv">1</span>]]),</span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">Simulada 2</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">asIgraph</span>(sims[[<span class="dv">2</span>]]))) {</span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  nombre_attr <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="st">"disciplina"</span> <span class="sc">%in%</span> <span class="fu">vertex_attr_names</span>(red_k)) <span class="st">"disciplina"</span> <span class="cf">else</span> <span class="cn">NULL</span></span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(red_k, <span class="at">vertex.color =</span> colores_disc[<span class="fu">vertex_attr</span>(red_k, <span class="st">"disciplina"</span>)],</span>
-<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">vertex.size =</span> <span class="dv">9</span>, <span class="at">vertex.label =</span> <span class="cn">NA</span>,</span>
-<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">edge.arrow.size =</span> <span class="fl">0.15</span>, <span class="at">edge.color =</span> <span class="st">"gray70"</span>)</span>
-<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Observada  |  Simulada 1  |  Simulada 2"</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">line =</span> <span class="sc">-</span><span class="fl">1.5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>sims <span class="ot">&lt;-</span> <span class="fu">simulate</span>(m2, <span class="at">nsim =</span> <span class="dv">2</span>, <span class="at">seed =</span> <span class="dv">2026</span>)   <span class="co"># genérica de stats; despacha al método de ergm</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>sims</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of  2  Networks
+Model: red_n ~ edges + mutual + nodematch("disciplina") + nodematch("sexo") 
+Reference: ~Bernoulli 
+Constraints: ~. ~. - observed </code></pre>
+</div>
+</div>
+<p>Y ahora las dibujamos junto a la original:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (red_k <span class="cf">in</span> <span class="fu">list</span>(<span class="at">Observada =</span> red_i,</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">Simulada 1</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">asIgraph</span>(sims[[<span class="dv">1</span>]]),</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">Simulada 2</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">asIgraph</span>(sims[[<span class="dv">2</span>]]))) {</span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  nombre_attr <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="st">"disciplina"</span> <span class="sc">%in%</span> <span class="fu">vertex_attr_names</span>(red_k)) <span class="st">"disciplina"</span> <span class="cf">else</span> <span class="cn">NULL</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(red_k, <span class="at">vertex.color =</span> colores_disc[<span class="fu">vertex_attr</span>(red_k, <span class="st">"disciplina"</span>)],</span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">vertex.size =</span> <span class="dv">9</span>, <span class="at">vertex.label =</span> <span class="cn">NA</span>,</span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">edge.arrow.size =</span> <span class="fl">0.15</span>, <span class="at">edge.color =</span> <span class="st">"gray70"</span>)</span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">"Observada  |  Simulada 1  |  Simulada 2"</span>, <span class="at">outer =</span> <span class="cn">TRUE</span>, <span class="at">line =</span> <span class="sc">-</span><span class="fl">1.5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-gemelas" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1277,19 +1281,6 @@ Figura&nbsp;6.4: La red observada y dos redes simuladas desde M2. No son idénti
 </figcaption>
 </figure>
 </div>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Para jugar
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Corre <code>ergm::mcmc.diagnostics(m2)</code>: las cadenas deben verse como ruido sin tendencia. Así se chequea que la maquinaria de simulación convergió — es el equivalente, en el mundo de la simulación, a revisar los residuos de una regresión.</p>
 </div>
 </div>
 
