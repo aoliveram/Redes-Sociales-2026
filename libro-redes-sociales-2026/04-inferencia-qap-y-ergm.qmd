@@ -91,7 +91,7 @@ summary(naive)$coefficients
 
 En general $Cov(Y_{ij}, Y_{ik}) \neq 0$, y un test que asume independencia **exagera la cantidad de información disponible**: los p-values salen más chicos de lo que corresponde.
 
-*opregunta 1*
+*pregunta 1*
 
 ## La idea central: barajar etiquetas, no celdas
 
@@ -188,6 +188,8 @@ QAP estableció una **asociación**, no un mecanismo. El mismo patrón es compat
 3. Baja las permutaciones a 100 y repite varias veces. ¿Por qué usar 1.000+?
 :::
 
+*pregunta 4*
+
 # ERGM → explicar la red
 
 QAP responde *si es que hay* asociación. Ahora, **¿qué mecanismos, operando juntos, hacen probable esta red?** ¿Cuánto pone la homofilia, cuánto la reciprocidad, cuánto el cierre triádico?
@@ -200,13 +202,19 @@ $$
 P_\theta(Y = y) = \frac{1}{\kappa(\theta)}\, \exp\Big(\sum_H \theta_H\, g_H(y)\Big)
 $$
 
-Vale la pena desarmarla pieza por pieza, porque cada símbolo corresponde a una decisión conceptual:
+Vale la pena desarmarla pieza por pieza:
 
--   $Y$ — la **variable aleatoria es la red completa**, no un lazo ni un nodo: la matriz de adyacencia entera. Y $y$ es *una* realización: la red que efectivamente observamos. Esto es lo que distingue a un ERGM de una regresión común, donde cada fila sería una observación independiente.
+-   $Y$ — la **variable aleatoria es la red completa**; $y$ es *una* realización.
 -   $g_H(y)$ — los **estadísticos**: cuentan cuántas veces aparece la configuración $H$ en la red $y$ (cuántas aristas, cuántas díadas recíprocas, cuántos pares de la misma disciplina conectados). Son *el único lugar por donde el modelo mira la red*: dos redes con los mismos estadísticos son, para el modelo, indistinguibles.
 -   $\theta_H$ — los **parámetros**: cuánto pesa cada configuración. Es lo que estimamos, y lo que interpretamos como log-odds.
--   $\exp(\cdot)$ — la **exponencial** garantiza que toda red tenga probabilidad positiva y hace que el logaritmo de la probabilidad sea *lineal* en los parámetros — por eso los $\theta$ se leen como en una regresión. No es una elección estética: es la única forma posible si uno pide "la distribución menos comprometida que reproduzca estos estadísticos". *(A quienes vengan de física: es exactamente la distribución de Boltzmann, con $-\theta^{\mathsf{T}}s(y)$ jugando el papel de la energía.)*
--   $\kappa(\theta)$ — la **constante de normalización**: la suma de $\exp(\theta^{\mathsf{T}} s(y'))$ sobre **todas las redes posibles** $y'$. Es lo que convierte la expresión en una probabilidad que suma 1… y es el problema central de estimar estos modelos.
+-   $\exp(\cdot)$ — la **exponencial** garantiza que toda red tenga probabilidad positiva y hace que el logaritmo de la probabilidad sea *lineal* en los parámetros.
+-   $\kappa(\theta)$ — la **constante de normalización**: la suma sobre **todas las redes posibles** $y'$ del espacio $\mathcal{Y}$,
+
+    $$
+    \kappa(\theta) \;=\; \sum_{y' \in \mathcal{Y}} \exp\Big(\sum_H \theta_H\, g_H(y')\Big),
+    $$
+
+    que es lo que convierte la expresión en una probabilidad que suma 1 — y el problema central de estimar estos modelos.
 
 ::: callout-note
 ## ¿Por qué $\kappa(\theta)$ es intratable?
@@ -293,6 +301,10 @@ La función que invierte el logit en R es `plogis()`; la usaremos en cada pelda�
 plogis(coef(m0))   # exp(theta) / (1 + exp(theta))  =  la densidad
 ```
 
+*pregunta 5*
+
+*pregunta 6*
+
 ## M1 — `+ mutual`
 
 Introducimos la primera dependencia diádica real: la reciprocidad. El modelo ahora dice *"la red es más probable si los vínculos se devuelven"*:
@@ -330,9 +342,9 @@ La probabilidad de que te nomine aumenta de ~9% a ~54%. Y en **odds**, la nomina
 
 Nota que `edges` **bajó** al agregar `mutual`: parte de la densidad que M0 atribuía al "costo basal" era, en realidad, reciprocidad.
 
-*pregunta 5*
+*pregunta 7*
 
-*pregunta 6*
+*pregunta 8*
 
 ## M2 — `+ nodematch`
 
@@ -366,6 +378,11 @@ c(distinta_disciplina_sin_reciproco = unname(plogis(b["edges"])),
 
 De ~5% (dos desconocidos de disciplinas distintas) a ~50% (misma disciplina y la nominación de vuelta ya existe). Eso significan los coeficientes.
 
+::: {.callout-note}
+## Para jugar
+Ajusta `m2b <- ergm::ergm(red_n ~ edges + nodematch("disciplina"))`, sin `mutual`. ¿Cuánto se infla la homofilia al no controlar la reciprocidad? ¿Por qué pasa eso?
+:::
+
 ## M3 — `+ gwesp`
 
 Para el cierre triádico **no** usamos el término `triangle`, sino `gwesp` (*geometrically weighted edgewise shared partners*): premia socios compartidos con retornos decrecientes — el primer amigo en común importa mucho; el décimo, casi nada.
@@ -397,6 +414,14 @@ Usualmente, cuando alguien dice que hay que agregar un término de "triángulos"
 :::
 
 El coeficiente de `gwesp` sale **≈ 0 y no significativo**. En la figura inicial se *ven* triángulos por todos lados, pero una vez que el modelo controla la homofilia, vemos que **los triángulos aparentes eran solo homofilia**. Lo importante en este caso ficticio no era **cerrar triadas** en el sentido de "el amigo de mi amigo es mi amigo", sino que tres personas eligieron parecido, cada una por su cuenta, basándose solamente en su profesión.
+
+*pregunta 9*
+
+::: {.callout-note}
+## Para jugar
+1. Cambia el decaimiento de `gwesp` (0.25, 0.75). ¿Cambia la conclusión?
+2. Agrega `absdiff("edad")` (homofilia continua: ¿nomino a gente de edad parecida?) y `nodecov("edad")` (actividad: ¿los mayores nominan más?). Interpreta los signos.
+:::
 
 ## Resumen modelos
 
@@ -461,9 +486,6 @@ Ese `TRUE` dice que lo que acabas de generar es, celda por celda, **la misma enc
 | Homofilia por disciplina | peso `4` | $\ln 4 \approx 1.39$ | `nodematch.disciplina` ≈ 1.38 |
 | Homofilia por sexo | peso `1.5` | $\ln 1.5 \approx 0.41$ | `nodematch.sexo` ≈ 0.35 |
 | Reciprocidad | prob. de devolución `0.35` | — (mecanismo distinto) | `mutual` ≈ 1.98 |
-| Cierre triádico | **ninguna** | — | `gwesp` ≈ −0.06 (n.s.) |
-
-No es una identidad matemática (la fabricación muestrea sin reemplazo, y la reciprocidad se inyecta con otra regla — por eso `mutual` no tiene un log de fábrica que comparar), pero muestra en qué sentido el ERGM "leyó" las perillas de la fábrica.
 
 ## GOF — ¿El modelo fabrica redes creíbles?
 
@@ -484,60 +506,90 @@ plot(gof_m2)
 
 Si la línea observada se escapa sistemáticamente de las cajas en algún panel, el modelo está ciego a algo — y ese panel te dice qué término considerar.
 
+*pregunta 10*
+
 ## GOF como detector de términos ausentes
 
-¿De verdad el GOF señala *qué* falta? Hagamos el experimento completo. Fabriquemos una red que **carece a propósito** de un ingrediente que el modelo ingenuo no conoce: una red de 60 nodos (no dirigida, para variar) cuya única particularidad es una cantidad absurda de nodos con **grado exactamente 3**:
+Fabriquemos una red con **tres** ingredientes: homofilia por sexo, homofilia por disciplina y una cantidad alta de nodos con **grado exactamente 3**:
 
 ```{r}
 #| label: experimento-fabricar
 #| message: false
-set.seed(303)
-base <- network::network.initialize(60, directed = FALSE)
-red_exp <- simulate(base ~ edges + degree(3), coef = c(-3, 2), seed = 303)  # también método de ergm
+set.seed(404)
+n_exp <- 60
+base <- network::network.initialize(n_exp, directed = FALSE)
+base %v% "sexo"       <- sample(c("F","M"), n_exp, replace = TRUE)
+base %v% "disciplina" <- sample(c("ingenieria","sociologia","salud"), n_exp, replace = TRUE)
+
+red_exp <- simulate(
+  base ~ edges + nodematch("sexo") + nodematch("disciplina") + degree(3),
+  coef = c(-3.2, 0.4, 1.2, 2.2),   # <- las cuatro perillas de fábrica
+  seed = 404
+)
 summary(red_exp ~ degree(0:8))
 ```
 
-37 de los 60 nodos tienen grado 3: una campana con una aguja clavada en el 3. Ajustemos el modelo ingenuo, que solo conoce la densidad, y pidámosle el GOF completo:
+41 de los 60 nodos tienen grado 3: una campana con una aguja clavada en el 3.
+
+Ahora ajustemos un modelo **razonable pero incompleto**: solo las dos homofilias. Es el tipo de modelo que uno escribiría de buena fe — de hecho, es el mismo tipo de modelo que ajustamos para la encuesta:
 
 ```{r}
 #| label: experimento-mal
 #| message: false
 #| results: hide
-m_mal <- ergm::ergm(red_exp ~ edges)
+m_hom <- ergm::ergm(red_exp ~ edges + nodematch("sexo") + nodematch("disciplina"))
 ```
 
 ```{r}
-#| label: fig-gof-mal
-#| fig-cap: "GOF del modelo ingenuo sobre la red con trampa: razonable en distancias y socios compartidos… y gritando exactamente en el grado 3 (y en su espejo, el 2)."
-#| fig-height: 7
-#| message: false
-gof_mal <- ergm::gof(m_mal, control = ergm::control.gof.ergm(seed = 303))
-par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
-plot(gof_mal)
-round(gof_mal$pval.deg[1:8, ], 2)
+#| label: experimento-mal-coef
+round(coef(m_hom), 2)
 ```
 
-La línea observada camina dentro de las cajas en toda la distribución **excepto** donde está la trampa: en el grado 3 (observamos 37 nodos; el modelo espera ~14; p = 0.00) y, como espejo, en el 2 — el exceso de nodos en 3 se los robó a los grados vecinos. El GOF no dijo "algo anda mal": dijo **dónde**. Agreguemos el término que falta y repitamos:
+Los coeficientes se ven **bien**: recupera ambas homofilias con los signos correctos. Un analista apurado se quedaría aquí. Pero pidamos el GOF completo:
+
+```{r}
+#| label: fig-gof-mal
+#| fig-cap: "GOF del modelo de homofilia: razonable en distancias y socios compartidos… y gritando exactamente en el grado 3 (y en sus vecinos, 2 y 4)."
+#| fig-height: 7
+#| message: false
+gof_hom <- ergm::gof(m_hom, control = ergm::control.gof.ergm(seed = 404))
+par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
+plot(gof_hom)
+round(gof_hom$pval.deg[1:7, ], 2)
+```
+
+Ahí está la falla: en el grado 3 observamos **41** nodos y el modelo espera **~14** (p = 0.00). Y como espejo, los grados vecinos (2 y 4) también se salen — el exceso de nodos en 3 se los robó. El GOF no dijo "algo anda mal": dijo **dónde**. Agreguemos el término que falta y repitamos:
 
 ```{r}
 #| label: experimento-bien
 #| message: false
 #| results: hide
-m_bien <- ergm::ergm(red_exp ~ edges + degree(3), control = ergm::control.ergm(seed = 303))
+m_com <- ergm::ergm(red_exp ~ edges + nodematch("sexo") + nodematch("disciplina") + degree(3),
+                    control = ergm::control.ergm(seed = 404))
+```
+
+```{r}
+#| label: experimento-bien-coef
+round(coef(m_com), 2)
 ```
 
 ```{r}
 #| label: fig-gof-bien
-#| fig-cap: "GOF del modelo corregido: la aguja del grado 3 quedó capturada."
+#| fig-cap: "GOF del modelo corregido: la aguja del grado 3 quedó capturada, y el resto de la distribución sigue en orden."
 #| fig-height: 7
 #| message: false
-gof_bien <- ergm::gof(m_bien, control = ergm::control.gof.ergm(seed = 303))
+gof_com <- ergm::gof(m_com, control = ergm::control.gof.ergm(seed = 404))
 par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
-plot(gof_bien)
-round(gof_bien$pval.deg[1:8, ], 2)
+plot(gof_com)
+round(gof_com$pval.deg[1:7, ], 2)
 ```
 
-La fila del grado 3 pasó de p = 0.00 a p = 1.00: el modelo ahora espera ~37 nodos de grado 3, porque se lo pedimos (algún otro grado puede rozar el borde de su caja — así es la variabilidad de simulación; lo sistemático era el 3). **Moraleja: el GOF es un detector de términos ausentes.** Cuando un panel se escapa, el nombre del panel te dice qué hipótesis de formación te faltó considerar.
+La fila del grado 3 pasó de p = 0.00 a p ≈ 0.96: el modelo ahora espera ~41 nodos de grado 3, porque se lo pedimos. Y fíjate en dos detalles:
+
+-   **Los coeficientes de homofilia casi no se movieron** (≈ 0.56 y ≈ 0.80 en ambos modelos). El modelo incompleto no estaba *equivocado* sobre la homofilia: estaba **ciego** a otra cosa. Por eso mirar solo los coeficientes no basta.
+-   **El AIC baja de ~708 a ~655**: el término que el GOF nos señaló era real, no un capricho.
+
+**Moraleja: el GOF es un detector de términos ausentes.** Cuando un panel se escapa, el nombre del panel te dice qué hipótesis de formación te faltó considerar.
 
 ## Fabricación de redes equivalentes
 
@@ -563,16 +615,5 @@ title("Observada  |  Simulada 1  |  Simulada 2", outer = TRUE, line = -1.5)
 
 ::: {.callout-note}
 ## Para jugar
-1. Ajusta `m3b <- ergm::ergm(red_n ~ edges + nodematch("disciplina"))` — sin `mutual`. ¿Cuánto se infla la homofilia al no controlar reciprocidad?
-2. Cambia el decaimiento de `gwesp` (0.25, 0.75). ¿Cambia la conclusión?
-3. Agrega `absdiff("edad")` (homofilia continua: ¿nomino a gente de edad parecida?) y `nodecov("edad")` (actividad: ¿los mayores nominan más?). Interpreta los signos.
-4. Corre `ergm::mcmc.diagnostics(m2)`: las cadenas deben verse como ruido sin tendencia. Así se chequea que la maquinaria de simulación convergió.
+Corre `ergm::mcmc.diagnostics(m2)`: las cadenas deben verse como ruido sin tendencia. Así se chequea que la maquinaria de simulación convergió — es el equivalente, en el mundo de la simulación, a revisar los residuos de una regresión.
 :::
-
-## Referencias {.unnumbered}
-
-- Krackhardt, D. (1987). QAP partialling as a test of spuriousness. *Social Networks*, 9(2).
-- Phipson, B. & Smyth, G. (2010). Permutation p-values should never be zero. *Stat. Appl. Gen. Mol. Biol.*, 9(1).
-- Robins, G., Pattison, P., Kalish, Y. & Lusher, D. (2007). An introduction to exponential random graph models for social networks. *Social Networks*, 29(2).
-- Hunter, D. et al. (2008). ergm: A package to fit, simulate and diagnose exponential-family models for networks. *JSS*, 24(3).
-- Vega Yon, G. — *Statistical inference in networks* (curso UDD 2024), caps. de ERGMs: la fuente de varios ejemplos y del espíritu simular-para-entender de este capítulo.
