@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://aoliveram.github.io/Redes-Sociales-2026/index.html</loc>
-    <lastmod>2026-08-24T22:04:46.633Z</lastmod>
+    <lastmod>2026-09-01T16:52:03.795Z</lastmod>
   </url>
   <url>
     <loc>https://aoliveram.github.io/Redes-Sociales-2026/01-setup-computacional.html</loc>
-    <lastmod>2026-08-24T22:00:29.454Z</lastmod>
+    <lastmod>2026-09-01T22:20:35.918Z</lastmod>
   </url>
   <url>
     <loc>https://aoliveram.github.io/Redes-Sociales-2026/02-fundamentos-matematicos.html</loc>
@@ -15,6 +15,10 @@
   <url>
     <loc>https://aoliveram.github.io/Redes-Sociales-2026/03-mecanismos-de-formacion.html</loc>
     <lastmod>2026-08-24T22:00:54.154Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aoliveram.github.io/Redes-Sociales-2026/04-inferencia-qap-y-ergm.html</loc>
+    <lastmod>2026-09-02T01:17:58.890Z</lastmod>
   </url>
   <url>
     <loc>https://aoliveram.github.io/Redes-Sociales-2026/referencias.html</loc>
