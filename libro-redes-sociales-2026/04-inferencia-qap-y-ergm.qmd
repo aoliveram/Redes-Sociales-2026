@@ -436,9 +436,10 @@ O sea, en resumen:
 2. La reciprocidad y la homofilia disciplinar se mantienen firmes en cada peldaño; 
 3. El AIC **mejora hasta M2 y empeora en M3** — agregar cierre no compra nada. El mejor modelo es el más simple que captura los mecanismos reales.
 
-### La fábrica, a la vista
+### Cómo se fabricó esta red
 
 Estos datos son ficticios, y el motor que los cró usó tres cosas: 
+
 1. nominaciones **fuertemente** sesgadas hacia la misma disciplina (peso `4` por compartir disciplina), 
 2. **levemente** sesgadas hacia el mismo sexo (peso `1.5` por compartir sexo), y 
 3. una dosis de reciprocidad (probabilidad de `0.35` de devolver cada nominación).
@@ -504,9 +505,14 @@ par(mfrow = c(3, 2), mar = c(4, 4, 2, 1))
 plot(gof_m2)
 ```
 
-Si la línea observada se escapa sistemáticamente de las cajas en algún panel, el modelo está ciego a algo — y ese panel te dice qué término considerar.
+Si la línea observada se escapa sistemáticamente de las cajas en algún panel, el modelo está ciego a algo.
 
 *pregunta 10*
+
+::: {.callout-note}
+## Para jugar
+Corre `ergm::mcmc.diagnostics(m2)`: las cadenas deben verse como ruido sin tendencia. Así se chequea que la maquinaria de simulación convergió — es el equivalente, en el mundo de la simulación, a revisar los residuos de una regresión.
+:::
 
 ## GOF como detector de términos ausentes
 
@@ -523,15 +529,13 @@ base %v% "disciplina" <- sample(c("ingenieria","sociologia","salud"), n_exp, rep
 
 red_exp <- simulate(
   base ~ edges + nodematch("sexo") + nodematch("disciplina") + degree(3),
-  coef = c(-3.2, 0.4, 1.2, 2.2),   # <- las cuatro perillas de fábrica
+  coef = c(-3.2, 0.4, 1.2, 1.0),   # <- las cuatro perillas de fábrica
   seed = 404
 )
 summary(red_exp ~ degree(0:8))
 ```
 
-41 de los 60 nodos tienen grado 3: una campana con una aguja clavada en el 3.
-
-Ahora ajustemos un modelo **razonable pero incompleto**: solo las dos homofilias. Es el tipo de modelo que uno escribiría de buena fe — de hecho, es el mismo tipo de modelo que ajustamos para la encuesta:
+32 de los 60 nodos tienen grado 3 — más del doble de los que habría sin ese ingrediente. No es una aguja absurda: es una joroba, del tipo que uno encuentra en redes reales (piensa en un reglamento que obliga a formar equipos de cuatro). Ahora ajustemos un modelo razonable pero con homofilias:
 
 ```{r}
 #| label: experimento-mal
@@ -545,20 +549,17 @@ m_hom <- ergm::ergm(red_exp ~ edges + nodematch("sexo") + nodematch("disciplina"
 round(coef(m_hom), 2)
 ```
 
-Los coeficientes se ven **bien**: recupera ambas homofilias con los signos correctos. Un analista apurado se quedaría aquí. Pero pidamos el GOF completo:
-
 ```{r}
 #| label: fig-gof-mal
-#| fig-cap: "GOF del modelo de homofilia: razonable en distancias y socios compartidos… y gritando exactamente en el grado 3 (y en sus vecinos, 2 y 4)."
+#| fig-cap: "GOF del modelo de homofilia: razonable en distancias y socios compartidos… y gritando exactamente en el grado 3 (y en su vecino, el 4)."
 #| fig-height: 7
 #| message: false
 gof_hom <- ergm::gof(m_hom, control = ergm::control.gof.ergm(seed = 404))
 par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
 plot(gof_hom)
-round(gof_hom$pval.deg[1:7, ], 2)
 ```
 
-Ahí está la falla: en el grado 3 observamos **41** nodos y el modelo espera **~14** (p = 0.00). Y como espejo, los grados vecinos (2 y 4) también se salen — el exceso de nodos en 3 se los robó. El GOF no dijo "algo anda mal": dijo **dónde**. Agreguemos el término que falta y repitamos:
+Ahí está la falla: en el grado 3 observamos **32** nodos y el modelo espera **~13** (p = 0.00). Y como espejo, el grado 4 también se sale: los nodos que se acumularon en 3 se los robó a sus vecinos. El GOF no dijo "algo anda mal": dijo **dónde**. Agreguemos el término que falta y repitamos:
 
 ```{r}
 #| label: experimento-bien
@@ -581,26 +582,33 @@ round(coef(m_com), 2)
 gof_com <- ergm::gof(m_com, control = ergm::control.gof.ergm(seed = 404))
 par(mfrow = c(2, 2), mar = c(4, 4, 2, 1))
 plot(gof_com)
-round(gof_com$pval.deg[1:7, ], 2)
 ```
 
-La fila del grado 3 pasó de p = 0.00 a p ≈ 0.96: el modelo ahora espera ~41 nodos de grado 3, porque se lo pedimos. Y fíjate en dos detalles:
+La fila del grado 3 pasó de p = 0.00 a p = 1.00: el modelo ahora espera ~32 nodos de grado 3, porque se lo pedimos. Y fíjate en dos detalles:
 
--   **Los coeficientes de homofilia casi no se movieron** (≈ 0.56 y ≈ 0.80 en ambos modelos). El modelo incompleto no estaba *equivocado* sobre la homofilia: estaba **ciego** a otra cosa. Por eso mirar solo los coeficientes no basta.
--   **El AIC baja de ~708 a ~655**: el término que el GOF nos señaló era real, no un capricho.
-
-**Moraleja: el GOF es un detector de términos ausentes.** Cuando un panel se escapa, el nombre del panel te dice qué hipótesis de formación te faltó considerar.
+-   **Los coeficientes de homofilia casi no se movieron** (0.87 → 0.84 y 1.50 → 1.50). El modelo incompleto no estaba *equivocado* sobre la homofilia: estaba **ciego** a otra cosa. Por eso mirar solo los coeficientes no basta.
+-   **El AIC baja de ~720 a ~695**: el término que el GOF nos señaló era real, no un capricho.
 
 ## Fabricación de redes equivalentes
 
 La prueba final es visual: si el modelo entendió la red, debería poder **fabricar redes hermanas** que se le parezcan:
+
+Primero le pedimos al modelo que genere dos redes nuevas:
+
+```{r}
+#| label: gemelas-simular
+#| message: false
+sims <- simulate(m2, nsim = 2, seed = 2026)   # genérica de stats; despacha al método de ergm
+sims
+```
+
+Y ahora las dibujamos junto a la original:
 
 ```{r}
 #| label: fig-gemelas
 #| fig-cap: "La red observada y dos redes simuladas desde M2. No son idénticas — son muestras del mismo proceso generativo."
 #| fig-height: 3.6
 #| message: false
-sims <- simulate(m2, nsim = 2, seed = 2026)   # genérica de stats; despacha al método de ergm
 par(mfrow = c(1, 3), mar = c(1, 1, 2, 1))
 for (red_k in list(Observada = red_i,
                    `Simulada 1` = asIgraph(sims[[1]]),
@@ -612,8 +620,3 @@ for (red_k in list(Observada = red_i,
 }
 title("Observada  |  Simulada 1  |  Simulada 2", outer = TRUE, line = -1.5)
 ```
-
-::: {.callout-note}
-## Para jugar
-Corre `ergm::mcmc.diagnostics(m2)`: las cadenas deben verse como ruido sin tendencia. Así se chequea que la maquinaria de simulación convergió — es el equivalente, en el mundo de la simulación, a revisar los residuos de una regresión.
-:::
