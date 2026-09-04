@@ -5,13 +5,135 @@ date: "2026-09-08"
 
 # Contagio social en redes
 
-::: {.callout-note}
-## Capítulo en construcción
-Bloque a cargo de la ayudantía dentro de la clase de difusión. Estructura tentativa:
+::: {.callout-tip icon="false"}
+## Qué haremos
 
-1.  Modelos de umbral para acción colectiva (Granovetter 1978 → Valente 1996)
-2.  Contagio complejo y la debilidad de los lazos largos (Centola & Macy 2007)
-3.  Interludio: transiciones de fase de primer orden
-4.  Centralidad compleja: por qué la periferia importa (Guilbeault & Centola 2021)
-5.  netdiffuseR con datos reales: simular, detectar y construir un `diffnet` desde encuestas
+En la primera mitad de la clase vimos el contagio **simple**: una exposición basta, y los modelos SIR describen cómo se propaga. Este bloque parte de la pregunta que ese modelo no puede responder: **¿y si una exposición no basta?** Cuando adoptar cuesta —porque hay que coordinarse, porque no es creíble, porque puede ser mal visto, o porque se necesita el ánimo de otros— se necesitan **varias** fuentes que refuercen. Eso es un contagio **complejo**, y cambia todo lo que creíamos saber sobre qué estructuras difunden bien.
+
+La frase-guía del bloque: *para un contagio simple, que la semilla vea lejos; para uno complejo, que la semilla vea acompañada.*
 :::
+
+| Sección | Contenido |
+|---|---|
+| 1. Umbrales | Granovetter (1978) → Valente (1996); y el umbral superior |
+| 2. Contagio complejo | Centola & Macy (2007): puentes anchos vs. lazos largos |
+| 3. Interludio 1 — Mecanismos | Influencias contrarias; fuentes vs. exposiciones; similitud vs. diversidad |
+| 4. Interludio 2 — Transiciones de fase | De segundo y de primer orden |
+| 5. Centralidad compleja | Guilbeault & Centola (2021), con su evidencia mixta |
+| 6. Cómo ver contagio complejo | Firmas empíricas; la asimetría desinformación/corrección |
+| 7. netdiffuseR | Simular, detectar, construir |
+
+# Umbrales para la acción colectiva
+
+## Granovetter (1978): decidir bajo interdependencia
+
+El punto de partida de todo modelo de contagio social es una idea simple de Granovetter: muchas decisiones son **binarias** (actuar o no actuar) y su utilidad **depende de cuántos otros ya actuaron**. Unirse a una huelga, a una protesta, adoptar una tecnología, dejar una sala vacía en una fiesta: en todos estos casos, lo que me conviene cambia con lo que hacen los demás.
+
+Cada individuo $i$ tiene un **umbral** $\tau_i$: la fracción mínima de adoptantes que necesita observar para actuar. La regla de decisión es
+
+$$
+a_i = 1 \iff r \geq \tau_i,
+$$
+
+donde $r$ es la proporción de la población que ya actuó. Lo notable es que la **distribución de umbrales** captura *toda* la dinámica. Si $F(x)$ es la función de distribución acumulada de los umbrales, la fracción de adoptantes evoluciona como
+
+$$
+r(t+1) = F\big(r(t)\big),
+$$
+
+y el equilibrio es un punto fijo, $r_e = F(r_e)$: el proceso se detiene donde la curva $F$ cruza la diagonal.
+
+![El equilibrio de Granovetter: la fracción de adoptantes $r(t)$ se actualiza aplicando la distribución acumulada de umbrales $F$, y se detiene donde $F$ cruza la línea de 45°. Figura original de Granovetter (1978).](figs/contagio/01-granovetter-equilibrio-umbrales.png){width="55%" fig-align="center"}
+
+### Agregación ≠ preferencias individuales
+
+El ejemplo canónico. Hay 100 trabajadores con umbrales $0, 1, 2, \ldots, 99$: uno actúa sin necesitar a nadie, otro necesita ver a uno, otro a dos, y así. Iteramos: el de umbral 0 actúa; eso activa al de umbral 1; eso activa al de umbral 2… **los 100 terminan actuando**.
+
+Ahora quitamos al trabajador de umbral 1 y lo reemplazamos por otro de umbral 2. El de umbral 0 actúa. Nadie tiene umbral 1. Los dos de umbral 2 necesitan ver a dos, y solo hay uno. **Se detiene en 1.**
+
+Dos poblaciones con preferencias casi idénticas —difieren en una sola persona— producen resultados colectivos opuestos: 100 contra 1. Esta es la lección fundacional del bloque, y la razón de que ni encuestas ni promedios permitan predecir la acción colectiva: **el resultado no está en las preferencias, está en su distribución**.
+
+::: callout-note
+## Dos precisiones de Granovetter que se olvidan
+
+- **El umbral no es una preferencia.** Es el punto donde la *utilidad neta* de actuar se vuelve positiva. Un utilitarista puro y alguien sensible al estatus pueden tener el mismo umbral por razones distintas: es "una medida conductual contingente, no una medida pura de preferencias normativas". (De hecho, el umbral se puede derivar formalmente de un juego de coordinación: Morris 2000; Easley & Kleinberg 2010, cap. 19.)
+- **El modelo asume mezcla completa**: todos observan a todos por igual. No captura que importa *quiénes* actúan, no solo cuántos — y en la vida real uno no observa a la población, observa a sus vecinos.
+:::
+
+## Valente (1996): el umbral se vuelve de red
+
+La segunda precisión es la que Valente resuelve: en vez de la proporción global $r$, cada persona mira su **propia red**. La **exposición** de $i$ es la fracción de sus contactos que ya adoptaron,
+
+$$
+E_i = \frac{\sum_{j} X_{ij}\, a_j}{\sum_{j} X_{ij}},
+$$
+
+y adopta cuando $E_i \geq \tau_i$. Es la misma idea de Granovetter, pero ahora la *estructura* de la red decide quién ve a quién — y con eso, el resultado colectivo pasa a depender de la topología. Todo lo que sigue en el bloque es una exploración de esa dependencia.
+
+## El umbral superior: cuando demasiados también es un problema
+
+Si el umbral es el punto donde la utilidad neta se vuelve positiva, nada impide que **demasiada** adopción la vuelva negativa de nuevo. Hay al menos tres mecanismos:
+
+- **Saturación o congestión**: el valor cae con la multitud (el bar de El Farol de Arthur; una app que se vuelve lenta).
+- **Pérdida de distinción**: lo que valía por exclusivo deja de valer cuando lo tiene todo el mundo — el *snob effect* de Leibenstein (1950); el *reverse bandwagon* de Granovetter & Soong (1986).
+- **Señalización de identidad**: abandonar un rasgo cuando lo adoptan los "otros" (Berger & Heath 2007).
+
+Alipour et al. (2024) formalizan esto como un **bi-umbral**: se adopta entre un umbral inferior y uno superior, y sobre el superior se **desadopta**. Con tres casos de Twitter muestran que este modelo predice el *declive* de las modas órdenes de magnitud mejor que el umbral lineal.
+
+![Umbral lineal (verde) vs. bi-umbral (azul): en el segundo, el beneficio neto de adoptar vuelve a ser negativo cuando demasiados lo hacen. Figura de Alipour et al. (2024).](figs/contagio/02-umbral-lineal-vs-bi-umbral.png){width="45%" fig-align="center"}
+
+Guarda esta idea: reaparece al final, porque `netdiffuseR` puede simular desadopción, y porque conecta con la pregunta de cuándo una cascada se revierte.
+
+# Contagio complejo y la debilidad de los lazos largos
+
+## Qué es un contagio complejo
+
+Centola & Macy (2007) llaman **contagio complejo** a uno donde la transmisión no se logra con un solo contacto: se necesitan **varios** contactos que refuercen. Ejemplos: la credibilidad de una leyenda urbana, la adopción de una nueva tecnología, la disposición a participar en una manifestación riesgosa, la adopción de una moda de vanguardia.
+
+¿Por qué una exposición no basta? Cuatro mecanismos, cada uno con su microfundamento:
+
+| Mecanismo | La idea | Microfundamento (para seguir la pista) |
+|---|---|---|
+| **Complementariedad estratégica** | La innovación es costosa para los primeros y barata para los siguientes; se necesita masa crítica para que valga la pena. | Juegos de coordinación (Schelling 1978; Morris 2000); externalidades de red (Katz & Shapiro 1985). |
+| **Credibilidad** | Una innovación no es creíble hasta que varios vecinos la adoptan (los médicos y la tetraciclina). | Cascadas informacionales (Bikhchandani, Hirshleifer & Welch 1992; Banerjee 1992): más adoptantes = más evidencia. |
+| **Legitimidad** | Saber de un movimiento riesgoso no basta para unirse; ver a varios cercanos asistir, sí. | Normas sociales y sesgo de statu quo (Bicchieri 2006; Samuelson & Zeckhauser 1988). |
+| **Contagio emocional** | Los impulsos expresivos se amplifican en reuniones concentradas social y espacialmente. | Efervescencia colectiva y cadenas de rituales de interacción (Collins 2004); contagio emocional (Hatfield et al. 1993). |
+
+## La fortaleza de los lazos débiles… y su límite
+
+Granovetter (1973) mostró que los lazos débiles —conocidos, no íntimos— tienden a conectar actores distantes, y por eso aceleran dramáticamente la difusión: de una enfermedad, de información laboral, de una tecnología. Su frase es célebre: *"lo que sea que se deba difundir puede llegar a un mayor número de personas y atravesar una mayor distancia social cuando se transmite a través de lazos débiles en lugar de fuertes."*
+
+Centola y Macy están **en contra de esa frase**. No del hallazgo, sino de su generalización a "lo que sea que se deba difundir". La clave está en distinguir dos sentidos de "fortaleza":
+
+- **Relacional**: un lazo fuerte conecta amigos cercanos con interacción frecuente.
+- **Estructural**: un lazo es fuerte si facilita propagar algo a nodos distantes.
+
+El descubrimiento de Granovetter es que los lazos débiles en sentido relacional son **fuertes en sentido estructural**: son atajos a través de la topología. Y los lazos fuertes relacionales son estructuralmente débiles porque son redundantes (transitividad: mis amigos ya se conocen).
+
+Pero eso vale para contagio **simple**. Para uno complejo, un lazo largo puede ser débil en *ambos* sentidos: para el contagio simple lo que importa es el **largo** del puente; para el complejo, su **ancho** — cuántos lazos conectan a dos vecindarios. Y recablear lazos largos casi nunca crea puentes anchos.
+
+## El modelo: un anillo con recableado
+
+Definamos $a$ el número mínimo de vecinos adoptantes necesarios para contagiarse, $z$ el número de vecinos, y $\tau = a/z$ el umbral. Como Watts y Strogatz, suponemos umbral e influencia iguales para todos, y grados casi iguales. Los nodos empiezan en un anillo donde cada uno se conecta con sus $z$ vecinos más próximos, y luego recableamos una fracción $p$ de lazos al azar.
+
+::: {layout="[33,33,33]"}
+![El contagio avanza por el anillo: los nodos $j$ y $k$, ya activados (negros), contagian juntos al nodo $l$.](figs/contagio/03-anillo-contagio-basico.png)
+
+![Recableamos $ih \to iq$. En contagio simple, el atajo reduciría el tiempo de propagación. En contagio complejo, **impide por completo la propagación**: $i$ ya no recibe refuerzo suficiente.](figs/contagio/04-anillo-recableo-rompe-puente.png)
+
+![Este recableado sí forma un **puente ancho** entre los vecindarios $J$ y $S$. El efecto neto del recableado depende de si es más probable formar puentes que romperlos.](figs/contagio/05-anillo-recableo-forma-puente.png)
+:::
+
+Con más de un puente en juego el problema deja de ser tratable a mano, así que se simula: $z = 8$, umbrales $\tau = 1/8, 2/8, 3/8$, y se mide la **tasa de propagación** (iteraciones hasta que el contagio alcanza el 99% de la red) en función de $p$, desde la red regular ($p=0$) hasta la aleatoria ($p=1$), pasando por el mundo pequeño.
+
+![Tiempo hasta saturar la red según la fracción $p$ de lazos recableados, para tres umbrales. Con $\tau = 1/8$ (contagio simple), más atajos = más rápido, siempre. Con $\tau = 2/8$ y $3/8$, el recableado primero no ayuda, luego ayuda un poco, y finalmente **impide la propagación**. Figura de Centola & Macy (2007).](figs/contagio/06-centola-macy-tiempo-saturacion.png){width="60%" fig-align="center"}
+
+::: {.callout-important}
+## Resultados principales de Centola & Macy (2007)
+
+1. **El contagio complejo no se beneficia de niveles bajos de aleatorización.** Con $\tau = 2/8$, la curva es plana hasta $p \approx 10^{-3}$.
+2. **El efecto de $p$ sobre el tiempo de saturación no es monótono** para contagios complejos: baja, toca un mínimo y sube hasta que la propagación falla. Es un ejemplo de **transición de fase de primer orden** en la propagación (Interludio 2).
+3. **La difusión de información no es equivalente a la difusión de comportamientos.** La frase de Granovetter es correcta para la primera y falsa para la segunda.
+:::
+
+Recuerda la figura de Watts–Strogatz del capítulo de mecanismos de formación: la misma perilla $p$ que allí hacía "pequeño" al mundo es la que aquí decide si un comportamiento se propaga. En la sección de `netdiffuseR` reproduciremos este resultado con diez líneas de código.
