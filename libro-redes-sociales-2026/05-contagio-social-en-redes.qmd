@@ -137,3 +137,60 @@ Con más de un puente en juego el problema deja de ser tratable a mano, así que
 :::
 
 Recuerda la figura de Watts–Strogatz del capítulo de mecanismos de formación: la misma perilla $p$ que allí hacía "pequeño" al mundo es la que aquí decide si un comportamiento se propaga. En la sección de `netdiffuseR` reproduciremos este resultado con diez líneas de código.
+
+# Interludio 1 — Mecanismos: por qué varias fuentes
+
+Antes de seguir con la estructura, conviene detenerse en el *por qué*. Tres ideas que la literatura reciente ha decantado, y que explican buena parte de lo que viene.
+
+## Las influencias contrarias
+
+En un contagio simple, los no-adoptantes son irrelevantes: si tengo contacto con alguien con sarampión, me contagio, sin importar cuántos sanos conozca. En un contagio complejo, los no-adoptantes **son una señal activa**: cada contacto que no adoptó dice, en silencio, "esto no es aceptado". Centola las llama *influencias contrarias* (*countervailing influences*). State & Adamic (2015) lo midieron en el cambio masivo de fotos de perfil en Facebook en apoyo al matrimonio igualitario: lo que predecía adoptar no era cuántos amigos ya lo habían hecho, sino **qué fracción** — el número de amigos que *no* lo habían hecho pesaba en contra.
+
+La consecuencia es la primera sorpresa del bloque: **cuanto más conectado estás, más influencias contrarias enfrentas**. Un actor con cientos de contactos ve, ante cualquier innovación nueva, a cientos que todavía no la adoptan. Por eso los "influyentes" suelen ser *frenos* y no *aceleradores* de los contagios complejos, y por eso tantos movimientos —la Primavera Árabe en Egipto (Steinert-Threlkeld 2017), la adopción de Twitter (Toole et al. 2012), el *Ice Bucket Challenge* (Sprague & House 2017)— nacieron en la **periferia**, donde con pocos contactos basta poco refuerzo, y desde ahí crecieron hasta arrastrar al centro.
+
+## Fuentes, no exposiciones
+
+La segunda idea corrige una lectura ingenua del umbral: lo que cuenta no es cuántas *veces* recibo la señal, sino de cuántas **fuentes distintas e independientes** la recibo. La psicología social lo estableció hace décadas:
+
+- **Asch (1955)**: con un cómplice que da la respuesta incorrecta, el 3% se conforma; con dos, el 13%; con tres, el 33%. Y después, **meseta**: más cómplices no agregan casi nada. Es un umbral con saturación, medido en laboratorio (Bond 2005 lo confirma en un meta-análisis de 125 estudios).
+- **Latané (1981)**: la *ley psicosocial* del impacto social, $I = s\,N^{t}$ con $t < 1$ — cada fuente adicional agrega impacto, pero cada vez menos. Es la misma forma funcional de los retornos decrecientes del término `gwesp` que vimos en ERGM.
+- **Harkins & Petty (1981, 1987)**, el *efecto de fuentes múltiples*: los mismos argumentos, presentados por varias personas, persuaden más que repetidos por una — porque provocan más **escrutinio**. Pero el efecto **desaparece** si se dice que las fuentes son miembros de un mismo comité que acordó una posición: solo cuentan las fuentes **independientes**. Y **Wilder (1977)** mostró lo mismo para la conformidad: dos personas de grupos distintos pesan más que dos del mismo grupo.
+- **Morgan et al. (2012)**: el uso de información social crece con el número de demostradores *y* con su consenso.
+
+La neurociencia muestra por qué esto pesa tanto: la señal social no se procesa como información neutra, sino como **valor** — cambiar de opinión ante el grupo se ve en el cerebro como un error de predicción del aprendizaje por refuerzo (Klucharev et al. 2009), y la opinión de los pares altera la codificación del valor de las cosas (Zaki et al. 2011; Zhang & Gläscher 2020).
+
+Traducido a redes: no cuentes amigos adoptantes, cuenta **grupos distintos** de amigos adoptantes. Ugander et al. (2012) lo demostraron con el registro a Facebook: lo que predice unirse no es el número de contactos invitando, sino el número de **componentes conectados distintos** entre ellos — la *diversidad estructural*.
+
+## Similitud o diversidad: depende de la barrera
+
+La tercera idea afina la anterior. Si las fuentes independientes son lo que convence, ¿deben parecerse a mí o ser distintas entre sí? Centola (2022) responde que **depende de cuál barrera opera**: cuando la barrera es **credibilidad** o **emoción**, convencen los pares *similares* — la prueba social de mi propio grupo (Centola 2011: la homofilia aumenta la adopción de conductas de salud). Cuando la barrera es **legitimidad**, convencen las fuentes *diversas*: en el caso del signo igual, la gente cambió su foto cuando vio adoptantes de círculos sociales distintos — abuelos, colegas, amigos del colegio — porque eso probaba que el apoyo era amplio y el riesgo social, bajo. La misma estructura de refuerzo puede necesitar homofilia o heterofilia según *qué* se está difundiendo.
+
+# Interludio 2 — Transiciones de fase de primer orden
+
+Centola & Macy dicen que el colapso de la propagación al aumentar $p$ es "una transición de fase de primer orden". Vale la pena entender qué significa, porque el concepto reaparece en toda la ciencia de la complejidad social.
+
+## Segundo orden: el cambio es continuo
+
+El modelo de Ising con espines $s_i = \pm 1$ y **sin** campo externo ($B = 0$): al bajar la temperatura, la magnetización $m$ pasa de cero a distinta de cero de manera **continua** — la curva es empinada cerca de $T_c$ pero no salta.
+
+![Ising sin campo externo: la magnetización $\langle |M| \rangle$ crece continuamente al bajar la temperatura bajo $T_c$ (línea punteada). Una transición de **segundo orden**.](figs/contagio/07-ising-segundo-orden-M-vs-T.png){width="50%" fig-align="center"}
+
+El modelo de **Schelling** de segregación se comporta parecido: la segregación emerge gradualmente al variar la tolerancia.
+
+![Modelo de Schelling: la segregación espacial emerge de preferencias individuales moderadas. Otro cambio gradual de un parámetro de orden.](figs/contagio/09-schelling-segregacion.png){width="35%" fig-align="center"}
+
+## Primer orden: el cambio es un salto
+
+Ahora Ising **con** campo externo $B$, manteniendo $T < T_c$. Al variar $B$, la magnetización **salta** de $-1$ a $+1$ de golpe — y no salta en el mismo punto al subir que al bajar: hay **histéresis**. Cerca del salto coexisten dos estados posibles (los dos signos de $m$), y cuál se observa depende de la historia.
+
+![Ising con campo externo, $T < T_c$: la magnetización salta discontinuamente al cambiar el signo del campo $H$, y el punto de salto depende de la temperatura. Una transición de **primer orden**.](figs/contagio/08-ising-primer-orden-M-vs-H.png){width="55%" fig-align="center"}
+
+Tres marcas definen una transición de primer orden, y las tres importan para el contagio: (1) el **parámetro de orden salta** (no crece suavemente); (2) hay **histéresis**: revertir exige ir mucho más atrás que el punto donde se produjo el salto; (3) hay **coexistencia y metaestabilidad**: cerca del punto crítico el sistema puede quedar "atrapado" en un estado que no es el de equilibrio.
+
+## Y en el contagio
+
+Un contagio que requiere refuerzo se comporta como el segundo caso. La figura muestra el tamaño del brote según la probabilidad de transmisión en un modelo con refuerzo: para ciertos parámetros el brote crece de forma suave, pero para otros **salta** de casi nada a casi toda la población en un punto crítico.
+
+![Tamaño del brote $S$ según la probabilidad de transmisión $\phi$ en un modelo de contagio con refuerzo, para tres combinaciones de grado medio $c$ y fracción inicial $\rho$. La curva del medio salta: transición de primer orden. Figura de Newman, *Networks*.](figs/contagio/10-brote-salto-primer-orden.png){width="50%" fig-align="center"}
+
+Es exactamente lo que Centola & Macy observan al aumentar $p$: la saturación pasa de "completa" a "ninguna" de golpe, no gradualmente. Y las tres marcas tienen lectura social directa: los *tipping points* de las normas (Centola et al. 2018 los provocaron experimentalmente con una minoría comprometida del 25%), la **irreversibilidad** de muchos cambios sociales (una vez que una norma cayó, restaurarla cuesta mucho más que lo que costó derribarla), y la **impredecibilidad** cerca del punto crítico, donde poblaciones casi idénticas producen resultados opuestos — que es, dicho en otro lenguaje, el ejemplo de los 100 trabajadores con que empezamos.
