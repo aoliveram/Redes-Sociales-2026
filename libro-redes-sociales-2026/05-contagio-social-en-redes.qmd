@@ -194,3 +194,66 @@ Un contagio que requiere refuerzo se comporta como el segundo caso. La figura mu
 ![Tamaño del brote $S$ según la probabilidad de transmisión $\phi$ en un modelo de contagio con refuerzo, para tres combinaciones de grado medio $c$ y fracción inicial $\rho$. La curva del medio salta: transición de primer orden. Figura de Newman, *Networks*.](figs/contagio/10-brote-salto-primer-orden.png){width="50%" fig-align="center"}
 
 Es exactamente lo que Centola & Macy observan al aumentar $p$: la saturación pasa de "completa" a "ninguna" de golpe, no gradualmente. Y las tres marcas tienen lectura social directa: los *tipping points* de las normas (Centola et al. 2018 los provocaron experimentalmente con una minoría comprometida del 25%), la **irreversibilidad** de muchos cambios sociales (una vez que una norma cayó, restaurarla cuesta mucho más que lo que costó derribarla), y la **impredecibilidad** cerca del punto crítico, donde poblaciones casi idénticas producen resultados opuestos — que es, dicho en otro lenguaje, el ejemplo de los 100 trabajadores con que empezamos.
+
+# Centralidad compleja: por qué la periferia importa
+
+## El diagnóstico
+
+Todas las centralidades que aprendimos —grado, intermediación, cercanía, autovector— comparten un supuesto escondido: que **un solo lazo constituye un paso** en la red. Es decir, están construidas sobre el *largo de camino simple*. Guilbeault & Centola (2021) muestran que ese supuesto las vuelve ciegas para los contagios complejos: para un comportamiento que necesita refuerzo, un lazo aislado *no es un camino*, y el nodo "central" según grado o intermediación puede estar, para ese contagio, en el peor lugar posible.
+
+## La medida
+
+La construcción es en tres pasos. El **ancho de un puente** entre dos vecindarios es cuántos lazos reforzantes los conectan. El **largo de camino complejo** entre $A$ y $B$ es cuántos puentes *suficientemente anchos* hay que atravesar para ir de uno a otro (puede ser mucho mayor que el largo simple: un lazo débil directo puede no contar). Y la **centralidad compleja** de un nodo es el promedio de sus largos de camino complejo hacia toda la red: a cuánta población alcanza vía cadenas de puentes anchos.
+
+::: callout-warning
+## Figura pendiente
+Figura 1 de Guilbeault & Centola (2021): camino simple vs. camino complejo entre A y B. Guardar como `figs/contagio/11-guilbeault-centola-camino-complejo.png` y reemplazar este recuadro por la imagen.
+:::
+
+Un detalle que conviene decir en voz alta. Revisando el [código publicado](https://github.com/drguilbe/complexpaths), la centralidad compleja se **calcula simulando**: para cada nodo, se activa su vecindario y se corre una cascada de umbral determinista; el largo de camino complejo se mide sobre lo que se activó. Es una centralidad *definida por un proceso* —como PageRank lo está por un paseo aleatorio—, lo que es legítimo, pero implica dos cosas: requiere **asumir un umbral** $T$, y su validación en simulación (elegir semillas con la medida y evaluarlas con el mismo modelo de umbral) es casi circular. La prueba no circular es la empírica.
+
+## Qué encuentran
+
+En 74 redes escolares (Add Health), las semillas elegidas por centralidad compleja superan a las elegidas por grado, intermediación, autovector, k-core y percolación, para todo umbral. Y en las 43 aldeas indias del programa de microfinanzas de Banerjee et al. (2013), las aldeas con mayor largo de camino complejo promedio difundieron más, y los hogares con alta centralidad compleja —no los "líderes" que los investigadores habían preseleccionado— predicen mejor que sus vecinos adopten.
+
+Su afirmación textual es cuidadosa: *"network locations with low degree centrality and low betweenness centrality **may** nevertheless be the most influential locations in the population."* El *may* importa: no es que la periferia gane por ser periferia; gana **cuando está embebida en un vecindario denso con puentes anchos**.
+
+## La evidencia empírica es mixta
+
+Las simulaciones establecen el patrón; los datos lo matizan.
+
+| A favor de "los hubs dispersos fallan" | Matices |
+|---|---|
+| **Kim et al. (2015, *Lancet*)** — RCT en 32 aldeas: sembrar en los de mayor *in-degree* **no superó al azar**. | **Banerjee et al. (2013)** — su centralidad de difusión (camino simple) **sí** predijo la adopción: la *información* viaja simple aunque adoptar sea complejo. |
+| **Beaman et al. (2021, *AER*)** — RCT en 200 aldeas: la adopción requiere ≥ 2 contactos informados; la siembra por teoría de redes supera al extensionista. | **Valente & Vega Yon (2020)** — con *distribuciones* de umbral (media 0.33 y varianza), las semillas de alto in-degree son las más rápidas y las **marginales las peores**. |
+| **Centola (2010, *Science*)** — las redes clusterizadas difunden más un comportamiento de salud que las aleatorias. | **Iyengar, Van den Bulte & Valente (2011)** — los líderes de opinión sí aceleran la adopción de un fármaco. |
+| **Ugander et al. (2012)**; **Romero et al. (2011)**; **Mønsted et al. (2017)** — diversidad estructural, persistencia y experimentos con bots. | **Watts (2002)** — en el régimen de baja conectividad los hubs *sí* disparan cascadas. |
+| **Barberá et al. (2015)**; **Steinert-Threlkeld (2017)** — la periferia genera el alcance de las protestas. | **Airoldi & Christakis (2024)** — semillas de *mayor* grado (nominadas por amigos) funcionan: pero están embebidas en clusters. |
+
+::: {.callout-important}
+## Lo que sí está firme
+Lo que fracasa no es "el hub", sino la **siembra dispersa**: un nodo aislado cuyos vecinos solo lo ven a él. Lo que funciona es la **siembra reforzada** —semillas adyacentes que se dan refuerzo mutuo—, esté en la periferia (donde es barata) o en el centro. *Para contagio simple, que la semilla vea lejos; para contagio complejo, que la semilla vea acompañada.*
+:::
+
+# Cómo ver contagio complejo en la literatura
+
+¿Cómo saber, con datos, si algo se propaga como contagio complejo? Cinco firmas que la literatura ha usado, cada una con su estudio de referencia:
+
+1. **Persistencia.** Romero, Meeder & Kleinberg (2011): en Twitter, los hashtags *políticos* y los controversiales necesitan más exposiciones repetidas para ser adoptados que los idiomáticos o de entretenimiento — la curva de adopción según número de exposiciones tiene distinta forma según el tema.
+2. **Experimento con fuentes.** Mønsted et al. (2017): con bots en Twitter que controlan cuántas fuentes distintas exponen a cada persona, la probabilidad de adoptar crece con el número de fuentes de manera consistente con contagio complejo, no simple.
+3. **Umbral en campo.** Beaman et al. (2021): en Malawi, los agricultores adoptan una tecnología cuando al menos **dos** contactos la conocen; con uno, casi nadie.
+4. **Diversidad estructural.** Ugander et al. (2012): lo que predice unirse a Facebook es el número de *componentes* distintos entre quienes te invitan.
+5. **Puentes anchos históricos.** Saetre (2025, *AJS*): *Un violador en tu camino* saltó de Valparaíso a 60 países en semanas. La diáspora chilena formada en los 70 funcionó como **puente ancho latente**: clusters de personas con lazos simultáneos a Chile y a sus sociedades de acogida, que primero replicaron la performance en solidaridad y luego permitieron que locales no chilenos la adaptaran. La autora mide el ancho del puente con el tamaño de la diáspora por ciudad *y* sus lazos vigentes con Chile, y muestra la secuencia diáspora → adaptación local → prescindir del intermediario.
+
+::: callout-warning
+## Figura pendiente
+Mapa o secuencia temporal de la difusión de *Un violador en tu camino* (Saetre 2025). Guardar como `figs/contagio/12-saetre-un-violador-difusion.png` y reemplazar este recuadro.
+:::
+
+## La asimetría: lo que confirma es simple, lo que desafía es complejo
+
+Una consecuencia de todo lo anterior, que Centola (2022) desarrolla y que vale un párrafo propio: **las redes no son tuberías, son prismas**. La información que *confirma* los sesgos de una comunidad es fácil de entender y de aceptar — se propaga como contagio **simple**, y los nodos muy conectados la difunden sin fricción. La información que *desafía* esos sesgos encuentra resistencia — es un contagio **complejo**, y necesita refuerzo de fuentes que la comunidad considere relevantes. De ahí la asimetría estructural entre desinformación y corrección: la corrección siempre corre con desventaja de mecanismo, no solo de contenido. Las mascarillas en la pandemia son el ejemplo de Centola: la misma conducta fue contagio simple en comunidades que confiaban en la autoridad sanitaria y contagio complejo donde no.
+
+## El *backfire*: cuando la estrategia del contagio simple mata al complejo
+
+Google+ (2011–2019) es el caso de manual. Google usó su alcance para asociar a cientos de millones de cuentas con Google+ en una campaña masiva de *awareness*. Logró que todo el mundo supiera que existía — y que todo el mundo supiera que **nadie lo usaba**. Esa visibilidad convirtió a cada usuario de Facebook en una influencia contraria explícita: prueba social *en contra*. Centola lo llama la *falacia del fregadero* (*kitchen sink fallacy*): aplicar agresivamente estrategias de contagio simple (alcance, difusión masiva) a un contagio complejo (una red social, que requiere coordinación) no es inocuo — puede impedir la adopción.
