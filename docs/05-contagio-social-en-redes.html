@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aníbal Olivera Morales">
+
+<title>5&nbsp; Contagio social en redes – Redes Sociales — DCCS 2026</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./referencias.html" rel="next">
+<link href="./04-inferencia-qap-y-ergm.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bf8030b5a8b8f2de5bceddfb8bf38a1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-2a6abe4c656e78118c5caf32e94a2824.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-bf8030b5a8b8f2de5bceddfb8bf38a1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-contagio-social-en-redes.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Contagio social en redes</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Redes Sociales — DCCS 2026</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/aoliveram/Redes-Sociales-2026" title="Ejecutar el código" class="quarto-navigation-tool px-1" aria-label="Ejecutar el código"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bienvenida</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-setup-computacional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Kit computacional recomendado para el investigador</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-fundamentos-matematicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos matemáticos en teoría de redes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-mecanismos-de-formacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Mecanismos de Formación</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-inferencia-qap-y-ergm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferencia en redes: QAP y ERGM</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-contagio-social-en-redes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Contagio social en redes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./referencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#umbrales-para-la-acción-colectiva" id="toc-umbrales-para-la-acción-colectiva" class="nav-link active" data-scroll-target="#umbrales-para-la-acción-colectiva"><span class="header-section-number">6</span> Umbrales para la acción colectiva</a>
+  <ul class="collapse">
+  <li><a href="#granovetter-1978-decidir-bajo-interdependencia" id="toc-granovetter-1978-decidir-bajo-interdependencia" class="nav-link" data-scroll-target="#granovetter-1978-decidir-bajo-interdependencia"><span class="header-section-number">6.1</span> Granovetter (1978): decidir bajo interdependencia</a>
+  <ul class="collapse">
+  <li><a href="#agregación-preferencias-individuales" id="toc-agregación-preferencias-individuales" class="nav-link" data-scroll-target="#agregación-preferencias-individuales"><span class="header-section-number">6.1.1</span> Agregación ≠ preferencias individuales</a></li>
+  </ul></li>
+  <li><a href="#valente-1996-el-umbral-se-vuelve-de-red" id="toc-valente-1996-el-umbral-se-vuelve-de-red" class="nav-link" data-scroll-target="#valente-1996-el-umbral-se-vuelve-de-red"><span class="header-section-number">6.2</span> Valente (1996): el umbral se vuelve de red</a></li>
+  <li><a href="#el-umbral-superior-cuando-demasiados-también-es-un-problema" id="toc-el-umbral-superior-cuando-demasiados-también-es-un-problema" class="nav-link" data-scroll-target="#el-umbral-superior-cuando-demasiados-también-es-un-problema"><span class="header-section-number">6.3</span> El umbral superior: cuando demasiados también es un problema</a></li>
+  </ul></li>
+  <li><a href="#contagio-complejo-y-la-debilidad-de-los-lazos-largos" id="toc-contagio-complejo-y-la-debilidad-de-los-lazos-largos" class="nav-link" data-scroll-target="#contagio-complejo-y-la-debilidad-de-los-lazos-largos"><span class="header-section-number">7</span> Contagio complejo y la debilidad de los lazos largos</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-un-contagio-complejo" id="toc-qué-es-un-contagio-complejo" class="nav-link" data-scroll-target="#qué-es-un-contagio-complejo"><span class="header-section-number">7.1</span> Qué es un contagio complejo</a></li>
+  <li><a href="#la-fortaleza-de-los-lazos-débiles-y-su-límite" id="toc-la-fortaleza-de-los-lazos-débiles-y-su-límite" class="nav-link" data-scroll-target="#la-fortaleza-de-los-lazos-débiles-y-su-límite"><span class="header-section-number">7.2</span> La fortaleza de los lazos débiles… y su límite</a></li>
+  <li><a href="#el-modelo-un-anillo-con-recableado" id="toc-el-modelo-un-anillo-con-recableado" class="nav-link" data-scroll-target="#el-modelo-un-anillo-con-recableado"><span class="header-section-number">7.3</span> El modelo: un anillo con recableado</a></li>
+  </ul></li>
+  <li><a href="#interludio-1-mecanismos-por-qué-varias-fuentes" id="toc-interludio-1-mecanismos-por-qué-varias-fuentes" class="nav-link" data-scroll-target="#interludio-1-mecanismos-por-qué-varias-fuentes"><span class="header-section-number">8</span> Interludio 1 — Mecanismos: por qué varias fuentes</a>
+  <ul class="collapse">
+  <li><a href="#las-influencias-contrarias" id="toc-las-influencias-contrarias" class="nav-link" data-scroll-target="#las-influencias-contrarias"><span class="header-section-number">8.1</span> Las influencias contrarias</a></li>
+  <li><a href="#fuentes-no-exposiciones" id="toc-fuentes-no-exposiciones" class="nav-link" data-scroll-target="#fuentes-no-exposiciones"><span class="header-section-number">8.2</span> Fuentes, no exposiciones</a></li>
+  <li><a href="#similitud-o-diversidad-depende-de-la-barrera" id="toc-similitud-o-diversidad-depende-de-la-barrera" class="nav-link" data-scroll-target="#similitud-o-diversidad-depende-de-la-barrera"><span class="header-section-number">8.3</span> Similitud o diversidad: depende de la barrera</a></li>
+  </ul></li>
+  <li><a href="#interludio-2-transiciones-de-fase-de-primer-orden" id="toc-interludio-2-transiciones-de-fase-de-primer-orden" class="nav-link" data-scroll-target="#interludio-2-transiciones-de-fase-de-primer-orden"><span class="header-section-number">9</span> Interludio 2 — Transiciones de fase de primer orden</a>
+  <ul class="collapse">
+  <li><a href="#segundo-orden-el-cambio-es-continuo" id="toc-segundo-orden-el-cambio-es-continuo" class="nav-link" data-scroll-target="#segundo-orden-el-cambio-es-continuo"><span class="header-section-number">9.1</span> Segundo orden: el cambio es continuo</a></li>
+  <li><a href="#primer-orden-el-cambio-es-un-salto" id="toc-primer-orden-el-cambio-es-un-salto" class="nav-link" data-scroll-target="#primer-orden-el-cambio-es-un-salto"><span class="header-section-number">9.2</span> Primer orden: el cambio es un salto</a></li>
+  <li><a href="#y-en-el-contagio" id="toc-y-en-el-contagio" class="nav-link" data-scroll-target="#y-en-el-contagio"><span class="header-section-number">9.3</span> Y en el contagio</a></li>
+  </ul></li>
+  <li><a href="#centralidad-compleja-por-qué-la-periferia-importa" id="toc-centralidad-compleja-por-qué-la-periferia-importa" class="nav-link" data-scroll-target="#centralidad-compleja-por-qué-la-periferia-importa"><span class="header-section-number">10</span> Centralidad compleja: por qué la periferia importa</a>
+  <ul class="collapse">
+  <li><a href="#el-diagnóstico" id="toc-el-diagnóstico" class="nav-link" data-scroll-target="#el-diagnóstico"><span class="header-section-number">10.1</span> El diagnóstico</a></li>
+  <li><a href="#la-medida" id="toc-la-medida" class="nav-link" data-scroll-target="#la-medida"><span class="header-section-number">10.2</span> La medida</a></li>
+  <li><a href="#qué-encuentran" id="toc-qué-encuentran" class="nav-link" data-scroll-target="#qué-encuentran"><span class="header-section-number">10.3</span> Qué encuentran</a></li>
+  <li><a href="#la-evidencia-empírica-es-mixta" id="toc-la-evidencia-empírica-es-mixta" class="nav-link" data-scroll-target="#la-evidencia-empírica-es-mixta"><span class="header-section-number">10.4</span> La evidencia empírica es mixta</a></li>
+  </ul></li>
+  <li><a href="#cómo-ver-contagio-complejo-en-la-literatura" id="toc-cómo-ver-contagio-complejo-en-la-literatura" class="nav-link" data-scroll-target="#cómo-ver-contagio-complejo-en-la-literatura"><span class="header-section-number">11</span> Cómo ver contagio complejo en la literatura</a>
+  <ul class="collapse">
+  <li><a href="#la-asimetría-lo-que-confirma-es-simple-lo-que-desafía-es-complejo" id="toc-la-asimetría-lo-que-confirma-es-simple-lo-que-desafía-es-complejo" class="nav-link" data-scroll-target="#la-asimetría-lo-que-confirma-es-simple-lo-que-desafía-es-complejo"><span class="header-section-number">11.1</span> La asimetría: lo que confirma es simple, lo que desafía es complejo</a></li>
+  <li><a href="#el-backfire-cuando-la-estrategia-del-contagio-simple-mata-al-complejo" id="toc-el-backfire-cuando-la-estrategia-del-contagio-simple-mata-al-complejo" class="nav-link" data-scroll-target="#el-backfire-cuando-la-estrategia-del-contagio-simple-mata-al-complejo"><span class="header-section-number">11.2</span> El <em>backfire</em>: cuando la estrategia del contagio simple mata al complejo</a></li>
+  </ul></li>
+  <li><a href="#netdiffuser-simular-detectar-construir" id="toc-netdiffuser-simular-detectar-construir" class="nav-link" data-scroll-target="#netdiffuser-simular-detectar-construir"><span class="header-section-number">12</span> netdiffuseR: simular, detectar, construir</a>
+  <ul class="collapse">
+  <li><a href="#simular-las-mismas-semillas-juntas-o-separadas" id="toc-simular-las-mismas-semillas-juntas-o-separadas" class="nav-link" data-scroll-target="#simular-las-mismas-semillas-juntas-o-separadas"><span class="header-section-number">12.1</span> Simular: las mismas semillas, juntas o separadas</a></li>
+  <li><a href="#detectar-hay-firma-de-contagio-complejo-en-datos-reales" id="toc-detectar-hay-firma-de-contagio-complejo-en-datos-reales" class="nav-link" data-scroll-target="#detectar-hay-firma-de-contagio-complejo-en-datos-reales"><span class="header-section-number">12.2</span> Detectar: ¿hay firma de contagio complejo en datos reales?</a></li>
+  <li><a href="#construir-de-la-encuesta-al-diffnet" id="toc-construir-de-la-encuesta-al-diffnet" class="nav-link" data-scroll-target="#construir-de-la-encuesta-al-diffnet"><span class="header-section-number">12.3</span> Construir: de la encuesta al <code>diffnet</code></a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Contagio social en redes</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aníbal Olivera Morales </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">septiembre 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Qué haremos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En la primera mitad de la clase vimos el contagio <strong>simple</strong>: una exposición basta, y los modelos SIR describen cómo se propaga. Este bloque parte de la pregunta que ese modelo no puede responder: <strong>¿y si una exposición no basta?</strong> Cuando adoptar cuesta —porque hay que coordinarse, porque no es creíble, porque puede ser mal visto, o porque se necesita el ánimo de otros— se necesitan <strong>varias</strong> fuentes que refuercen. Eso es un contagio <strong>complejo</strong>, y cambia todo lo que creíamos saber sobre qué estructuras difunden bien.</p>
+<p>La frase-guía del bloque: <em>para un contagio simple, que la semilla vea lejos; para uno complejo, que la semilla vea acompañada.</em></p>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sección</th>
+<th>Contenido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Umbrales</td>
+<td>Granovetter (1978) → Valente (1996); y el umbral superior</td>
+</tr>
+<tr class="even">
+<td>2. Contagio complejo</td>
+<td>Centola &amp; Macy (2007): puentes anchos vs.&nbsp;lazos largos</td>
+</tr>
+<tr class="odd">
+<td>3. Interludio 1 — Mecanismos</td>
+<td>Influencias contrarias; fuentes vs.&nbsp;exposiciones; similitud vs.&nbsp;diversidad</td>
+</tr>
+<tr class="even">
+<td>4. Interludio 2 — Transiciones de fase</td>
+<td>De segundo y de primer orden</td>
+</tr>
+<tr class="odd">
+<td>5. Centralidad compleja</td>
+<td>Guilbeault &amp; Centola (2021), con su evidencia mixta</td>
+</tr>
+<tr class="even">
+<td>6. Cómo ver contagio complejo</td>
+<td>Firmas empíricas; la asimetría desinformación/corrección</td>
+</tr>
+<tr class="odd">
+<td>7. netdiffuseR</td>
+<td>Simular, detectar, construir</td>
+</tr>
+</tbody>
+</table>
+<section id="umbrales-para-la-acción-colectiva" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Umbrales para la acción colectiva</h1>
+<section id="granovetter-1978-decidir-bajo-interdependencia" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="granovetter-1978-decidir-bajo-interdependencia"><span class="header-section-number">6.1</span> Granovetter (1978): decidir bajo interdependencia</h2>
+<p>El punto de partida de todo modelo de contagio social es una idea simple de Granovetter: muchas decisiones son <strong>binarias</strong> (actuar o no actuar) y su utilidad <strong>depende de cuántos otros ya actuaron</strong>. Unirse a una huelga, a una protesta, adoptar una tecnología, dejar una sala vacía en una fiesta: en todos estos casos, lo que me conviene cambia con lo que hacen los demás.</p>
+<p>Cada individuo <span class="math inline">\(i\)</span> tiene un <strong>umbral</strong> <span class="math inline">\(\tau_i\)</span>: la fracción mínima de adoptantes que necesita observar para actuar. La regla de decisión es</p>
+<p><span class="math display">\[
+a_i = 1 \iff r \geq \tau_i,
+\]</span></p>
+<p>donde <span class="math inline">\(r\)</span> es la proporción de la población que ya actuó. Lo notable es que la <strong>distribución de umbrales</strong> captura <em>toda</em> la dinámica. Si <span class="math inline">\(F(x)\)</span> es la función de distribución acumulada de los umbrales, la fracción de adoptantes evoluciona como</p>
+<p><span class="math display">\[
+r(t+1) = F\big(r(t)\big),
+\]</span></p>
+<p>y el equilibrio es un punto fijo, <span class="math inline">\(r_e = F(r_e)\)</span>: el proceso se detiene donde la curva <span class="math inline">\(F\)</span> cruza la diagonal.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/contagio/01-granovetter-equilibrio-umbrales.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption>El equilibrio de Granovetter: la fracción de adoptantes <span class="math inline">\(r(t)\)</span> se actualiza aplicando la distribución acumulada de umbrales <span class="math inline">\(F\)</span>, y se detiene donde <span class="math inline">\(F\)</span> cruza la línea de 45°. Figura original de Granovetter (1978).</figcaption>
+</figure>
+</div>
+<section id="agregación-preferencias-individuales" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="agregación-preferencias-individuales"><span class="header-section-number">6.1.1</span> Agregación ≠ preferencias individuales</h3>
+<p>El ejemplo canónico. Hay 100 trabajadores con umbrales <span class="math inline">\(0, 1, 2, \ldots, 99\)</span>: uno actúa sin necesitar a nadie, otro necesita ver a uno, otro a dos, y así. Iteramos: el de umbral 0 actúa; eso activa al de umbral 1; eso activa al de umbral 2… <strong>los 100 terminan actuando</strong>.</p>
+<p>Ahora quitamos al trabajador de umbral 1 y lo reemplazamos por otro de umbral 2. El de umbral 0 actúa. Nadie tiene umbral 1. Los dos de umbral 2 necesitan ver a dos, y solo hay uno. <strong>Se detiene en 1.</strong></p>
+<p>Dos poblaciones con preferencias casi idénticas —difieren en una sola persona— producen resultados colectivos opuestos: 100 contra 1. Esta es la lección fundacional del bloque, y la razón de que ni encuestas ni promedios permitan predecir la acción colectiva: <strong>el resultado no está en las preferencias, está en su distribución</strong>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Dos precisiones de Granovetter que se olvidan
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>El umbral no es una preferencia.</strong> Es el punto donde la <em>utilidad neta</em> de actuar se vuelve positiva. Un utilitarista puro y alguien sensible al estatus pueden tener el mismo umbral por razones distintas: es “una medida conductual contingente, no una medida pura de preferencias normativas”. (De hecho, el umbral se puede derivar formalmente de un juego de coordinación: Morris 2000; Easley &amp; Kleinberg 2010, cap. 19.)</li>
+<li><strong>El modelo asume mezcla completa</strong>: todos observan a todos por igual. No captura que importa <em>quiénes</em> actúan, no solo cuántos — y en la vida real uno no observa a la población, observa a sus vecinos.</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="valente-1996-el-umbral-se-vuelve-de-red" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="valente-1996-el-umbral-se-vuelve-de-red"><span class="header-section-number">6.2</span> Valente (1996): el umbral se vuelve de red</h2>
+<p>La segunda precisión es la que Valente resuelve: en vez de la proporción global <span class="math inline">\(r\)</span>, cada persona mira su <strong>propia red</strong>. La <strong>exposición</strong> de <span class="math inline">\(i\)</span> es la fracción de sus contactos que ya adoptaron,</p>
+<p><span class="math display">\[
+E_i = \frac{\sum_{j} X_{ij}\, a_j}{\sum_{j} X_{ij}},
+\]</span></p>
+<p>y adopta cuando <span class="math inline">\(E_i \geq \tau_i\)</span>. Es la misma idea de Granovetter, pero ahora la <em>estructura</em> de la red decide quién ve a quién — y con eso, el resultado colectivo pasa a depender de la topología. Todo lo que sigue en el bloque es una exploración de esa dependencia.</p>
+</section>
+<section id="el-umbral-superior-cuando-demasiados-también-es-un-problema" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="el-umbral-superior-cuando-demasiados-también-es-un-problema"><span class="header-section-number">6.3</span> El umbral superior: cuando demasiados también es un problema</h2>
+<p>Si el umbral es el punto donde la utilidad neta se vuelve positiva, nada impide que <strong>demasiada</strong> adopción la vuelva negativa de nuevo. Hay al menos tres mecanismos:</p>
+<ul>
+<li><strong>Saturación o congestión</strong>: el valor cae con la multitud (el bar de El Farol de Arthur; una app que se vuelve lenta).</li>
+<li><strong>Pérdida de distinción</strong>: lo que valía por exclusivo deja de valer cuando lo tiene todo el mundo — el <em>snob effect</em> de Leibenstein (1950); el <em>reverse bandwagon</em> de Granovetter &amp; Soong (1986).</li>
+<li><strong>Señalización de identidad</strong>: abandonar un rasgo cuando lo adoptan los “otros” (Berger &amp; Heath 2007).</li>
+</ul>
+<p>Alipour et al.&nbsp;(2024) formalizan esto como un <strong>bi-umbral</strong>: se adopta entre un umbral inferior y uno superior, y sobre el superior se <strong>desadopta</strong>. Con tres casos de Twitter muestran que este modelo predice el <em>declive</em> de las modas órdenes de magnitud mejor que el umbral lineal.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/contagio/02-umbral-lineal-vs-bi-umbral.png" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>Umbral lineal (verde) vs.&nbsp;bi-umbral (azul): en el segundo, el beneficio neto de adoptar vuelve a ser negativo cuando demasiados lo hacen. Figura de Alipour et al.&nbsp;(2024).</figcaption>
+</figure>
+</div>
+<p>Guarda esta idea: reaparece al final, porque <code>netdiffuseR</code> puede simular desadopción, y porque conecta con la pregunta de cuándo una cascada se revierte.</p>
+</section>
+</section>
+<section id="contagio-complejo-y-la-debilidad-de-los-lazos-largos" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Contagio complejo y la debilidad de los lazos largos</h1>
+<section id="qué-es-un-contagio-complejo" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="qué-es-un-contagio-complejo"><span class="header-section-number">7.1</span> Qué es un contagio complejo</h2>
+<p>Centola &amp; Macy (2007) llaman <strong>contagio complejo</strong> a uno donde la transmisión no se logra con un solo contacto: se necesitan <strong>varios</strong> contactos que refuercen. Ejemplos: la credibilidad de una leyenda urbana, la adopción de una nueva tecnología, la disposición a participar en una manifestación riesgosa, la adopción de una moda de vanguardia.</p>
+<p>¿Por qué una exposición no basta? Cuatro mecanismos, cada uno con su microfundamento:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mecanismo</th>
+<th>La idea</th>
+<th>Microfundamento (para seguir la pista)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Complementariedad estratégica</strong></td>
+<td>La innovación es costosa para los primeros y barata para los siguientes; se necesita masa crítica para que valga la pena.</td>
+<td>Juegos de coordinación (Schelling 1978; Morris 2000); externalidades de red (Katz &amp; Shapiro 1985).</td>
+</tr>
+<tr class="even">
+<td><strong>Credibilidad</strong></td>
+<td>Una innovación no es creíble hasta que varios vecinos la adoptan (los médicos y la tetraciclina).</td>
+<td>Cascadas informacionales (Bikhchandani, Hirshleifer &amp; Welch 1992; Banerjee 1992): más adoptantes = más evidencia.</td>
+</tr>
+<tr class="odd">
+<td><strong>Legitimidad</strong></td>
+<td>Saber de un movimiento riesgoso no basta para unirse; ver a varios cercanos asistir, sí.</td>
+<td>Normas sociales y sesgo de statu quo (Bicchieri 2006; Samuelson &amp; Zeckhauser 1988).</td>
+</tr>
+<tr class="even">
+<td><strong>Contagio emocional</strong></td>
+<td>Los impulsos expresivos se amplifican en reuniones concentradas social y espacialmente.</td>
+<td>Efervescencia colectiva y cadenas de rituales de interacción (Collins 2004); contagio emocional (Hatfield et al.&nbsp;1993).</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="la-fortaleza-de-los-lazos-débiles-y-su-límite" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="la-fortaleza-de-los-lazos-débiles-y-su-límite"><span class="header-section-number">7.2</span> La fortaleza de los lazos débiles… y su límite</h2>
+<p>Granovetter (1973) mostró que los lazos débiles —conocidos, no íntimos— tienden a conectar actores distantes, y por eso aceleran dramáticamente la difusión: de una enfermedad, de información laboral, de una tecnología. Su frase es célebre: <em>“lo que sea que se deba difundir puede llegar a un mayor número de personas y atravesar una mayor distancia social cuando se transmite a través de lazos débiles en lugar de fuertes.”</em></p>
+<p>Centola y Macy están <strong>en contra de esa frase</strong>. No del hallazgo, sino de su generalización a “lo que sea que se deba difundir”. La clave está en distinguir dos sentidos de “fortaleza”:</p>
+<ul>
+<li><strong>Relacional</strong>: un lazo fuerte conecta amigos cercanos con interacción frecuente.</li>
+<li><strong>Estructural</strong>: un lazo es fuerte si facilita propagar algo a nodos distantes.</li>
+</ul>
+<p>El descubrimiento de Granovetter es que los lazos débiles en sentido relacional son <strong>fuertes en sentido estructural</strong>: son atajos a través de la topología. Y los lazos fuertes relacionales son estructuralmente débiles porque son redundantes (transitividad: mis amigos ya se conocen).</p>
+<p>Pero eso vale para contagio <strong>simple</strong>. Para uno complejo, un lazo largo puede ser débil en <em>ambos</em> sentidos: para el contagio simple lo que importa es el <strong>largo</strong> del puente; para el complejo, su <strong>ancho</strong> — cuántos lazos conectan a dos vecindarios. Y recablear lazos largos casi nunca crea puentes anchos.</p>
+</section>
+<section id="el-modelo-un-anillo-con-recableado" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="el-modelo-un-anillo-con-recableado"><span class="header-section-number">7.3</span> El modelo: un anillo con recableado</h2>
+<p>Definamos <span class="math inline">\(a\)</span> el número mínimo de vecinos adoptantes necesarios para contagiarse, <span class="math inline">\(z\)</span> el número de vecinos, y <span class="math inline">\(\tau = a/z\)</span> el umbral. Como Watts y Strogatz, suponemos umbral e influencia iguales para todos, y grados casi iguales. Los nodos empiezan en un anillo donde cada uno se conecta con sus <span class="math inline">\(z\)</span> vecinos más próximos, y luego recableamos una fracción <span class="math inline">\(p\)</span> de lazos al azar.</p>
+<div class="quarto-layout-panel" data-layout="[33,33,33]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/contagio/03-anillo-contagio-basico.png" class="img-fluid figure-img"></p>
+<figcaption>El contagio avanza por el anillo: los nodos <span class="math inline">\(j\)</span> y <span class="math inline">\(k\)</span>, ya activados (negros), contagian juntos al nodo <span class="math inline">\(l\)</span>.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/contagio/04-anillo-recableo-rompe-puente.png" class="img-fluid figure-img"></p>
+<figcaption>Recableamos <span class="math inline">\(ih \to iq\)</span>. En contagio simple, el atajo reduciría el tiempo de propagación. En contagio complejo, <strong>impide por completo la propagación</strong>: <span class="math inline">\(i\)</span> ya no recibe refuerzo suficiente.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/contagio/05-anillo-recableo-forma-puente.png" class="img-fluid figure-img"></p>
+<figcaption>Este recableado sí forma un <strong>puente ancho</strong> entre los vecindarios <span class="math inline">\(J\)</span> y <span class="math inline">\(S\)</span>. El efecto neto del recableado depende de si es más probable formar puentes que romperlos.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Con más de un puente en juego el problema deja de ser tratable a mano, así que se simula: <span class="math inline">\(z = 8\)</span>, umbrales <span class="math inline">\(\tau = 1/8, 2/8, 3/8\)</span>, y se mide la <strong>tasa de propagación</strong> (iteraciones hasta que el contagio alcanza el 99% de la red) en función de <span class="math inline">\(p\)</span>, desde la red regular (<span class="math inline">\(p=0\)</span>) hasta la aleatoria (<span class="math inline">\(p=1\)</span>), pasando por el mundo pequeño.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/contagio/06-centola-macy-tiempo-saturacion.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Tiempo hasta saturar la red según la fracción <span class="math inline">\(p\)</span> de lazos recableados, para tres umbrales. Con <span class="math inline">\(\tau = 1/8\)</span> (contagio simple), más atajos = más rápido, siempre. Con <span class="math inline">\(\tau = 2/8\)</span> y <span class="math inline">\(3/8\)</span>, el recableado primero no ayuda, luego ayuda un poco, y finalmente <strong>impide la propagación</strong>. Figura de Centola &amp; Macy (2007).</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Resultados principales de Centola &amp; Macy (2007)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>El contagio complejo no se beneficia de niveles bajos de aleatorización.</strong> Con <span class="math inline">\(\tau = 2/8\)</span>, la curva es plana hasta <span class="math inline">\(p \approx 10^{-3}\)</span>.</li>
+<li><strong>El efecto de <span class="math inline">\(p\)</span> sobre el tiempo de saturación no es monótono</strong> para contagios complejos: baja, toca un mínimo y sube hasta que la propagación falla. Es un ejemplo de <strong>transición de fase de primer orden</strong> en la propagación (Interludio 2).</li>
+<li><strong>La difusión de información no es equivalente a la difusión de comportamientos.</strong> La frase de Granovetter es correcta para la primera y falsa para la segunda.</li>
+</ol>
+</div>
+</div>
+<p>Recuerda la figura de Watts–Strogatz del capítulo de mecanismos de formación: la misma perilla <span class="math inline">\(p\)</span> que allí hacía “pequeño” al mundo es la que aquí decide si un comportamiento se propaga. En la sección de <code>netdiffuseR</code> reproduciremos este resultado con diez líneas de código.</p>
+</section>
+</section>
+<section id="interludio-1-mecanismos-por-qué-varias-fuentes" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Interludio 1 — Mecanismos: por qué varias fuentes</h1>
+<p>Antes de seguir con la estructura, conviene detenerse en el <em>por qué</em>. Tres ideas que la literatura reciente ha decantado, y que explican buena parte de lo que viene.</p>
+<section id="las-influencias-contrarias" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="las-influencias-contrarias"><span class="header-section-number">8.1</span> Las influencias contrarias</h2>
+<p>En un contagio simple, los no-adoptantes son irrelevantes: si tengo contacto con alguien con sarampión, me contagio, sin importar cuántos sanos conozca. En un contagio complejo, los no-adoptantes <strong>son una señal activa</strong>: cada contacto que no adoptó dice, en silencio, “esto no es aceptado”. Centola las llama <em>influencias contrarias</em> (<em>countervailing influences</em>). State &amp; Adamic (2015) lo midieron en el cambio masivo de fotos de perfil en Facebook en apoyo al matrimonio igualitario: lo que predecía adoptar no era cuántos amigos ya lo habían hecho, sino <strong>qué fracción</strong> — el número de amigos que <em>no</em> lo habían hecho pesaba en contra.</p>
+<p>La consecuencia es la primera sorpresa del bloque: <strong>cuanto más conectado estás, más influencias contrarias enfrentas</strong>. Un actor con cientos de contactos ve, ante cualquier innovación nueva, a cientos que todavía no la adoptan. Por eso los “influyentes” suelen ser <em>frenos</em> y no <em>aceleradores</em> de los contagios complejos, y por eso tantos movimientos —la Primavera Árabe en Egipto (Steinert-Threlkeld 2017), la adopción de Twitter (Toole et al.&nbsp;2012), el <em>Ice Bucket Challenge</em> (Sprague &amp; House 2017)— nacieron en la <strong>periferia</strong>, donde con pocos contactos basta poco refuerzo, y desde ahí crecieron hasta arrastrar al centro.</p>
+</section>
+<section id="fuentes-no-exposiciones" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="fuentes-no-exposiciones"><span class="header-section-number">8.2</span> Fuentes, no exposiciones</h2>
+<p>La segunda idea corrige una lectura ingenua del umbral: lo que cuenta no es cuántas <em>veces</em> recibo la señal, sino de cuántas <strong>fuentes distintas e independientes</strong> la recibo. La psicología social lo estableció hace décadas:</p>
+<ul>
+<li><strong>Asch (1955)</strong>: con un cómplice que da la respuesta incorrecta, el 3% se conforma; con dos, el 13%; con tres, el 33%. Y después, <strong>meseta</strong>: más cómplices no agregan casi nada. Es un umbral con saturación, medido en laboratorio (Bond 2005 lo confirma en un meta-análisis de 125 estudios).</li>
+<li><strong>Latané (1981)</strong>: la <em>ley psicosocial</em> del impacto social, <span class="math inline">\(I = s\,N^{t}\)</span> con <span class="math inline">\(t &lt; 1\)</span> — cada fuente adicional agrega impacto, pero cada vez menos. Es la misma forma funcional de los retornos decrecientes del término <code>gwesp</code> que vimos en ERGM.</li>
+<li><strong>Harkins &amp; Petty (1981, 1987)</strong>, el <em>efecto de fuentes múltiples</em>: los mismos argumentos, presentados por varias personas, persuaden más que repetidos por una — porque provocan más <strong>escrutinio</strong>. Pero el efecto <strong>desaparece</strong> si se dice que las fuentes son miembros de un mismo comité que acordó una posición: solo cuentan las fuentes <strong>independientes</strong>. Y <strong>Wilder (1977)</strong> mostró lo mismo para la conformidad: dos personas de grupos distintos pesan más que dos del mismo grupo.</li>
+<li><strong>Morgan et al.&nbsp;(2012)</strong>: el uso de información social crece con el número de demostradores <em>y</em> con su consenso.</li>
+</ul>
+<p>La neurociencia muestra por qué esto pesa tanto: la señal social no se procesa como información neutra, sino como <strong>valor</strong> — cambiar de opinión ante el grupo se ve en el cerebro como un error de predicción del aprendizaje por refuerzo (Klucharev et al.&nbsp;2009), y la opinión de los pares altera la codificación del valor de las cosas (Zaki et al.&nbsp;2011; Zhang &amp; Gläscher 2020).</p>
+<p>Traducido a redes: no cuentes amigos adoptantes, cuenta <strong>grupos distintos</strong> de amigos adoptantes. Ugander et al.&nbsp;(2012) lo demostraron con el registro a Facebook: lo que predice unirse no es el número de contactos invitando, sino el número de <strong>componentes conectados distintos</strong> entre ellos — la <em>diversidad estructural</em>.</p>
+</section>
+<section id="similitud-o-diversidad-depende-de-la-barrera" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="similitud-o-diversidad-depende-de-la-barrera"><span class="header-section-number">8.3</span> Similitud o diversidad: depende de la barrera</h2>
+<p>La tercera idea afina la anterior. Si las fuentes independientes son lo que convence, ¿deben parecerse a mí o ser distintas entre sí? Centola (2022) responde que <strong>depende de cuál barrera opera</strong>: cuando la barrera es <strong>credibilidad</strong> o <strong>emoción</strong>, convencen los pares <em>similares</em> — la prueba social de mi propio grupo (Centola 2011: la homofilia aumenta la adopción de conductas de salud). Cuando la barrera es <strong>legitimidad</strong>, convencen las fuentes <em>diversas</em>: en el caso del signo igual, la gente cambió su foto cuando vio adoptantes de círculos sociales distintos — abuelos, colegas, amigos del colegio — porque eso probaba que el apoyo era amplio y el riesgo social, bajo. La misma estructura de refuerzo puede necesitar homofilia o heterofilia según <em>qué</em> se está difundiendo.</p>
+</section>
+</section>
+<section id="interludio-2-transiciones-de-fase-de-primer-orden" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Interludio 2 — Transiciones de fase de primer orden</h1>
+<p>Centola &amp; Macy dicen que el colapso de la propagación al aumentar <span class="math inline">\(p\)</span> es “una transición de fase de primer orden”. Vale la pena entender qué significa, porque el concepto reaparece en toda la ciencia de la complejidad social.</p>
+<section id="segundo-orden-el-cambio-es-continuo" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="segundo-orden-el-cambio-es-continuo"><span class="header-section-number">9.1</span> Segundo orden: el cambio es continuo</h2>
+<p>El modelo de Ising con espines <span class="math inline">\(s_i = \pm 1\)</span> y <strong>sin</strong> campo externo (<span class="math inline">\(B = 0\)</span>): al bajar la temperatura, la magnetización <span class="math inline">\(m\)</span> pasa de cero a distinta de cero de manera <strong>continua</strong> — la curva es empinada cerca de <span class="math inline">\(T_c\)</span> pero no salta.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/contagio/07-ising-segundo-orden-M-vs-T.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Ising sin campo externo: la magnetización <span class="math inline">\(\langle |M| \rangle\)</span> crece continuamente al bajar la temperatura bajo <span class="math inline">\(T_c\)</span> (línea punteada). Una transición de <strong>segundo orden</strong>.</figcaption>
+</figure>
+</div>
+<p>El modelo de <strong>Schelling</strong> de segregación se comporta parecido: la segregación emerge gradualmente al variar la tolerancia.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/contagio/09-schelling-segregacion.png" class="img-fluid figure-img" style="width:35.0%"></p>
+<figcaption>Modelo de Schelling: la segregación espacial emerge de preferencias individuales moderadas. Otro cambio gradual de un parámetro de orden.</figcaption>
+</figure>
+</div>
+</section>
+<section id="primer-orden-el-cambio-es-un-salto" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="primer-orden-el-cambio-es-un-salto"><span class="header-section-number">9.2</span> Primer orden: el cambio es un salto</h2>
+<p>Ahora Ising <strong>con</strong> campo externo <span class="math inline">\(B\)</span>, manteniendo <span class="math inline">\(T &lt; T_c\)</span>. Al variar <span class="math inline">\(B\)</span>, la magnetización <strong>salta</strong> de <span class="math inline">\(-1\)</span> a <span class="math inline">\(+1\)</span> de golpe — y no salta en el mismo punto al subir que al bajar: hay <strong>histéresis</strong>. Cerca del salto coexisten dos estados posibles (los dos signos de <span class="math inline">\(m\)</span>), y cuál se observa depende de la historia.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/contagio/08-ising-primer-orden-M-vs-H.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption>Ising con campo externo, <span class="math inline">\(T &lt; T_c\)</span>: la magnetización salta discontinuamente al cambiar el signo del campo <span class="math inline">\(H\)</span>, y el punto de salto depende de la temperatura. Una transición de <strong>primer orden</strong>.</figcaption>
+</figure>
+</div>
+<p>Tres marcas definen una transición de primer orden, y las tres importan para el contagio: (1) el <strong>parámetro de orden salta</strong> (no crece suavemente); (2) hay <strong>histéresis</strong>: revertir exige ir mucho más atrás que el punto donde se produjo el salto; (3) hay <strong>coexistencia y metaestabilidad</strong>: cerca del punto crítico el sistema puede quedar “atrapado” en un estado que no es el de equilibrio.</p>
+</section>
+<section id="y-en-el-contagio" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="y-en-el-contagio"><span class="header-section-number">9.3</span> Y en el contagio</h2>
+<p>Un contagio que requiere refuerzo se comporta como el segundo caso. La figura muestra el tamaño del brote según la probabilidad de transmisión en un modelo con refuerzo: para ciertos parámetros el brote crece de forma suave, pero para otros <strong>salta</strong> de casi nada a casi toda la población en un punto crítico.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/contagio/10-brote-salto-primer-orden.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Tamaño del brote <span class="math inline">\(S\)</span> según la probabilidad de transmisión <span class="math inline">\(\phi\)</span> en un modelo de contagio con refuerzo, para tres combinaciones de grado medio <span class="math inline">\(c\)</span> y fracción inicial <span class="math inline">\(\rho\)</span>. La curva del medio salta: transición de primer orden. Figura de Newman, <em>Networks</em>.</figcaption>
+</figure>
+</div>
+<p>Es exactamente lo que Centola &amp; Macy observan al aumentar <span class="math inline">\(p\)</span>: la saturación pasa de “completa” a “ninguna” de golpe, no gradualmente. Y las tres marcas tienen lectura social directa: los <em>tipping points</em> de las normas (Centola et al.&nbsp;2018 los provocaron experimentalmente con una minoría comprometida del 25%), la <strong>irreversibilidad</strong> de muchos cambios sociales (una vez que una norma cayó, restaurarla cuesta mucho más que lo que costó derribarla), y la <strong>impredecibilidad</strong> cerca del punto crítico, donde poblaciones casi idénticas producen resultados opuestos — que es, dicho en otro lenguaje, el ejemplo de los 100 trabajadores con que empezamos.</p>
+</section>
+</section>
+<section id="centralidad-compleja-por-qué-la-periferia-importa" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Centralidad compleja: por qué la periferia importa</h1>
+<section id="el-diagnóstico" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="el-diagnóstico"><span class="header-section-number">10.1</span> El diagnóstico</h2>
+<p>Todas las centralidades que aprendimos —grado, intermediación, cercanía, autovector— comparten un supuesto escondido: que <strong>un solo lazo constituye un paso</strong> en la red. Es decir, están construidas sobre el <em>largo de camino simple</em>. Guilbeault &amp; Centola (2021) muestran que ese supuesto las vuelve ciegas para los contagios complejos: para un comportamiento que necesita refuerzo, un lazo aislado <em>no es un camino</em>, y el nodo “central” según grado o intermediación puede estar, para ese contagio, en el peor lugar posible.</p>
+</section>
+<section id="la-medida" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="la-medida"><span class="header-section-number">10.2</span> La medida</h2>
+<p>La construcción es en tres pasos. El <strong>ancho de un puente</strong> entre dos vecindarios es cuántos lazos reforzantes los conectan. El <strong>largo de camino complejo</strong> entre <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> es cuántos puentes <em>suficientemente anchos</em> hay que atravesar para ir de uno a otro (puede ser mucho mayor que el largo simple: un lazo débil directo puede no contar). Y la <strong>centralidad compleja</strong> de un nodo es el promedio de sus largos de camino complejo hacia toda la red: a cuánta población alcanza vía cadenas de puentes anchos.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Figura pendiente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Figura 1 de Guilbeault &amp; Centola (2021): camino simple vs.&nbsp;camino complejo entre A y B. Guardar como <code>figs/contagio/11-guilbeault-centola-camino-complejo.png</code> y reemplazar este recuadro por la imagen.</p>
+</div>
+</div>
+<p>Un detalle que conviene decir en voz alta. Revisando el <a href="https://github.com/drguilbe/complexpaths">código publicado</a>, la centralidad compleja se <strong>calcula simulando</strong>: para cada nodo, se activa su vecindario y se corre una cascada de umbral determinista; el largo de camino complejo se mide sobre lo que se activó. Es una centralidad <em>definida por un proceso</em> —como PageRank lo está por un paseo aleatorio—, lo que es legítimo, pero implica dos cosas: requiere <strong>asumir un umbral</strong> <span class="math inline">\(T\)</span>, y su validación en simulación (elegir semillas con la medida y evaluarlas con el mismo modelo de umbral) es casi circular. La prueba no circular es la empírica.</p>
+</section>
+<section id="qué-encuentran" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="qué-encuentran"><span class="header-section-number">10.3</span> Qué encuentran</h2>
+<p>En 74 redes escolares (Add Health), las semillas elegidas por centralidad compleja superan a las elegidas por grado, intermediación, autovector, k-core y percolación, para todo umbral. Y en las 43 aldeas indias del programa de microfinanzas de Banerjee et al.&nbsp;(2013), las aldeas con mayor largo de camino complejo promedio difundieron más, y los hogares con alta centralidad compleja —no los “líderes” que los investigadores habían preseleccionado— predicen mejor que sus vecinos adopten.</p>
+<p>Su afirmación textual es cuidadosa: <em>“network locations with low degree centrality and low betweenness centrality <strong>may</strong> nevertheless be the most influential locations in the population.”</em> El <em>may</em> importa: no es que la periferia gane por ser periferia; gana <strong>cuando está embebida en un vecindario denso con puentes anchos</strong>.</p>
+</section>
+<section id="la-evidencia-empírica-es-mixta" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="la-evidencia-empírica-es-mixta"><span class="header-section-number">10.4</span> La evidencia empírica es mixta</h2>
+<p>Las simulaciones establecen el patrón; los datos lo matizan.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>A favor de “los hubs dispersos fallan”</th>
+<th>Matices</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Kim et al.&nbsp;(2015, <em>Lancet</em>)</strong> — RCT en 32 aldeas: sembrar en los de mayor <em>in-degree</em> <strong>no superó al azar</strong>.</td>
+<td><strong>Banerjee et al.&nbsp;(2013)</strong> — su centralidad de difusión (camino simple) <strong>sí</strong> predijo la adopción: la <em>información</em> viaja simple aunque adoptar sea complejo.</td>
+</tr>
+<tr class="even">
+<td><strong>Beaman et al.&nbsp;(2021, <em>AER</em>)</strong> — RCT en 200 aldeas: la adopción requiere ≥ 2 contactos informados; la siembra por teoría de redes supera al extensionista.</td>
+<td><strong>Valente &amp; Vega Yon (2020)</strong> — con <em>distribuciones</em> de umbral (media 0.33 y varianza), las semillas de alto in-degree son las más rápidas y las <strong>marginales las peores</strong>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Centola (2010, <em>Science</em>)</strong> — las redes clusterizadas difunden más un comportamiento de salud que las aleatorias.</td>
+<td><strong>Iyengar, Van den Bulte &amp; Valente (2011)</strong> — los líderes de opinión sí aceleran la adopción de un fármaco.</td>
+</tr>
+<tr class="even">
+<td><strong>Ugander et al.&nbsp;(2012)</strong>; <strong>Romero et al.&nbsp;(2011)</strong>; <strong>Mønsted et al.&nbsp;(2017)</strong> — diversidad estructural, persistencia y experimentos con bots.</td>
+<td><strong>Watts (2002)</strong> — en el régimen de baja conectividad los hubs <em>sí</em> disparan cascadas.</td>
+</tr>
+<tr class="odd">
+<td><strong>Barberá et al.&nbsp;(2015)</strong>; <strong>Steinert-Threlkeld (2017)</strong> — la periferia genera el alcance de las protestas.</td>
+<td><strong>Airoldi &amp; Christakis (2024)</strong> — semillas de <em>mayor</em> grado (nominadas por amigos) funcionan: pero están embebidas en clusters.</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Importante</span>Lo que sí está firme
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Lo que fracasa no es “el hub”, sino la <strong>siembra dispersa</strong>: un nodo aislado cuyos vecinos solo lo ven a él. Lo que funciona es la <strong>siembra reforzada</strong> —semillas adyacentes que se dan refuerzo mutuo—, esté en la periferia (donde es barata) o en el centro. <em>Para contagio simple, que la semilla vea lejos; para contagio complejo, que la semilla vea acompañada.</em></p>
+</div>
+</div>
+</section>
+</section>
+<section id="cómo-ver-contagio-complejo-en-la-literatura" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Cómo ver contagio complejo en la literatura</h1>
+<p>¿Cómo saber, con datos, si algo se propaga como contagio complejo? Cinco firmas que la literatura ha usado, cada una con su estudio de referencia:</p>
+<ol type="1">
+<li><strong>Persistencia.</strong> Romero, Meeder &amp; Kleinberg (2011): en Twitter, los hashtags <em>políticos</em> y los controversiales necesitan más exposiciones repetidas para ser adoptados que los idiomáticos o de entretenimiento — la curva de adopción según número de exposiciones tiene distinta forma según el tema.</li>
+<li><strong>Experimento con fuentes.</strong> Mønsted et al.&nbsp;(2017): con bots en Twitter que controlan cuántas fuentes distintas exponen a cada persona, la probabilidad de adoptar crece con el número de fuentes de manera consistente con contagio complejo, no simple.</li>
+<li><strong>Umbral en campo.</strong> Beaman et al.&nbsp;(2021): en Malawi, los agricultores adoptan una tecnología cuando al menos <strong>dos</strong> contactos la conocen; con uno, casi nadie.</li>
+<li><strong>Diversidad estructural.</strong> Ugander et al.&nbsp;(2012): lo que predice unirse a Facebook es el número de <em>componentes</em> distintos entre quienes te invitan.</li>
+<li><strong>Puentes anchos históricos.</strong> Saetre (2025, <em>AJS</em>): <em>Un violador en tu camino</em> saltó de Valparaíso a 60 países en semanas. La diáspora chilena formada en los 70 funcionó como <strong>puente ancho latente</strong>: clusters de personas con lazos simultáneos a Chile y a sus sociedades de acogida, que primero replicaron la performance en solidaridad y luego permitieron que locales no chilenos la adaptaran. La autora mide el ancho del puente con el tamaño de la diáspora por ciudad <em>y</em> sus lazos vigentes con Chile, y muestra la secuencia diáspora → adaptación local → prescindir del intermediario.</li>
+</ol>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Figura pendiente
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mapa o secuencia temporal de la difusión de <em>Un violador en tu camino</em> (Saetre 2025). Guardar como <code>figs/contagio/12-saetre-un-violador-difusion.png</code> y reemplazar este recuadro.</p>
+</div>
+</div>
+<section id="la-asimetría-lo-que-confirma-es-simple-lo-que-desafía-es-complejo" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="la-asimetría-lo-que-confirma-es-simple-lo-que-desafía-es-complejo"><span class="header-section-number">11.1</span> La asimetría: lo que confirma es simple, lo que desafía es complejo</h2>
+<p>Una consecuencia de todo lo anterior, que Centola (2022) desarrolla y que vale un párrafo propio: <strong>las redes no son tuberías, son prismas</strong>. La información que <em>confirma</em> los sesgos de una comunidad es fácil de entender y de aceptar — se propaga como contagio <strong>simple</strong>, y los nodos muy conectados la difunden sin fricción. La información que <em>desafía</em> esos sesgos encuentra resistencia — es un contagio <strong>complejo</strong>, y necesita refuerzo de fuentes que la comunidad considere relevantes. De ahí la asimetría estructural entre desinformación y corrección: la corrección siempre corre con desventaja de mecanismo, no solo de contenido. Las mascarillas en la pandemia son el ejemplo de Centola: la misma conducta fue contagio simple en comunidades que confiaban en la autoridad sanitaria y contagio complejo donde no.</p>
+</section>
+<section id="el-backfire-cuando-la-estrategia-del-contagio-simple-mata-al-complejo" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="el-backfire-cuando-la-estrategia-del-contagio-simple-mata-al-complejo"><span class="header-section-number">11.2</span> El <em>backfire</em>: cuando la estrategia del contagio simple mata al complejo</h2>
+<p>Google+ (2011–2019) es el caso de manual. Google usó su alcance para asociar a cientos de millones de cuentas con Google+ en una campaña masiva de <em>awareness</em>. Logró que todo el mundo supiera que existía — y que todo el mundo supiera que <strong>nadie lo usaba</strong>. Esa visibilidad convirtió a cada usuario de Facebook en una influencia contraria explícita: prueba social <em>en contra</em>. Centola lo llama la <em>falacia del fregadero</em> (<em>kitchen sink fallacy</em>): aplicar agresivamente estrategias de contagio simple (alcance, difusión masiva) a un contagio complejo (una red social, que requiere coordinación) no es inocuo — puede impedir la adopción.</p>
+</section>
+</section>
+<section id="netdiffuser-simular-detectar-construir" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> netdiffuseR: simular, detectar, construir</h1>
+<p><code>netdiffuseR</code> es el paquete de R para difusión en redes (Valente, Vega Yon y colaboradores). Tiene mucho más de lo que veremos; aquí, tres capacidades que bastan para empezar a investigar.</p>
+<section id="simular-las-mismas-semillas-juntas-o-separadas" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="simular-las-mismas-semillas-juntas-o-separadas"><span class="header-section-number">12.1</span> Simular: las mismas semillas, juntas o separadas</h2>
+<p>Reproduzcamos la intuición de Centola &amp; Macy en diez líneas. Un anillo de 300 nodos con 8 vecinos cada uno y 2% de recableado; umbral <span class="math inline">\(\tau = 2/8\)</span> (contagio complejo: hacen falta dos vecinos adoptantes); y <strong>las mismas 8 semillas</strong>, en dos versiones: contiguas, o separadas por 40 posiciones (ninguna adyacente a otra).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(netdiffuseR)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">21</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(<span class="fu">rgraph_ws</span>(n, <span class="dv">8</span>, <span class="at">p =</span> <span class="fl">0.02</span>, <span class="at">undirected =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>A <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">*</span> ((A <span class="sc">+</span> <span class="fu">t</span>(A)) <span class="sc">&gt;</span> <span class="dv">0</span>)                       <span class="co"># simétrica y binaria</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>juntas    <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>                                <span class="co"># bloque contiguo</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>dispersas <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">20</span>, <span class="dv">300</span>, <span class="at">by =</span> <span class="dv">40</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>]         <span class="co"># separadas: ninguna es vecina de otra</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>simular <span class="ot">&lt;-</span> <span class="cf">function</span>(semillas) {</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rdiffnet</span>(<span class="at">seed.graph =</span> A, <span class="at">t =</span> <span class="dv">200</span>, <span class="at">seed.nodes =</span> semillas,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">threshold.dist =</span> <span class="fl">0.25</span>,                 <span class="co"># 2 de 8 vecinos</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">exposure.args =</span> <span class="fu">list</span>(<span class="at">normalized =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">rewire =</span> <span class="cn">FALSE</span>, <span class="at">stop.no.diff =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>d_juntas    <span class="ot">&lt;-</span> <span class="fu">simular</span>(juntas)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>d_dispersas <span class="ot">&lt;-</span> <span class="fu">simular</span>(dispersas)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">juntas =</span> <span class="fu">mean</span>(<span class="sc">!</span><span class="fu">is.na</span>(d_juntas<span class="sc">$</span>toa)), <span class="at">dispersas =</span> <span class="fu">mean</span>(<span class="sc">!</span><span class="fu">is.na</span>(d_dispersas<span class="sc">$</span>toa)))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    juntas  dispersas 
+1.00000000 0.02666667 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>curva <span class="ot">&lt;-</span> <span class="cf">function</span>(d) <span class="fu">cumulative_adopt_count</span>(d)[<span class="dv">1</span>, ] <span class="sc">/</span> n</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">curva</span>(d_juntas), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"#d73027"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Período"</span>, <span class="at">ylab =</span> <span class="st">"Fracción de adoptantes"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">curva</span>(d_dispersas), <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">"#4575b4"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"right"</span>, <span class="fu">c</span>(<span class="st">"8 semillas juntas"</span>, <span class="st">"8 semillas separadas"</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"#d73027"</span>, <span class="st">"#4575b4"</span>), <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">bty =</span> <span class="st">"n"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-nd-simular" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nd-simular-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="05-contagio-social-en-redes_files/figure-html/fig-nd-simular-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nd-simular-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;12.1: Fracción acumulada de adoptantes. Las semillas contiguas recorren toda la red con un frente lineal; las mismas ocho semillas, separadas, no contagian a nadie.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Mismas semillas, misma red, mismo umbral: <strong>juntas encienden toda la red; separadas, ninguna prende a nadie</strong>. Ese es el puente ancho en acción — y por qué “sembrar en clusters” es la única recomendación firme de toda la literatura de centralidad compleja.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Para jugar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Cambia <code>threshold.dist</code> a <code>1/8</code>: ahora es contagio simple. ¿Importa que las semillas estén juntas?</li>
+<li>Sube el recableado <code>p</code> a 0.1 y 0.3 con <span class="math inline">\(\tau = 2/8\)</span>. ¿Qué pasa con la prevalencia final? Estás recorriendo la curva de Centola &amp; Macy.</li>
+<li><code>rdiffnet</code> tiene un argumento <code>disadopt</code>: con él puedes implementar el <strong>bi-umbral</strong> (adoptar entre dos umbrales, abandonar sobre el superior). ¿Cómo cambia la curva?</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="detectar-hay-firma-de-contagio-complejo-en-datos-reales" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="detectar-hay-firma-de-contagio-complejo-en-datos-reales"><span class="header-section-number">12.2</span> Detectar: ¿hay firma de contagio complejo en datos reales?</h2>
+<p><code>netdiffuseR</code> trae los tres datasets clásicos de difusión de innovaciones: los médicos y la tetraciclina (Coleman, Katz &amp; Menzel 1966), los agricultores brasileños y el maíz híbrido, y las mujeres coreanas y la planificación familiar. Usemos el primero. La pregunta: ¿adoptar depende de <strong>cuántos</strong> vecinos ya adoptaron, y de forma <em>creciente</em> con el segundo y tercer vecino (firma compleja), o basta con uno (firma simple)?</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(medInnovationsDiffNet)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dn <span class="ot">&lt;-</span> medInnovationsDiffNet</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>dn</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dynamic network of class -diffnet-
+ Name               : Medical Innovation
+ Behavior           : Adoption of Tetracycline
+ # of nodes         : 125 (1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, ...)
+ # of time periods  : 18 (1 - 18)
+ Type               : directed
+ Num of behaviors   : 1
+ Final prevalence   : 1.00
+ Static attributes  : city, detail, meet, coll, attend, proage, length, ... (58)
+ Dynamic attributes : -</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_threshold</span>(dn)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="05-contagio-social-en-redes_files/figure-html/nd-detectar-umbrales-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Umbral observado de cada médico (fracción de sus contactos que ya habían adoptado cuando él adoptó) según su tiempo de adopción.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Muchos adoptaron con exposición cero (los innovadores) y muchos con exposición completa (los rezagados). Para testear la firma, armamos la tabla nodo-período de quienes aún <em>no</em> han adoptado, y modelamos la adopción según la <strong>exposición en conteo</strong> del período anterior, primero lineal y luego por escalones:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>expo_n <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="cn">NA</span>, <span class="fu">exposure</span>(dn, <span class="at">normalized =</span> <span class="cn">FALSE</span>)[, <span class="sc">-</span><span class="fu">nslices</span>(dn)])  <span class="co"># vecinos adoptantes en t-1</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dn[[<span class="st">"expo_n"</span>]] <span class="ot">&lt;-</span> expo_n</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>largo <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(dn)                                <span class="co"># una fila por nodo-período</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>largo<span class="sc">$</span>adopta <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="sc">!</span><span class="fu">is.na</span>(largo<span class="sc">$</span>toa) <span class="sc">&amp;</span> largo<span class="sc">$</span>toa <span class="sc">==</span> largo<span class="sc">$</span>per)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>riesgo <span class="ot">&lt;-</span> largo[(<span class="fu">is.na</span>(largo<span class="sc">$</span>toa) <span class="sc">|</span> largo<span class="sc">$</span>per <span class="sc">&lt;=</span> largo<span class="sc">$</span>toa) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(largo<span class="sc">$</span>expo_n), ]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>m_lineal <span class="ot">&lt;-</span> <span class="fu">glm</span>(adopta <span class="sc">~</span> expo_n <span class="sc">+</span> <span class="fu">factor</span>(per), <span class="at">data =</span> riesgo, <span class="at">family =</span> binomial)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>m_escalon <span class="ot">&lt;-</span> <span class="fu">glm</span>(adopta <span class="sc">~</span> <span class="fu">I</span>(expo_n <span class="sc">&gt;=</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">I</span>(expo_n <span class="sc">&gt;=</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">I</span>(expo_n <span class="sc">&gt;=</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">factor</span>(per),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> riesgo, <span class="at">family =</span> binomial)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(m_lineal))[<span class="dv">2</span>, , <span class="at">drop =</span> <span class="cn">FALSE</span>], <span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Estimate Std. Error z value Pr(&gt;|z|)
+expo_n    0.073      0.114   0.644     0.52</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">coef</span>(<span class="fu">summary</span>(m_escalon))[<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, ], <span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   Estimate Std. Error z value Pr(&gt;|z|)
+I(expo_n &gt;= 1)TRUE   -0.361      0.300  -1.204    0.229
+I(expo_n &gt;= 2)TRUE    0.075      0.320   0.234    0.815
+I(expo_n &gt;= 3)TRUE    0.457      0.374   1.223    0.222</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">AIC_lineal =</span> <span class="fu">AIC</span>(m_lineal), <span class="at">AIC_escalon =</span> <span class="fu">AIC</span>(m_escalon))</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> AIC_lineal AIC_escalon 
+   630.1056    631.5204 </code></pre>
+</div>
+</div>
+<p>El veredicto honesto: <strong>no hay firma clara de contagio complejo</strong> en estos datos. Ni el efecto lineal es significativo, ni los escalones muestran el salto creciente al segundo o tercer vecino, ni el modelo escalonado mejora el AIC. Es coherente con lo que se sabe de este caso desde Van den Bulte &amp; Lilien (2001): la adopción de la tetraciclina estuvo dominada por el <em>marketing</em> farmacéutico, y el “contagio” original de Coleman se desvanece al controlarlo. Un test de dependencia estructural dice lo mismo — el umbral medio observado no difiere del que darían redes con la misma secuencia de grados:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">struct_test</span>(dn, <span class="cf">function</span>(x) <span class="fu">mean</span>(<span class="fu">threshold</span>(x), <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">R =</span> <span class="dv">200</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Structure dependence test
+# Simulations     : 200
+# nodes           : 125
+# of time periods : 18
+--------------------------------------------------------------------------------
+ H0: E[beta(Y,G)|G] - E[beta(Y,G)] = 0 (no structure dependency)
+    observed    expected       p.val
+      0.5660      0.5562      0.6600</code></pre>
+</div>
+</div>
+<p>Que un detector diga <em>no</em> es tan informativo como que diga <em>sí</em>: la mayoría de las difusiones célebres no son contagios complejos, y saber distinguirlas es exactamente la competencia que este bloque quiere dejar instalada.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Para jugar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Repite el análisis con <code>brfarmersDiffNet</code> (agricultores) y <code>kfamilyDiffNet</code> (planificación familiar). ¿En cuál aparece el salto al segundo vecino?</p>
+</div>
+</div>
+</section>
+<section id="construir-de-la-encuesta-al-diffnet" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="construir-de-la-encuesta-al-diffnet"><span class="header-section-number">12.3</span> Construir: de la encuesta al <code>diffnet</code></h2>
+<p>Todo lo anterior necesita un objeto <code>diffnet</code>: la red más los tiempos de adopción. Si tus datos vienen de una encuesta con generador de nombres —como la de nuestra primera ayudantía— la función <code>survey_to_diffnet()</code> lo arma directamente. Con la encuesta cruda coreana que trae el paquete:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(kfamily)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>kf <span class="ot">&lt;-</span> <span class="fu">survey_to_diffnet</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dat      =</span> kfamily,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">idvar    =</span> <span class="st">"id"</span>,                                       <span class="co"># identificador de cada ego</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">netvars  =</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"net1"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="fu">paste0</span>(<span class="st">"net2"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="fu">paste0</span>(<span class="st">"net3"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)),  <span class="co"># las nominaciones</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">toavar   =</span> <span class="st">"toa"</span>,                                      <span class="co"># tiempo de adopción</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">groupvar =</span> <span class="st">"village"</span>                                   <span class="co"># las redes son por aldea</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>kf</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Dynamic network of class -diffnet-
+ Name               : Diffusion Network
+ Behavior           : Unknown
+ # of nodes         : 1047 (1002, 1003, 1005, 1007, 1010, 1011, 1012, 1014, ...)
+ # of time periods  : 11 (1 - 11)
+ Type               : directed
+ Num of behaviors   : 1
+ Final prevalence   : 1.00
+ Static attributes  : village, recno1, studno1, area1, id1, nmage1, nmag... (430)
+ Dynamic attributes : -</code></pre>
+</div>
+</div>
+<p>Tres columnas mínimas: un <strong>id</strong>, las <strong>nominaciones</strong> y el <strong>tiempo de adopción</strong>. Nuestra <code>encuesta_nominaciones.xlsx</code> tiene las dos primeras; agrégale una columna <code>toa</code> (¿cuándo adoptó cada persona la conducta que te interesa?) y ya puedes correr sobre ella todo lo de esta sección: umbrales observados, exposición, el test de firma y las simulaciones.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aoliveram\.github\.io\/Redes-Sociales-2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./04-inferencia-qap-y-ergm.html" class="pagination-link" aria-label="Inferencia en redes: QAP y ERGM">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferencia en redes: QAP y ERGM</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./referencias.html" class="pagination-link" aria-label="Referencias">
+        <span class="nav-page-text">Referencias</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
