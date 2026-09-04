@@ -1,0 +1,17 @@
+---
+author: "Aníbal Olivera Morales"
+date: "2026-09-08"
+---
+
+# Contagio social en redes
+
+::: {.callout-note}
+## Capítulo en construcción
+Bloque a cargo de la ayudantía dentro de la clase de difusión. Estructura tentativa:
+
+1.  Modelos de umbral para acción colectiva (Granovetter 1978 → Valente 1996)
+2.  Contagio complejo y la debilidad de los lazos largos (Centola & Macy 2007)
+3.  Interludio: transiciones de fase de primer orden
+4.  Centralidad compleja: por qué la periferia importa (Guilbeault & Centola 2021)
+5.  netdiffuseR con datos reales: simular, detectar y construir un `diffnet` desde encuestas
+:::
