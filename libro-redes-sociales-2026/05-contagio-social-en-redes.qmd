@@ -257,3 +257,135 @@ Una consecuencia de todo lo anterior, que Centola (2022) desarrolla y que vale u
 ## El *backfire*: cuando la estrategia del contagio simple mata al complejo
 
 Google+ (2011–2019) es el caso de manual. Google usó su alcance para asociar a cientos de millones de cuentas con Google+ en una campaña masiva de *awareness*. Logró que todo el mundo supiera que existía — y que todo el mundo supiera que **nadie lo usaba**. Esa visibilidad convirtió a cada usuario de Facebook en una influencia contraria explícita: prueba social *en contra*. Centola lo llama la *falacia del fregadero* (*kitchen sink fallacy*): aplicar agresivamente estrategias de contagio simple (alcance, difusión masiva) a un contagio complejo (una red social, que requiere coordinación) no es inocuo — puede impedir la adopción.
+
+# netdiffuseR: simular, detectar, construir
+
+`netdiffuseR` es el paquete de R para difusión en redes (Valente, Vega Yon y colaboradores). Tiene mucho más de lo que veremos; aquí, tres capacidades que bastan para empezar a investigar.
+
+## Simular: las mismas semillas, juntas o separadas
+
+Reproduzcamos la intuición de Centola & Macy en diez líneas. Un anillo de 300 nodos con 8 vecinos cada uno y 2% de recableado; umbral $\tau = 2/8$ (contagio complejo: hacen falta dos vecinos adoptantes); y **las mismas 8 semillas**, en dos versiones: contiguas, o separadas por 40 posiciones (ninguna adyacente a otra).
+
+```{r}
+#| label: nd-simular
+#| message: false
+#| warning: false
+library(netdiffuseR)
+
+set.seed(21)
+n <- 300
+A <- as.matrix(rgraph_ws(n, 8, p = 0.02, undirected = TRUE))
+A <- 1 * ((A + t(A)) > 0)                       # simétrica y binaria
+
+juntas    <- 1:8                                # bloque contiguo
+dispersas <- seq(20, 300, by = 40)[1:8]         # separadas: ninguna es vecina de otra
+
+simular <- function(semillas) {
+  rdiffnet(seed.graph = A, t = 200, seed.nodes = semillas,
+           threshold.dist = 0.25,                 # 2 de 8 vecinos
+           exposure.args = list(normalized = TRUE),
+           rewire = FALSE, stop.no.diff = FALSE)
+}
+d_juntas    <- simular(juntas)
+d_dispersas <- simular(dispersas)
+
+c(juntas = mean(!is.na(d_juntas$toa)), dispersas = mean(!is.na(d_dispersas$toa)))
+```
+
+```{r}
+#| label: fig-nd-simular
+#| fig-cap: "Fracción acumulada de adoptantes. Las semillas contiguas recorren toda la red con un frente lineal; las mismas ocho semillas, separadas, no contagian a nadie."
+#| fig-height: 4
+#| warning: false
+curva <- function(d) cumulative_adopt_count(d)[1, ] / n
+plot(curva(d_juntas), type = "l", lwd = 3, col = "#d73027", ylim = c(0, 1),
+     xlab = "Período", ylab = "Fracción de adoptantes")
+lines(curva(d_dispersas), lwd = 3, col = "#4575b4")
+legend("right", c("8 semillas juntas", "8 semillas separadas"),
+       col = c("#d73027", "#4575b4"), lwd = 3, bty = "n")
+```
+
+Mismas semillas, misma red, mismo umbral: **juntas encienden toda la red; separadas, ninguna prende a nadie**. Ese es el puente ancho en acción — y por qué "sembrar en clusters" es la única recomendación firme de toda la literatura de centralidad compleja.
+
+::: {.callout-note}
+## Para jugar
+1. Cambia `threshold.dist` a `1/8`: ahora es contagio simple. ¿Importa que las semillas estén juntas?
+2. Sube el recableado `p` a 0.1 y 0.3 con $\tau = 2/8$. ¿Qué pasa con la prevalencia final? Estás recorriendo la curva de Centola & Macy.
+3. `rdiffnet` tiene un argumento `disadopt`: con él puedes implementar el **bi-umbral** (adoptar entre dos umbrales, abandonar sobre el superior). ¿Cómo cambia la curva?
+:::
+
+## Detectar: ¿hay firma de contagio complejo en datos reales?
+
+`netdiffuseR` trae los tres datasets clásicos de difusión de innovaciones: los médicos y la tetraciclina (Coleman, Katz & Menzel 1966), los agricultores brasileños y el maíz híbrido, y las mujeres coreanas y la planificación familiar. Usemos el primero. La pregunta: ¿adoptar depende de **cuántos** vecinos ya adoptaron, y de forma *creciente* con el segundo y tercer vecino (firma compleja), o basta con uno (firma simple)?
+
+```{r}
+#| label: nd-detectar-umbrales
+#| fig-cap: "Umbral observado de cada médico (fracción de sus contactos que ya habían adoptado cuando él adoptó) según su tiempo de adopción."
+#| fig-height: 4.5
+#| message: false
+#| warning: false
+data(medInnovationsDiffNet)
+dn <- medInnovationsDiffNet
+dn
+plot_threshold(dn)
+```
+
+Muchos adoptaron con exposición cero (los innovadores) y muchos con exposición completa (los rezagados). Para testear la firma, armamos la tabla nodo-período de quienes aún *no* han adoptado, y modelamos la adopción según la **exposición en conteo** del período anterior, primero lineal y luego por escalones:
+
+```{r}
+#| label: nd-detectar-modelo
+#| message: false
+#| warning: false
+expo_n <- cbind(NA, exposure(dn, normalized = FALSE)[, -nslices(dn)])  # vecinos adoptantes en t-1
+dn[["expo_n"]] <- expo_n
+
+largo <- as.data.frame(dn)                                # una fila por nodo-período
+largo$adopta <- as.integer(!is.na(largo$toa) & largo$toa == largo$per)
+riesgo <- largo[(is.na(largo$toa) | largo$per <= largo$toa) & !is.na(largo$expo_n), ]
+
+m_lineal <- glm(adopta ~ expo_n + factor(per), data = riesgo, family = binomial)
+m_escalon <- glm(adopta ~ I(expo_n >= 1) + I(expo_n >= 2) + I(expo_n >= 3) + factor(per),
+                 data = riesgo, family = binomial)
+
+round(coef(summary(m_lineal))[2, , drop = FALSE], 3)
+round(coef(summary(m_escalon))[2:4, ], 3)
+c(AIC_lineal = AIC(m_lineal), AIC_escalon = AIC(m_escalon))
+```
+
+El veredicto honesto: **no hay firma clara de contagio complejo** en estos datos. Ni el efecto lineal es significativo, ni los escalones muestran el salto creciente al segundo o tercer vecino, ni el modelo escalonado mejora el AIC. Es coherente con lo que se sabe de este caso desde Van den Bulte & Lilien (2001): la adopción de la tetraciclina estuvo dominada por el *marketing* farmacéutico, y el "contagio" original de Coleman se desvanece al controlarlo. Un test de dependencia estructural dice lo mismo — el umbral medio observado no difiere del que darían redes con la misma secuencia de grados:
+
+```{r}
+#| label: nd-detectar-struct
+#| message: false
+#| warning: false
+set.seed(1)
+struct_test(dn, function(x) mean(threshold(x), na.rm = TRUE), R = 200)
+```
+
+Que un detector diga *no* es tan informativo como que diga *sí*: la mayoría de las difusiones célebres no son contagios complejos, y saber distinguirlas es exactamente la competencia que este bloque quiere dejar instalada.
+
+::: {.callout-note}
+## Para jugar
+Repite el análisis con `brfarmersDiffNet` (agricultores) y `kfamilyDiffNet` (planificación familiar). ¿En cuál aparece el salto al segundo vecino?
+:::
+
+## Construir: de la encuesta al `diffnet`
+
+Todo lo anterior necesita un objeto `diffnet`: la red más los tiempos de adopción. Si tus datos vienen de una encuesta con generador de nombres —como la de nuestra primera ayudantía— la función `survey_to_diffnet()` lo arma directamente. Con la encuesta cruda coreana que trae el paquete:
+
+```{r}
+#| label: nd-construir
+#| message: false
+#| warning: false
+data(kfamily)
+kf <- survey_to_diffnet(
+  dat      = kfamily,
+  idvar    = "id",                                       # identificador de cada ego
+  netvars  = c(paste0("net1", 1:5), paste0("net2", 1:5), paste0("net3", 1:5)),  # las nominaciones
+  toavar   = "toa",                                      # tiempo de adopción
+  groupvar = "village"                                   # las redes son por aldea
+)
+kf
+```
+
+Tres columnas mínimas: un **id**, las **nominaciones** y el **tiempo de adopción**. Nuestra `encuesta_nominaciones.xlsx` tiene las dos primeras; agrégale una columna `toa` (¿cuándo adoptó cada persona la conducta que te interesa?) y ya puedes correr sobre ella todo lo de esta sección: umbrales observados, exposición, el test de firma y las simulaciones.
