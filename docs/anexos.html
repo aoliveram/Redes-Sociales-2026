@@ -8,7 +8,7 @@
 
 <meta name="author" content="Aníbal Olivera Morales">
 
-<title>Redes Sociales — DCCS 2026</title>
+<title>Anexos – Redes Sociales — DCCS 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-setup-computacional.html" rel="next">
+<link href="./referencias.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -75,6 +75,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -249,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Bienvenida</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./anexos.html">Apéndices</a></li><li class="breadcrumb-item"><a href="./anexos.html">Anexos</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -280,7 +309,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bienvenida</span></a>
   </div>
 </li>
@@ -331,7 +360,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./anexos.html" class="sidebar-item-text sidebar-link">
+  <a href="./anexos.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Anexos</span></a>
   </div>
 </li>
@@ -347,10 +376,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#bienvenida" id="toc-bienvenida" class="nav-link active" data-scroll-target="#bienvenida">Bienvenida</a>
+  <li><a href="#transiciones-de-fase-de-la-física-al-contagio" id="toc-transiciones-de-fase-de-la-física-al-contagio" class="nav-link active" data-scroll-target="#transiciones-de-fase-de-la-física-al-contagio">Transiciones de fase: de la física al contagio</a>
   <ul class="collapse">
-  <li><a href="#para-quién-es-este-libro" id="toc-para-quién-es-este-libro" class="nav-link" data-scroll-target="#para-quién-es-este-libro">¿Para quién es este libro?</a></li>
-  <li><a href="#materiales" id="toc-materiales" class="nav-link" data-scroll-target="#materiales">Materiales</a></li>
+  <li><a href="#el-modelo-de-ising-una-red-de-espines" id="toc-el-modelo-de-ising-una-red-de-espines" class="nav-link" data-scroll-target="#el-modelo-de-ising-una-red-de-espines">El modelo de Ising: una red de espines</a></li>
+  <li><a href="#segundo-orden-el-cambio-es-continuo" id="toc-segundo-orden-el-cambio-es-continuo" class="nav-link" data-scroll-target="#segundo-orden-el-cambio-es-continuo">Segundo orden: el cambio es continuo</a></li>
+  <li><a href="#primer-orden-el-cambio-es-un-salto" id="toc-primer-orden-el-cambio-es-un-salto" class="nav-link" data-scroll-target="#primer-orden-el-cambio-es-un-salto">Primer orden: el cambio es un salto</a></li>
+  <li><a href="#en-las-ciencias-sociales" id="toc-en-las-ciencias-sociales" class="nav-link" data-scroll-target="#en-las-ciencias-sociales">En las ciencias sociales</a>
+  <ul class="collapse">
+  <li><a href="#segundo-orden-schelling" id="toc-segundo-orden-schelling" class="nav-link" data-scroll-target="#segundo-orden-schelling">Segundo orden: Schelling</a></li>
+  <li><a href="#primer-orden-el-contagio-complejo" id="toc-primer-orden-el-contagio-complejo" class="nav-link" data-scroll-target="#primer-orden-el-contagio-complejo">Primer orden: el contagio complejo</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -359,10 +394,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./anexos.html">Apéndices</a></li><li class="breadcrumb-item"><a href="./anexos.html">Anexos</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Redes Sociales — DCCS 2026</h1>
-<p class="subtitle lead">Libro de ayudantías · Teoría de Redes Sociales</p>
+<h1 class="title">Anexos</h1>
 </div>
 
 
@@ -376,12 +410,6 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Fecha de publicación</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">septiembre 2026</p>
-    </div>
-  </div>
   
     
   </div>
@@ -391,40 +419,162 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="bienvenida" class="level1 unnumbered">
-<h1 class="unnumbered">Bienvenida</h1>
-<p>Este es el libro de ayudantías del curso <em>Teoría de Redes Sociales</em> (DCCS 2026), dictado por el Jorge Fábrega y Aníbal Olivera.</p>
-<p>El curso dura 3 semanas (6 sesiones, lunes y miércoles) y cada semana culmina en una entrega práctica breve. Este libro tiene la estructura:</p>
-<ol type="1">
-<li>Repaso teórico — los conceptos centrales de la semana.</li>
-<li>Práctica guiada en R — código reproducible paso a paso, aplicando los conceptos a casos cuasi-reales.</li>
-</ol>
-<section id="para-quién-es-este-libro" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="para-quién-es-este-libro">¿Para quién es este libro?</h2>
-<p>Para estudiantes de primer año del doctorado, que vienen de orígenes muy diversos: ingeniería, arquitectura, salud, sociología, psicología, entre otros. <strong>No se asume experiencia previa en programación.</strong> La <a href="./01-setup-computacional.html">Ayudantía 1</a> deja instalado y configurado todo lo necesario.</p>
-</section>
-<section id="materiales" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="materiales">Materiales</h2>
-<ul>
-<li>Repositorio del curso: <a href="https://github.com/aoliveram/Redes-Sociales-2026" class="uri">https://github.com/aoliveram/Redes-Sociales-2026</a></li>
-<li>Datos de la práctica: carpeta <a href="https://github.com/aoliveram/Redes-Sociales-2026/tree/main/libro-redes-sociales-2026/datos"><code>libro-redes-sociales-2026/datos/</code></a></li>
-<li>Bibliografía: carpeta <a href="https://github.com/aoliveram/Redes-Sociales-2026/tree/main/libro-redes-sociales-2026/bibliografia"><code>libro-redes-sociales-2026/bibliografia/</code></a></li>
-</ul>
+<p>Material que complementa los capítulos pero que no cabe en una sesión. Se lee por separado y se cita desde el capítulo correspondiente.</p>
+<section id="transiciones-de-fase-de-la-física-al-contagio" class="level1">
+<h1>Transiciones de fase: de la física al contagio</h1>
+<p>Centola &amp; Macy (2007) dicen que el colapso de la propagación al aumentar el recableado es “una transición de fase de primer orden”. La frase viene de la física, y vale la pena entender qué significa allá antes de usarla acá, porque el concepto reaparece en toda la ciencia de la complejidad social: <em>tipping points</em>, irreversibilidad de las normas, impredecibilidad cerca del punto crítico.</p>
+<section id="el-modelo-de-ising-una-red-de-espines" class="level2">
+<h2 class="anchored" data-anchor-id="el-modelo-de-ising-una-red-de-espines">El modelo de Ising: una red de espines</h2>
+<p>El sistema más simple que tiene una transición de fase es el <strong>modelo de Ising</strong>. Imaginemos una red regular (una grilla) donde cada nodo <span class="math inline">\(i\)</span> tiene un <strong>espín</strong> <span class="math inline">\(s_i\)</span> que solo puede apuntar hacia arriba (<span class="math inline">\(+1\)</span>) o hacia abajo (<span class="math inline">\(-1\)</span>). Cada espín quiere alinearse con sus vecinos: la energía baja cuando dos vecinos apuntan igual y sube cuando apuntan distinto. Y hay un <strong>campo externo</strong> <span class="math inline">\(B\)</span> que empuja a todos los espines hacia una dirección.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anexos/01-ising-red-de-espines.png" class="img-fluid figure-img" style="width:45.0%"></p>
+<figcaption>Una red de espines: cada nodo apunta hacia arriba (rojo) o hacia abajo (azul). La interacción con los vecinos premia el alineamiento local.</figcaption>
+</figure>
+</div>
+<p>La energía total es</p>
+<p><span class="math display">\[
+E = -J \sum_{\langle i,j \rangle} s_i s_j \;-\; B \sum_i s_i ,
+\]</span></p>
+<p>donde la primera suma recorre los pares de vecinos y <span class="math inline">\(J &gt; 0\)</span> es la fuerza de la interacción. El sistema está a una <strong>temperatura</strong> <span class="math inline">\(T\)</span> que introduce ruido: a <span class="math inline">\(T\)</span> alta, los espines saltan al azar sin importar la energía; a <span class="math inline">\(T\)</span> baja, se acomodan en la configuración de menor energía.</p>
+<p>La variable que resume el estado del sistema es la <strong>magnetización</strong> <span class="math inline">\(m\)</span>: la fracción neta de espines que apuntan hacia arriba,</p>
+<p><span class="math display">\[
+m = \frac{1}{N} \sum_i s_i \in [-1, 1].
+\]</span></p>
+<p>Si <span class="math inline">\(m = 0\)</span>, hay tantos arriba como abajo (desorden). Si <span class="math inline">\(m = \pm 1\)</span>, están todos alineados (orden). <span class="math inline">\(m\)</span> es lo que en física se llama <strong>parámetro de orden</strong>, y la traducción a redes sociales es inmediata: la fracción de adoptantes de una conducta.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Nota
+<span class="screen-reader-only">Nota</span>Por qué esto es un modelo social
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Este libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.</p>
+<p>Un espín que quiere alinearse con sus vecinos <strong>es</strong> un agente que quiere adoptar lo que adoptan sus vecinos. El campo externo es la utilidad intrínseca de la conducta (o la campaña de marketing, o la autoridad sanitaria). La temperatura es el ruido idiosincrático de las decisiones. Y la magnetización es la prevalencia. Con esa traducción, todo lo que sigue se lee dos veces.</p>
+</div>
+</div>
+</section>
+<section id="segundo-orden-el-cambio-es-continuo" class="level2">
+<h2 class="anchored" data-anchor-id="segundo-orden-el-cambio-es-continuo">Segundo orden: el cambio es continuo</h2>
+<p>Empecemos <strong>sin</strong> campo externo (<span class="math inline">\(B = 0\)</span>) y variemos la temperatura. La herramienta para ver qué pasa es la <strong>energía libre</strong> <span class="math inline">\(f(m)\)</span>: una función que dice cuán “cómodo” está el sistema en cada valor de <span class="math inline">\(m\)</span>. El sistema se queda en el mínimo de <span class="math inline">\(f\)</span>.</p>
+<div class="quarto-layout-panel" data-layout="[50,50]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anexos/02-energia-libre-T-mayor-Tc.png" class="img-fluid figure-img"></p>
+<figcaption>A temperatura alta (<span class="math inline">\(T &gt; T_c\)</span>), la energía libre tiene un solo mínimo en <span class="math inline">\(m = 0\)</span>: el desorden es el único estado estable.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anexos/03-energia-libre-T-menor-Tc.png" class="img-fluid figure-img"></p>
+<figcaption>Bajo la temperatura crítica (<span class="math inline">\(T &lt; T_c\)</span>), el mínimo en <span class="math inline">\(m = 0\)</span> se vuelve un máximo y aparecen <strong>dos</strong> mínimos simétricos: el sistema debe elegir uno.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Al cruzar la <strong>temperatura crítica</strong> <span class="math inline">\(T_c\)</span>, el mínimo único se bifurca en dos. Pero los dos mínimos nuevos nacen <em>en</em> <span class="math inline">\(m = 0\)</span> y se separan gradualmente: la magnetización crece de forma <strong>continua</strong> desde cero. Eso es una transición de <strong>segundo orden</strong>: el parámetro de orden no salta.</p>
+<div class="quarto-layout-panel" data-layout="[45,55]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 45.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anexos/04-magnetizacion-vs-T-bifurcacion.png" class="img-fluid figure-img"></p>
+<figcaption>El diagrama de la bifurcación: bajo <span class="math inline">\(T_c\)</span> el sistema toma una de dos ramas, <span class="math inline">\(+m\)</span> o <span class="math inline">\(-m\)</span>, que se abren continuamente.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 55.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anexos/05-ising-segundo-orden-M-vs-T.png" class="img-fluid figure-img"></p>
+<figcaption>Lo mismo medido en una simulación de Monte Carlo: <span class="math inline">\(\langle |M| \rangle\)</span> crece continuamente al bajar la temperatura bajo <span class="math inline">\(T_c\)</span> (línea punteada). La curva es empinada cerca de <span class="math inline">\(T_c\)</span> pero no salta.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="primer-orden-el-cambio-es-un-salto" class="level2">
+<h2 class="anchored" data-anchor-id="primer-orden-el-cambio-es-un-salto">Primer orden: el cambio es un salto</h2>
+<p>Ahora mantengamos <span class="math inline">\(T &lt; T_c\)</span> (ya hay dos mínimos) y encendamos el campo <span class="math inline">\(B\)</span>. El campo <strong>inclina</strong> la energía libre: favorece un mínimo y perjudica el otro.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anexos/06-energia-libre-con-campo.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>Bajo <span class="math inline">\(T_c\)</span>, la energía libre con campo externo. Izquierda: <span class="math inline">\(B &lt; 0\)</span>, el mínimo de la izquierda es más profundo. Centro: <span class="math inline">\(B = 0\)</span>, los dos mínimos son iguales. Derecha: <span class="math inline">\(B &gt; 0\)</span>, el mínimo de la derecha es más profundo. El mínimo desfavorecido <strong>no desaparece</strong>: sigue siendo un estado localmente estable.</figcaption>
+</figure>
+</div>
+<p>Aquí está la clave. Si el sistema está en el mínimo de la izquierda (<span class="math inline">\(m &lt; 0\)</span>) y empezamos a subir <span class="math inline">\(B\)</span>, el mínimo se vuelve cada vez menos profundo, pero el sistema <strong>se queda ahí</strong>: para saltar al otro lado necesita superar la barrera del medio. Solo cuando la barrera desaparece por completo, el sistema cae de golpe al otro mínimo. La magnetización pasa de <span class="math inline">\(-1\)</span> a <span class="math inline">\(+1\)</span> <strong>de un salto</strong>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anexos/07-ising-primer-orden-M-vs-H.png" class="img-fluid figure-img" style="width:55.0%"></p>
+<figcaption>Ising con campo externo, <span class="math inline">\(T &lt; T_c\)</span>: la magnetización salta discontinuamente al cambiar el signo del campo <span class="math inline">\(H\)</span>, y el punto exacto del salto depende de la temperatura. Una transición de <strong>primer orden</strong>.</figcaption>
+</figure>
+</div>
+<p>Y si ahora bajamos <span class="math inline">\(B\)</span> de vuelta, el salto <strong>no ocurre en el mismo punto</strong>: el sistema está atrapado en <span class="math inline">\(m &gt; 0\)</span> hasta que la barrera desaparece por el otro lado. Eso es la <strong>histéresis</strong>: el estado depende de la historia, no solo de los parámetros actuales.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anexos/08-ising-diagrama-M-H-T.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>El cuadro completo: la magnetización <span class="math inline">\(M\)</span> como superficie sobre el plano <span class="math inline">\((H, T)\)</span>. El corte 1 (verde, <span class="math inline">\(T &lt; T_c\)</span>) cruza la zona sombreada, donde coexisten dos estados, y <span class="math inline">\(M\)</span> salta: primer orden. El corte 2 (morado, a <span class="math inline">\(H = 0\)</span>) recorre el eje de temperatura y <span class="math inline">\(M\)</span> crece continuamente hasta anularse en <span class="math inline">\(T_c\)</span>: segundo orden. El punto <span class="math inline">\(T = T_c\)</span> es donde la línea de saltos termina.</figcaption>
+</figure>
+</div>
+<p>Tres marcas definen una transición de primer orden:</p>
+<ol type="1">
+<li><strong>El parámetro de orden salta</strong>, no crece suavemente.</li>
+<li><strong>Hay histéresis</strong>: revertir exige ir mucho más atrás que el punto donde se produjo el salto.</li>
+<li><strong>Hay coexistencia y metaestabilidad</strong>: cerca del punto crítico, dos estados son posibles, y el sistema puede quedar “atrapado” en el que no es el de menor energía.</li>
+</ol>
+</section>
+<section id="en-las-ciencias-sociales" class="level2">
+<h2 class="anchored" data-anchor-id="en-las-ciencias-sociales">En las ciencias sociales</h2>
+<p>Ahora la lectura social de cada figura.</p>
+<section id="segundo-orden-schelling" class="level3">
+<h3 class="anchored" data-anchor-id="segundo-orden-schelling">Segundo orden: Schelling</h3>
+<p>El modelo de <strong>Schelling</strong> de segregación se comporta como el Ising sin campo. Cada agente tiene una tolerancia mínima a vecinos distintos; al variarla, la segregación emerge <strong>gradualmente</strong>. No hay un salto: hay una curva empinada pero continua, igual que la magnetización al bajar la temperatura.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anexos/09-schelling-segregacion.png" class="img-fluid figure-img" style="width:35.0%"></p>
+<figcaption>Modelo de Schelling: la segregación espacial emerge de preferencias individuales moderadas. El grado de segregación es el parámetro de orden, y crece de forma continua.</figcaption>
+</figure>
+</div>
+</section>
+<section id="primer-orden-el-contagio-complejo" class="level3">
+<h3 class="anchored" data-anchor-id="primer-orden-el-contagio-complejo">Primer orden: el contagio complejo</h3>
+<p>Un contagio que requiere refuerzo se comporta como el Ising <strong>con</strong> campo bajo <span class="math inline">\(T_c\)</span>. La figura muestra el tamaño del brote según la probabilidad de transmisión en un modelo con refuerzo: para ciertos parámetros el brote crece de forma suave, pero para otros <strong>salta</strong> de casi nada a casi toda la población en un punto crítico.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anexos/10-brote-salto-primer-orden.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Tamaño del brote <span class="math inline">\(S\)</span> según la probabilidad de transmisión <span class="math inline">\(\phi\)</span> en un modelo de contagio con refuerzo, para tres combinaciones de grado medio <span class="math inline">\(c\)</span> y fracción inicial <span class="math inline">\(\rho\)</span>. La curva del medio salta: transición de primer orden. Figura de Newman, <em>Networks</em>.</figcaption>
+</figure>
+</div>
+<p>Es exactamente lo que Centola &amp; Macy observan al aumentar <span class="math inline">\(p\)</span>: la saturación pasa de “completa” a “ninguna” de golpe, no gradualmente. Y las tres marcas tienen lectura social directa:</p>
+<ul>
+<li><strong>El salto</strong> son los <em>tipping points</em> de las normas: Centola et al.&nbsp;(2018) los provocaron experimentalmente con una minoría comprometida del 25%.</li>
+<li><strong>La histéresis</strong> es la irreversibilidad de muchos cambios sociales: una vez que una norma cayó, restaurarla cuesta mucho más que lo que costó derribarla.</li>
+<li><strong>La coexistencia</strong> es la impredecibilidad cerca del punto crítico, donde poblaciones casi idénticas producen resultados opuestos. Dicho en otro lenguaje, es el ejemplo de los 100 trabajadores de Granovetter con que empieza el capítulo de contagio.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>La regla para distinguirlas en datos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si al variar un parámetro (recableado, umbral, tamaño de la semilla) la prevalencia final cambia <strong>suavemente</strong>, la transición es de segundo orden y el sistema es predecible. Si <strong>salta</strong>, y además el salto ocurre en puntos distintos según se suba o se baje el parámetro, es de primer orden: hay que preguntarse de dónde viene el sistema, no solo dónde está.</p>
 </div>
 </div>
 
 
+</section>
 </section>
 </section>
 
@@ -844,11 +994,11 @@ Nota
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./referencias.html" class="pagination-link" aria-label="Referencias">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Referencias</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-setup-computacional.html" class="pagination-link" aria-label="Kit computacional recomendado para el investigador">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Kit computacional recomendado para el investigador</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
