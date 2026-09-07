@@ -74,53 +74,73 @@ Es la misma idea de Granovetter, pero ahora el resultado colectivo pasa a depend
 
 Antes de seguir con la estructura, conviene detenerse a explicar *qué* es un contagio complejo y *qué lo explica*.
 
-La definición canónica es la de Centola & Macy (2007): un contagio es **simple** cuando basta *un* contacto con una fuente activada para transmitirlo (una enfermedad, una noticia, una oferta de trabajo), y es **complejo** cuando *"requiere contacto con múltiples fuentes de activación"* — es decir, cuando la exposición a un solo adoptante no basta y hace falta **refuerzo social**. En el lenguaje de Valente: un contagio complejo es uno cuyo umbral es $\tau_i > 1/z_i$, o en conteo, $a_i \geq 2$.
+La definición canónica es la de Centola & Macy (2007): un contagio es **simple** cuando basta *un* contacto con una fuente activada para transmitirlo (una enfermedad, una noticia, una oferta de trabajo), y es **complejo** cuando *"requiere contacto con múltiples fuentes de activación"*.
 
-Esa definición tiene bordes difusos, y conviene saberlo: (i) "múltiples fuentes" puede medirse en **conteo** (dos vecinos) o en **fracción** (un cuarto de mis vecinos), y los resultados difieren; (ii) la literatura no siempre distingue **fuentes** (personas distintas) de **exposiciones** (veces que recibo la señal); (iii) el umbral puede ser homogéneo o distribuido en la población. Guilbeault, Becker & Centola (2018) revisan esas variantes; el punto común es que **los no-adoptantes cuentan**, y que un solo contacto nunca es suficiente.
+La palabra "umbral", sin embargo, es anterior a la red: ya está en Granovetter (1978), quien lo define como *"el punto donde los beneficios netos empiezan a exceder los costos netos"* de actuar. Su Figura 3 dibuja, para un individuo con umbral del 38%, el beneficio neto de sumarse a un motín según la fracción del grupo que ya participa: mientras la curva está bajo cero, no actúa; cuando la cruza, actúa. En la versión más simple, ese beneficio neto crece **linealmente** con la adopción:
+
+```{r}
+#| label: fig-umbral-utilidad-neta
+#| fig-cap: "El umbral como utilidad neta. Para un individuo con $\\tau = 0.38$ (el ejemplo de Granovetter), el beneficio neto de actuar crece con la fracción $r$ de adoptantes y se vuelve positivo exactamente en $r = \\tau$. A la izquierda del umbral no adopta; a la derecha, sí."
+#| fig-height: 3.8
+#| fig-width: 6
+#| echo: false
+tau <- 0.38
+r   <- seq(0, 1, by = 0.01)
+u   <- r - tau                                   # utilidad neta lineal
+par(mar = c(4.5, 4.5, 1, 1))
+plot(r, u, type = "n", xlab = "Fracción de adoptantes  r", ylab = "Utilidad neta de adoptar",
+     ylim = c(-0.5, 0.7), xaxs = "i", las = 1)
+rect(tau, -1, 1.05, 1, col = "#e6f4ea", border = NA)   # zona de adopción
+abline(h = 0, col = "grey40")
+lines(r, u, lwd = 3, col = "#2e8b57")
+points(tau, 0, pch = 19, cex = 1.4, col = "#2e8b57")
+text(tau, 0.06, expression(tau), pos = 3, cex = 1.3)
+text(0.05, 0.6, "no adopta", adj = 0, col = "grey30")
+text(0.97, 0.6, "adopta", adj = 1, col = "#2e8b57", font = 2)
+```
+
+Guardemos esta figura: más abajo, el **bi-umbral** será simplemente la misma curva pero no monotónica, que vuelve a cruzar el cero cuando demasiados adoptan. Granovetter mismo lo anticipó: su modelo estipula que la curva no cruce el eje "más de una vez", y advierte que si lo hace "se necesitan modelos más complejos".
 
 ::: callout-note
 ## Ejemplos que la literatura ha tratado como contagio complejo
 
 - **Conductas de salud en un foro en línea** (Centola 2010, *Science*): registrarse en un sitio de salud se difundió más y más lejos en redes clusterizadas que en aleatorias.
 - **Hashtags políticos y controversiales** en Twitter (Romero et al. 2011), frente a los idiomáticos, que se comportan como contagio simple.
-- **Unirse a Facebook** (Ugander et al. 2012): predice la adopción el número de *grupos distintos* de amigos que ya están, no el número de amigos.
 - **Cambiar la foto de perfil por el signo igual** en apoyo al matrimonio igualitario (State & Adamic 2015).
-- **Una técnica agrícola nueva** en Malawi (Beaman et al. 2021): casi nadie adopta con un vecino informado; muchos, con dos.
+- **Una técnica agrícola nueva** en Malawi (Beaman et al. 2021): casi nadie adopta con un vecino informado, pero sí varios con dos.
 - **Salir a protestar** en la Primavera Árabe (Steinert-Threlkeld 2017) y en las protestas de 2011–2013 (Barberá et al. 2015).
-- **Una performance feminista** que saltó de Valparaíso a 60 países (Saetre 2025).
-- Y en la teoría: la credibilidad de una leyenda urbana, la adopción de una tecnología nueva, la disposición a participar en una manifestación riesgosa, una moda de vanguardia (Centola & Macy 2007).
+- **En teoría:** la credibilidad de una leyenda urbana, la adopción de una tecnología nueva, la disposición a participar en una manifestación riesgosa, una moda de vanguardia (Centola & Macy 2007).
 :::
 
 # Mecanismos de contagio complejo
 
 
-¿Por qué una exposición no basta? Cuatro mecanismos, cada uno con su microfundamento:
+¿Por qué una exposición no basta? Cuatro mecanismos identificados, cada uno con su microfundamento. 
 
-1. **Complementariedad estratégica**: la innovación es costosa para los primeros y barata para los siguientes; se necesita masa crítica para que valga la pena.
-2. **Credibilidad**: una innovación no es creíble hasta que varios vecinos la adoptan (los médicos y la tetraciclina).
-3. **Legitimidad**: saber de un movimiento riesgoso no basta para unirse; ver a varios cercanos asistir, sí.
-4. **Contagio emocional**: los impulsos expresivos se amplifican en reuniones concentradas social y espacialmente.
+1. **Complementariedad estratégica**
 
-La idea que ordena los cuatro: una barrera es una razón por la que **una exposición no basta**. Y cada barrera tiene, en alguna disciplina, una teoría que explica *por qué* se necesitan varias fuentes. Ese es su microfundamento.
+La innovación vale más cuantos más la usan: un teléfono, una red social, una moneda. Eso es, formalmente, un **juego de coordinación**: mi pago depende de que los demás elijan lo mismo que yo. 
 
-## Complementariedad estratégica
+Morris (2000) demostró que en una red ese juego produce exactamente un umbral: me conviene cambiar cuando la fracción de vecinos que ya cambió supera $q = b/(a+b)$, donde $a$ y $b$ son los pagos de coordinar en cada opción.
 
-La innovación vale más cuantos más la usan: un teléfono, una red social, una moneda. Eso es, formalmente, un **juego de coordinación**: mi pago depende de que los demás elijan lo mismo que yo. Morris (2000) demostró que en una red ese juego produce exactamente un umbral: me conviene cambiar cuando la fracción de vecinos que ya cambió supera $q = b/(a+b)$, donde $a$ y $b$ son los pagos de coordinar en cada opción (véase también Easley & Kleinberg 2010, cap. 19). En economía, Katz & Shapiro (1985) formalizaron las **externalidades de red**: el valor del bien crece con su base instalada. Aquí "varias fuentes" es literal: necesito que *varios* de mis contactos usen el producto para que me sirva.
+2. **Credibilidad**
 
-## Credibilidad
+No sé la calidad de la innovación. Una mezcla entre **cascadas informacionales** (si tres personas que eligieron por separado adoptaron, eso actualiza mi creencia más que una sola -Bikhchandani, Hirshleifer & Welch 1992 y Banerjee (1992)-) y **efecto de fuentes múltiples** (la información que llega de fuentes que no se coordinaron entre sí es más informativa que la misma información repetida -Harkins & Petty 1981, 1987-).
 
-Cuando no sé si algo funciona, cada adoptante es evidencia. Bikhchandani, Hirshleifer & Welch (1992) y Banerjee (1992) lo modelaron bayesianamente como **cascadas informacionales**: si tres personas que eligieron por separado adoptaron, eso actualiza mi creencia más que una sola. Es la lógica de los médicos y la tetraciclina (Coleman, Katz & Menzel 1966): cada colega que la usa es una señal privada revelada. Y es donde vive el **efecto de fuentes múltiples** de Harkins & Petty (1981, 1987), que veremos en la sección siguiente: la información que llega de fuentes que no se coordinaron entre sí es más informativa que la misma información repetida.
+3. **Legitimidad**
 
-## Legitimidad
+Aquí no dudo de si funciona, sino de si *está permitido*. Ver a *varios* cercanos asistir a una protesta es lo que la legitima (Granovetter 1978; McAdam 1986 sobre el activismo de alto riesgo).
 
-Aquí no dudo de si funciona, sino de si *está permitido*. Bicchieri (2006) define una **norma social** como una regla que sigo porque espero que los demás la sigan *y* que esperen que yo la siga; por eso necesito ver a varios cumplirla para creer que rige. Samuelson & Zeckhauser (1988) agregan el freno del **sesgo de statu quo**: ante la duda, la gente se queda donde está. Ver a *varios* cercanos asistir a una protesta es lo que la legitima (Granovetter 1978; McAdam 1986 sobre el activismo de alto riesgo). Y, como veremos, aquí las fuentes deben ser además **diversas**: si solo mi grupo adopta, no sé si es legítimo *en general*.
+Bicchieri (2006) define una **norma social** como una regla que sigo porque espero que los demás la sigan *y* que esperen que yo la siga; por eso necesito ver a varios cumplirla para creer que rige. Samuelson & Zeckhauser (1988) agregan el freno del **sesgo de statu quo**: ante la duda, la gente se queda donde está.
 
-## Contagio emocional
+4. **Contagio emocional**
 
-La barrera no es cognitiva sino afectiva: necesito el ánimo. Collins (2004) formaliza la *efervescencia colectiva* de Durkheim como **cadenas de rituales de interacción**: la energía emocional se genera en copresencia y se amplifica con el número de participantes. Hatfield, Cacioppo & Rapson (1993) documentan el **contagio emocional** automático: mimetismo facial, sincronía postural, convergencia afectiva. Aquí "varias fuentes" es casi físico: una persona entusiasmada no hace una marcha; una multitud sí.
+Los impulsos expresivos se amplifican en reuniones concentradas social y espacialmente.
+
+La barrera no es cognitiva sino afectiva: necesito que sientan lo mismo. Hatfield, Cacioppo & Rapson (1993) documentan el **contagio emocional** automático: mimetismo facial, sincronía postural, convergencia afectiva.
 
 ::: callout-tip
-## En una línea
+## Resumen
 
 *Coordinación necesita que los demás lo usen; credibilidad, que lo prueben; legitimidad, que lo aprueben; emoción, que lo sientan.* Las cuatro son cosas que una sola persona no puede darme.
 :::
@@ -129,28 +149,15 @@ La barrera no es cognitiva sino afectiva: necesito el ánimo. Collins (2004) for
 
 ## Se usan fracciones, no conteos
 
-En un contagio simple, los no-adoptantes son irrelevantes: si tengo contacto con alguien con sarampión, me contagio, sin importar cuántos sanos conozca. En un contagio complejo, los no-adoptantes **son una señal activa**: cada contacto que no adoptó dice, en silencio, "esto no es aceptado". Centola las llama *influencias contrarias* (*countervailing influences*).
+En un contagio simple, los no-adoptantes son irrelevantes: si tengo contacto con alguien con sarampión, me contagio, sin importar cuántos sanos conozca. En un contagio complejo, los no-adoptantes **son una señal activa** (*influencias contrarias*). Por lo tanto, lo que predice adopción no es cuántos amigos ya lo han hecho, sino **qué fracción**.
 
-Por lo tanto, lo que predice adopción no es cuántos amigos ya lo han hecho, sino **qué fracción**.
+O sea, cuanto más conectado estás, **más influencias contrarias enfrentas**. Por eso los "hubs" suelen ser *frenos* y no *aceleradores* de los contagios complejos. Eso explica por qué los movimientos —la Primavera Árabe en Egipto (Steinert-Threlkeld 2017), el *Ice Bucket Challenge* (Sprague & House 2017)— **nacieron en la periferia**.
 
-La consecuencia es la primera sorpresa del bloque: **cuanto más conectado estás, más influencias contrarias enfrentas**. Por eso los "influyentes" suelen ser *frenos* y no *aceleradores* de los contagios complejos. Y, por eso, tantos movimientos —la Primavera Árabe en Egipto (Steinert-Threlkeld 2017), la adopción de Twitter (Toole et al. 2012), el *Ice Bucket Challenge* (Sprague & House 2017)— **nacieron en la periferia**.
+## Número de fuentes, no de exposiciones
 
-## Fuentes, no exposiciones
+Lo que cuenta no es cuántas *veces* recibo la señal, sino de cuántas **fuentes distintas e independientes** la recibo. Harkins & Petty (1981, 1987) hallaron este *efecto de fuentes múltiples*: los mismos argumentos, presentados por varias personas *independientes*, persuaden más que repetidos por una. 
 
-Lo que cuenta no es cuántas *veces* recibo la señal, sino de cuántas **fuentes distintas e independientes** la recibo.
-
-**Harkins & Petty (1981, 1987)** hallaron este *efecto de fuentes múltiples*: los mismos argumentos, presentados por varias personas *independientes*, persuaden más que repetidos por una. 
-
-## Similitud o diversidad: depende de la barrera
-
-Si las fuentes independientes son lo que convence, ¿deben parecerse a mí o ser distintas entre sí? Centola (2022) responde que **depende de cuál barrera opera**:
-
-Cuando la barrera es **credibilidad** o **emoción**, convencen los pares *similares* — la prueba social de mi propio grupo (Centola 2011: la homofilia aumenta la adopción de conductas de salud). 
-
-Cuando la barrera es **legitimidad**, también convencen las fuentes *diversas*:  State & Adamic (2015) midieron el cambio masivo de fotos de perfil en Facebook en apoyo al matrimonio igualitario en el caso del signo igual, la gente cambió su foto cuando vio adoptantes de círculos sociales distintos — abuelos, colegas, amigos del colegio —. Eso probaba que el apoyo era amplio y el riesgo social bajo.
-
-
-## Bi-threshold: umbral superior
+## Bi-threshold: umbral de desadopción
 
 Si el umbral es el punto donde la utilidad neta se vuelve positiva, nada impide que **demasiada** adopción la vuelva negativa de nuevo. Tres posibles mecanismos (Alipour et al. 2024):
 
@@ -160,11 +167,19 @@ Si el umbral es el punto donde la utilidad neta se vuelve positiva, nada impide 
 - **Pérdida de distinción**: el *snob effect* de Leibenstein (1950), lo que valía por exclusivo deja de valer cuando lo tiene todo el mundo.
 - **Señalización de identidad**: abandonar un rasgo cuando lo adoptan los "otros" (Berger & Heath 2007).
 
+## Similitud o diversidad: depende de la barrera
+
+Si las fuentes independientes son lo que convence, ¿deben parecerse a mí o ser distintas entre sí? Centola (2022) responde que **depende de cuál barrera opera**:
+
+Cuando la barrera es **credibilidad** o **emoción**, convencen los pares *similares* — la prueba social de mi propio grupo (Centola 2011: la homofilia aumenta la adopción de conductas de salud). 
+
+Cuando la barrera es **legitimidad**, también convencen las fuentes *diversas*:  State & Adamic (2015) midieron el cambio masivo de fotos de perfil en Facebook en apoyo al matrimonio igualitario en el caso del signo igual, la gente cambió su foto cuando vio adoptantes de círculos sociales distintos — abuelos, colegas, amigos del colegio —. Eso probaba que el apoyo era amplio y el riesgo social era bajo.
+
 ## Confirmar sesgos (simple) vs desafiarlos (complejo)
 
-La información que *confirma* los sesgos de una comunidad es fácil de entender y de aceptar (contagio **simple**), y la información que *desafía* esos sesgos encuentra resistencia (contagio **complejo**): por lo que la desinformación siempre corre con ventaja de mecanismo. 
+La información que *confirma* los sesgos de una comunidad es fácil de entender y de aceptar (contagio **simple**), y la información que *desafía* esos sesgos encuentra resistencia (contagio **complejo**), por lo que la desinformación siempre corre con ventaja de mecanismo. 
 
-Las mascarillas en la pandemia: la misma conducta fue contagio simple en comunidades que confiaban en la autoridad sanitaria y contagio complejo donde no.
+Ejemplo: Las mascarillas en la pandemia. La misma conducta es contagio simple en comunidades que confiaban en la autoridad sanitaria y contagio complejo donde no.
 
 
 # Contagio complejo y la debilidad de los lazos largos
@@ -195,13 +210,13 @@ Se simula: $z = 8$, umbrales $\tau = 1/8, 2/8, 3/8$, y se miden los pasos necesa
 
 1. **El contagio simple se beneficia de la aleatorización.** Con $\tau = 1/8$, la curva es decreciente.
 2. **El contagio complejo no se beneficia de niveles bajos de aleatorización.** Con $\tau = 2/8$, la curva es plana hasta $p \approx 10^{-3}$.
-3. **El efecto de $p$ sobre el tiempo de saturación no es monótono** para contagios complejos: baja, toca un mínimo y sube hasta que la propagación falla (**transición de fase de primer orden** en la propagación).
+3. **El efecto de $p$ sobre el tiempo de saturación no es monótono** para contagios complejos: baja, toca un mínimo y sube hasta que la propagación falla (transición de fase de primer orden en la propagación).
 4. **La difusión de información no es equivalente a la difusión de comportamientos.** La frase de Granovetter es falsa para la difusión de comportamientos.
 
 ::: callout-note
 ## Transición de fase de primer orden
 
-Centola & Macy dicen que el colapso de la propagación al aumentar $p$ es "una transición de fase de primer orden": la saturación pasa de completa a ninguna **de golpe**, no gradualmente, y con histéresis. Qué significa eso, de dónde viene el término (el modelo de Ising) y por qué importa para los *tipping points* y la irreversibilidad de las normas está en el [anexo sobre transiciones de fase](anexos.qmd).
+Centola & Macy dicen que el colapso de la propagación al aumentar $p$ es "una transición de fase de primer orden". Ver el [anexo sobre transiciones de fase](anexos.qmd).
 :::
 
 # Cómo sembrar: centralidad compleja
@@ -211,16 +226,11 @@ Todas las centralidades que aprendimos —grado, intermediación, cercanía, aut
 Un puente es un conjunto de lazos reforzantes que conecta dos clusters densos.
 La idea es que un nodo puede ser periférico y tener bajo grado, pero si está embebido en un vecindario denso con puentes anchos hacia otros clusters, puede ser más influyente que un hub aislado.
 
-![Camino simple vs. camino complejo. Entre $A$ y $B$ hay un camino simple corto (por el atajo), pero un contagio con $\tau = 2$ no puede recorrerlo: necesita avanzar por **puentes anchos**, pares de lazos que lleguen juntos a cada nodo nuevo. El camino complejo es más largo y pasa por otros nodos. Figura 1 de Guilbeault & Centola (2021).](figs/contagio/11-guilbeault-centola-camino-complejo.png){width="75%" fig-align="center"}
+![Camino simple vs. camino complejo. Entre $A$ y $B$ hay un camino simple corto (por el atajo), pero un contagio con $\tau = 2$ no puede recorrerlo: necesita avanzar por **puentes anchos**, pares de lazos que lleguen juntos a cada nodo nuevo. El camino complejo es más largo y pasa por otros nodos. Figura 1 de Guilbeault & Centola (2021).](figs/contagio/11-guilbeault-centola-camino-complejo.png){width="50%" fig-align="center"}
 
 ::: callout-note
 ## Puentes anchos históricos
 Saetre (2025, *AJS*): *Un violador en tu camino* saltó de Valparaíso a 60 países en semanas. La diáspora chilena formada en los 70 funcionó como **puente ancho latente**: clusters de personas con lazos simultáneos a Chile y a sus sociedades de acogida, que primero replicaron la performance en solidaridad y luego permitieron que locales no chilenos la adaptaran. La autora mide el ancho del puente con el tamaño de la diáspora por ciudad *y* sus lazos vigentes con Chile, y muestra la secuencia diáspora → adaptación local → prescindir del intermediario.
-
-::: callout-warning
-## Figura pendiente
-Mapa o secuencia temporal de la difusión de *Un violador en tu camino* (Saetre 2025). Guardar como `figs/contagio/12-saetre-un-violador-difusion.png` y reemplazar este recuadro.
-:::
 :::
 
 La centralidad compleja se **calcula simulando**: para cada nodo, se activa su vecindario y se corre una cascada de umbral determinista. Es una centralidad *definida por un proceso* que requiere 1) **asumir un umbral** $\tau$, 2) **validarla en simulación** es casi circular.
@@ -276,10 +286,20 @@ data(kfamily)
 # Una fila por mujer encuestada: id, aldea, tiempo de adopción y hasta 15 nominaciones
 kfamily[1:6, c("id", "village", "toa", paste0("net1", 1:5), paste0("net2", 1:5), paste0("net3", 1:5))]
 
-# 25 aldeas, 10 períodos (toa = 11 significa "no adoptó")
+# El estudio siguió 10 períodos. El código toa = 11 es una convención antigua
+# para "no adoptó": lo pasamos a NA, que es como netdiffuseR lo entiende.
+kfamily$toa[kfamily$toa == 11] <- NA
+
+# 25 aldeas; adoptantes por período (y cuántas nunca adoptaron)
 unique(kfamily$village)
-sort(unique(kfamily$toa))
+table(kfamily$toa, useNA = "ifany")
 ```
+
+::: callout-tip
+## Dónde está todo lo demás
+
+Cada función usada aquí (`survey_to_diffnet`, `exposure`, `diffreg`, `rdiffnet`, los `plot_*`) está documentada con ejemplos en el [manual de referencia de netdiffuseR en CRAN](https://cran.r-project.org/web/packages/netdiffuseR/netdiffuseR.pdf). Cuando un argumento no quede claro, ese PDF es el lugar donde mirar; dentro de R, `?survey_to_diffnet` abre la misma página.
+:::
 
 Esa es la estructura mínima de una encuesta de difusión: un **identificador**, las **nominaciones** (a quién le hablas de planificación familiar, a quién ves más, a quién le pides consejo) y el **tiempo de adopción**. La función `survey_to_diffnet()` arma con eso un objeto `diffnet`: la red más los tiempos de adopción. Trabajemos con la aldea 21:
 
@@ -302,19 +322,16 @@ kfamily_diffnet_21 <- survey_to_diffnet(
 kfamily_diffnet_21
 ```
 
-Tres gráficos vienen incluidos: la curva de adoptantes, el umbral observado de cada persona, y la red coloreada por período:
+Dos gráficos vienen incluidos: la curva de adoptantes y la red coloreada por período:
 
 ```{r}
 #| label: fig-nd-kfamily-plots
-#| fig-cap: "Aldea 21. Izquierda: adoptantes por período y acumulados. Derecha: umbral observado (fracción de contactos que ya habían adoptado) según el tiempo de adopción de cada mujer."
+#| fig-cap: "Aldea 21: adoptantes por período y acumulados."
 #| fig-height: 4
-#| fig-width: 9
+#| fig-width: 6
 #| message: false
 #| warning: false
-op <- par(mfrow = c(1, 2))
 plot_adopters(kfamily_diffnet_21)
-plot_threshold(kfamily_diffnet_21)
-par(op)
 ```
 
 ```{r}
@@ -334,21 +351,30 @@ $$
 y_{it} = 1 \iff \rho\, E_{i,t-1} + X_{it}\beta + \varepsilon_{it} > 0,
 $$
 
-donde $E_{i,t-1}$ es la fracción de contactos que ya habían adoptado en el período anterior. `diffreg()` lo estima directamente sobre el `diffnet`, pero exige que la exposición se llame literalmente `exposure`:
+donde $E_{i,t-1}$ es la fracción de contactos que ya habían adoptado en el período anterior, y $X_{it}$ son covariables de la encuesta. Para tener más potencia usamos las 25 aldeas juntas (`survey_to_diffnet` arma una red por aldea gracias a `groupvar`), y agregamos como controles la edad, el número de hijos y la exposición a afiches de planificación familiar (`media12`). `diffreg()` estima el modelo directamente sobre el `diffnet`, pero exige que la exposición se llame literalmente `exposure`:
 
 ```{r}
 #| label: nd-kfamily-diffreg
 #| message: false
 #| warning: false
-# Agregamos la exposición y la adopción acumulada como atributos dinámicos
-kfamily_diffnet_21[["exposure"]] <- exposure(kfamily_diffnet_21)
-kfamily_diffnet_21[["adoption"]] <- kfamily_diffnet_21$cumadopt
+kfamily_diffnet <- survey_to_diffnet(
+  dat      = kfamily,
+  idvar    = "id",
+  netvars  = c(paste0("net1", 1:5), paste0("net2", 1:5), paste0("net3", 1:5)),
+  toavar   = "toa",
+  groupvar = "village"
+)
 
-modelo <- diffreg(kfamily_diffnet_21 ~ exposure + factor(per), type = "logit")
-round(coef(summary(modelo))["exposure", , drop = FALSE], 3)
+# Agregamos la exposición y la adopción acumulada como atributos dinámicos
+kfamily_diffnet[["exposure"]] <- exposure(kfamily_diffnet)
+kfamily_diffnet[["adoption"]] <- kfamily_diffnet$cumadopt
+
+modelo <- diffreg(kfamily_diffnet ~ exposure + age + sons + media12 + factor(per),
+                  type = "logit")
+summary(modelo)
 ```
 
-La exposición es **positiva y significativa**: en la aldea 21, tener más contactos que ya usan planificación familiar aumenta la probabilidad de adoptarla al período siguiente, más allá de la tendencia temporal común. Eso es la firma mínima de un efecto de red.
+La exposición es **positiva y significativa** aun controlando por edad, hijos, afiches y período: tener más contactos que ya usan planificación familiar aumenta la probabilidad de adoptarla al período siguiente. Los hijos y los afiches también importan; la edad, no. Eso es la firma mínima de un efecto de red.
 
 ::: callout-warning
 ## Lo que la regresión no puede decir
@@ -359,9 +385,9 @@ Que la exposición prediga la adopción es consistente con contagio, pero tambi�
 ::: {.callout-note}
 ## Para jugar
 
-1. Repite la regresión para toda `kfamily` (sin el `subset`) y para `brfarmersDiffNet`, que ya viene como `diffnet`. ¿Cambia el coeficiente?
-2. Hazlo con `medInnovationsDiffNet`. Aquí la exposición **no** es significativa: es coherente con Van den Bulte & Lilien (2001), que mostraron que el "contagio" de la tetraciclina se desvanece al controlar por el marketing farmacéutico.
-3. Agrega covariables de la encuesta al modelo (`media12`, exposición a afiches; `sons`; `pregs`). ¿Sobrevive la exposición?
+1. Repite la regresión solo para la aldea 21 (`kfamily_diffnet_21`). Con 54 mujeres, ¿sobrevive la exposición a los mismos controles?
+2. Hazlo con `brfarmersDiffNet` y con `medInnovationsDiffNet`, que ya vienen como `diffnet`. En el segundo la exposición **no** es significativa: es coherente con Van den Bulte & Lilien (2001), que mostraron que el "contagio" de la tetraciclina se desvanece al controlar por el marketing farmacéutico.
+3. Cambia `media12` por otras fuentes (`media6` radio, `media7` TV, `media14` reuniones, `media18` visitas de trabajadoras de salud: ver `?kfamily`). ¿Cuál compite más con la exposición de red?
 :::
 
 ## Simular: contagio simple vs. complejo
