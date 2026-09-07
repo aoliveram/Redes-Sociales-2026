@@ -22,6 +22,8 @@ book:
     - 04-inferencia-qap-y-ergm.qmd
     - 05-contagio-social-en-redes.qmd
     - referencias.qmd
+  appendices:
+    - anexos.qmd
 
 format:
   html:
