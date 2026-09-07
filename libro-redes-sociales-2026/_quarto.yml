@@ -21,6 +21,7 @@ book:
     - 03-mecanismos-de-formacion.qmd
     - 04-inferencia-qap-y-ergm.qmd
     - 05-contagio-social-en-redes.qmd
+    - 06-psicometria-de-redes.qmd
     - referencias.qmd
   appendices:
     - vocabulario.qmd
