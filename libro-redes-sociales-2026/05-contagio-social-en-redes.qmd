@@ -47,14 +47,6 @@ Ahora quitamos al trabajador de umbral 1 y lo reemplazamos por otro de umbral 2.
 Dos poblaciones con preferencias casi idénticas producen resultados colectivos opuestos. El resultado de la acción colectiva no está en las preferencias, está en **su distribución**.
 :::
 
-::: callout-note
-## Dos precisiones de Granovetter que se olvidan
-
-**El umbral no es una preferencia.** Es el punto donde la *utilidad neta* de actuar se vuelve positiva. Un utilitarista puro y alguien sensible al estatus pueden tener el mismo umbral por razones distintas. 
-
-Es "una medida conductual contingente, no una medida pura de preferencias normativas". (De hecho, el umbral se puede derivar formalmente de un juego de coordinación: Morris 2000; Easley & Kleinberg 2010, cap. 19.)
-:::
-
 ## Valente (1996): el umbral se vuelve de red
 
 En vez de ver la proporción global $r$, cada persona mira su **propia red**. La **exposición** de $i$ es la fracción de sus contactos que ya adoptaron,
@@ -76,7 +68,7 @@ Antes de seguir con la estructura, conviene detenerse a explicar *qué* es un co
 
 La definición canónica es la de Centola & Macy (2007): un contagio es **simple** cuando basta *un* contacto con una fuente activada para transmitirlo (una enfermedad, una noticia, una oferta de trabajo), y es **complejo** cuando *"requiere contacto con múltiples fuentes de activación"*.
 
-La palabra "umbral", sin embargo, es anterior a la red: ya está en Granovetter (1978), quien lo define como *"el punto donde los beneficios netos empiezan a exceder los costos netos"* de actuar. Su Figura 3 dibuja, para un individuo con umbral del 38%, el beneficio neto de sumarse a un motín según la fracción del grupo que ya participa: mientras la curva está bajo cero, no actúa; cuando la cruza, actúa. En la versión más simple, ese beneficio neto crece **linealmente** con la adopción:
+La palabra "umbral", sin embargo, se define como *"el punto donde los beneficios netos empiezan a exceder los costos netos"* de actuar. Para un individuo con umbral del 38%, el beneficio neto de sumarse a un motín comienza a ser positivo en algún valor cercano a 38%.
 
 ```{r}
 #| label: fig-umbral-utilidad-neta
@@ -125,7 +117,7 @@ Morris (2000) demostró que en una red ese juego produce exactamente un umbral: 
 
 2. **Credibilidad**
 
-No sé la calidad de la innovación. Una mezcla entre **cascadas informacionales** (si tres personas que eligieron por separado adoptaron, eso actualiza mi creencia más que una sola -Bikhchandani, Hirshleifer & Welch 1992 y Banerjee (1992)-) y **efecto de fuentes múltiples** (la información que llega de fuentes que no se coordinaron entre sí es más informativa que la misma información repetida -Harkins & Petty 1981, 1987-).
+No sé la calidad de la innovación o lo provechoso de una conducta. Una mezcla entre **cascadas informacionales** (si tres personas que eligieron por separado adoptaron, eso actualiza mi creencia más que una sola -Bikhchandani, Hirshleifer & Welch 1992 y Banerjee (1992)-) y **efecto de fuentes múltiples** (la información que llega de fuentes que no se coordinaron entre sí es más informativa que la misma información repetida -Harkins & Petty 1981, 1987-).
 
 3. **Legitimidad**
 
@@ -156,6 +148,11 @@ O sea, cuanto más conectado estás, **más influencias contrarias enfrentas**. 
 ## Número de fuentes, no de exposiciones
 
 Lo que cuenta no es cuántas *veces* recibo la señal, sino de cuántas **fuentes distintas e independientes** la recibo. Harkins & Petty (1981, 1987) hallaron este *efecto de fuentes múltiples*: los mismos argumentos, presentados por varias personas *independientes*, persuaden más que repetidos por una. 
+
+::: callout-note
+## Puentes anchos históricos
+Saetre (2025, *AJS*): *Un violador en tu camino* saltó de Valparaíso a 60 países en semanas. La diáspora chilena formada en los 70 funcionó como **puente ancho latente**: clusters de personas con lazos simultáneos a Chile y a sus sociedades de acogida, que primero replicaron la performance en solidaridad y luego permitieron que locales no chilenos la adaptaran. La autora mide el ancho del puente con el tamaño de la diáspora por ciudad *y* sus lazos vigentes con Chile, y muestra la secuencia diáspora → adaptación local → prescindir del intermediario.
+:::
 
 ## Bi-threshold: umbral de desadopción
 
@@ -188,9 +185,8 @@ Granovetter (1973) mostró que los lazos débiles aceleran las difusiones simple
 
 Centola y Macy están **en contra de esa frase**. Definamos 
 
-1. $a$: número mínimo de vecinos adoptantes necesarios para contagiarse, 
-2. $z$: número de vecinos, 
-3. $\tau = a/z$: umbral. 
+1. $z$: número de vecinos, 
+2. $\tau$: umbral. 
 
 Conectamos cada nodo con sus $z$ vecinos más próximos, y luego recableamos una fracción $p$ de lazos al azar.
 
@@ -224,26 +220,15 @@ Centola & Macy dicen que el colapso de la propagación al aumentar $p$ es "una t
 Todas las centralidades que aprendimos —grado, intermediación, cercanía, autovector— se construyen usando como unidad los **pasos** dentro de la red. En contagio complejo, necesitamos usar como unidad los **puentes** entre vecindarios. 
 
 Un puente es un conjunto de lazos reforzantes que conecta dos clusters densos.
-La idea es que un nodo puede ser periférico y tener bajo grado, pero si está embebido en un vecindario denso con puentes anchos hacia otros clusters, puede ser más influyente que un hub aislado.
+**Un nodo periférico y con bajo grado puede ser más influyente que un hub** si está embebido en un vecindario denso con puentes anchos hacia otros clusters.
 
-![Camino simple vs. camino complejo. Entre $A$ y $B$ hay un camino simple corto (por el atajo), pero un contagio con $\tau = 2$ no puede recorrerlo: necesita avanzar por **puentes anchos**, pares de lazos que lleguen juntos a cada nodo nuevo. El camino complejo es más largo y pasa por otros nodos. Figura 1 de Guilbeault & Centola (2021).](figs/contagio/11-guilbeault-centola-camino-complejo.png){width="50%" fig-align="center"}
-
-::: callout-note
-## Puentes anchos históricos
-Saetre (2025, *AJS*): *Un violador en tu camino* saltó de Valparaíso a 60 países en semanas. La diáspora chilena formada en los 70 funcionó como **puente ancho latente**: clusters de personas con lazos simultáneos a Chile y a sus sociedades de acogida, que primero replicaron la performance en solidaridad y luego permitieron que locales no chilenos la adaptaran. La autora mide el ancho del puente con el tamaño de la diáspora por ciudad *y* sus lazos vigentes con Chile, y muestra la secuencia diáspora → adaptación local → prescindir del intermediario.
-:::
+![Camino simple vs. camino complejo. El contagio complejo necesita avanzar por **puentes anchos**. Figura 1 de Guilbeault & Centola (2021).](figs/contagio/11-guilbeault-centola-camino-complejo.png){width="50%" fig-align="center"}
 
 La centralidad compleja se **calcula simulando**: para cada nodo, se activa su vecindario y se corre una cascada de umbral determinista. Es una centralidad *definida por un proceso* que requiere 1) **asumir un umbral** $\tau$, 2) **validarla en simulación** es casi circular.
 
 En las 43 aldeas indias del programa de microfinanzas de Banerjee et al. (2013), las aldeas con mayor largo de camino complejo promedio difundieron más, y los hogares con alta centralidad compleja —no los "líderes" que los investigadores habían preseleccionado— predicen mejor que sus vecinos adopten.
 
 ![Predicción empírica en las 43 aldeas de Banerjee et al. (2013). **(a)** Sembrando solo entre los hogares "líderes" que el programa eligió: probabilidad de que los vecinos del hogar semilla adopten, según qué centralidad se usó para elegirlo. La línea horizontal es el azar. **(b)** Lo mismo, pero eligiendo la semilla entre *todos* los hogares. **(c)** A nivel de aldea: fracción final de adoptantes según el largo de camino complejo promedio de la aldea. Figura 4 de Guilbeault & Centola (2021).](figs/contagio/13-guilbeault-centola-adopcion.png){width="90%" fig-align="center"}
-
-::: callout-note
-## Cómo leer la figura
-
-En los paneles (a) y (b) cada punto es una **estrategia de siembra**, no un hogar: "si en cada aldea hubiéramos elegido como semilla al hogar con mayor *intermediación*, ¿qué fracción de sus vecinos habría adoptado?" Y así con cada medida. Solo la centralidad compleja queda claramente sobre la línea base; grado, intermediación y autovector quedan *bajo* ella, es decir, eligen semillas peores que el azar. El panel (c) cambia la unidad: ahora cada punto es un grupo de aldeas, y muestra que donde los caminos complejos son más largos (la aldea tiene más estructura de puentes anchos) la adopción final fue mayor. El largo de camino *simple* no predice nada.
-:::
 
 Su afirmación textual es cuidadosa: *"network locations with low degree centrality and low betweenness centrality **may** nevertheless be the most influential locations in the population."* La periferia gana **cuando está embebida en un vecindario denso con puentes anchos**.
 
@@ -286,8 +271,7 @@ data(kfamily)
 # Una fila por mujer encuestada: id, aldea, tiempo de adopción y hasta 15 nominaciones
 kfamily[1:6, c("id", "village", "toa", paste0("net1", 1:5), paste0("net2", 1:5), paste0("net3", 1:5))]
 
-# El estudio siguió 10 períodos. El código toa = 11 es una convención antigua
-# para "no adoptó": lo pasamos a NA, que es como netdiffuseR lo entiende.
+# El estudio siguió 10 períodos.
 kfamily$toa[kfamily$toa == 11] <- NA
 
 # 25 aldeas; adoptantes por período (y cuántas nunca adoptaron)
@@ -295,13 +279,7 @@ unique(kfamily$village)
 table(kfamily$toa, useNA = "ifany")
 ```
 
-::: callout-tip
-## Dónde está todo lo demás
-
-Cada función usada aquí (`survey_to_diffnet`, `exposure`, `diffreg`, `rdiffnet`, los `plot_*`) está documentada con ejemplos en el [manual de referencia de netdiffuseR en CRAN](https://cran.r-project.org/web/packages/netdiffuseR/netdiffuseR.pdf). Cuando un argumento no quede claro, ese PDF es el lugar donde mirar; dentro de R, `?survey_to_diffnet` abre la misma página.
-:::
-
-Esa es la estructura mínima de una encuesta de difusión: un **identificador**, las **nominaciones** (a quién le hablas de planificación familiar, a quién ves más, a quién le pides consejo) y el **tiempo de adopción**. La función `survey_to_diffnet()` arma con eso un objeto `diffnet`: la red más los tiempos de adopción. Trabajemos con la aldea 21:
+Esa es la estructura mínima de una encuesta de difusión: un **identificador**, las **nominaciones** (a quién le hablas de planificación familiar, a quién ves más, a quién le pides consejo) y el **tiempo de adopción**. La función `survey_to_diffnet()` arma con eso un objeto `diffnet` (la red más los tiempos de adopción). Trabajemos con la aldea 21:
 
 ```{r}
 #| label: nd-kfamily-diffnet
@@ -343,7 +321,7 @@ plot_adopters(kfamily_diffnet_21)
 plot_diffnet(kfamily_diffnet_21)
 ```
 
-## ¿Importa la exposición? Regresión con `diffreg`
+## Lagged Regression
 
 La pregunta de fondo: ¿la probabilidad de adoptar en $t$ depende de la **exposición** en $t-1$, controlando por el período? El modelo de exposición rezagada es
 
@@ -351,7 +329,9 @@ $$
 y_{it} = 1 \iff \rho\, E_{i,t-1} + X_{it}\beta + \varepsilon_{it} > 0,
 $$
 
-donde $E_{i,t-1}$ es la fracción de contactos que ya habían adoptado en el período anterior, y $X_{it}$ son covariables de la encuesta. Para tener más potencia usamos las 25 aldeas juntas (`survey_to_diffnet` arma una red por aldea gracias a `groupvar`), y agregamos como controles la edad, el número de hijos y la exposición a afiches de planificación familiar (`media12`). `diffreg()` estima el modelo directamente sobre el `diffnet`, pero exige que la exposición se llame literalmente `exposure`:
+donde $E_{i,t-1}$ es la fracción de contactos que ya habían adoptado en el período anterior, y $X_{it}$ son covariables de la encuesta. Para tener más potencia usamos las 25 aldeas juntas (`survey_to_diffnet` con `groupvar`), y agregamos como controles la edad, el número de hijos y la exposición a afiches de planificación familiar (`media12`). 
+
+`diffreg()` estima el modelo directamente sobre el `diffnet` (exige que la exposición se llame literalmente `exposure`).:
 
 ```{r}
 #| label: nd-kfamily-diffreg
@@ -379,7 +359,7 @@ La exposición es **positiva y significativa** aun controlando por edad, hijos, 
 ::: callout-warning
 ## Lo que la regresión no puede decir
 
-Que la exposición prediga la adopción es consistente con contagio, pero también con **homofilia** (elegí como amigas a mujeres parecidas a mí, que adoptan cuando yo adopto) o con un **contexto común** (una campaña llegó a todo el barrio). Sin un experimento o un instrumento, el coeficiente es una asociación. Es exactamente el problema de identificación con que empezó el capítulo de ERGM: la red y la conducta pueden tener una causa compartida.
+Que la exposición prediga la adopción es consistente con contagio, pero también con **homofilia** (elegí como amigas a mujeres parecidas a mí, que adoptan cuando yo adopto).
 :::
 
 ::: {.callout-note}
@@ -390,7 +370,7 @@ Que la exposición prediga la adopción es consistente con contagio, pero tambi�
 3. Cambia `media12` por otras fuentes (`media6` radio, `media7` TV, `media14` reuniones, `media18` visitas de trabajadoras de salud: ver `?kfamily`). ¿Cuál compite más con la exposición de red?
 :::
 
-## Simular: contagio simple vs. complejo
+## Simulación
 
 `rdiffnet()` simula una difusión por umbrales sobre una red. Se le da (o se le pide que genere) una red, se eligen las semillas, se fija la distribución de umbrales, y en cada período adopta quien tenga exposición mayor o igual a su umbral. Una difusión **conductual**, con umbrales entre 30% y 70% de los vecinos:
 
@@ -433,7 +413,7 @@ diffnet_disease <- rdiffnet(
 
 ```{r}
 #| label: fig-nd-sim
-#| fig-cap: "Adoptantes acumulados en una difusión tipo enfermedad (un vecino basta) y en una conductual (hace falta entre 30% y 70% de los vecinos), sobre redes equivalentes."
+#| fig-cap: "Adoptantes acumulados en una difusión tipo enfermedad y en una conductual."
 #| fig-height: 4.5
 #| message: false
 #| warning: false
