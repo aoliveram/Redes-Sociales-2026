@@ -11,11 +11,25 @@ El curso dura 3 semanas (6 sesiones, lunes y miércoles) y cada semana culmina e
 
 Para estudiantes de primer año del doctorado, que vienen de orígenes muy diversos: ingeniería, arquitectura, salud, sociología, psicología, entre otros. **No se asume experiencia previa en programación.** La [Ayudantía 1](01-setup-computacional.qmd) deja instalado y configurado todo lo necesario.
 
+## Los capítulos {.unnumbered}
+
+| Capítulo | De qué trata |
+|---|---|
+| [Kit computacional](01-setup-computacional.qmd) | IDE, R, Git y GitHub, agentes de IA. Cómo trabajar y cómo hacerse responsable de lo que uno entrega. |
+| [Fundamentos matemáticos](02-fundamentos-matematicos.qmd) | Grafos, matrices de adyacencia, caminos, centralidades. El vocabulario mínimo. |
+| [Mecanismos de formación](03-mecanismos-de-formacion.qmd) | Por qué existen los lazos: homofilia, reciprocidad, triadas, popularidad. |
+| [Inferencia: QAP y ERGM](04-inferencia-qap-y-ergm.qmd) | Cómo saber si un patrón es real. Permutaciones de etiquetas y modelos exponenciales. |
+| [Contagio social](05-contagio-social-en-redes.qmd) | Cómo se difunden conductas: umbrales, contagio complejo, dónde sembrar, `netdiffuseR`. |
+
+Al final hay un [anexo sobre transiciones de fase](anexos.qmd), que explica de dónde viene el lenguaje de *tipping points* e irreversibilidad que se usa en el capítulo de contagio.
+
+Cada capítulo trae recuadros **Para jugar**: variaciones del código que conviene correr por cuenta propia. Ahí es donde se aprende.
+
 ## Materiales {.unnumbered}
 
 - Repositorio del curso: <https://github.com/aoliveram/Redes-Sociales-2026>
 - Datos de la práctica: carpeta [`libro-redes-sociales-2026/datos/`](https://github.com/aoliveram/Redes-Sociales-2026/tree/main/libro-redes-sociales-2026/datos)
-- Bibliografía: carpeta [`libro-redes-sociales-2026/bibliografia/`](https://github.com/aoliveram/Redes-Sociales-2026/tree/main/libro-redes-sociales-2026/bibliografia)
+- Referencias citadas: [capítulo de referencias](referencias.qmd)
 
 ::: {.callout-note}
 Este libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.

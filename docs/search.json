@@ -20,11 +20,21 @@
     ]
   },
   {
+    "objectID": "index.html#los-capítulos",
+    "href": "index.html#los-capítulos",
+    "title": "Redes Sociales — DCCS 2026",
+    "section": "Los capítulos",
+    "text": "Los capítulos\n\n\n\nCapítulo\nDe qué trata\n\n\n\n\nKit computacional\nIDE, R, Git y GitHub, agentes de IA. Cómo trabajar y cómo hacerse responsable de lo que uno entrega.\n\n\nFundamentos matemáticos\nGrafos, matrices de adyacencia, caminos, centralidades. El vocabulario mínimo.\n\n\nMecanismos de formación\nPor qué existen los lazos: homofilia, reciprocidad, triadas, popularidad.\n\n\nInferencia: QAP y ERGM\nCómo saber si un patrón es real. Permutaciones de etiquetas y modelos exponenciales.\n\n\nContagio social\nCómo se difunden conductas: umbrales, contagio complejo, dónde sembrar, netdiffuseR.\n\n\n\nAl final hay un anexo sobre transiciones de fase, que explica de dónde viene el lenguaje de tipping points e irreversibilidad que se usa en el capítulo de contagio.\nCada capítulo trae recuadros Para jugar: variaciones del código que conviene correr por cuenta propia. Ahí es donde se aprende.",
+    "crumbs": [
+      "Bienvenida"
+    ]
+  },
+  {
     "objectID": "index.html#materiales",
     "href": "index.html#materiales",
     "title": "Redes Sociales — DCCS 2026",
     "section": "Materiales",
-    "text": "Materiales\n\nRepositorio del curso: https://github.com/aoliveram/Redes-Sociales-2026\nDatos de la práctica: carpeta libro-redes-sociales-2026/datos/\nBibliografía: carpeta libro-redes-sociales-2026/bibliografia/\n\n\n\n\n\n\n\nNota\n\n\n\nEste libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.",
+    "text": "Materiales\n\nRepositorio del curso: https://github.com/aoliveram/Redes-Sociales-2026\nDatos de la práctica: carpeta libro-redes-sociales-2026/datos/\nReferencias citadas: capítulo de referencias\n\n\n\n\n\n\n\nNota\n\n\n\nEste libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.",
     "crumbs": [
       "Bienvenida"
     ]
@@ -520,46 +530,6 @@
     ]
   },
   {
-    "objectID": "05-contagio-social-en-redes.html#complementariedad-estratégica",
-    "href": "05-contagio-social-en-redes.html#complementariedad-estratégica",
-    "title": "5  Contagio social en redes",
-    "section": "7.1 Complementariedad estratégica",
-    "text": "7.1 Complementariedad estratégica\nLa innovación vale más cuantos más la usan: un teléfono, una red social, una moneda. Eso es, formalmente, un juego de coordinación: mi pago depende de que los demás elijan lo mismo que yo. Morris (2000) demostró que en una red ese juego produce exactamente un umbral: me conviene cambiar cuando la fracción de vecinos que ya cambió supera \\(q = b/(a+b)\\), donde \\(a\\) y \\(b\\) son los pagos de coordinar en cada opción (véase también Easley & Kleinberg 2010, cap. 19). En economía, Katz & Shapiro (1985) formalizaron las externalidades de red: el valor del bien crece con su base instalada. Aquí “varias fuentes” es literal: necesito que varios de mis contactos usen el producto para que me sirva.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
-    ]
-  },
-  {
-    "objectID": "05-contagio-social-en-redes.html#credibilidad",
-    "href": "05-contagio-social-en-redes.html#credibilidad",
-    "title": "5  Contagio social en redes",
-    "section": "7.2 Credibilidad",
-    "text": "7.2 Credibilidad\nCuando no sé si algo funciona, cada adoptante es evidencia. Bikhchandani, Hirshleifer & Welch (1992) y Banerjee (1992) lo modelaron bayesianamente como cascadas informacionales: si tres personas que eligieron por separado adoptaron, eso actualiza mi creencia más que una sola. Es la lógica de los médicos y la tetraciclina (Coleman, Katz & Menzel 1966): cada colega que la usa es una señal privada revelada. Y es donde vive el efecto de fuentes múltiples de Harkins & Petty (1981, 1987), que veremos en la sección siguiente: la información que llega de fuentes que no se coordinaron entre sí es más informativa que la misma información repetida.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
-    ]
-  },
-  {
-    "objectID": "05-contagio-social-en-redes.html#legitimidad",
-    "href": "05-contagio-social-en-redes.html#legitimidad",
-    "title": "5  Contagio social en redes",
-    "section": "7.3 Legitimidad",
-    "text": "7.3 Legitimidad\nAquí no dudo de si funciona, sino de si está permitido. Bicchieri (2006) define una norma social como una regla que sigo porque espero que los demás la sigan y que esperen que yo la siga; por eso necesito ver a varios cumplirla para creer que rige. Samuelson & Zeckhauser (1988) agregan el freno del sesgo de statu quo: ante la duda, la gente se queda donde está. Ver a varios cercanos asistir a una protesta es lo que la legitima (Granovetter 1978; McAdam 1986 sobre el activismo de alto riesgo). Y, como veremos, aquí las fuentes deben ser además diversas: si solo mi grupo adopta, no sé si es legítimo en general.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
-    ]
-  },
-  {
-    "objectID": "05-contagio-social-en-redes.html#contagio-emocional",
-    "href": "05-contagio-social-en-redes.html#contagio-emocional",
-    "title": "5  Contagio social en redes",
-    "section": "7.4 Contagio emocional",
-    "text": "7.4 Contagio emocional\nLa barrera no es cognitiva sino afectiva: necesito el ánimo. Collins (2004) formaliza la efervescencia colectiva de Durkheim como cadenas de rituales de interacción: la energía emocional se genera en copresencia y se amplifica con el número de participantes. Hatfield, Cacioppo & Rapson (1993) documentan el contagio emocional automático: mimetismo facial, sincronía postural, convergencia afectiva. Aquí “varias fuentes” es casi físico: una persona entusiasmada no hace una marcha; una multitud sí.\n\n\n\n\n\n\nTipEn una línea\n\n\n\nCoordinación necesita que los demás lo usen; credibilidad, que lo prueben; legitimidad, que lo aprueben; emoción, que lo sientan. Las cuatro son cosas que una sola persona no puede darme.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
-    ]
-  },
-  {
     "objectID": "05-contagio-social-en-redes.html#se-usan-fracciones-no-conteos",
     "href": "05-contagio-social-en-redes.html#se-usan-fracciones-no-conteos",
     "title": "5  Contagio social en redes",
@@ -570,11 +540,21 @@
     ]
   },
   {
-    "objectID": "05-contagio-social-en-redes.html#fuentes-no-exposiciones",
-    "href": "05-contagio-social-en-redes.html#fuentes-no-exposiciones",
+    "objectID": "05-contagio-social-en-redes.html#número-de-fuentes-no-de-exposiciones",
+    "href": "05-contagio-social-en-redes.html#número-de-fuentes-no-de-exposiciones",
     "title": "5  Contagio social en redes",
-    "section": "8.2 Fuentes, no exposiciones",
-    "text": "8.2 Fuentes, no exposiciones\nLo que cuenta no es cuántas veces recibo la señal, sino de cuántas fuentes distintas e independientes la recibo.\nHarkins & Petty (1981, 1987) hallaron este efecto de fuentes múltiples: los mismos argumentos, presentados por varias personas independientes, persuaden más que repetidos por una.",
+    "section": "8.2 Número de fuentes, no de exposiciones",
+    "text": "8.2 Número de fuentes, no de exposiciones\nLo que cuenta no es cuántas veces recibo la señal, sino de cuántas fuentes distintas e independientes la recibo. Harkins & Petty (1981, 1987) hallaron este efecto de fuentes múltiples: los mismos argumentos, presentados por varias personas independientes, persuaden más que repetidos por una.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#bi-threshold-umbral-de-desadopción",
+    "href": "05-contagio-social-en-redes.html#bi-threshold-umbral-de-desadopción",
+    "title": "5  Contagio social en redes",
+    "section": "8.3 Bi-threshold: umbral de desadopción",
+    "text": "8.3 Bi-threshold: umbral de desadopción\nSi el umbral es el punto donde la utilidad neta se vuelve positiva, nada impide que demasiada adopción la vuelva negativa de nuevo. Tres posibles mecanismos (Alipour et al. 2024):\n\n\n\nUmbral lineal (verde) vs. bi-umbral (azul): en el segundo, el beneficio neto de adoptar vuelve a ser negativo cuando demasiados lo hacen. Figura de Alipour et al. (2024).\n\n\n\nSaturación o congestión: el valor cae con la multitud (bar “El Farol” de Arthur; una app que se vuelve lenta).\nPérdida de distinción: el snob effect de Leibenstein (1950), lo que valía por exclusivo deja de valer cuando lo tiene todo el mundo.\nSeñalización de identidad: abandonar un rasgo cuando lo adoptan los “otros” (Berger & Heath 2007).",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
     ]
@@ -585,16 +565,6 @@
     "title": "5  Contagio social en redes",
     "section": "8.4 Similitud o diversidad: depende de la barrera",
     "text": "8.4 Similitud o diversidad: depende de la barrera\nSi las fuentes independientes son lo que convence, ¿deben parecerse a mí o ser distintas entre sí? Centola (2022) responde que depende de cuál barrera opera:\nCuando la barrera es credibilidad o emoción, convencen los pares similares — la prueba social de mi propio grupo (Centola 2011: la homofilia aumenta la adopción de conductas de salud).\nCuando la barrera es legitimidad, también convencen las fuentes diversas: State & Adamic (2015) midieron el cambio masivo de fotos de perfil en Facebook en apoyo al matrimonio igualitario en el caso del signo igual, la gente cambió su foto cuando vio adoptantes de círculos sociales distintos — abuelos, colegas, amigos del colegio —. Eso probaba que el apoyo era amplio y el riesgo social era bajo.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
-    ]
-  },
-  {
-    "objectID": "05-contagio-social-en-redes.html#bi-threshold-umbral-superior",
-    "href": "05-contagio-social-en-redes.html#bi-threshold-umbral-superior",
-    "title": "5  Contagio social en redes",
-    "section": "8.4 Bi-threshold: umbral superior",
-    "text": "8.4 Bi-threshold: umbral superior\nSi el umbral es el punto donde la utilidad neta se vuelve positiva, nada impide que demasiada adopción la vuelva negativa de nuevo. Tres posibles mecanismos (Alipour et al. 2024):\n\n\n\nUmbral lineal (verde) vs. bi-umbral (azul): en el segundo, el beneficio neto de adoptar vuelve a ser negativo cuando demasiados lo hacen. Figura de Alipour et al. (2024).\n\n\n\nSaturación o congestión: el valor cae con la multitud (bar “El Farol” de Arthur; una app que se vuelve lenta).\nPérdida de distinción: el snob effect de Leibenstein (1950), lo que valía por exclusivo deja de valer cuando lo tiene todo el mundo.\nSeñalización de identidad: abandonar un rasgo cuando lo adoptan los “otros” (Berger & Heath 2007).",
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
     ]
@@ -742,26 +712,6 @@
     "crumbs": [
       "Apéndices",
       "Anexos"
-    ]
-  },
-  {
-    "objectID": "05-contagio-social-en-redes.html#número-de-fuentes-no-de-exposiciones",
-    "href": "05-contagio-social-en-redes.html#número-de-fuentes-no-de-exposiciones",
-    "title": "5  Contagio social en redes",
-    "section": "8.2 Número de fuentes, no de exposiciones",
-    "text": "8.2 Número de fuentes, no de exposiciones\nLo que cuenta no es cuántas veces recibo la señal, sino de cuántas fuentes distintas e independientes la recibo. Harkins & Petty (1981, 1987) hallaron este efecto de fuentes múltiples: los mismos argumentos, presentados por varias personas independientes, persuaden más que repetidos por una.",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
-    ]
-  },
-  {
-    "objectID": "05-contagio-social-en-redes.html#bi-threshold-umbral-de-desadopción",
-    "href": "05-contagio-social-en-redes.html#bi-threshold-umbral-de-desadopción",
-    "title": "5  Contagio social en redes",
-    "section": "8.3 Bi-threshold: umbral de desadopción",
-    "text": "8.3 Bi-threshold: umbral de desadopción\nSi el umbral es el punto donde la utilidad neta se vuelve positiva, nada impide que demasiada adopción la vuelva negativa de nuevo. Tres posibles mecanismos (Alipour et al. 2024):\n\n\n\nUmbral lineal (verde) vs. bi-umbral (azul): en el segundo, el beneficio neto de adoptar vuelve a ser negativo cuando demasiados lo hacen. Figura de Alipour et al. (2024).\n\n\n\nSaturación o congestión: el valor cae con la multitud (bar “El Farol” de Arthur; una app que se vuelve lenta).\nPérdida de distinción: el snob effect de Leibenstein (1950), lo que valía por exclusivo deja de valer cuando lo tiene todo el mundo.\nSeñalización de identidad: abandonar un rasgo cuando lo adoptan los “otros” (Berger & Heath 2007).",
-    "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
     ]
   }
 ]
