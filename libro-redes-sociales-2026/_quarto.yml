@@ -23,6 +23,7 @@ book:
     - 05-contagio-social-en-redes.qmd
     - referencias.qmd
   appendices:
+    - vocabulario.qmd
     - anexos.qmd
 
 format:

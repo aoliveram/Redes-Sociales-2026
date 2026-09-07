@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Referencias – Redes Sociales — DCCS 2026</title>
+<title>Vocabulario – Redes Sociales — DCCS 2026</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./vocabulario.html" rel="next">
-<link href="./05-contagio-social-en-redes.html" rel="prev">
+<link href="./anexos.html" rel="next">
+<link href="./referencias.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -75,6 +75,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -249,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./referencias.html">Referencias</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./vocabulario.html">Apéndices</a></li><li class="breadcrumb-item"><a href="./vocabulario.html">Vocabulario</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -316,7 +345,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./referencias.html" class="sidebar-item-text sidebar-link active">
+  <a href="./referencias.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referencias</span></a>
   </div>
 </li>
@@ -331,7 +360,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./vocabulario.html" class="sidebar-item-text sidebar-link">
+  <a href="./vocabulario.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Vocabulario</span></a>
   </div>
 </li>
@@ -353,9 +382,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Tabla de contenidos</h2>
    
   <ul>
-  <li><a href="#por-sesión-según-syllabus" id="toc-por-sesión-según-syllabus" class="nav-link active" data-scroll-target="#por-sesión-según-syllabus">Por sesión (según syllabus)</a></li>
-  <li><a href="#materiales-complementarios-de-las-ayudantías" id="toc-materiales-complementarios-de-las-ayudantías" class="nav-link" data-scroll-target="#materiales-complementarios-de-las-ayudantías">Materiales complementarios de las ayudantías</a></li>
-  <li><a href="#libros-y-tutoriales-online-con-ejercicios-y-datos-listos" id="toc-libros-y-tutoriales-online-con-ejercicios-y-datos-listos" class="nav-link" data-scroll-target="#libros-y-tutoriales-online-con-ejercicios-y-datos-listos">Libros y tutoriales online con ejercicios y datos listos</a></li>
+  <li><a href="#elementos-básicos" id="toc-elementos-básicos" class="nav-link active" data-scroll-target="#elementos-básicos">Elementos básicos</a></li>
+  <li><a href="#estructura-y-medidas" id="toc-estructura-y-medidas" class="nav-link" data-scroll-target="#estructura-y-medidas">Estructura y medidas</a></li>
+  <li><a href="#modelos-de-redes" id="toc-modelos-de-redes" class="nav-link" data-scroll-target="#modelos-de-redes">Modelos de redes</a></li>
+  <li><a href="#inferencia-en-redes" id="toc-inferencia-en-redes" class="nav-link" data-scroll-target="#inferencia-en-redes">Inferencia en redes</a></li>
+  <li><a href="#redes-de-variables" id="toc-redes-de-variables" class="nav-link" data-scroll-target="#redes-de-variables">Redes de variables</a></li>
+  <li><a href="#difusión-y-contagio" id="toc-difusión-y-contagio" class="nav-link" data-scroll-target="#difusión-y-contagio">Difusión y contagio</a></li>
   </ul>
 </nav>
     </div>
@@ -363,9 +395,9 @@ ul.task-list li input[type="checkbox"] {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./vocabulario.html">Apéndices</a></li><li class="breadcrumb-item"><a href="./vocabulario.html">Vocabulario</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Referencias</h1>
+<h1 class="title">Vocabulario</h1>
 </div>
 
 
@@ -382,48 +414,420 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Este libro sigue el orden <strong>con las sesiones 4 y 5 intercambiadas</strong> respecto del syllabus original (acordado con el profesor del curso): psicometría de redes cierra la semana 2 (junto a centralidad y comunidades), e inferencia estadística abre la semana 3 (junto a difusión y contagio). El propósito es que estimar influencia y simular difusión queden en la misma semana y en la misma entrega.</p>
-</div>
-</div>
-<section id="por-sesión-según-syllabus" class="level2">
-<h2 class="anchored" data-anchor-id="por-sesión-según-syllabus">Por sesión (según syllabus)</h2>
-<p><strong>Sesión 1.</strong> Granovetter (1973) <em>The Strength of Weak Ties</em>; Coleman (1988) <em>Social Capital in the Creation of Human Capital</em>; Burt (1992) <em>Structural Holes</em>; Borgatti, Everett &amp; Johnson (2018) <em>Analyzing Social Networks</em>.</p>
-<p><strong>Sesión 2.</strong> Erdős &amp; Rényi (1959); Watts &amp; Strogatz (1998) <em>Nature</em>; Barabási &amp; Albert (1999) <em>Science</em>; Karrer &amp; Newman (2011).</p>
-<p><strong>Sesión 3.</strong> Freeman (1979); Borgatti (2005); Newman (2006) <em>PNAS</em>; Grover &amp; Leskovec (2016) <em>node2vec</em>.</p>
-<p><strong>Sesión 4</strong> (psicometría de redes, según el nuevo orden). Borsboom (2017) <em>World Psychiatry</em>; Epskamp, Borsboom &amp; Fried (2018); Fried &amp; Cramer (2017); Dalege et al.&nbsp;(2016).</p>
-<p><strong>Sesión 5</strong> (inferencia estadística, según el nuevo orden). Krackhardt (1988); Robins et al.&nbsp;(2007); Lusher, Koskinen &amp; Robins (2013); Cranmer, Desmarais &amp; Morgan (2021) <em>Inferential Network Analysis</em>. Complementarias sobre influencia: Shalizi &amp; Thomas (2011) sobre la confusión homofilia-contagio; Snijders et al.&nbsp;(2010) sobre SAOM/SIENA.</p>
-<p><strong>Sesión 6.</strong> Granovetter (1978) <em>Threshold Models of Collective Behavior</em>; Rogers (2003) <em>Diffusion of Innovations</em>; Centola &amp; Macy (2007); Pastor-Satorras et al.&nbsp;(2015).</p>
+<p>Muchos conceptos del curso tienen <strong>más de un nombre</strong>: el de la sociología, el de la física, el de la informática, y el inglés que aparece en los paquetes de R.</p>
+<section id="elementos-básicos" class="level2">
+<h2 class="anchored" data-anchor-id="elementos-básicos">Elementos básicos</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>También llamado</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Nodo</strong></td>
+<td>vértice, <em>vertex/node</em>, actor, agente</td>
+<td>La unidad que se conecta: persona, organización, ítem.</td>
+</tr>
+<tr class="even">
+<td><strong>Arista</strong></td>
+<td>lazo, vínculo, enlace, <em>edge</em>, <em>tie</em>, <em>link</em></td>
+<td>La conexión entre dos nodos.</td>
+</tr>
+<tr class="odd">
+<td><strong>Red</strong></td>
+<td>grafo, <em>graph</em>, <em>network</em></td>
+<td>Conjunto de nodos y aristas.</td>
+</tr>
+<tr class="even">
+<td><strong>Díada</strong></td>
+<td>par, <em>dyad</em></td>
+<td>Dos nodos y la (posible) arista entre ellos.</td>
+</tr>
+<tr class="odd">
+<td><strong>Tríada</strong></td>
+<td>triplete, <em>triad</em></td>
+<td>Tres nodos; si está cerrada, es un triángulo.</td>
+</tr>
+<tr class="even">
+<td><strong>Red dirigida</strong></td>
+<td>digrafo, <em>directed</em></td>
+<td>Las aristas tienen sentido (yo te nomino ≠ tú me nominas).</td>
+</tr>
+<tr class="odd">
+<td><strong>Red ponderada</strong></td>
+<td>valuada, <em>weighted</em></td>
+<td>Las aristas tienen intensidad, no solo presencia.</td>
+</tr>
+<tr class="even">
+<td><strong>Matriz de adyacencia</strong></td>
+<td>sociomatriz, <span class="math inline">\(A\)</span>, <em>adjacency matrix</em></td>
+<td>La red como tabla nodo × nodo.</td>
+</tr>
+<tr class="odd">
+<td><strong>Red bipartita</strong></td>
+<td>de dos modos, de afiliación, <em>two-mode</em></td>
+<td>Dos tipos de nodos (personas y eventos); se representa con una <strong>matriz de incidencia</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>Red multicapa</strong></td>
+<td><em>multilayer</em>; si son los mismos nodos, <strong>multiplex</strong></td>
+<td>Varias relaciones sobre el mismo conjunto de actores.</td>
+</tr>
+<tr class="odd">
+<td><strong>Red egocéntrica</strong></td>
+<td>red ego, <em>ego network</em></td>
+<td>Un actor (ego) y sus contactos (<em>alters</em>), como en un generador de nombres.</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="materiales-complementarios-de-las-ayudantías" class="level2">
-<h2 class="anchored" data-anchor-id="materiales-complementarios-de-las-ayudantías">Materiales complementarios de las ayudantías</h2>
-<ul>
-<li><strong>Workshop netdiffuseR</strong> (Vega Yon &amp; Olivera, Sunbelt): <a href="https://github.com/USCCANA/netdiffuser-workshop" class="uri">https://github.com/USCCANA/netdiffuser-workshop</a> — difusión de innovaciones: teoría, datos clásicos, estadística y simulación con <code>rdiffnet</code> (incluye multi-difusión y desadopción).</li>
-<li><strong>Revisitando las Encuestas</strong> (Fábrega &amp; Olivera, PoliCICS): <a href="https://github.com/PoliCICS/revisiting-surveys-workshop" class="uri">https://github.com/PoliCICS/revisiting-surveys-workshop</a> — homofilia (Smith et al.&nbsp;2014, GSS), imputación de contexto social e Ising/psicometría, en español.</li>
-<li><strong>Statistical inference in networks</strong> (G. Vega Yon, UDD 2024): curso completo en Quarto — random graphs, ERGMs, coevolución red-comportamiento (exposición, SAR, ALAAM, Siena).</li>
-</ul>
+<section id="estructura-y-medidas" class="level2">
+<h2 class="anchored" data-anchor-id="estructura-y-medidas">Estructura y medidas</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>También llamado</th>
+<th>En una frase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Grado</strong></td>
+<td><em>degree</em>; en dirigidas, de entrada (<em>in</em>) y de salida (<em>out</em>)</td>
+<td>Cuántas aristas tiene un nodo.</td>
+</tr>
+<tr class="even">
+<td><strong>Densidad</strong></td>
+<td><em>density</em></td>
+<td>Fracción de aristas posibles que existen.</td>
+</tr>
+<tr class="odd">
+<td><strong>Camino más corto</strong></td>
+<td>geodésica, distancia, <em>shortest path</em></td>
+<td>El menor número de pasos entre dos nodos; el más largo de todos es el <strong>diámetro</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>Paseo</strong></td>
+<td><em>walk</em></td>
+<td>Secuencia de nodos conectados que puede repetir nodos (un camino no).</td>
+</tr>
+<tr class="odd">
+<td><strong>Componente gigante</strong></td>
+<td>componente principal, <em>giant component</em></td>
+<td>El bloque conectado que contiene a la mayoría de los nodos.</td>
+</tr>
+<tr class="even">
+<td><strong>Transitividad</strong></td>
+<td>clusterización, coeficiente de agrupamiento, <em>clustering coefficient</em></td>
+<td>Fracción de tríadas conectadas que están cerradas (“mis amigos son amigos entre sí”).</td>
+</tr>
+<tr class="odd">
+<td><strong>Centralidad de grado</strong></td>
+<td><em>degree centrality</em></td>
+<td>Importancia = número de conexiones.</td>
+</tr>
+<tr class="even">
+<td><strong>Centralidad de intermediación</strong></td>
+<td><em>betweenness</em></td>
+<td>Importancia = estar en los caminos más cortos de otros (ser puente).</td>
+</tr>
+<tr class="odd">
+<td><strong>Centralidad de cercanía</strong></td>
+<td><em>closeness</em></td>
+<td>Importancia = estar a poca distancia de todos.</td>
+</tr>
+<tr class="even">
+<td><strong>Centralidad de autovector</strong></td>
+<td>eigenvector; primos: <strong>Katz</strong>, <strong>PageRank</strong></td>
+<td>Importancia = estar conectado con importantes.</td>
+</tr>
+<tr class="odd">
+<td><strong>Reciprocidad</strong></td>
+<td>mutualidad, <em>mutual</em></td>
+<td>Si yo te nomino, ¿tú me nominas?</td>
+</tr>
+<tr class="even">
+<td><strong>Homofilia</strong></td>
+<td><em>homophily</em>, “birds of the same feather”</td>
+<td>Tendencia a conectarse con los similares.</td>
+</tr>
+<tr class="odd">
+<td><strong>Agujero estructural</strong></td>
+<td><em>structural hole</em>; quien lo cruza es un <strong>bróker</strong> o intermediario</td>
+<td>Ausencia de conexión entre los contactos de un nodo.</td>
+</tr>
+<tr class="even">
+<td><strong>Balance estructural</strong></td>
+<td><em>structural balance</em>, teoría de Heider</td>
+<td>En redes con signo, las tríadas con número par de lazos negativos son estables.</td>
+</tr>
+<tr class="odd">
+<td><strong>Comunidad</strong></td>
+<td>módulo, cluster, <em>community</em></td>
+<td>Grupo de nodos más conectados entre sí que con el resto; se mide con la <strong>modularidad</strong>.</td>
+</tr>
+<tr class="even">
+<td><strong>Cohesión</strong></td>
+<td>cliques, k-cores, <em>cohesive subgroups</em></td>
+<td>Subconjuntos densamente conectados.</td>
+</tr>
+<tr class="odd">
+<td><strong>Embedding</strong></td>
+<td>representación vectorial, node2vec</td>
+<td>Cada nodo como un vector de coordenadas que resume su posición.</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="libros-y-tutoriales-online-con-ejercicios-y-datos-listos" class="level2">
-<h2 class="anchored" data-anchor-id="libros-y-tutoriales-online-con-ejercicios-y-datos-listos">Libros y tutoriales online con ejercicios y datos listos</h2>
-<ul>
-<li><a href="https://inarwhal.github.io/NetworkAnalysisR-book/">Network Analysis in R (Rawlings, Smith, Moody &amp; McFarland, 2023)</a> — tutoriales completos y gratuitos del libro de Cambridge; datos incluidos; cubre desde descriptivos hasta ERGM, SIENA y difusión.</li>
-<li><a href="https://github.com/statnet/Workshops/wiki">Workshops de statnet</a> — tutoriales autocontenidos con datos para <a href="https://statnet.org/workshop-ergm/ergm_tutorial.html">ERGM</a>, ERGM egocéntrico y redes temporales.</li>
-<li><a href="https://kateto.net/tutorials/">Tutoriales de Katya Ognyanova</a> — visualización y análisis con igraph, con <a href="https://kateto.net/network-visualization/">código y datos descargables</a> y un <a href="https://kateto.net/network-datasets/">catálogo de datasets</a>.</li>
-<li><a href="https://gvegayon.github.io/appliedsnar/">Applied Network Science with R (G. Vega Yon)</a> — Quarto 100% reproducible; igraph, statnet y netdiffuseR.</li>
-<li><a href="https://bookdown.org/markhoff/social_network_analysis/">Methods for Network Analysis (M. Hoffman)</a> — bookdown gratuito, muy amable para quienes parten de cero.</li>
-<li><a href="http://dougluke.github.io/UserNetR/">UserNetR (D. Luke)</a> — paquete con todos los datasets del libro <em>A User’s Guide to Network Analysis in R</em>.</li>
-<li><a href="https://www.stats.ox.ac.uk/~snijders/siena/">RSiena (Snijders, Oxford)</a> — scripts y tutoriales oficiales para separar selección de influencia.</li>
-<li>En español: <a href="https://r.igraph.org/articles/igraph_ES.html">vignette oficial de igraph</a> y el <a href="https://github.com/svallejovera/sergio_arboleda_analisis_de_redes">curso abierto de ARS en RStudio de S. Vallejo</a>.</li>
-</ul>
+<section id="modelos-de-redes" class="level2">
+<h2 class="anchored" data-anchor-id="modelos-de-redes">Modelos de redes</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>También llamado</th>
+<th>En una frase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Red aleatoria</strong></td>
+<td>Erdős–Rényi, ER, Bernoulli, <span class="math inline">\(G(N,p)\)</span></td>
+<td>Cada par se conecta con la misma probabilidad.</td>
+</tr>
+<tr class="even">
+<td><strong>Modelo nulo</strong></td>
+<td>modelo de referencia, contrafactual</td>
+<td>Con qué comparamos la red observada para saber si tiene “más estructura que el azar”.</td>
+</tr>
+<tr class="odd">
+<td><strong>Modelo de configuración</strong></td>
+<td><em>configuration model</em></td>
+<td>Aleatorio, pero preservando la secuencia de grados.</td>
+</tr>
+<tr class="even">
+<td><strong>Mundo pequeño</strong></td>
+<td>small-world, Watts–Strogatz, WS</td>
+<td>Alta transitividad y distancias cortas a la vez.</td>
+</tr>
+<tr class="odd">
+<td><strong>Libre de escala</strong></td>
+<td>scale-free, Barabási–Albert, BA, <em>preferential attachment</em></td>
+<td>Distribución de grado tipo ley de potencia: pocos hubs, muchos nodos de bajo grado.</td>
+</tr>
+<tr class="even">
+<td><strong>Modelo de bloques estocásticos</strong></td>
+<td>SBM</td>
+<td>Aleatorio, pero con probabilidades distintas dentro y entre grupos.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="inferencia-en-redes" class="level2">
+<h2 class="anchored" data-anchor-id="inferencia-en-redes">Inferencia en redes</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>También llamado</th>
+<th>En una frase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>QAP</strong></td>
+<td>prueba de permutación, <em>Quadratic Assignment Procedure</em>; con varias matrices, <strong>MRQAP</strong></td>
+<td>Test de asociación entre dos matrices permutando etiquetas de nodos.</td>
+</tr>
+<tr class="even">
+<td><strong>Valor p empírico</strong></td>
+<td>p permutacional</td>
+<td>Fracción de mundos nulos tan extremos como el observado.</td>
+</tr>
+<tr class="odd">
+<td><strong>ERGM</strong></td>
+<td><em>Exponential-family Random Graph Model</em>, modelo <span class="math inline">\(p^*\)</span></td>
+<td>Modelo de la red completa: qué configuraciones la hacen probable.</td>
+</tr>
+<tr class="even">
+<td><strong>Estadístico suficiente</strong></td>
+<td>término del modelo, configuración</td>
+<td>Lo que el ERGM cuenta: aristas, recíprocas, homofilia, cierre.</td>
+</tr>
+<tr class="odd">
+<td><strong>Cierre triádico</strong></td>
+<td><em>triadic closure</em>; en ERGM, <code>gwesp</code>/<em>shared partners</em></td>
+<td>Tendencia a cerrar triángulos.</td>
+</tr>
+<tr class="even">
+<td><strong>Bondad de ajuste</strong></td>
+<td>GOF, <em>goodness of fit</em></td>
+<td>¿Las redes simuladas por el modelo se parecen a la observada?</td>
+</tr>
+<tr class="odd">
+<td><strong>Selección vs.&nbsp;influencia</strong></td>
+<td>homofilia vs.&nbsp;contagio, <em>selection vs.&nbsp;influence</em></td>
+<td>¿Nos parecemos porque nos elegimos, o porque nos influimos?</td>
+</tr>
+<tr class="even">
+<td><strong>Interferencia</strong></td>
+<td><em>spillover</em>, efecto de derrame</td>
+<td>El tratamiento de uno afecta el resultado de otro.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="redes-de-variables" class="level2">
+<h2 class="anchored" data-anchor-id="redes-de-variables">Redes de variables</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>También llamado</th>
+<th>En una frase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Red psicométrica</strong></td>
+<td>red de variables, red de síntomas, <em>psychological network</em></td>
+<td>Nodos = ítems; aristas = dependencias condicionales.</td>
+</tr>
+<tr class="even">
+<td><strong>Correlación parcial</strong></td>
+<td>dependencia condicional</td>
+<td>Asociación entre dos variables controlando por todas las demás.</td>
+</tr>
+<tr class="odd">
+<td><strong>Campo aleatorio de Markov por pares</strong></td>
+<td>PMRF; continuo: <strong>GGM</strong>; binario: <strong>Ising</strong></td>
+<td>La familia de modelos detrás de las redes de variables.</td>
+</tr>
+<tr class="even">
+<td><strong>Regularización</strong></td>
+<td>glasso, LASSO, EBICglasso</td>
+<td>Poner en cero las aristas débiles para obtener una red <em>sparse</em>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Strength</strong></td>
+<td>fuerza</td>
+<td>Centralidad de grado ponderada: suma de aristas de un nodo.</td>
+</tr>
+<tr class="even">
+<td><strong>Estabilidad</strong></td>
+<td>bootstrap, coeficiente CS</td>
+<td>Cuánto sobreviven aristas y centralidades al remuestrear personas.</td>
+</tr>
+<tr class="odd">
+<td><strong>EGA</strong></td>
+<td>análisis gráfico exploratorio</td>
+<td>Comunidades de ítems como dimensiones; el primo en red del análisis factorial.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="difusión-y-contagio" class="level2">
+<h2 class="anchored" data-anchor-id="difusión-y-contagio">Difusión y contagio</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>También llamado</th>
+<th>En una frase</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Difusión</strong></td>
+<td>contagio, propagación, <em>spreading</em>; de innovaciones (Rogers)</td>
+<td>Algo se transmite por la red: información, enfermedad, conducta.</td>
+</tr>
+<tr class="even">
+<td><strong>Contagio simple</strong></td>
+<td>epidémico, SI / SIS / SIR, <em>independent cascade</em></td>
+<td>Basta <strong>una</strong> exposición para transmitir.</td>
+</tr>
+<tr class="odd">
+<td><strong>Contagio complejo</strong></td>
+<td>contagio social, modelos de umbral, difusión de comportamientos</td>
+<td>Se necesitan <strong>varias</strong> fuentes que refuercen.</td>
+</tr>
+<tr class="even">
+<td><strong>Umbral</strong></td>
+<td><em>threshold</em>, <span class="math inline">\(\tau\)</span> (Granovetter, Valente)</td>
+<td>Fracción o número de contactos adoptantes que necesito para adoptar.</td>
+</tr>
+<tr class="odd">
+<td><strong>Exposición</strong></td>
+<td><em>exposure</em>, <span class="math inline">\(E_i\)</span></td>
+<td>Cuántos (o qué fracción) de mis contactos ya adoptaron.</td>
+</tr>
+<tr class="even">
+<td><strong>Semilla</strong></td>
+<td>adoptante inicial, <em>seed</em></td>
+<td>Quién parte la difusión.</td>
+</tr>
+<tr class="odd">
+<td><strong>Cascada</strong></td>
+<td>avalancha, <em>cascade</em></td>
+<td>Adopción que se propaga en cadena hasta cubrir la red.</td>
+</tr>
+<tr class="even">
+<td><strong>Puente ancho</strong></td>
+<td><em>wide bridge</em>, refuerzo social</td>
+<td>Varios lazos entre dos grupos; lo que necesita el contagio complejo para cruzar.</td>
+</tr>
+<tr class="odd">
+<td><strong>Aproximación de bloques de grado</strong></td>
+<td><em>degree block approximation</em></td>
+<td>Tratar juntos a todos los nodos del mismo grado al resolver un modelo epidémico.</td>
+</tr>
+<tr class="even">
+<td><strong>Transición de fase</strong></td>
+<td>punto crítico, umbral epidémico, <em>tipping point</em></td>
+<td>Cambio abrupto del comportamiento colectivo al cruzar un valor del parámetro.</td>
+</tr>
+<tr class="odd">
+<td><strong><code>diffnet</code></strong></td>
+<td>objeto de netdiffuseR</td>
+<td>La red más los tiempos de adopción, listos para analizar.</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
@@ -844,13 +1248,13 @@ Nota
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./05-contagio-social-en-redes.html" class="pagination-link" aria-label="Contagio social en redes">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Contagio social en redes</span></span>
+      <a href="./referencias.html" class="pagination-link" aria-label="Referencias">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Referencias</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./vocabulario.html" class="pagination-link" aria-label="Vocabulario">
-        <span class="nav-page-text">Vocabulario</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./anexos.html" class="pagination-link" aria-label="Anexos">
+        <span class="nav-page-text">Anexos</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

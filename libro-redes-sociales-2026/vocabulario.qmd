@@ -1,0 +1,93 @@
+# Vocabulario {.unnumbered}
+
+Muchos conceptos del curso tienen **más de un nombre**: el de la sociología, el de la física, el de la informática, y el inglés que aparece en los paquetes de R.
+
+## Elementos básicos
+
+| Concepto | También llamado | Significado |
+|---|---|---|
+| **Nodo** | vértice, *vertex/node*, actor, agente | La unidad que se conecta: persona, organización, ítem. |
+| **Arista** | lazo, vínculo, enlace, *edge*, *tie*, *link* | La conexión entre dos nodos. |
+| **Red** | grafo, *graph*, *network* | Conjunto de nodos y aristas. |
+| **Díada** | par, *dyad* | Dos nodos y la (posible) arista entre ellos. |
+| **Tríada** | triplete, *triad* | Tres nodos; si está cerrada, es un triángulo. |
+| **Red dirigida** | digrafo, *directed* | Las aristas tienen sentido (yo te nomino ≠ tú me nominas). |
+| **Red ponderada** | valuada, *weighted* | Las aristas tienen intensidad, no solo presencia. |
+| **Matriz de adyacencia** | sociomatriz, $A$, *adjacency matrix* | La red como tabla nodo × nodo. |
+| **Red bipartita** | de dos modos, de afiliación, *two-mode* | Dos tipos de nodos (personas y eventos); se representa con una **matriz de incidencia**. |
+| **Red multicapa** | *multilayer*; si son los mismos nodos, **multiplex** | Varias relaciones sobre el mismo conjunto de actores. |
+| **Red egocéntrica** | red ego, *ego network* | Un actor (ego) y sus contactos (*alters*), como en un generador de nombres. |
+
+## Estructura y medidas
+
+| Concepto | También llamado | En una frase |
+|---|---|---|
+| **Grado** | *degree*; en dirigidas, de entrada (*in*) y de salida (*out*) | Cuántas aristas tiene un nodo. |
+| **Densidad** | *density* | Fracción de aristas posibles que existen. |
+| **Camino más corto** | geodésica, distancia, *shortest path* | El menor número de pasos entre dos nodos; el más largo de todos es el **diámetro**. |
+| **Paseo** | *walk* | Secuencia de nodos conectados que puede repetir nodos (un camino no). |
+| **Componente gigante** | componente principal, *giant component* | El bloque conectado que contiene a la mayoría de los nodos. |
+| **Transitividad** | clusterización, coeficiente de agrupamiento, *clustering coefficient* | Fracción de tríadas conectadas que están cerradas ("mis amigos son amigos entre sí"). |
+| **Centralidad de grado** | *degree centrality* | Importancia = número de conexiones. |
+| **Centralidad de intermediación** | *betweenness* | Importancia = estar en los caminos más cortos de otros (ser puente). |
+| **Centralidad de cercanía** | *closeness* | Importancia = estar a poca distancia de todos. |
+| **Centralidad de autovector** | eigenvector; primos: **Katz**, **PageRank** | Importancia = estar conectado con importantes. |
+| **Reciprocidad** | mutualidad, *mutual* | Si yo te nomino, ¿tú me nominas? |
+| **Homofilia** | *homophily*, "birds of the same feather" | Tendencia a conectarse con los similares. |
+| **Agujero estructural** | *structural hole*; quien lo cruza es un **bróker** o intermediario | Ausencia de conexión entre los contactos de un nodo. |
+| **Balance estructural** | *structural balance*, teoría de Heider | En redes con signo, las tríadas con número par de lazos negativos son estables. |
+| **Comunidad** | módulo, cluster, *community* | Grupo de nodos más conectados entre sí que con el resto; se mide con la **modularidad**. |
+| **Cohesión** | cliques, k-cores, *cohesive subgroups* | Subconjuntos densamente conectados. |
+| **Embedding** | representación vectorial, node2vec | Cada nodo como un vector de coordenadas que resume su posición. |
+
+## Modelos de redes
+
+| Concepto | También llamado | En una frase |
+|---|---|---|
+| **Red aleatoria** | Erdős–Rényi, ER, Bernoulli, $G(N,p)$ | Cada par se conecta con la misma probabilidad. |
+| **Modelo nulo** | modelo de referencia, contrafactual | Con qué comparamos la red observada para saber si tiene "más estructura que el azar". |
+| **Modelo de configuración** | *configuration model* | Aleatorio, pero preservando la secuencia de grados. |
+| **Mundo pequeño** | small-world, Watts–Strogatz, WS | Alta transitividad y distancias cortas a la vez. |
+| **Libre de escala** | scale-free, Barabási–Albert, BA, *preferential attachment* | Distribución de grado tipo ley de potencia: pocos hubs, muchos nodos de bajo grado. |
+| **Modelo de bloques estocásticos** | SBM | Aleatorio, pero con probabilidades distintas dentro y entre grupos. |
+
+## Inferencia en redes
+
+| Concepto | También llamado | En una frase |
+|---|---|---|
+| **QAP** | prueba de permutación, *Quadratic Assignment Procedure*; con varias matrices, **MRQAP** | Test de asociación entre dos matrices permutando etiquetas de nodos. |
+| **Valor p empírico** | p permutacional | Fracción de mundos nulos tan extremos como el observado. |
+| **ERGM** | *Exponential-family Random Graph Model*, modelo $p^*$ | Modelo de la red completa: qué configuraciones la hacen probable. |
+| **Estadístico suficiente** | término del modelo, configuración | Lo que el ERGM cuenta: aristas, recíprocas, homofilia, cierre. |
+| **Cierre triádico** | *triadic closure*; en ERGM, `gwesp`/*shared partners* | Tendencia a cerrar triángulos. |
+| **Bondad de ajuste** | GOF, *goodness of fit* | ¿Las redes simuladas por el modelo se parecen a la observada? |
+| **Selección vs. influencia** | homofilia vs. contagio, *selection vs. influence* | ¿Nos parecemos porque nos elegimos, o porque nos influimos? |
+| **Interferencia** | *spillover*, efecto de derrame | El tratamiento de uno afecta el resultado de otro. |
+
+## Redes de variables
+
+| Concepto | También llamado | En una frase |
+|---|---|---|
+| **Red psicométrica** | red de variables, red de síntomas, *psychological network* | Nodos = ítems; aristas = dependencias condicionales. |
+| **Correlación parcial** | dependencia condicional | Asociación entre dos variables controlando por todas las demás. |
+| **Campo aleatorio de Markov por pares** | PMRF; continuo: **GGM**; binario: **Ising** | La familia de modelos detrás de las redes de variables. |
+| **Regularización** | glasso, LASSO, EBICglasso | Poner en cero las aristas débiles para obtener una red *sparse*. |
+| **Strength** | fuerza | Centralidad de grado ponderada: suma de aristas de un nodo. |
+| **Estabilidad** | bootstrap, coeficiente CS | Cuánto sobreviven aristas y centralidades al remuestrear personas. |
+| **EGA** | análisis gráfico exploratorio | Comunidades de ítems como dimensiones; el primo en red del análisis factorial. |
+
+## Difusión y contagio
+
+| Concepto | También llamado | En una frase |
+|---|---|---|
+| **Difusión** | contagio, propagación, *spreading*; de innovaciones (Rogers) | Algo se transmite por la red: información, enfermedad, conducta. |
+| **Contagio simple** | epidémico, SI / SIS / SIR, *independent cascade* | Basta **una** exposición para transmitir. |
+| **Contagio complejo** | contagio social, modelos de umbral, difusión de comportamientos | Se necesitan **varias** fuentes que refuercen. |
+| **Umbral** | *threshold*, $\tau$ (Granovetter, Valente) | Fracción o número de contactos adoptantes que necesito para adoptar. |
+| **Exposición** | *exposure*, $E_i$ | Cuántos (o qué fracción) de mis contactos ya adoptaron. |
+| **Semilla** | adoptante inicial, *seed* | Quién parte la difusión. |
+| **Cascada** | avalancha, *cascade* | Adopción que se propaga en cadena hasta cubrir la red. |
+| **Puente ancho** | *wide bridge*, refuerzo social | Varios lazos entre dos grupos; lo que necesita el contagio complejo para cruzar. |
+| **Aproximación de bloques de grado** | *degree block approximation* | Tratar juntos a todos los nodos del mismo grado al resolver un modelo epidémico. |
+| **Transición de fase** | punto crítico, umbral epidémico, *tipping point* | Cambio abrupto del comportamiento colectivo al cruzar un valor del parámetro. |
+| **`diffnet`** | objeto de netdiffuseR | La red más los tiempos de adopción, listos para analizar. |

@@ -396,6 +396,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./vocabulario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vocabulario</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./anexos.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Anexos</span></a>
   </div>
@@ -443,8 +449,8 @@ window.Quarto = {
   <li><a href="#netdiffuser-de-la-encuesta-al-modelo" id="toc-netdiffuser-de-la-encuesta-al-modelo" class="nav-link" data-scroll-target="#netdiffuser-de-la-encuesta-al-modelo"><span class="header-section-number">11</span> netdiffuseR: de la encuesta al modelo</a>
   <ul class="collapse">
   <li><a href="#de-la-encuesta-al-diffnet" id="toc-de-la-encuesta-al-diffnet" class="nav-link" data-scroll-target="#de-la-encuesta-al-diffnet"><span class="header-section-number">11.1</span> De la encuesta al <code>diffnet</code></a></li>
-  <li><a href="#importa-la-exposición-regresión-con-diffreg" id="toc-importa-la-exposición-regresión-con-diffreg" class="nav-link" data-scroll-target="#importa-la-exposición-regresión-con-diffreg"><span class="header-section-number">11.2</span> ¿Importa la exposición? Regresión con <code>diffreg</code></a></li>
-  <li><a href="#simular-contagio-simple-vs.-complejo" id="toc-simular-contagio-simple-vs.-complejo" class="nav-link" data-scroll-target="#simular-contagio-simple-vs.-complejo"><span class="header-section-number">11.3</span> Simular: contagio simple vs.&nbsp;complejo</a></li>
+  <li><a href="#lagged-regression" id="toc-lagged-regression" class="nav-link" data-scroll-target="#lagged-regression"><span class="header-section-number">11.2</span> Lagged Regression</a></li>
+  <li><a href="#simulación" id="toc-simulación" class="nav-link" data-scroll-target="#simulación"><span class="header-section-number">11.3</span> Simulación</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -565,20 +571,6 @@ a_i = 1 \iff r \geq \tau_i,
 <p>Dos poblaciones con preferencias casi idénticas producen resultados colectivos opuestos. El resultado de la acción colectiva no está en las preferencias, está en <strong>su distribución</strong>.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Dos precisiones de Granovetter que se olvidan
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>El umbral no es una preferencia.</strong> Es el punto donde la <em>utilidad neta</em> de actuar se vuelve positiva. Un utilitarista puro y alguien sensible al estatus pueden tener el mismo umbral por razones distintas.</p>
-<p>Es “una medida conductual contingente, no una medida pura de preferencias normativas”. (De hecho, el umbral se puede derivar formalmente de un juego de coordinación: Morris 2000; Easley &amp; Kleinberg 2010, cap. 19.)</p>
-</div>
-</div>
 </section>
 <section id="valente-1996-el-umbral-se-vuelve-de-red" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="valente-1996-el-umbral-se-vuelve-de-red"><span class="header-section-number">6.2</span> Valente (1996): el umbral se vuelve de red</h2>
@@ -595,7 +587,7 @@ a_i = 1 \Leftrightarrow E_i \geq \tau_i
 <h2 data-number="6.3" class="anchored" data-anchor-id="qué-es-un-contagio-complejo"><span class="header-section-number">6.3</span> Qué es un contagio complejo</h2>
 <p>Antes de seguir con la estructura, conviene detenerse a explicar <em>qué</em> es un contagio complejo y <em>qué lo explica</em>.</p>
 <p>La definición canónica es la de Centola &amp; Macy (2007): un contagio es <strong>simple</strong> cuando basta <em>un</em> contacto con una fuente activada para transmitirlo (una enfermedad, una noticia, una oferta de trabajo), y es <strong>complejo</strong> cuando <em>“requiere contacto con múltiples fuentes de activación”</em>.</p>
-<p>La palabra “umbral”, sin embargo, es anterior a la red: ya está en Granovetter (1978), quien lo define como <em>“el punto donde los beneficios netos empiezan a exceder los costos netos”</em> de actuar. Su Figura 3 dibuja, para un individuo con umbral del 38%, el beneficio neto de sumarse a un motín según la fracción del grupo que ya participa: mientras la curva está bajo cero, no actúa; cuando la cruza, actúa. En la versión más simple, ese beneficio neto crece <strong>linealmente</strong> con la adopción:</p>
+<p>La palabra “umbral”, sin embargo, se define como <em>“el punto donde los beneficios netos empiezan a exceder los costos netos”</em> de actuar. Para un individuo con umbral del 38%, el beneficio neto de sumarse a un motín comienza a ser positivo en algún valor cercano a 38%.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-umbral-utilidad-neta" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -644,7 +636,7 @@ Figura&nbsp;6.1: El umbral como utilidad neta. Para un individuo con <span class
 <ol start="2" type="1">
 <li><strong>Credibilidad</strong></li>
 </ol>
-<p>No sé la calidad de la innovación. Una mezcla entre <strong>cascadas informacionales</strong> (si tres personas que eligieron por separado adoptaron, eso actualiza mi creencia más que una sola -Bikhchandani, Hirshleifer &amp; Welch 1992 y Banerjee (1992)-) y <strong>efecto de fuentes múltiples</strong> (la información que llega de fuentes que no se coordinaron entre sí es más informativa que la misma información repetida -Harkins &amp; Petty 1981, 1987-).</p>
+<p>No sé la calidad de la innovación o lo provechoso de una conducta. Una mezcla entre <strong>cascadas informacionales</strong> (si tres personas que eligieron por separado adoptaron, eso actualiza mi creencia más que una sola -Bikhchandani, Hirshleifer &amp; Welch 1992 y Banerjee (1992)-) y <strong>efecto de fuentes múltiples</strong> (la información que llega de fuentes que no se coordinaron entre sí es más informativa que la misma información repetida -Harkins &amp; Petty 1981, 1987-).</p>
 <ol start="3" type="1">
 <li><strong>Legitimidad</strong></li>
 </ol>
@@ -679,6 +671,19 @@ Figura&nbsp;6.1: El umbral como utilidad neta. Para un individuo con <span class
 <section id="número-de-fuentes-no-de-exposiciones" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="número-de-fuentes-no-de-exposiciones"><span class="header-section-number">8.2</span> Número de fuentes, no de exposiciones</h2>
 <p>Lo que cuenta no es cuántas <em>veces</em> recibo la señal, sino de cuántas <strong>fuentes distintas e independientes</strong> la recibo. Harkins &amp; Petty (1981, 1987) hallaron este <em>efecto de fuentes múltiples</em>: los mismos argumentos, presentados por varias personas <em>independientes</em>, persuaden más que repetidos por una.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Puentes anchos históricos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Saetre (2025, <em>AJS</em>): <em>Un violador en tu camino</em> saltó de Valparaíso a 60 países en semanas. La diáspora chilena formada en los 70 funcionó como <strong>puente ancho latente</strong>: clusters de personas con lazos simultáneos a Chile y a sus sociedades de acogida, que primero replicaron la performance en solidaridad y luego permitieron que locales no chilenos la adaptaran. La autora mide el ancho del puente con el tamaño de la diáspora por ciudad <em>y</em> sus lazos vigentes con Chile, y muestra la secuencia diáspora → adaptación local → prescindir del intermediario.</p>
+</div>
+</div>
 </section>
 <section id="bi-threshold-umbral-de-desadopción" class="level2" data-number="8.3">
 <h2 data-number="8.3" class="anchored" data-anchor-id="bi-threshold-umbral-de-desadopción"><span class="header-section-number">8.3</span> Bi-threshold: umbral de desadopción</h2>
@@ -712,9 +717,8 @@ Figura&nbsp;6.1: El umbral como utilidad neta. Para un individuo con <span class
 <p>Granovetter (1973) mostró que los lazos débiles aceleran las difusiones simples: una enfermedad, información laboral, una noticia. Dijo: <em>“lo que sea que se deba difundir puede llegar a un mayor número de personas y atravesar una mayor distancia social cuando se transmite a través de lazos débiles en lugar de fuertes.”</em></p>
 <p>Centola y Macy están <strong>en contra de esa frase</strong>. Definamos</p>
 <ol type="1">
-<li><span class="math inline">\(a\)</span>: número mínimo de vecinos adoptantes necesarios para contagiarse,</li>
 <li><span class="math inline">\(z\)</span>: número de vecinos,</li>
-<li><span class="math inline">\(\tau = a/z\)</span>: umbral.</li>
+<li><span class="math inline">\(\tau\)</span>: umbral.</li>
 </ol>
 <p>Conectamos cada nodo con sus <span class="math inline">\(z\)</span> vecinos más próximos, y luego recableamos una fracción <span class="math inline">\(p\)</span> de lazos al azar.</p>
 <div class="quarto-layout-panel" data-layout="[33,33,33]">
@@ -778,25 +782,12 @@ Figura&nbsp;6.1: El umbral como utilidad neta. Para un individuo con <span class
 <section id="cómo-sembrar-centralidad-compleja" class="level1" data-number="10">
 <h1 data-number="10"><span class="header-section-number">10</span> Cómo sembrar: centralidad compleja</h1>
 <p>Todas las centralidades que aprendimos —grado, intermediación, cercanía, autovector— se construyen usando como unidad los <strong>pasos</strong> dentro de la red. En contagio complejo, necesitamos usar como unidad los <strong>puentes</strong> entre vecindarios.</p>
-<p>Un puente es un conjunto de lazos reforzantes que conecta dos clusters densos. La idea es que un nodo puede ser periférico y tener bajo grado, pero si está embebido en un vecindario denso con puentes anchos hacia otros clusters, puede ser más influyente que un hub aislado.</p>
+<p>Un puente es un conjunto de lazos reforzantes que conecta dos clusters densos. <strong>Un nodo periférico y con bajo grado puede ser más influyente que un hub</strong> si está embebido en un vecindario denso con puentes anchos hacia otros clusters.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figs/contagio/11-guilbeault-centola-camino-complejo.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>Camino simple vs.&nbsp;camino complejo. Entre <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> hay un camino simple corto (por el atajo), pero un contagio con <span class="math inline">\(\tau = 2\)</span> no puede recorrerlo: necesita avanzar por <strong>puentes anchos</strong>, pares de lazos que lleguen juntos a cada nodo nuevo. El camino complejo es más largo y pasa por otros nodos. Figura 1 de Guilbeault &amp; Centola (2021).</figcaption>
+<figcaption>Camino simple vs.&nbsp;camino complejo. El contagio complejo necesita avanzar por <strong>puentes anchos</strong>. Figura 1 de Guilbeault &amp; Centola (2021).</figcaption>
 </figure>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Puentes anchos históricos
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Saetre (2025, <em>AJS</em>): <em>Un violador en tu camino</em> saltó de Valparaíso a 60 países en semanas. La diáspora chilena formada en los 70 funcionó como <strong>puente ancho latente</strong>: clusters de personas con lazos simultáneos a Chile y a sus sociedades de acogida, que primero replicaron la performance en solidaridad y luego permitieron que locales no chilenos la adaptaran. La autora mide el ancho del puente con el tamaño de la diáspora por ciudad <em>y</em> sus lazos vigentes con Chile, y muestra la secuencia diáspora → adaptación local → prescindir del intermediario.</p>
-</div>
 </div>
 <p>La centralidad compleja se <strong>calcula simulando</strong>: para cada nodo, se activa su vecindario y se corre una cascada de umbral determinista. Es una centralidad <em>definida por un proceso</em> que requiere 1) <strong>asumir un umbral</strong> <span class="math inline">\(\tau\)</span>, 2) <strong>validarla en simulación</strong> es casi circular.</p>
 <p>En las 43 aldeas indias del programa de microfinanzas de Banerjee et al.&nbsp;(2013), las aldeas con mayor largo de camino complejo promedio difundieron más, y los hogares con alta centralidad compleja —no los “líderes” que los investigadores habían preseleccionado— predicen mejor que sus vecinos adopten.</p>
@@ -805,19 +796,6 @@ Figura&nbsp;6.1: El umbral como utilidad neta. Para un individuo con <span class
 <p><img src="figs/contagio/13-guilbeault-centola-adopcion.png" class="img-fluid figure-img" style="width:90.0%"></p>
 <figcaption>Predicción empírica en las 43 aldeas de Banerjee et al.&nbsp;(2013). <strong>(a)</strong> Sembrando solo entre los hogares “líderes” que el programa eligió: probabilidad de que los vecinos del hogar semilla adopten, según qué centralidad se usó para elegirlo. La línea horizontal es el azar. <strong>(b)</strong> Lo mismo, pero eligiendo la semilla entre <em>todos</em> los hogares. <strong>(c)</strong> A nivel de aldea: fracción final de adoptantes según el largo de camino complejo promedio de la aldea. Figura 4 de Guilbeault &amp; Centola (2021).</figcaption>
 </figure>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Nota</span>Cómo leer la figura
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>En los paneles (a) y (b) cada punto es una <strong>estrategia de siembra</strong>, no un hogar: “si en cada aldea hubiéramos elegido como semilla al hogar con mayor <em>intermediación</em>, ¿qué fracción de sus vecinos habría adoptado?” Y así con cada medida. Solo la centralidad compleja queda claramente sobre la línea base; grado, intermediación y autovector quedan <em>bajo</em> ella, es decir, eligen semillas peores que el azar. El panel (c) cambia la unidad: ahora cada punto es un grupo de aldeas, y muestra que donde los caminos complejos son más largos (la aldea tiene más estructura de puentes anchos) la adopción final fue mayor. El largo de camino <em>simple</em> no predice nada.</p>
-</div>
 </div>
 <p>Su afirmación textual es cuidadosa: <em>“network locations with low degree centrality and low betweenness centrality <strong>may</strong> nevertheless be the most influential locations in the population.”</em> La periferia gana <strong>cuando está embebida en un vecindario denso con puentes anchos</strong>.</p>
 <section id="la-evidencia-empírica-es-mixta" class="level2" data-number="10.1">
@@ -876,12 +854,11 @@ Figura&nbsp;6.1: El umbral como utilidad neta. Para un individuo con <span class
 5     6    37     0     0     0
 6    26    25    95     0     3</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El estudio siguió 10 períodos. El código toa = 11 es una convención antigua</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># para "no adoptó": lo pasamos a NA, que es como netdiffuseR lo entiende.</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>kfamily<span class="sc">$</span>toa[kfamily<span class="sc">$</span>toa <span class="sc">==</span> <span class="dv">11</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 25 aldeas; adoptantes por período (y cuántas nunca adoptaron)</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(kfamily<span class="sc">$</span>village)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># El estudio siguió 10 períodos.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>kfamily<span class="sc">$</span>toa[kfamily<span class="sc">$</span>toa <span class="sc">==</span> <span class="dv">11</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 25 aldeas; adoptantes por período (y cuántas nunca adoptaron)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(kfamily<span class="sc">$</span>village)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25</code></pre>
 </div>
@@ -892,20 +869,7 @@ Figura&nbsp;6.1: El umbral como utilidad neta. Para un individuo con <span class
   69   94   81   86   65   62   53   53   73   37  374 </code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Dónde está todo lo demás
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Cada función usada aquí (<code>survey_to_diffnet</code>, <code>exposure</code>, <code>diffreg</code>, <code>rdiffnet</code>, los <code>plot_*</code>) está documentada con ejemplos en el <a href="https://cran.r-project.org/web/packages/netdiffuseR/netdiffuseR.pdf">manual de referencia de netdiffuseR en CRAN</a>. Cuando un argumento no quede claro, ese PDF es el lugar donde mirar; dentro de R, <code>?survey_to_diffnet</code> abre la misma página.</p>
-</div>
-</div>
-<p>Esa es la estructura mínima de una encuesta de difusión: un <strong>identificador</strong>, las <strong>nominaciones</strong> (a quién le hablas de planificación familiar, a quién ves más, a quién le pides consejo) y el <strong>tiempo de adopción</strong>. La función <code>survey_to_diffnet()</code> arma con eso un objeto <code>diffnet</code>: la red más los tiempos de adopción. Trabajemos con la aldea 21:</p>
+<p>Esa es la estructura mínima de una encuesta de difusión: un <strong>identificador</strong>, las <strong>nominaciones</strong> (a quién le hablas de planificación familiar, a quién ves más, a quién le pides consejo) y el <strong>tiempo de adopción</strong>. La función <code>survey_to_diffnet()</code> arma con eso un objeto <code>diffnet</code> (la red más los tiempos de adopción). Trabajemos con la aldea 21:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>kfamily_21 <span class="ot">&lt;-</span> <span class="fu">subset</span>(kfamily, village <span class="sc">==</span> <span class="dv">21</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -965,13 +929,14 @@ Figura&nbsp;11.2: La red de la aldea 21 en cada período: quién ya adoptó (col
 </div>
 </div>
 </section>
-<section id="importa-la-exposición-regresión-con-diffreg" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="importa-la-exposición-regresión-con-diffreg"><span class="header-section-number">11.2</span> ¿Importa la exposición? Regresión con <code>diffreg</code></h2>
+<section id="lagged-regression" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="lagged-regression"><span class="header-section-number">11.2</span> Lagged Regression</h2>
 <p>La pregunta de fondo: ¿la probabilidad de adoptar en <span class="math inline">\(t\)</span> depende de la <strong>exposición</strong> en <span class="math inline">\(t-1\)</span>, controlando por el período? El modelo de exposición rezagada es</p>
 <p><span class="math display">\[
 y_{it} = 1 \iff \rho\, E_{i,t-1} + X_{it}\beta + \varepsilon_{it} &gt; 0,
 \]</span></p>
-<p>donde <span class="math inline">\(E_{i,t-1}\)</span> es la fracción de contactos que ya habían adoptado en el período anterior, y <span class="math inline">\(X_{it}\)</span> son covariables de la encuesta. Para tener más potencia usamos las 25 aldeas juntas (<code>survey_to_diffnet</code> arma una red por aldea gracias a <code>groupvar</code>), y agregamos como controles la edad, el número de hijos y la exposición a afiches de planificación familiar (<code>media12</code>). <code>diffreg()</code> estima el modelo directamente sobre el <code>diffnet</code>, pero exige que la exposición se llame literalmente <code>exposure</code>:</p>
+<p>donde <span class="math inline">\(E_{i,t-1}\)</span> es la fracción de contactos que ya habían adoptado en el período anterior, y <span class="math inline">\(X_{it}\)</span> son covariables de la encuesta. Para tener más potencia usamos las 25 aldeas juntas (<code>survey_to_diffnet</code> con <code>groupvar</code>), y agregamos como controles la edad, el número de hijos y la exposición a afiches de planificación familiar (<code>media12</code>).</p>
+<p><code>diffreg()</code> estima el modelo directamente sobre el <code>diffnet</code> (exige que la exposición se llame literalmente <code>exposure</code>).:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>kfamily_diffnet <span class="ot">&lt;-</span> <span class="fu">survey_to_diffnet</span>(</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dat      =</span> kfamily,</span>
@@ -1034,7 +999,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Que la exposición prediga la adopción es consistente con contagio, pero también con <strong>homofilia</strong> (elegí como amigas a mujeres parecidas a mí, que adoptan cuando yo adopto) o con un <strong>contexto común</strong> (una campaña llegó a todo el barrio). Sin un experimento o un instrumento, el coeficiente es una asociación. Es exactamente el problema de identificación con que empezó el capítulo de ERGM: la red y la conducta pueden tener una causa compartida.</p>
+<p>Que la exposición prediga la adopción es consistente con contagio, pero también con <strong>homofilia</strong> (elegí como amigas a mujeres parecidas a mí, que adoptan cuando yo adopto).</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1055,8 +1020,8 @@ Number of Fisher Scoring iterations: 5</code></pre>
 </div>
 </div>
 </section>
-<section id="simular-contagio-simple-vs.-complejo" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="simular-contagio-simple-vs.-complejo"><span class="header-section-number">11.3</span> Simular: contagio simple vs.&nbsp;complejo</h2>
+<section id="simulación" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="simulación"><span class="header-section-number">11.3</span> Simulación</h2>
 <p><code>rdiffnet()</code> simula una difusión por umbrales sobre una red. Se le da (o se le pide que genere) una red, se eligen las semillas, se fija la distribución de umbrales, y en cada período adopta quien tenga exposición mayor o igual a su umbral. Una difusión <strong>conductual</strong>, con umbrales entre 30% y 70% de los vecinos:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1213</span>)</span>
@@ -1111,7 +1076,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <img src="05-contagio-social-en-redes_files/figure-html/fig-nd-sim-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nd-sim-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;11.3: Adoptantes acumulados en una difusión tipo enfermedad (un vecino basta) y en una conductual (hace falta entre 30% y 70% de los vecinos), sobre redes equivalentes.
+Figura&nbsp;11.3: Adoptantes acumulados en una difusión tipo enfermedad y en una conductual.
 </figcaption>
 </figure>
 </div>
