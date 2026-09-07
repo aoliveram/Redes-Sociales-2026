@@ -20,7 +20,10 @@ book:
     - 02-fundamentos-matematicos.qmd
     - 03-mecanismos-de-formacion.qmd
     - 04-inferencia-qap-y-ergm.qmd
+    - 05-contagio-social-en-redes.qmd
     - referencias.qmd
+  appendices:
+    - anexos.qmd
 
 format:
   html:

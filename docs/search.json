@@ -20,11 +20,21 @@
     ]
   },
   {
+    "objectID": "index.html#los-capítulos",
+    "href": "index.html#los-capítulos",
+    "title": "Redes Sociales — DCCS 2026",
+    "section": "Los capítulos",
+    "text": "Los capítulos\n\n\n\nCapítulo\nDe qué trata\n\n\n\n\nKit computacional\nIDE, R, Git y GitHub, agentes de IA. Cómo trabajar y cómo hacerse responsable de lo que uno entrega.\n\n\nFundamentos matemáticos\nGrafos, matrices de adyacencia, caminos, centralidades. El vocabulario mínimo.\n\n\nMecanismos de formación\nPor qué existen los lazos: homofilia, reciprocidad, triadas, popularidad.\n\n\nInferencia: QAP y ERGM\nCómo saber si un patrón es real. Permutaciones de etiquetas y modelos exponenciales.\n\n\nContagio social\nCómo se difunden conductas: umbrales, contagio complejo, dónde sembrar, netdiffuseR.\n\n\n\nAl final hay un anexo sobre transiciones de fase, que explica de dónde viene el lenguaje de tipping points e irreversibilidad que se usa en el capítulo de contagio.\nCada capítulo trae recuadros Para jugar: variaciones del código que conviene correr por cuenta propia. Ahí es donde se aprende.",
+    "crumbs": [
+      "Bienvenida"
+    ]
+  },
+  {
     "objectID": "index.html#materiales",
     "href": "index.html#materiales",
     "title": "Redes Sociales — DCCS 2026",
     "section": "Materiales",
-    "text": "Materiales\n\nRepositorio del curso: https://github.com/aoliveram/Redes-Sociales-2026\nDatos de la práctica: carpeta libro-redes-sociales-2026/datos/\nBibliografía: carpeta libro-redes-sociales-2026/bibliografia/\n\n\n\n\n\n\n\nNota\n\n\n\nEste libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.",
+    "text": "Materiales\n\nRepositorio del curso: https://github.com/aoliveram/Redes-Sociales-2026\nDatos de la práctica: carpeta libro-redes-sociales-2026/datos/\nReferencias citadas: capítulo de referencias\n\n\n\n\n\n\n\nNota\n\n\n\nEste libro está en construcción durante la implementación 2026 del curso. Los capítulos se publican semana a semana.",
     "crumbs": [
       "Bienvenida"
     ]
@@ -344,7 +354,7 @@
     "href": "04-inferencia-qap-y-ergm.html",
     "title": "4  Inferencia en redes: QAP y ERGM",
     "section": "",
-    "text": "4.1 Preparación de datos\nEl primer día un agente de IA leyó encuesta_nominaciones.xlsx y ajustó “un ERGM bien especificado” incluso cuando no entendíamos qué era el ERGM. Hoy entenderemos el mismo modelo, pero esta vez línea por línea, entendiendo cada decisión, y así defender el modelo.\nlibrary(readxl)     # leer el Excel\nlibrary(igraph)     # construir y visualizar la red\n\nenc &lt;- read_excel(\"datos/encuesta_nominaciones.xlsx\")\nhead(enc, 3)\n\n# A tibble: 3 × 11\n  nombre       sexo   edad disciplina nom_1  nom_2 nom_3 nom_4 nom_5 nom_6 nom_7\n  &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;\n1 Amanda Rojas F        27 salud      Karin… Luca… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; \n2 Bastian Soto F        38 salud      Javie… Luca… Pabl… Vale… Oliv… Elis… Hern…\n3 Carla Munoz  F        25 sociologia Gabri… Yerk… Roci… Simo… Oliv… Isid… Ulis…\nCada fila es un ego con sus atributos (sexo, edad, disciplina) y hasta 7 personas nominadas usando el generador de nombres “¿con quién discutes temas importantes?”.\nConvertimos las nominaciones en una lista de aristas dirigidas y construimos la red:\nnoms_largo &lt;- do.call(rbind, lapply(seq_len(nrow(enc)), function(i) {\n  alters &lt;- unlist(enc[i, paste0(\"nom_\", 1:7)])\n  alters &lt;- alters[!is.na(alters)]\n  data.frame(desde = enc$nombre[i], hasta = alters)\n}))\n\nred_i &lt;- graph_from_data_frame(noms_largo, directed = TRUE,\n                               vertices = enc[, c(\"nombre\",\"sexo\",\"edad\",\"disciplina\")])\nred_i\n\nIGRAPH 1e2519e DN-- 30 149 -- \n+ attr: name (v/c), sexo (v/c), edad (v/n), disciplina (v/c)\n+ edges from 1e2519e (vertex names):\n [1] Amanda Rojas -&gt;Karin Morales   Amanda Rojas -&gt;Lucas Paredes  \n [3] Bastian Soto -&gt;Javier Espinoza Bastian Soto -&gt;Lucas Paredes  \n [5] Bastian Soto -&gt;Pablo Guzman    Bastian Soto -&gt;Valentina Cruz \n [7] Bastian Soto -&gt;Olivia Campos   Bastian Soto -&gt;Elisa Fuentes  \n [9] Bastian Soto -&gt;Hernan Vidal    Carla Munoz  -&gt;Gabriela Pinto \n[11] Carla Munoz  -&gt;Yerko Sandoval  Carla Munoz  -&gt;Rocio Salazar  \n[13] Carla Munoz  -&gt;Simon Tapia     Carla Munoz  -&gt;Olivia Campos  \n[15] Carla Munoz  -&gt;Isidora Lagos   Carla Munoz  -&gt;Ulises Vega    \n+ ... omitted several edges\ncolores_disc &lt;- c(ingenieria = \"#74add1\", sociologia = \"#f46d43\", salud = \"#66bd63\")\nset.seed(2026)\nplot(red_i,\n     vertex.color = colores_disc[V(red_i)$disciplina],\n     vertex.size = 9, vertex.label.cex = 0.55, vertex.label.color = \"black\",\n     edge.arrow.size = 0.25, edge.color = \"gray70\")\nlegend(\"topleft\", names(colores_disc), pt.bg = colores_disc, pch = 21, bty = \"n\")\n\n\n\n\n\n\n\nFigura 4.1\nA simple vista los colores se agrupan: pareciera que la gente nomina dentro de su disciplina. Eso es una descripción. La pregunta inferencial es: ¿podría ese patrón surgir por azar?\nc(densidad = edge_density(red_i), reciprocidad = reciprocity(red_i))\n\n    densidad reciprocidad \n   0.1712644    0.5369128",
+    "text": "4.1 Preparación de datos\nEl primer día un agente de IA leyó encuesta_nominaciones.xlsx y ajustó “un ERGM bien especificado” incluso cuando no entendíamos qué era el ERGM. Hoy entenderemos el mismo modelo, pero esta vez línea por línea, entendiendo cada decisión, y así defender el modelo.\nlibrary(readxl)     # leer el Excel\nlibrary(igraph)     # construir y visualizar la red\n\nenc &lt;- read_excel(\"datos/encuesta_nominaciones.xlsx\")\nhead(enc, 3)\n\n# A tibble: 3 × 11\n  nombre       sexo   edad disciplina nom_1  nom_2 nom_3 nom_4 nom_5 nom_6 nom_7\n  &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;\n1 Amanda Rojas F        27 salud      Karin… Luca… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; \n2 Bastian Soto F        38 salud      Javie… Luca… Pabl… Vale… Oliv… Elis… Hern…\n3 Carla Munoz  F        25 sociologia Gabri… Yerk… Roci… Simo… Oliv… Isid… Ulis…\nCada fila es un ego con sus atributos (sexo, edad, disciplina) y hasta 7 personas nominadas usando el generador de nombres “¿con quién discutes temas importantes?”.\nConvertimos las nominaciones en una lista de aristas dirigidas y construimos la red:\nnoms_largo &lt;- do.call(rbind, lapply(seq_len(nrow(enc)), function(i) {\n  alters &lt;- unlist(enc[i, paste0(\"nom_\", 1:7)])\n  alters &lt;- alters[!is.na(alters)]\n  data.frame(desde = enc$nombre[i], hasta = alters)\n}))\n\nred_i &lt;- graph_from_data_frame(noms_largo, directed = TRUE,\n                               vertices = enc[, c(\"nombre\",\"sexo\",\"edad\",\"disciplina\")])\nred_i\n\nIGRAPH 139478b DN-- 30 149 -- \n+ attr: name (v/c), sexo (v/c), edad (v/n), disciplina (v/c)\n+ edges from 139478b (vertex names):\n [1] Amanda Rojas -&gt;Karin Morales   Amanda Rojas -&gt;Lucas Paredes  \n [3] Bastian Soto -&gt;Javier Espinoza Bastian Soto -&gt;Lucas Paredes  \n [5] Bastian Soto -&gt;Pablo Guzman    Bastian Soto -&gt;Valentina Cruz \n [7] Bastian Soto -&gt;Olivia Campos   Bastian Soto -&gt;Elisa Fuentes  \n [9] Bastian Soto -&gt;Hernan Vidal    Carla Munoz  -&gt;Gabriela Pinto \n[11] Carla Munoz  -&gt;Yerko Sandoval  Carla Munoz  -&gt;Rocio Salazar  \n[13] Carla Munoz  -&gt;Simon Tapia     Carla Munoz  -&gt;Olivia Campos  \n[15] Carla Munoz  -&gt;Isidora Lagos   Carla Munoz  -&gt;Ulises Vega    \n+ ... omitted several edges\ncolores_disc &lt;- c(ingenieria = \"#74add1\", sociologia = \"#f46d43\", salud = \"#66bd63\")\nset.seed(2026)\nplot(red_i,\n     vertex.color = colores_disc[V(red_i)$disciplina],\n     vertex.size = 9, vertex.label.cex = 0.55, vertex.label.color = \"black\",\n     edge.arrow.size = 0.25, edge.color = \"gray70\")\nlegend(\"topleft\", names(colores_disc), pt.bg = colores_disc, pch = 21, bty = \"n\")\n\n\n\n\n\n\n\nFigura 4.1\nA simple vista los colores se agrupan: pareciera que la gente nomina dentro de su disciplina. Eso es una descripción. La pregunta inferencial es: ¿podría ese patrón surgir por azar?\nc(densidad = edge_density(red_i), reciprocidad = reciprocity(red_i))\n\n    densidad reciprocidad \n   0.1712644    0.5369128",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Inferencia en redes: QAP y ERGM</span>"
     ]
@@ -480,6 +490,146 @@
     ]
   },
   {
+    "objectID": "05-contagio-social-en-redes.html",
+    "href": "05-contagio-social-en-redes.html",
+    "title": "5  Contagio social en redes",
+    "section": "",
+    "text": "6 Umbrales para la acción colectiva",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#granovetter-1978-decidir-bajo-interdependencia",
+    "href": "05-contagio-social-en-redes.html#granovetter-1978-decidir-bajo-interdependencia",
+    "title": "5  Contagio social en redes",
+    "section": "6.1 Granovetter (1978): decidir bajo interdependencia",
+    "text": "6.1 Granovetter (1978): decidir bajo interdependencia\nEl punto de partida de todo modelo de contagio social es una idea simple de Granovetter: muchas decisiones son binarias (actuar o no actuar) y su utilidad depende de cuántos otros ya actuaron.\nSupongamos cada individuo \\(i\\) tiene un umbral \\(\\tau_i\\): la fracción mínima de adoptantes que necesita observar para actuar:\n\\[\na_i = 1 \\iff r \\geq \\tau_i,\n\\]\ndonde \\(r\\) es la proporción de la población que ya actuó. Lo notable es que la distribución de umbrales captura toda la dinámica. Agregación ≠ preferencias individuales.\n\n\n\n\n\n\nNotaEjemplo canónico\n\n\n\nHay 100 trabajadores con umbrales \\(0, 1, 2, \\ldots, 99\\). El de umbral 0 actúa; eso activa al de umbral 1; eso activa al de umbral 2… los 100 terminan actuando.\nAhora quitamos al trabajador de umbral 1 y lo reemplazamos por otro de umbral 2.El proceso muere en 1.\nDos poblaciones con preferencias casi idénticas producen resultados colectivos opuestos. El resultado de la acción colectiva no está en las preferencias, está en su distribución.\n\n\n\n\n\n\n\n\nNotaDos precisiones de Granovetter que se olvidan\n\n\n\nEl umbral no es una preferencia. Es el punto donde la utilidad neta de actuar se vuelve positiva. Un utilitarista puro y alguien sensible al estatus pueden tener el mismo umbral por razones distintas.\nEs “una medida conductual contingente, no una medida pura de preferencias normativas”. (De hecho, el umbral se puede derivar formalmente de un juego de coordinación: Morris 2000; Easley & Kleinberg 2010, cap. 19.)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#valente-1996-el-umbral-se-vuelve-de-red",
+    "href": "05-contagio-social-en-redes.html#valente-1996-el-umbral-se-vuelve-de-red",
+    "title": "5  Contagio social en redes",
+    "section": "6.2 Valente (1996): el umbral se vuelve de red",
+    "text": "6.2 Valente (1996): el umbral se vuelve de red\nEn vez de ver la proporción global \\(r\\), cada persona mira su propia red. La exposición de \\(i\\) es la fracción de sus contactos que ya adoptaron,\n\\[\nE_i = \\frac{\\sum_{j} X_{ij}\\, a_j}{\\sum_{j} X_{ij}},\n\\]\nentonces: \\[\na_i = 1 \\Leftrightarrow E_i \\geq \\tau_i\n\\]\nEs la misma idea de Granovetter, pero ahora el resultado colectivo pasa a depender de la topología.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#qué-es-un-contagio-complejo",
+    "href": "05-contagio-social-en-redes.html#qué-es-un-contagio-complejo",
+    "title": "5  Contagio social en redes",
+    "section": "6.3 Qué es un contagio complejo",
+    "text": "6.3 Qué es un contagio complejo\nAntes de seguir con la estructura, conviene detenerse a explicar qué es un contagio complejo y qué lo explica.\nLa definición canónica es la de Centola & Macy (2007): un contagio es simple cuando basta un contacto con una fuente activada para transmitirlo (una enfermedad, una noticia, una oferta de trabajo), y es complejo cuando “requiere contacto con múltiples fuentes de activación”.\nLa palabra “umbral”, sin embargo, es anterior a la red: ya está en Granovetter (1978), quien lo define como “el punto donde los beneficios netos empiezan a exceder los costos netos” de actuar. Su Figura 3 dibuja, para un individuo con umbral del 38%, el beneficio neto de sumarse a un motín según la fracción del grupo que ya participa: mientras la curva está bajo cero, no actúa; cuando la cruza, actúa. En la versión más simple, ese beneficio neto crece linealmente con la adopción:\n\n\n\n\n\n\n\n\nFigura 6.1: El umbral como utilidad neta. Para un individuo con \\(\\tau = 0.38\\) (el ejemplo de Granovetter), el beneficio neto de actuar crece con la fracción \\(r\\) de adoptantes y se vuelve positivo exactamente en \\(r = \\tau\\). A la izquierda del umbral no adopta; a la derecha, sí.\n\n\n\n\n\nGuardemos esta figura: más abajo, el bi-umbral será simplemente la misma curva pero no monotónica, que vuelve a cruzar el cero cuando demasiados adoptan. Granovetter mismo lo anticipó: su modelo estipula que la curva no cruce el eje “más de una vez”, y advierte que si lo hace “se necesitan modelos más complejos”.\n\n\n\n\n\n\nNotaEjemplos que la literatura ha tratado como contagio complejo\n\n\n\n\nConductas de salud en un foro en línea (Centola 2010, Science): registrarse en un sitio de salud se difundió más y más lejos en redes clusterizadas que en aleatorias.\nHashtags políticos y controversiales en Twitter (Romero et al. 2011), frente a los idiomáticos, que se comportan como contagio simple.\nCambiar la foto de perfil por el signo igual en apoyo al matrimonio igualitario (State & Adamic 2015).\nUna técnica agrícola nueva en Malawi (Beaman et al. 2021): casi nadie adopta con un vecino informado, pero sí varios con dos.\nSalir a protestar en la Primavera Árabe (Steinert-Threlkeld 2017) y en las protestas de 2011–2013 (Barberá et al. 2015).\nEn teoría: la credibilidad de una leyenda urbana, la adopción de una tecnología nueva, la disposición a participar en una manifestación riesgosa, una moda de vanguardia (Centola & Macy 2007).",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#se-usan-fracciones-no-conteos",
+    "href": "05-contagio-social-en-redes.html#se-usan-fracciones-no-conteos",
+    "title": "5  Contagio social en redes",
+    "section": "8.1 Se usan fracciones, no conteos",
+    "text": "8.1 Se usan fracciones, no conteos\nEn un contagio simple, los no-adoptantes son irrelevantes: si tengo contacto con alguien con sarampión, me contagio, sin importar cuántos sanos conozca. En un contagio complejo, los no-adoptantes son una señal activa (influencias contrarias). Por lo tanto, lo que predice adopción no es cuántos amigos ya lo han hecho, sino qué fracción.\nO sea, cuanto más conectado estás, más influencias contrarias enfrentas. Por eso los “hubs” suelen ser frenos y no aceleradores de los contagios complejos. Eso explica por qué los movimientos —la Primavera Árabe en Egipto (Steinert-Threlkeld 2017), el Ice Bucket Challenge (Sprague & House 2017)— nacieron en la periferia.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#número-de-fuentes-no-de-exposiciones",
+    "href": "05-contagio-social-en-redes.html#número-de-fuentes-no-de-exposiciones",
+    "title": "5  Contagio social en redes",
+    "section": "8.2 Número de fuentes, no de exposiciones",
+    "text": "8.2 Número de fuentes, no de exposiciones\nLo que cuenta no es cuántas veces recibo la señal, sino de cuántas fuentes distintas e independientes la recibo. Harkins & Petty (1981, 1987) hallaron este efecto de fuentes múltiples: los mismos argumentos, presentados por varias personas independientes, persuaden más que repetidos por una.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#bi-threshold-umbral-de-desadopción",
+    "href": "05-contagio-social-en-redes.html#bi-threshold-umbral-de-desadopción",
+    "title": "5  Contagio social en redes",
+    "section": "8.3 Bi-threshold: umbral de desadopción",
+    "text": "8.3 Bi-threshold: umbral de desadopción\nSi el umbral es el punto donde la utilidad neta se vuelve positiva, nada impide que demasiada adopción la vuelva negativa de nuevo. Tres posibles mecanismos (Alipour et al. 2024):\n\n\n\nUmbral lineal (verde) vs. bi-umbral (azul): en el segundo, el beneficio neto de adoptar vuelve a ser negativo cuando demasiados lo hacen. Figura de Alipour et al. (2024).\n\n\n\nSaturación o congestión: el valor cae con la multitud (bar “El Farol” de Arthur; una app que se vuelve lenta).\nPérdida de distinción: el snob effect de Leibenstein (1950), lo que valía por exclusivo deja de valer cuando lo tiene todo el mundo.\nSeñalización de identidad: abandonar un rasgo cuando lo adoptan los “otros” (Berger & Heath 2007).",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#similitud-o-diversidad-depende-de-la-barrera",
+    "href": "05-contagio-social-en-redes.html#similitud-o-diversidad-depende-de-la-barrera",
+    "title": "5  Contagio social en redes",
+    "section": "8.4 Similitud o diversidad: depende de la barrera",
+    "text": "8.4 Similitud o diversidad: depende de la barrera\nSi las fuentes independientes son lo que convence, ¿deben parecerse a mí o ser distintas entre sí? Centola (2022) responde que depende de cuál barrera opera:\nCuando la barrera es credibilidad o emoción, convencen los pares similares — la prueba social de mi propio grupo (Centola 2011: la homofilia aumenta la adopción de conductas de salud).\nCuando la barrera es legitimidad, también convencen las fuentes diversas: State & Adamic (2015) midieron el cambio masivo de fotos de perfil en Facebook en apoyo al matrimonio igualitario en el caso del signo igual, la gente cambió su foto cuando vio adoptantes de círculos sociales distintos — abuelos, colegas, amigos del colegio —. Eso probaba que el apoyo era amplio y el riesgo social era bajo.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#confirmar-sesgos-simple-vs-desafiarlos-complejo",
+    "href": "05-contagio-social-en-redes.html#confirmar-sesgos-simple-vs-desafiarlos-complejo",
+    "title": "5  Contagio social en redes",
+    "section": "8.5 Confirmar sesgos (simple) vs desafiarlos (complejo)",
+    "text": "8.5 Confirmar sesgos (simple) vs desafiarlos (complejo)\nLa información que confirma los sesgos de una comunidad es fácil de entender y de aceptar (contagio simple), y la información que desafía esos sesgos encuentra resistencia (contagio complejo), por lo que la desinformación siempre corre con ventaja de mecanismo.\nEjemplo: Las mascarillas en la pandemia. La misma conducta es contagio simple en comunidades que confiaban en la autoridad sanitaria y contagio complejo donde no.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#resultados-principales-de-centola-macy-2007",
+    "href": "05-contagio-social-en-redes.html#resultados-principales-de-centola-macy-2007",
+    "title": "5  Contagio social en redes",
+    "section": "9.1 Resultados principales de Centola & Macy (2007)",
+    "text": "9.1 Resultados principales de Centola & Macy (2007)\n\nEl contagio simple se beneficia de la aleatorización. Con \\(\\tau = 1/8\\), la curva es decreciente.\nEl contagio complejo no se beneficia de niveles bajos de aleatorización. Con \\(\\tau = 2/8\\), la curva es plana hasta \\(p \\approx 10^{-3}\\).\nEl efecto de \\(p\\) sobre el tiempo de saturación no es monótono para contagios complejos: baja, toca un mínimo y sube hasta que la propagación falla (transición de fase de primer orden en la propagación).\nLa difusión de información no es equivalente a la difusión de comportamientos. La frase de Granovetter es falsa para la difusión de comportamientos.\n\n\n\n\n\n\n\nNotaTransición de fase de primer orden\n\n\n\nCentola & Macy dicen que el colapso de la propagación al aumentar \\(p\\) es “una transición de fase de primer orden”. Ver el anexo sobre transiciones de fase.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#la-evidencia-empírica-es-mixta",
+    "href": "05-contagio-social-en-redes.html#la-evidencia-empírica-es-mixta",
+    "title": "5  Contagio social en redes",
+    "section": "10.1 La evidencia empírica es mixta",
+    "text": "10.1 La evidencia empírica es mixta\n\n10.1.1 En contra de los hubs\n\nKim et al. (2015, Lancet) — RCT en 32 aldeas: sembrar en los de mayor in-degree no superó al azar.\nCentola (2010, Science) — las redes clusterizadas difunden más un comportamiento de salud que las aleatorias.\nUgander et al. (2012, PNAS) — 54 millones de invitaciones a Facebook: la probabilidad de unirse no crece con el número de amigos ya dentro, sino con el número de componentes conexas entre ellos. Cinco amigos que se conocen entre sí pesan menos que tres que no se conocen. Es la firma directa del efecto de fuentes múltiples.\nRomero, Meeder & Kleinberg (2011) — para cada hashtag, la curva “probabilidad de adoptar tras la \\(k\\)-ésima exposición”. En los hashtags políticos y controversiales la curva sigue subiendo con la segunda, tercera y cuarta exposición (persistencia); en los idiomáticos, cae tras la primera.\nMønsted et al. (2017) — el problema de lo anterior es que quienes reciben más exposiciones son distintos de quienes reciben pocas. Mønsted controló eso con bots en Twitter que fijan cuántas fuentes distintas exponen a cada usuario: la adopción responde al número de fuentes, como predice el modelo complejo y no el simple.\nBarberá et al. (2015, PLoS ONE) — en las protestas de Gezi, Occupy y los indignados, la periferia (usuarios con pocos seguidores, que participan poco) generó la mayor parte del alcance total del movimiento en Twitter. El núcleo produce el contenido; la periferia lo hace masivo.\nSteinert-Threlkeld (2017, APSR) — geolocalizando tuits durante la Primavera Árabe: la coordinación en la periferia (medida con hashtags y menciones de usuarios poco conectados) predice las protestas del día siguiente; la actividad del núcleo, no.\n\n\n\n10.1.2 Matices\n\nBanerjee et al. (2013) — su centralidad de difusión (camino simple) sí predijo la adopción: la información viaja simple aunque adoptar sea complejo.\nValente & Vega Yon (2020) — con distribuciones de umbral (media 0.33 y varianza), las semillas de alto in-degree son las más rápidas y las marginales las peores.\nIyengar, Van den Bulte & Valente (2011) — los líderes de opinión sí aceleran la adopción de un fármaco.\n\n\n\n10.1.3 En lo que sí hay consenso\nLo que fracasa es la siembra dispersa, y lo que funciona es la siembra reforzada (nodos adyacentes redundantes), esté en el centro (caro) o en la periferia (barato).",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#de-la-encuesta-al-diffnet",
+    "href": "05-contagio-social-en-redes.html#de-la-encuesta-al-diffnet",
+    "title": "5  Contagio social en redes",
+    "section": "11.1 De la encuesta al diffnet",
+    "text": "11.1 De la encuesta al diffnet\nEl paquete trae los tres datasets clásicos de difusión de innovaciones como encuestas crudas: los médicos y la tetraciclina (medInnovations, 1955), los agricultores brasileños y el maíz híbrido (brfarmers, 1966), y las mujeres coreanas y la planificación familiar (kfamily, 1973). Miremos la coreana:\n\nlibrary(netdiffuseR)\ndata(kfamily)\n\n# Una fila por mujer encuestada: id, aldea, tiempo de adopción y hasta 15 nominaciones\nkfamily[1:6, c(\"id\", \"village\", \"toa\", paste0(\"net1\", 1:5), paste0(\"net2\", 1:5), paste0(\"net3\", 1:5))]\n\n  id village toa net11 net12 net13 net14 net15 net21 net22 net23 net24 net25\n1  2       1   4     4    57     3    20    58     4    23    32     1     6\n2  3       1  11     0     0     0     0     0    32    69    34    12     0\n3  4       1   7    11    69     2     0     0    11     2     0     0     0\n4  5       1  11     0     0     0     0     0    73    32     0     0     0\n5  7       1  11     1    64     6    61     0     1     6    37    61    64\n6  8       1   4    59    50    62    13    61    11    91     1    21    11\n  net31 net32 net33 net34 net35\n1    32    23     0     0     0\n2    12     0     0     0     0\n3    11     2     0     0     0\n4     0     0     0     0     0\n5     6    37     0     0     0\n6    26    25    95     0     3\n\n# El estudio siguió 10 períodos. El código toa = 11 es una convención antigua\n# para \"no adoptó\": lo pasamos a NA, que es como netdiffuseR lo entiende.\nkfamily$toa[kfamily$toa == 11] &lt;- NA\n\n# 25 aldeas; adoptantes por período (y cuántas nunca adoptaron)\nunique(kfamily$village)\n\n [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25\n\ntable(kfamily$toa, useNA = \"ifany\")\n\n\n   1    2    3    4    5    6    7    8    9   10 &lt;NA&gt; \n  69   94   81   86   65   62   53   53   73   37  374 \n\n\n\n\n\n\n\n\nTipDónde está todo lo demás\n\n\n\nCada función usada aquí (survey_to_diffnet, exposure, diffreg, rdiffnet, los plot_*) está documentada con ejemplos en el manual de referencia de netdiffuseR en CRAN. Cuando un argumento no quede claro, ese PDF es el lugar donde mirar; dentro de R, ?survey_to_diffnet abre la misma página.\n\n\nEsa es la estructura mínima de una encuesta de difusión: un identificador, las nominaciones (a quién le hablas de planificación familiar, a quién ves más, a quién le pides consejo) y el tiempo de adopción. La función survey_to_diffnet() arma con eso un objeto diffnet: la red más los tiempos de adopción. Trabajemos con la aldea 21:\n\nkfamily_21 &lt;- subset(kfamily, village == 21)\n\nkfamily_diffnet_21 &lt;- survey_to_diffnet(\n  dat      = kfamily_21,\n  idvar    = \"id\",\n  netvars  = c(\n    \"net11\", \"net12\", \"net13\", \"net14\", \"net15\",   # con quién habla de planificación familiar\n    \"net21\", \"net22\", \"net23\", \"net24\", \"net25\",   # vecinas más cercanas\n    \"net31\", \"net32\", \"net33\", \"net34\", \"net35\"),  # a quién pide consejo\n  toavar   = \"toa\",\n  groupvar = \"village\"\n)\nkfamily_diffnet_21\n\nDynamic network of class -diffnet-\n Name               : Diffusion Network\n Behavior           : Unknown\n # of nodes         : 54 (2101, 2103, 2104, 2106, 2107, 2109, 2110, 2111, ...)\n # of time periods  : 10 (1 - 10)\n Type               : directed\n Num of behaviors   : 1\n Final prevalence   : 0.44\n Static attributes  : village, recno1, studno1, area1, id1, nmage1, nmag... (430)\n Dynamic attributes : -\n\n\nDos gráficos vienen incluidos: la curva de adoptantes y la red coloreada por período:\n\nplot_adopters(kfamily_diffnet_21)\n\n\n\n\n\n\n\nFigura 11.1: Aldea 21: adoptantes por período y acumulados.\n\n\n\n\n\n\nplot_diffnet(kfamily_diffnet_21)\n\n\n\n\n\n\n\nFigura 11.2: La red de la aldea 21 en cada período: quién ya adoptó (color) y quién no.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#importa-la-exposición-regresión-con-diffreg",
+    "href": "05-contagio-social-en-redes.html#importa-la-exposición-regresión-con-diffreg",
+    "title": "5  Contagio social en redes",
+    "section": "11.2 ¿Importa la exposición? Regresión con diffreg",
+    "text": "11.2 ¿Importa la exposición? Regresión con diffreg\nLa pregunta de fondo: ¿la probabilidad de adoptar en \\(t\\) depende de la exposición en \\(t-1\\), controlando por el período? El modelo de exposición rezagada es\n\\[\ny_{it} = 1 \\iff \\rho\\, E_{i,t-1} + X_{it}\\beta + \\varepsilon_{it} &gt; 0,\n\\]\ndonde \\(E_{i,t-1}\\) es la fracción de contactos que ya habían adoptado en el período anterior, y \\(X_{it}\\) son covariables de la encuesta. Para tener más potencia usamos las 25 aldeas juntas (survey_to_diffnet arma una red por aldea gracias a groupvar), y agregamos como controles la edad, el número de hijos y la exposición a afiches de planificación familiar (media12). diffreg() estima el modelo directamente sobre el diffnet, pero exige que la exposición se llame literalmente exposure:\n\nkfamily_diffnet &lt;- survey_to_diffnet(\n  dat      = kfamily,\n  idvar    = \"id\",\n  netvars  = c(paste0(\"net1\", 1:5), paste0(\"net2\", 1:5), paste0(\"net3\", 1:5)),\n  toavar   = \"toa\",\n  groupvar = \"village\"\n)\n\n# Agregamos la exposición y la adopción acumulada como atributos dinámicos\nkfamily_diffnet[[\"exposure\"]] &lt;- exposure(kfamily_diffnet)\nkfamily_diffnet[[\"adoption\"]] &lt;- kfamily_diffnet$cumadopt\n\nmodelo &lt;- diffreg(kfamily_diffnet ~ exposure + age + sons + media12 + factor(per),\n                  type = \"logit\")\nsummary(modelo)\n\n\nCall:\nglm(formula = Adopt ~ exposure + age + sons + media12 + factor(per), \n    family = binomial(link = \"logit\"), data = dat, subset = ifelse(is.na(toa), \n        TRUE, toa &gt;= per))\n\nCoefficients:\n               Estimate Std. Error z value Pr(&gt;|z|)    \n(Intercept)   -3.387652   0.247985 -13.661  &lt; 2e-16 ***\nexposure       0.642739   0.151629   4.239 2.25e-05 ***\nage            0.009399   0.007074   1.329  0.18395    \nsons           0.302777   0.038351   7.895 2.90e-15 ***\nmedia12        0.122260   0.037430   3.266  0.00109 ** \nfactor(per)3  -0.094156   0.162145  -0.581  0.56145    \nfactor(per)4   0.044102   0.162945   0.271  0.78666    \nfactor(per)5  -0.166121   0.177872  -0.934  0.35034    \nfactor(per)6  -0.125468   0.182840  -0.686  0.49258    \nfactor(per)7  -0.199322   0.192960  -1.033  0.30162    \nfactor(per)8  -0.096307   0.195495  -0.493  0.62227    \nfactor(per)9   0.392488   0.184716   2.125  0.03360 *  \nfactor(per)10 -0.241655   0.222669  -1.085  0.27780    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n(Dispersion parameter for binomial family taken to be 1)\n\n    Null deviance: 3928.5  on 6046  degrees of freedom\nResidual deviance: 3775.7  on 6034  degrees of freedom\n  (1056 observations deleted due to missingness)\nAIC: 3801.7\n\nNumber of Fisher Scoring iterations: 5\n\n\nLa exposición es positiva y significativa aun controlando por edad, hijos, afiches y período: tener más contactos que ya usan planificación familiar aumenta la probabilidad de adoptarla al período siguiente. Los hijos y los afiches también importan; la edad, no. Eso es la firma mínima de un efecto de red.\n\n\n\n\n\n\nAdvertenciaLo que la regresión no puede decir\n\n\n\nQue la exposición prediga la adopción es consistente con contagio, pero también con homofilia (elegí como amigas a mujeres parecidas a mí, que adoptan cuando yo adopto) o con un contexto común (una campaña llegó a todo el barrio). Sin un experimento o un instrumento, el coeficiente es una asociación. Es exactamente el problema de identificación con que empezó el capítulo de ERGM: la red y la conducta pueden tener una causa compartida.\n\n\n\n\n\n\n\n\nNotaPara jugar\n\n\n\n\nRepite la regresión solo para la aldea 21 (kfamily_diffnet_21). Con 54 mujeres, ¿sobrevive la exposición a los mismos controles?\nHazlo con brfarmersDiffNet y con medInnovationsDiffNet, que ya vienen como diffnet. En el segundo la exposición no es significativa: es coherente con Van den Bulte & Lilien (2001), que mostraron que el “contagio” de la tetraciclina se desvanece al controlar por el marketing farmacéutico.\nCambia media12 por otras fuentes (media6 radio, media7 TV, media14 reuniones, media18 visitas de trabajadoras de salud: ver ?kfamily). ¿Cuál compite más con la exposición de red?",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
+    "objectID": "05-contagio-social-en-redes.html#simular-contagio-simple-vs.-complejo",
+    "href": "05-contagio-social-en-redes.html#simular-contagio-simple-vs.-complejo",
+    "title": "5  Contagio social en redes",
+    "section": "11.3 Simular: contagio simple vs. complejo",
+    "text": "11.3 Simular: contagio simple vs. complejo\nrdiffnet() simula una difusión por umbrales sobre una red. Se le da (o se le pide que genere) una red, se eligen las semillas, se fija la distribución de umbrales, y en cada período adopta quien tenga exposición mayor o igual a su umbral. Una difusión conductual, con umbrales entre 30% y 70% de los vecinos:\n\nset.seed(1213)\ndiffnet_behavior &lt;- rdiffnet(\n  n              = 500,                          # nodos\n  t              = 10,                           # períodos\n  seed.nodes     = \"random\",                     # semillas al azar...\n  seed.p.adopt   = .05,                          # ...un 5% de la red\n  seed.graph     = \"small-world\",                # red de Watts-Strogatz\n  rgraph.args    = list(p = .2),                 # con 20% de recableado\n  threshold.dist = function(x) runif(1, .3, .7)  # umbral de cada nodo\n)\ndiffnet_behavior\n\nDynamic network of class -diffnet-\n Name               : A diffusion network\n Behavior           : Random contagion\n # of nodes         : 500 (1, 2, 3, 4, 5, 6, 7, 8, ...)\n # of time periods  : 10 (1 - 10)\n Type               : directed\n Num of behaviors   : 1\n Final prevalence   : 0.52\n Static attributes  : real_threshold (1)\n Dynamic attributes : -\n\n\nY una difusión tipo enfermedad, donde basta un vecino adoptante (umbral absoluto igual a 1):\n\nset.seed(09)\ndiffnet_disease &lt;- rdiffnet(\n  n              = 500,\n  t              = 10,\n  seed.graph     = \"small-world\",\n  seed.nodes     = \"random\",\n  seed.p.adopt   = .05,\n  rewire         = TRUE,\n  threshold.dist = function(i) 1L,               # un vecino basta\n  exposure.args  = list(normalized = FALSE),     # umbral en conteo, no en fracción\n  name           = \"Disease spreading\"\n)\n\n\nplot_adopters(diffnet_behavior, what = \"cumadopt\", include.legend = FALSE,\n              main = \"Contagio simple vs. complejo\")\nplot_adopters(diffnet_disease, bg = \"lightblue\", add = TRUE, what = \"cumadopt\")\nlegend(\"topleft\", legend = c(\"Enfermedad (simple)\", \"Conducta (complejo)\"),\n       col = c(\"lightblue\", \"tomato\"), bty = \"n\", pch = 19)\n\n\n\n\n\n\n\nFigura 11.3: Adoptantes acumulados en una difusión tipo enfermedad (un vecino basta) y en una conductual (hace falta entre 30% y 70% de los vecinos), sobre redes equivalentes.\n\n\n\n\n\nLa enfermedad satura la red en pocos períodos; la conducta avanza lento y se detiene antes de llegar a todos. Es la misma diferencia que Centola & Macy mostraron con el anillo, ahora en diez líneas.\n\n\n\n\n\n\nNotaPara jugar\n\n\n\n\nEn diffnet_behavior, cambia seed.nodes a \"central\" (los de mayor grado) y a \"marginal\" (los de menor grado). ¿Cuál difunde más? Compara con lo que dice la sección de centralidad compleja.\nSube el recableado p a 0.5 y a 0.9 en ambas simulaciones. ¿Cuál se acelera y cuál se frena? Estás recorriendo la curva de Centola & Macy.\nCambia el umbral conductual a function(x) 2L con exposure.args = list(normalized = FALSE): ahora hacen falta exactamente dos vecinos. Con la función rdiffnet_multiple() puedes repetir la simulación cien veces y ver la distribución de la prevalencia final.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Contagio social en redes</span>"
+    ]
+  },
+  {
     "objectID": "referencias.html",
     "href": "referencias.html",
     "title": "Referencias",
@@ -507,6 +657,61 @@
     "text": "Libros y tutoriales online con ejercicios y datos listos\n\nNetwork Analysis in R (Rawlings, Smith, Moody & McFarland, 2023) — tutoriales completos y gratuitos del libro de Cambridge; datos incluidos; cubre desde descriptivos hasta ERGM, SIENA y difusión.\nWorkshops de statnet — tutoriales autocontenidos con datos para ERGM, ERGM egocéntrico y redes temporales.\nTutoriales de Katya Ognyanova — visualización y análisis con igraph, con código y datos descargables y un catálogo de datasets.\nApplied Network Science with R (G. Vega Yon) — Quarto 100% reproducible; igraph, statnet y netdiffuseR.\nMethods for Network Analysis (M. Hoffman) — bookdown gratuito, muy amable para quienes parten de cero.\nUserNetR (D. Luke) — paquete con todos los datasets del libro A User’s Guide to Network Analysis in R.\nRSiena (Snijders, Oxford) — scripts y tutoriales oficiales para separar selección de influencia.\nEn español: vignette oficial de igraph y el curso abierto de ARS en RStudio de S. Vallejo.",
     "crumbs": [
       "Referencias"
+    ]
+  },
+  {
+    "objectID": "anexos.html",
+    "href": "anexos.html",
+    "title": "Anexos",
+    "section": "",
+    "text": "Transiciones de fase: de la física al contagio\nMaterial que complementa los capítulos pero que no cabe en una sesión. Se lee por separado y se cita desde el capítulo correspondiente.\nCentola & Macy (2007) dicen que el colapso de la propagación al aumentar el recableado es “una transición de fase de primer orden”. La frase viene de la física, y vale la pena entender qué significa allá antes de usarla acá, porque el concepto reaparece en toda la ciencia de la complejidad social: tipping points, irreversibilidad de las normas, impredecibilidad cerca del punto crítico.",
+    "crumbs": [
+      "Apéndices",
+      "Anexos"
+    ]
+  },
+  {
+    "objectID": "anexos.html#el-modelo-de-ising-una-red-de-espines",
+    "href": "anexos.html#el-modelo-de-ising-una-red-de-espines",
+    "title": "Anexos",
+    "section": "El modelo de Ising: una red de espines",
+    "text": "El modelo de Ising: una red de espines\nEl sistema más simple que tiene una transición de fase es el modelo de Ising. Imaginemos una red regular (una grilla) donde cada nodo \\(i\\) tiene un espín \\(s_i\\) que solo puede apuntar hacia arriba (\\(+1\\)) o hacia abajo (\\(-1\\)). Cada espín quiere alinearse con sus vecinos: la energía baja cuando dos vecinos apuntan igual y sube cuando apuntan distinto. Y hay un campo externo \\(B\\) que empuja a todos los espines hacia una dirección.\n\n\n\nUna red de espines: cada nodo apunta hacia arriba (rojo) o hacia abajo (azul). La interacción con los vecinos premia el alineamiento local.\n\n\nLa energía total es\n\\[\nE = -J \\sum_{\\langle i,j \\rangle} s_i s_j \\;-\\; B \\sum_i s_i ,\n\\]\ndonde la primera suma recorre los pares de vecinos y \\(J &gt; 0\\) es la fuerza de la interacción. El sistema está a una temperatura \\(T\\) que introduce ruido: a \\(T\\) alta, los espines saltan al azar sin importar la energía; a \\(T\\) baja, se acomodan en la configuración de menor energía.\nLa variable que resume el estado del sistema es la magnetización \\(m\\): la fracción neta de espines que apuntan hacia arriba,\n\\[\nm = \\frac{1}{N} \\sum_i s_i \\in [-1, 1].\n\\]\nSi \\(m = 0\\), hay tantos arriba como abajo (desorden). Si \\(m = \\pm 1\\), están todos alineados (orden). \\(m\\) es lo que en física se llama parámetro de orden, y la traducción a redes sociales es inmediata: la fracción de adoptantes de una conducta.\n\n\n\n\n\n\nNotaPor qué esto es un modelo social\n\n\n\nUn espín que quiere alinearse con sus vecinos es un agente que quiere adoptar lo que adoptan sus vecinos. El campo externo es la utilidad intrínseca de la conducta (o la campaña de marketing, o la autoridad sanitaria). La temperatura es el ruido idiosincrático de las decisiones. Y la magnetización es la prevalencia. Con esa traducción, todo lo que sigue se lee dos veces.",
+    "crumbs": [
+      "Apéndices",
+      "Anexos"
+    ]
+  },
+  {
+    "objectID": "anexos.html#segundo-orden-el-cambio-es-continuo",
+    "href": "anexos.html#segundo-orden-el-cambio-es-continuo",
+    "title": "Anexos",
+    "section": "Segundo orden: el cambio es continuo",
+    "text": "Segundo orden: el cambio es continuo\nEmpecemos sin campo externo (\\(B = 0\\)) y variemos la temperatura. La herramienta para ver qué pasa es la energía libre \\(f(m)\\): una función que dice cuán “cómodo” está el sistema en cada valor de \\(m\\). El sistema se queda en el mínimo de \\(f\\).\n\n\n\n\n\n\nA temperatura alta (\\(T &gt; T_c\\)), la energía libre tiene un solo mínimo en \\(m = 0\\): el desorden es el único estado estable.\n\n\n\n\n\n\n\nBajo la temperatura crítica (\\(T &lt; T_c\\)), el mínimo en \\(m = 0\\) se vuelve un máximo y aparecen dos mínimos simétricos: el sistema debe elegir uno.\n\n\n\n\n\nAl cruzar la temperatura crítica \\(T_c\\), el mínimo único se bifurca en dos. Pero los dos mínimos nuevos nacen en \\(m = 0\\) y se separan gradualmente: la magnetización crece de forma continua desde cero. Eso es una transición de segundo orden: el parámetro de orden no salta.\n\n\n\n\n\n\nEl diagrama de la bifurcación: bajo \\(T_c\\) el sistema toma una de dos ramas, \\(+m\\) o \\(-m\\), que se abren continuamente.\n\n\n\n\n\n\n\nLo mismo medido en una simulación de Monte Carlo: \\(\\langle |M| \\rangle\\) crece continuamente al bajar la temperatura bajo \\(T_c\\) (línea punteada). La curva es empinada cerca de \\(T_c\\) pero no salta.",
+    "crumbs": [
+      "Apéndices",
+      "Anexos"
+    ]
+  },
+  {
+    "objectID": "anexos.html#primer-orden-el-cambio-es-un-salto",
+    "href": "anexos.html#primer-orden-el-cambio-es-un-salto",
+    "title": "Anexos",
+    "section": "Primer orden: el cambio es un salto",
+    "text": "Primer orden: el cambio es un salto\nAhora mantengamos \\(T &lt; T_c\\) (ya hay dos mínimos) y encendamos el campo \\(B\\). El campo inclina la energía libre: favorece un mínimo y perjudica el otro.\n\n\n\nBajo \\(T_c\\), la energía libre con campo externo. Izquierda: \\(B &lt; 0\\), el mínimo de la izquierda es más profundo. Centro: \\(B = 0\\), los dos mínimos son iguales. Derecha: \\(B &gt; 0\\), el mínimo de la derecha es más profundo. El mínimo desfavorecido no desaparece: sigue siendo un estado localmente estable.\n\n\nAquí está la clave. Si el sistema está en el mínimo de la izquierda (\\(m &lt; 0\\)) y empezamos a subir \\(B\\), el mínimo se vuelve cada vez menos profundo, pero el sistema se queda ahí: para saltar al otro lado necesita superar la barrera del medio. Solo cuando la barrera desaparece por completo, el sistema cae de golpe al otro mínimo. La magnetización pasa de \\(-1\\) a \\(+1\\) de un salto.\n\n\n\nIsing con campo externo, \\(T &lt; T_c\\): la magnetización salta discontinuamente al cambiar el signo del campo \\(H\\), y el punto exacto del salto depende de la temperatura. Una transición de primer orden.\n\n\nY si ahora bajamos \\(B\\) de vuelta, el salto no ocurre en el mismo punto: el sistema está atrapado en \\(m &gt; 0\\) hasta que la barrera desaparece por el otro lado. Eso es la histéresis: el estado depende de la historia, no solo de los parámetros actuales.\n\n\n\nEl cuadro completo: la magnetización \\(M\\) como superficie sobre el plano \\((H, T)\\). El corte 1 (verde, \\(T &lt; T_c\\)) cruza la zona sombreada, donde coexisten dos estados, y \\(M\\) salta: primer orden. El corte 2 (morado, a \\(H = 0\\)) recorre el eje de temperatura y \\(M\\) crece continuamente hasta anularse en \\(T_c\\): segundo orden. El punto \\(T = T_c\\) es donde la línea de saltos termina.\n\n\nTres marcas definen una transición de primer orden:\n\nEl parámetro de orden salta, no crece suavemente.\nHay histéresis: revertir exige ir mucho más atrás que el punto donde se produjo el salto.\nHay coexistencia y metaestabilidad: cerca del punto crítico, dos estados son posibles, y el sistema puede quedar “atrapado” en el que no es el de menor energía.",
+    "crumbs": [
+      "Apéndices",
+      "Anexos"
+    ]
+  },
+  {
+    "objectID": "anexos.html#en-las-ciencias-sociales",
+    "href": "anexos.html#en-las-ciencias-sociales",
+    "title": "Anexos",
+    "section": "En las ciencias sociales",
+    "text": "En las ciencias sociales\nAhora la lectura social de cada figura.\n\nSegundo orden: Schelling\nEl modelo de Schelling de segregación se comporta como el Ising sin campo. Cada agente tiene una tolerancia mínima a vecinos distintos; al variarla, la segregación emerge gradualmente. No hay un salto: hay una curva empinada pero continua, igual que la magnetización al bajar la temperatura.\n\n\n\nModelo de Schelling: la segregación espacial emerge de preferencias individuales moderadas. El grado de segregación es el parámetro de orden, y crece de forma continua.\n\n\n\n\nPrimer orden: el contagio complejo\nUn contagio que requiere refuerzo se comporta como el Ising con campo bajo \\(T_c\\). La figura muestra el tamaño del brote según la probabilidad de transmisión en un modelo con refuerzo: para ciertos parámetros el brote crece de forma suave, pero para otros salta de casi nada a casi toda la población en un punto crítico.\n\n\n\nTamaño del brote \\(S\\) según la probabilidad de transmisión \\(\\phi\\) en un modelo de contagio con refuerzo, para tres combinaciones de grado medio \\(c\\) y fracción inicial \\(\\rho\\). La curva del medio salta: transición de primer orden. Figura de Newman, Networks.\n\n\nEs exactamente lo que Centola & Macy observan al aumentar \\(p\\): la saturación pasa de “completa” a “ninguna” de golpe, no gradualmente. Y las tres marcas tienen lectura social directa:\n\nEl salto son los tipping points de las normas: Centola et al. (2018) los provocaron experimentalmente con una minoría comprometida del 25%.\nLa histéresis es la irreversibilidad de muchos cambios sociales: una vez que una norma cayó, restaurarla cuesta mucho más que lo que costó derribarla.\nLa coexistencia es la impredecibilidad cerca del punto crítico, donde poblaciones casi idénticas producen resultados opuestos. Dicho en otro lenguaje, es el ejemplo de los 100 trabajadores de Granovetter con que empieza el capítulo de contagio.\n\n\n\n\n\n\n\nTipLa regla para distinguirlas en datos\n\n\n\nSi al variar un parámetro (recableado, umbral, tamaño de la semilla) la prevalencia final cambia suavemente, la transición es de segundo orden y el sistema es predecible. Si salta, y además el salto ocurre en puntos distintos según se suba o se baje el parámetro, es de primer orden: hay que preguntarse de dónde viene el sistema, no solo dónde está.",
+    "crumbs": [
+      "Apéndices",
+      "Anexos"
     ]
   }
 ]
