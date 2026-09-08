@@ -15,7 +15,7 @@ Hasta ahora la red era **el dato**. Ahora **la red no se observa, se estima.** N
 |--|---|---|
 | 1. Repaso | Correlación → correlación parcial regularizada → *strength* → estabilidad | `psych::bfi` |
 | 2. Red vs. factor | Cuándo coinciden y cuándo no | Likert fabricado + simulación |
-| 3. Límites | Tres reglas y un caso real | — |
+| 3. Ejemplo de aplicación | El mismo método sobre datos administrativos | — |
 
 ```{r}
 #| label: setup
@@ -96,9 +96,15 @@ head(aristas[order(aristas$w), ], 3)                # negativas más fuertes
 
 La arista más fuerte es N1–N2 ("me enojo fácilmente" y "me irrito fácilmente", son casi el mismo ítem). Las negativas más fuertes son A1–A2 y E2–E4, pares donde un ítem está redactado al revés del otro. Lo primero que hay que hacer es leer las aristas fuertes para distinguir  la redacción de los ítems y la psicología.
 
+::: callout-warning
+## Qué dice y qué no dice una arista
+
+La arista N1–N2 dice que, **en la población**, quienes puntúan alto en N1 tienden a puntuar alto en N2 controlando por los otros 23 ítems. No dice que en una persona el enojo lleve a la irritación. Los datos son entre personas; un proceso dentro de una persona necesita medir a la misma persona muchas veces (datos longitudinales).
+:::
+
 ## Strength y su estabilidad
 
-*Strength* es la suma de los valores absolutos de las aristas de un nodo. Es la única centralidad que vamos a usar.
+*Strength* es la suma de los valores absolutos de las aristas de un nodo. Es la única centralidad que vamos a usar, y hay una razón: *betweenness* y *closeness* asumen que algo "viaja" por los caminos más cortos de la red, y en una red de correlaciones parciales no hay nada que viaje (Bringmann et al. 2019). *Strength* solo suma asociaciones directas, y eso sí tiene sentido aquí.
 
 ```{r}
 #| label: fig-strength
@@ -177,10 +183,12 @@ EGA encuentra tres comunidades y son exactamente los tres factores. El análisis
 
 ## Cuando no dicen lo mismo
 
-Entonces, ¿para qué la red? Porque hay estructuras que un factor no puede representar y una red sí. Simulamos dos mundos con cinco variables cada uno y ajustamos ambos métodos a ambos:
+Entonces, ¿para qué la red? Porque hay estructuras que un factor no puede representar y una red sí. Simulamos dos mundos con cinco variables cada uno:
 
-- **Mundo 1, factor común**: una variable latente causa a las cinco (carga 0.7).
-- **Mundo 2, cadena**: $X_1 \to X_2 \to X_3 \to X_4 \to X_5$, cada una causada solo por la anterior (coeficiente 0.7). No hay variable latente.
+- **Mundo 1, factor común**: una variable latente $f$ causa a las cinco, $X_j = 0.7\,f + \varepsilon_j$.
+- **Mundo 2, cadena**: $X_1 \to X_2 \to X_3 \to X_4 \to X_5$, cada una causada solo por la anterior, $X_j = 0.7\,X_{j-1} + \varepsilon_j$. No hay variable latente.
+
+En ambos mundos las variables tienen varianza 1 y los pares vecinos correlacionan 0.49. La diferencia está en lo que pasa al controlar: en el mundo factor, ninguna correlación desaparece al controlar por las demás (todas comparten $f$); en la cadena, $X_1$ y $X_3$ se vuelven independientes al controlar por $X_2$.
 
 ```{r}
 #| label: dos-mundos-sim
@@ -195,6 +203,20 @@ for (j in 2:5) {
 }
 colnames(factor) <- colnames(cadena) <- paste0("X", 1:5)
 ```
+
+### Primero el análisis factorial
+
+Un **factor** es una variable que no medimos pero que explica por qué varios ítems se mueven juntos. El análisis factorial busca cuántas de esas variables hacen falta para reproducir la matriz de correlaciones. La herramienta habitual para decidir cuántos factores hay son los **autovalores** de la matriz de correlaciones: cada autovalor es la cantidad de varianza (en unidades de ítems) que un factor logra explicar. Con 5 ítems los autovalores suman 5. Si hay un solo factor fuerte, el primer autovalor es grande y los otros cuatro son pequeños. La regla de Kaiser, la más usada, dice: **hay tantos factores como autovalores mayores que 1**, porque un factor que explica menos que un solo ítem no vale la pena.
+
+```{r}
+#| label: dos-mundos-autovalores
+round(eigen(cor(factor))$values, 2)                 # mundo factor
+round(eigen(cor(cadena))$values, 2)                 # mundo cadena
+```
+
+En el mundo factor: un autovalor de 2.96 y cuatro cercanos a 0.5. Un factor, como corresponde. En el mundo cadena: un autovalor de 3.08, incluso mayor, y un segundo apenas sobre 1. Con la regla de Kaiser, el análisis factorial concluye que hay **un factor dominante** en un mundo donde no hay ninguna variable latente. Las cargas también engañan: van de 0.6 a 0.9, que en un cuestionario real se leerían como un factor bien medido. (Los índices de ajuste del modelo de un factor sí acusan el problema en la cadena, con RMSEA 0.37 cuando el límite aceptable es 0.06, pero dicen que algo está mal, no qué.)
+
+### Ahora la red
 
 ```{r}
 #| label: fig-dos-mundos
@@ -220,21 +242,13 @@ plot(red_cadena, layout = "circle", title = "Red estimada")
 par(op)
 ```
 
-Ahora el análisis factorial con un factor sobre cada mundo:
+En el mundo factor la red es completa: los cinco ítems conectados entre sí, que es como se ve una causa común cuando se dibujan correlaciones parciales. En el mundo cadena la red es la cadena exacta: cuatro aristas, ninguna extra. La red distingue lo que el análisis factorial confundió.
 
-```{r}
-#| label: dos-mundos-efa
-#| warning: false
-round(eigen(cor(factor))$values, 2)                 # autovalores, mundo factor
-round(eigen(cor(cadena))$values, 2)                 # autovalores, mundo cadena
+::: callout-warning
+## Lo que la red tampoco puede ver: la dirección
 
-efa_factor <- fa(factor, nfactors = 1, fm = "ml")
-efa_cadena <- fa(cadena, nfactors = 1, fm = "ml")
-round(c(factor = unname(efa_factor$RMSEA[1]), cadena = unname(efa_cadena$RMSEA[1])), 3)   # RMSEA
-round(c(factor = efa_factor$TLI, cadena = efa_cadena$TLI), 3)                            # TLI
-```
-
-En el mundo cadena, el primer autovalor es 3.1 y las cargas del factor son altas (0.6 a 0.9). Con la regla del "autovalor mayor a 1" o mirando solo las cargas, un analista concluiría que hay un factor. Pero el ajuste lo delata: RMSEA 0.37 y TLI 0.50 son inaceptables. La red, en cambio, dibuja la cadena exacta: cuatro aristas, ninguna extra.
+La red estimada de la cadena no tiene flechas, y no es un defecto del dibujo. Una correlación parcial es simétrica, así que la red es no dirigida por construcción. Peor: $X_1 \to X_2 \to X_3$, $X_1 \leftarrow X_2 \leftarrow X_3$ y $X_1 \leftarrow X_2 \to X_3$ producen exactamente las mismas correlaciones y las mismas independencias condicionales, así que **ningún método** las distingue con estos datos. Una arista N1–N2 en `bfi` es compatible con N1 → N2, con N2 → N1 y con una causa común no medida. Orientar aristas requiere tiempo (medir antes y después) o intervención. La red estimada es el punto de partida para plantear hipótesis causales, no su prueba (Pearl 2000).
+:::
 
 ::: callout-important
 ## La conclusión de la Parte 2
@@ -243,16 +257,6 @@ En el mundo cadena, el primer autovalor es 3.1 y las cargas del factor son altas
 
 Y responden preguntas distintas. El factorial entrega **dimensiones y un puntaje por persona**. La red entrega **aristas entre ítems** y permite preguntar cuál ítem conecta a dos grupos. No es análisis factorial disfrazado, y tampoco lo reemplaza.
 :::
-
-# Límites
-
-## Tres reglas
-
-El debate entre Neal et al. (2022) y Borsboom et al. (2022) se puede resumir en tres reglas para escribir resultados.
-
-1. **Datos entre personas no hablan de procesos dentro de una persona.** La red de `bfi` dice que, en la población, quienes puntúan alto en N1 tienden a puntuar alto en N2 controlando por el resto. No dice que en una persona el enojo lleve a la irritación. Para eso se necesitan datos longitudinales de la misma persona.
-2. **Dependencia condicional no es efecto de intervención.** Una arista N1–N2 es compatible con N1 → N2, con N2 → N1 y con una causa común no medida. La red estimada es el punto de partida para plantear hipótesis causales, no su prueba (Pearl, 2000).
-3. **No toda centralidad de redes de actores tiene sentido aquí.** *Strength* sí: suma de asociaciones directas. *Betweenness* y *closeness* asumen que algo *"viaja"* por caminos más cortos, y en una red de correlaciones parciales no hay nada que viaje (Bringmann et al. 2019).
 
 # Ejemplo de aplicación
 
