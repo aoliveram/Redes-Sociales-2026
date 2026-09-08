@@ -9,8 +9,6 @@ date: "2026-09-08"
 ## Qué haremos
 
 **¿Y si una exposición no basta?** Cuando adoptar es costoso —porque hay que coordinarse, porque no es creíble, porque puede ser mal visto, o porque se necesita el ánimo de otros— se necesitan **varias** fuentes que refuercen.
-
-La frase-guía del bloque: *para un contagio simple, que la semilla vea lejos; para uno complejo, que la semilla vea acompañada.*
 :::
 
 | Sección | Contenido |
@@ -255,7 +253,7 @@ Lo que fracasa es la **siembra dispersa**, y lo que funciona es la **siembra ref
 
 # netdiffuseR: de la encuesta al modelo
 
-`netdiffuseR` es el paquete de R para difusión en redes (Valente, Vega Yon y colaboradores). Tiene mucho más de lo que veremos; aquí, dos cosas: **leer** datos de encuesta y estimar el efecto de la exposición, y **simular** difusiones simples y complejas. Lo que sigue está tomado casi textualmente del [taller oficial del paquete](https://usccana.github.io/netdiffuser-workshop/), donde hay más.
+`netdiffuseR` es el paquete de R para difusión en redes (Valente, Vega Yon y Olivera). Tiene mucho más de lo que veremos; aquí, dos cosas: **leer** datos de encuesta y estimar el efecto de la exposición, y **simular** difusiones simples y complejas. Lo que sigue está tomado casi textualmente del [workshop de Sunbelt](https://usccana.github.io/netdiffuser-workshop/), donde hay más.
 
 ## De la encuesta al `diffnet`
 

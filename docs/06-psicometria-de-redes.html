@@ -436,8 +436,8 @@ window.Quarto = {
   <li><a href="#cuando-dicen-lo-mismo" id="toc-cuando-dicen-lo-mismo" class="nav-link" data-scroll-target="#cuando-dicen-lo-mismo"><span class="header-section-number">8.1</span> Cuando dicen lo mismo</a></li>
   <li><a href="#cuando-no-dicen-lo-mismo" id="toc-cuando-no-dicen-lo-mismo" class="nav-link" data-scroll-target="#cuando-no-dicen-lo-mismo"><span class="header-section-number">8.2</span> Cuando no dicen lo mismo</a>
   <ul class="collapse">
-  <li><a href="#primero-el-análisis-factorial" id="toc-primero-el-análisis-factorial" class="nav-link" data-scroll-target="#primero-el-análisis-factorial"><span class="header-section-number">8.2.1</span> Primero el análisis factorial</a></li>
-  <li><a href="#ahora-la-red" id="toc-ahora-la-red" class="nav-link" data-scroll-target="#ahora-la-red"><span class="header-section-number">8.2.2</span> Ahora la red</a></li>
+  <li><a href="#primero-el-análisis-factorial" id="toc-primero-el-análisis-factorial" class="nav-link" data-scroll-target="#primero-el-análisis-factorial"><span class="header-section-number">8.2.1</span> Primero, el análisis factorial</a></li>
+  <li><a href="#segundo-la-psicometría-de-redes" id="toc-segundo-la-psicometría-de-redes" class="nav-link" data-scroll-target="#segundo-la-psicometría-de-redes"><span class="header-section-number">8.2.2</span> Segundo, la psicometría de redes</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#ejemplo-de-aplicación" id="toc-ejemplo-de-aplicación" class="nav-link" data-scroll-target="#ejemplo-de-aplicación"><span class="header-section-number">9</span> Ejemplo de aplicación</a></li>
@@ -625,6 +625,8 @@ Figura&nbsp;7.1: Izquierda: red de correlaciones. Derecha: red de correlaciones 
 </div>
 </div>
 <p><code>cor_auto</code> detecta que los ítems son ordinales y usa correlaciones policóricas. <code>EBICglasso</code> elige cuánta penalización aplicar con un criterio de información. Las dos cosas están explicadas en Epskamp, Borsboom &amp; Fried (2018), que es la referencia de trabajo para todo este bloque.</p>
+<p><em>pregunta 1</em></p>
+<p><em>pregunta 2</em></p>
 </section>
 <section id="pesos-de-la-red" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="pesos-de-la-red"><span class="header-section-number">7.3</span> Pesos de la red</h2>
@@ -698,16 +700,16 @@ Figura&nbsp;7.2: Strength de cada ítem, estandarizada.
 
 Sampling levels tested:
    nPerson Drop%  n
-1      609  75.0 20
-2      798  67.2 28
-3      988  59.4 23
-4     1177  51.7 19
-5     1367  43.9 13
-6     1556  36.1 23
-7     1746  28.3 22
-8     1935  20.6 13
-9     2125  12.8 22
-10    2314   5.0 17
+1      609  75.0 28
+2      798  67.2 15
+3      988  59.4 25
+4     1177  51.7 22
+5     1367  43.9 20
+6     1556  36.1 17
+7     1746  28.3 20
+8     1935  20.6 12
+9     2125  12.8 21
+10    2314   5.0 20
 
 Maximum drop proportions to retain correlation of 0.7 in at least 95% of the samples:
 
@@ -718,6 +720,7 @@ Accuracy can also be increased by increasing both 'nBoots' and 'caseN'.</code></
 </div>
 </div>
 <p>La tabla prueba diez niveles de recorte (quitar el 5%, el 13%, …, el 75% de las personas) y en cada nivel re-estima la red unas 20 veces. El CS es el mayor recorte que todavía cumple la regla. Con 200 réplicas la estimación es gruesa (entre 0.5 y 0.6 según la semilla y el número de núcleos), pero está sobre 0.5: podemos quitar a la mitad de la muestra y el orden de <em>strength</em> se mantiene. Con 2.436 personas era esperable. Pasa el test de estabilidad y podemos interpretar <em>strength</em>.</p>
+<p><em>pregunta 3</em></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -838,8 +841,9 @@ Cumulative Var 0.199 0.374 0.546</code></pre>
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(factor) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(cadena) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="primero-el-análisis-factorial" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="primero-el-análisis-factorial"><span class="header-section-number">8.2.1</span> Primero el análisis factorial</h3>
-<p>Un <strong>factor</strong> es una variable que no medimos pero que explica por qué varios ítems se mueven juntos. El análisis factorial busca cuántas de esas variables hacen falta para reproducir la matriz de correlaciones. La herramienta habitual para decidir cuántos factores hay son los <strong>autovalores</strong> de la matriz de correlaciones: cada autovalor es la cantidad de varianza (en unidades de ítems) que un factor logra explicar. Con 5 ítems los autovalores suman 5. Si hay un solo factor fuerte, el primer autovalor es grande y los otros cuatro son pequeños. La regla de Kaiser, la más usada, dice: <strong>hay tantos factores como autovalores mayores que 1</strong>, porque un factor que explica menos que un solo ítem no vale la pena.</p>
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="primero-el-análisis-factorial"><span class="header-section-number">8.2.1</span> Primero, el análisis factorial</h3>
+<p>Un <strong>factor</strong> es una variable que no medimos pero que explica por qué varios ítems se mueven juntos. El análisis factorial busca cuántas de esas variables hacen falta para reproducir la matriz de correlaciones. La herramienta habitual para decidir cuántos factores hay son los <strong>autovalores</strong> de la matriz de correlaciones: cada autovalor es la cantidad de varianza (en unidades de ítems) que un factor logra explicar.</p>
+<p>Con 5 ítems los autovalores suman 5. Si hay un solo factor fuerte, el primer autovalor es grande y los otros cuatro son pequeños. La regla de Kaiser, la más usada, dice: <strong>hay tantos factores como autovalores mayores que 1</strong>, porque un factor que explica menos que un solo ítem no vale la pena.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">eigen</span>(<span class="fu">cor</span>(factor))<span class="sc">$</span>values, <span class="dv">2</span>)                 <span class="co"># mundo factor</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -850,10 +854,10 @@ Cumulative Var 0.199 0.374 0.546</code></pre>
 <pre><code>[1] 3.08 1.04 0.42 0.27 0.19</code></pre>
 </div>
 </div>
-<p>En el mundo factor: un autovalor de 2.96 y cuatro cercanos a 0.5. Un factor, como corresponde. En el mundo cadena: un autovalor de 3.08, incluso mayor, y un segundo apenas sobre 1. Con la regla de Kaiser, el análisis factorial concluye que hay <strong>un factor dominante</strong> en un mundo donde no hay ninguna variable latente. Las cargas también engañan: van de 0.6 a 0.9, que en un cuestionario real se leerían como un factor bien medido. (Los índices de ajuste del modelo de un factor sí acusan el problema en la cadena, con RMSEA 0.37 cuando el límite aceptable es 0.06, pero dicen que algo está mal, no qué.)</p>
+<p>En el mundo factor: un factor, como corresponde. En el mundo cadena: un autovalor de 3.08, y un segundo apenas sobre 1. Con la regla de Kaiser, el análisis factorial concluye que hay <strong>un factor dominante</strong> en un mundo donde no hay ninguna variable latente. Las cargas también engañan: van de 0.6 a 0.9, que en un cuestionario real se leerían como un factor bien medido.</p>
 </section>
-<section id="ahora-la-red" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="ahora-la-red"><span class="header-section-number">8.2.2</span> Ahora la red</h3>
+<section id="segundo-la-psicometría-de-redes" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="segundo-la-psicometría-de-redes"><span class="header-section-number">8.2.2</span> Segundo, la psicometría de redes</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>red_factor <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(<span class="fu">as.data.frame</span>(factor), <span class="at">default =</span> <span class="st">"EBICglasso"</span>)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>red_cadena <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(<span class="fu">as.data.frame</span>(cadena), <span class="at">default =</span> <span class="st">"EBICglasso"</span>)</span>
@@ -884,33 +888,7 @@ Figura&nbsp;8.2: Arriba: los dos procesos generadores. Abajo: la red estimada en
 </div>
 </div>
 <p>En el mundo factor la red es completa: los cinco ítems conectados entre sí, que es como se ve una causa común cuando se dibujan correlaciones parciales. En el mundo cadena la red es la cadena exacta: cuatro aristas, ninguna extra. La red distingue lo que el análisis factorial confundió.</p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Advertencia</span>Lo que la red tampoco puede ver: la dirección
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>La red estimada de la cadena no tiene flechas, y no es un defecto del dibujo. Una correlación parcial es simétrica, así que la red es no dirigida por construcción. Peor: <span class="math inline">\(X_1 \to X_2 \to X_3\)</span>, <span class="math inline">\(X_1 \leftarrow X_2 \leftarrow X_3\)</span> y <span class="math inline">\(X_1 \leftarrow X_2 \to X_3\)</span> producen exactamente las mismas correlaciones y las mismas independencias condicionales, así que <strong>ningún método</strong> las distingue con estos datos. Una arista N1–N2 en <code>bfi</code> es compatible con N1 → N2, con N2 → N1 y con una causa común no medida. Orientar aristas requiere tiempo (medir antes y después) o intervención. La red estimada es el punto de partida para plantear hipótesis causales, no su prueba (Pearl 2000).</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Importante</span>La conclusión de la Parte 2
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Una causa común siempre se ve como red; una red no siempre se ve como causa común.</strong> El criterio operativo es el patrón de independencias condicionales: bajo un factor, ningún par de ítems es condicionalmente independiente (la red es completa); bajo una cadena, casi todos lo son (la red es dispersa). Cuando la red estimada es densa dentro de un grupo de ítems, el factorial va a funcionar igual de bien y es más parsimonioso. Cuando es dispersa, el factorial está describiendo algo que no existe.</p>
-<p>Y responden preguntas distintas. El factorial entrega <strong>dimensiones y un puntaje por persona</strong>. La red entrega <strong>aristas entre ítems</strong> y permite preguntar cuál ítem conecta a dos grupos. No es análisis factorial disfrazado, y tampoco lo reemplaza.</p>
-</div>
-</div>
+<p>La red estimada de la cadena <strong>no tiene flechas</strong>. Una correlación parcial es simétrica, así que la red es no dirigida por construcción. Peor: <span class="math inline">\(X_1 \to X_2 \to X_3\)</span>, <span class="math inline">\(X_1 \leftarrow X_2 \leftarrow X_3\)</span> y <span class="math inline">\(X_1 \leftarrow X_2 \to X_3\)</span> producen exactamente las mismas correlaciones y las mismas independencias condicionales, así que <em>ningún método</em> las distingue con estos datos. Orientar aristas requiere datos longuitudinales, donde la red estimada es el punto de partida para plantear hipótesis causales (Pearl 2000).</p>
 </section>
 </section>
 </section>
@@ -918,6 +896,8 @@ Figura&nbsp;8.2: Arriba: los dos procesos generadores. Abajo: la red estimada en
 <h1 data-number="9"><span class="header-section-number">9</span> Ejemplo de aplicación</h1>
 <p>Fábrega &amp; Olivera (2026), <a href="https://link.springer.com/article/10.1007/s41109-026-00815-1"><em>Same score, different network</em></a>, analizan 17.272 evaluaciones de riesgo de reincidencia (instrumento IGI, Gendarmería de Chile). El instrumento suma ítems binarios y clasifica a las personas por el total. La pregunta: ¿dos personas con el mismo puntaje tienen la misma configuración de ítems?</p>
 <p>Para responderla, agrupan a las personas por ventanas de puntaje, estiman una red Ising dentro de cada ventana (los ítems son binarios, así que aquí el Ising sí corresponde), y comparan las redes con bootstrap. El resultado: <strong>puntajes iguales esconden redes distintas</strong>, y las configuraciones distintas predicen distinta reincidencia. Es el mismo método de este capítulo aplicado a datos administrativos, no a un cuestionario de personalidad.</p>
+<p><em>pregunta 4</em></p>
+<p><em>pregunta 5</em></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

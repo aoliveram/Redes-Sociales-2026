@@ -78,6 +78,10 @@ par(op)
 
 `cor_auto` detecta que los ítems son ordinales y usa correlaciones policóricas. `EBICglasso` elige cuánta penalización aplicar con un criterio de información. Las dos cosas están explicadas en Epskamp, Borsboom & Fried (2018), que es la referencia de trabajo para todo este bloque.
 
+*pregunta 1*
+
+*pregunta 2*
+
 ## Pesos de la red
 
 ```{r}
@@ -128,6 +132,8 @@ corStability(boot_casos)
 ```
 
 La tabla prueba diez niveles de recorte (quitar el 5%, el 13%, …, el 75% de las personas) y en cada nivel re-estima la red unas 20 veces. El CS es el mayor recorte que todavía cumple la regla. Con 200 réplicas la estimación es gruesa (entre 0.5 y 0.6 según la semilla y el número de núcleos), pero está sobre 0.5: podemos quitar a la mitad de la muestra y el orden de *strength* se mantiene. Con 2.436 personas era esperable. Pasa el test de estabilidad y podemos interpretar *strength*.
+
+*pregunta 3*
 
 ::: callout-note
 ## ¿Y el modelo de Ising?
@@ -204,9 +210,11 @@ for (j in 2:5) {
 colnames(factor) <- colnames(cadena) <- paste0("X", 1:5)
 ```
 
-### Primero el análisis factorial
+### Primero, el análisis factorial
 
-Un **factor** es una variable que no medimos pero que explica por qué varios ítems se mueven juntos. El análisis factorial busca cuántas de esas variables hacen falta para reproducir la matriz de correlaciones. La herramienta habitual para decidir cuántos factores hay son los **autovalores** de la matriz de correlaciones: cada autovalor es la cantidad de varianza (en unidades de ítems) que un factor logra explicar. Con 5 ítems los autovalores suman 5. Si hay un solo factor fuerte, el primer autovalor es grande y los otros cuatro son pequeños. La regla de Kaiser, la más usada, dice: **hay tantos factores como autovalores mayores que 1**, porque un factor que explica menos que un solo ítem no vale la pena.
+Un **factor** es una variable que no medimos pero que explica por qué varios ítems se mueven juntos. El análisis factorial busca cuántas de esas variables hacen falta para reproducir la matriz de correlaciones. La herramienta habitual para decidir cuántos factores hay son los **autovalores** de la matriz de correlaciones: cada autovalor es la cantidad de varianza (en unidades de ítems) que un factor logra explicar. 
+
+Con 5 ítems los autovalores suman 5. Si hay un solo factor fuerte, el primer autovalor es grande y los otros cuatro son pequeños. La regla de Kaiser, la más usada, dice: **hay tantos factores como autovalores mayores que 1**, porque un factor que explica menos que un solo ítem no vale la pena.
 
 ```{r}
 #| label: dos-mundos-autovalores
@@ -214,9 +222,9 @@ round(eigen(cor(factor))$values, 2)                 # mundo factor
 round(eigen(cor(cadena))$values, 2)                 # mundo cadena
 ```
 
-En el mundo factor: un autovalor de 2.96 y cuatro cercanos a 0.5. Un factor, como corresponde. En el mundo cadena: un autovalor de 3.08, incluso mayor, y un segundo apenas sobre 1. Con la regla de Kaiser, el análisis factorial concluye que hay **un factor dominante** en un mundo donde no hay ninguna variable latente. Las cargas también engañan: van de 0.6 a 0.9, que en un cuestionario real se leerían como un factor bien medido. (Los índices de ajuste del modelo de un factor sí acusan el problema en la cadena, con RMSEA 0.37 cuando el límite aceptable es 0.06, pero dicen que algo está mal, no qué.)
+En el mundo factor: un factor, como corresponde. En el mundo cadena: un autovalor de 3.08, y un segundo apenas sobre 1. Con la regla de Kaiser, el análisis factorial concluye que hay **un factor dominante** en un mundo donde no hay ninguna variable latente. Las cargas también engañan: van de 0.6 a 0.9, que en un cuestionario real se leerían como un factor bien medido.
 
-### Ahora la red
+### Segundo, la psicometría de redes
 
 ```{r}
 #| label: fig-dos-mundos
@@ -244,25 +252,18 @@ par(op)
 
 En el mundo factor la red es completa: los cinco ítems conectados entre sí, que es como se ve una causa común cuando se dibujan correlaciones parciales. En el mundo cadena la red es la cadena exacta: cuatro aristas, ninguna extra. La red distingue lo que el análisis factorial confundió.
 
-::: callout-warning
-## Lo que la red tampoco puede ver: la dirección
+La red estimada de la cadena **no tiene flechas**. Una correlación parcial es simétrica, así que la red es no dirigida por construcción. Peor: $X_1 \to X_2 \to X_3$, $X_1 \leftarrow X_2 \leftarrow X_3$ y $X_1 \leftarrow X_2 \to X_3$ producen exactamente las mismas correlaciones y las mismas independencias condicionales, así que *ningún método* las distingue con estos datos. Orientar aristas requiere datos longuitudinales, donde la red estimada es el punto de partida para plantear hipótesis causales (Pearl 2000).
 
-La red estimada de la cadena no tiene flechas, y no es un defecto del dibujo. Una correlación parcial es simétrica, así que la red es no dirigida por construcción. Peor: $X_1 \to X_2 \to X_3$, $X_1 \leftarrow X_2 \leftarrow X_3$ y $X_1 \leftarrow X_2 \to X_3$ producen exactamente las mismas correlaciones y las mismas independencias condicionales, así que **ningún método** las distingue con estos datos. Una arista N1–N2 en `bfi` es compatible con N1 → N2, con N2 → N1 y con una causa común no medida. Orientar aristas requiere tiempo (medir antes y después) o intervención. La red estimada es el punto de partida para plantear hipótesis causales, no su prueba (Pearl 2000).
-:::
-
-::: callout-important
-## La conclusión de la Parte 2
-
-**Una causa común siempre se ve como red; una red no siempre se ve como causa común.** El criterio operativo es el patrón de independencias condicionales: bajo un factor, ningún par de ítems es condicionalmente independiente (la red es completa); bajo una cadena, casi todos lo son (la red es dispersa). Cuando la red estimada es densa dentro de un grupo de ítems, el factorial va a funcionar igual de bien y es más parsimonioso. Cuando es dispersa, el factorial está describiendo algo que no existe.
-
-Y responden preguntas distintas. El factorial entrega **dimensiones y un puntaje por persona**. La red entrega **aristas entre ítems** y permite preguntar cuál ítem conecta a dos grupos. No es análisis factorial disfrazado, y tampoco lo reemplaza.
-:::
 
 # Ejemplo de aplicación
 
 Fábrega & Olivera (2026), [*Same score, different network*](https://link.springer.com/article/10.1007/s41109-026-00815-1), analizan 17.272 evaluaciones de riesgo de reincidencia (instrumento IGI, Gendarmería de Chile). El instrumento suma ítems binarios y clasifica a las personas por el total. La pregunta: ¿dos personas con el mismo puntaje tienen la misma configuración de ítems?
 
 Para responderla, agrupan a las personas por ventanas de puntaje, estiman una red Ising dentro de cada ventana (los ítems son binarios, así que aquí el Ising sí corresponde), y comparan las redes con bootstrap. El resultado: **puntajes iguales esconden redes distintas**, y las configuraciones distintas predicen distinta reincidencia. Es el mismo método de este capítulo aplicado a datos administrativos, no a un cuestionario de personalidad.
+
+*pregunta 4*
+
+*pregunta 5*
 
 ::: {.callout-note}
 ## Para jugar
