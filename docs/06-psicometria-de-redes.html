@@ -428,7 +428,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#los-datos" id="toc-los-datos" class="nav-link" data-scroll-target="#los-datos"><span class="header-section-number">7.1</span> Los datos</a></li>
   <li><a href="#correlación-no-es-dependencia-condicional" id="toc-correlación-no-es-dependencia-condicional" class="nav-link" data-scroll-target="#correlación-no-es-dependencia-condicional"><span class="header-section-number">7.2</span> Correlación no es dependencia condicional</a></li>
-  <li><a href="#leer-la-red" id="toc-leer-la-red" class="nav-link" data-scroll-target="#leer-la-red"><span class="header-section-number">7.3</span> Leer la red</a></li>
+  <li><a href="#pesos-de-la-red" id="toc-pesos-de-la-red" class="nav-link" data-scroll-target="#pesos-de-la-red"><span class="header-section-number">7.3</span> Pesos de la red</a></li>
   <li><a href="#strength-y-su-estabilidad" id="toc-strength-y-su-estabilidad" class="nav-link" data-scroll-target="#strength-y-su-estabilidad"><span class="header-section-number">7.4</span> Strength y su estabilidad</a></li>
   </ul></li>
   <li><a href="#red-vs.-análisis-factorial" id="toc-red-vs.-análisis-factorial" class="nav-link" data-scroll-target="#red-vs.-análisis-factorial"><span class="header-section-number">8</span> Red vs.&nbsp;análisis factorial</a>
@@ -489,15 +489,14 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Hasta ahora la red era <strong>el dato</strong>: alguien nominó a alguien. Hoy los datos son personas respondiendo ítems, y la red es <strong>el resultado de un modelo</strong>: nodos = ítems, aristas = dependencias condicionales estimadas. <strong>La red ya no se observa: se estima.</strong></p>
-<p>Tres cosas, en este orden: (1) repaso de la técnica con datos reales; (2) qué agrega una red respecto de un análisis factorial, con datos donde conocemos la verdad; (3) qué no se puede concluir.</p>
+<p>Hasta ahora la red era <strong>el dato</strong>. Ahora <strong>la red no se observa, se estima.</strong> Nodos = ítems, aristas = dependencias condicionales estimadas.</p>
 </div>
 </div>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 25%">
+<col style="width: 37%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -534,16 +533,24 @@ window.Quarto = {
 <h1 data-number="7"><span class="header-section-number">7</span> Repaso: de los ítems a la red</h1>
 <section id="los-datos" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="los-datos"><span class="header-section-number">7.1</span> Los datos</h2>
-<p><code>bfi</code> son 2.800 personas que respondieron 25 ítems de personalidad (escala 1–6), cinco ítems por rasgo: <strong>A</strong>mabilidad, <strong>C</strong>onciencia, <strong>E</strong>xtraversión, <strong>N</strong>euroticismo y <strong>O</strong>pertura. Es el dataset de los tutoriales de <code>qgraph</code> y <code>bootnet</code>, y su estructura de cinco factores está bien establecida. Eso lo hace útil: sabemos qué esperar.</p>
+<p><code>bfi</code> son 2.800 personas que respondieron 25 ítems de personalidad (escala 1–6), cinco ítems por rasgo: <strong>A</strong>mabilidad, <strong>C</strong>onciencia, <strong>E</strong>xtraversión, <strong>N</strong>euroticismo y <strong>A</strong>pertura. Es el dataset de los <em>tutoriales</em> de <code>qgraph</code> y <code>bootnet</code>, y su estructura de cinco factores está bien establecida.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(bfi)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> bfi[, <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> items[<span class="fu">complete.cases</span>(items), ]       <span class="co"># nos quedamos con respuestas completas</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(items)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bfi)                                     <span class="co"># 25 ítems + género, educación y edad</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "A1"        "A2"        "A3"        "A4"        "A5"        "C1"       
+ [7] "C2"        "C3"        "C4"        "C5"        "E1"        "E2"       
+[13] "E3"        "E4"        "E5"        "N1"        "N2"        "N3"       
+[19] "N4"        "N5"        "O1"        "O2"        "O3"        "O4"       
+[25] "O5"        "gender"    "education" "age"      </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> bfi[, <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>]                           <span class="co"># nos quedamos solo con los ítems</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> items[<span class="fu">complete.cases</span>(items), ]        <span class="co"># y con las respuestas completas</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(items)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2436   25</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(items, <span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(items, <span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      A1 A2 A3 A4 A5 C1 C2 C3 C4 C5 E1 E2 E3 E4 E5 N1 N2 N3 N4 N5 O1 O2 O3 O4
 61617  2  4  3  4  4  2  3  3  4  4  3  3  3  4  4  3  4  2  2  3  3  6  3  4
@@ -554,22 +561,56 @@ window.Quarto = {
 61618  3
 61620  2</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>grupos <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">A =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">C =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">E =</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">N =</span> <span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">O =</span> <span class="dv">21</span><span class="sc">:</span><span class="dv">25</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Las 25 preguntas, con su rasgo y su sentido (<code>Keying</code> = −1 significa que el ítem está redactado al revés):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bfi.dictionary[<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="fu">c</span>(<span class="st">"Item"</span>, <span class="st">"Big6"</span>, <span class="st">"Keying"</span>)]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                        Item                Big6 Keying
+A1 Am indifferent to the feelings of others.       Agreeableness     -1
+A2         Inquire about others' well-being.       Agreeableness      1
+A3               Know how to comfort others.       Agreeableness      1
+A4                            Love children.       Agreeableness      1
+A5                 Make people feel at ease.       Agreeableness      1
+C1                   Am exacting in my work.   Conscientiousness      1
+C2     Continue until everything is perfect.   Conscientiousness      1
+C3            Do things according to a plan.   Conscientiousness      1
+C4           Do things in a half-way manner.   Conscientiousness     -1
+C5                            Waste my time.   Conscientiousness     -1
+E1                         Don't talk a lot.        Extraversion     -1
+E2     Find it difficult to approach others.        Extraversion     -1
+E3             Know how to captivate people.        Extraversion      1
+E4                      Make friends easily.        Extraversion      1
+E5                              Take charge.        Extraversion      1
+N1                         Get angry easily. Emotional Stability     -1
+N2                     Get irritated easily. Emotional Stability     -1
+N3                Have frequent mood swings. Emotional Stability     -1
+N4                          Often feel blue. Emotional Stability     -1
+N5                             Panic easily. Emotional Stability     -1
+O1                         Am full of ideas.            Openness      1
+O2         Avoid difficult reading material.            Openness     -1
+O3 Carry the conversation to a higher level.            Openness      1
+O4          Spend time reflecting on things.            Openness      1
+O5     Will not probe deeply into a subject.            Openness     -1</code></pre>
+</div>
 </div>
 </section>
 <section id="correlación-no-es-dependencia-condicional" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="correlación-no-es-dependencia-condicional"><span class="header-section-number">7.2</span> Correlación no es dependencia condicional</h2>
-<p>Una <strong>correlación</strong> entre dos ítems puede venir de un tercero que mueve a ambos. Una <strong>correlación parcial</strong> es la asociación entre dos ítems después de controlar por todos los demás. La red psicométrica dibuja las parciales, no las correlaciones. Y como con 25 ítems hay 300 parciales, muchas de ellas ruido, se aplica una penalización (<strong>graphical lasso</strong>) que lleva las pequeñas exactamente a cero. El resultado se llama <strong>GGM</strong> (<em>Gaussian Graphical Model</em>) regularizado.</p>
+<p>Una <strong>correlación</strong> entre dos ítems puede venir de un tercero que mueve a ambos. Una <strong>correlación parcial</strong> es la asociación entre dos ítems después de controlar por todos los demás. La red psicométrica dibuja las parciales.</p>
+<p>Y como con 25 ítems hay 300 parciales (muchas de ellas ruido) se aplica una penalización (<strong>graphical lasso</strong>) que lleva las pequeñas exactamente a cero. El resultado se llama <em>Gaussian Graphical Model</em> (<strong>GGM</strong> ) regularizado.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>red <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(items, <span class="at">default =</span> <span class="st">"EBICglasso"</span>, <span class="at">corMethod =</span> <span class="st">"cor_auto"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">qgraph</span>(<span class="fu">cor_auto</span>(items), <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">groups =</span> grupos, <span class="at">legend =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Correlaciones"</span>, <span class="at">theme =</span> <span class="st">"colorblind"</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(red, <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">groups =</span> grupos, <span class="at">legend =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">title =</span> <span class="st">"Correlaciones parciales regularizadas"</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>red_items <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(items, <span class="at">default =</span> <span class="st">"EBICglasso"</span>, <span class="at">corMethod =</span> <span class="st">"cor_auto"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>grupos <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">A =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">C =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">E =</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">N =</span> <span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">O =</span> <span class="dv">21</span><span class="sc">:</span><span class="dv">25</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">qgraph</span>(<span class="fu">cor_auto</span>(items), <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">groups =</span> grupos, <span class="at">legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Correlaciones"</span>, <span class="at">theme =</span> <span class="st">"colorblind"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(red_items, <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">groups =</span> grupos, <span class="at">legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">title =</span> <span class="st">"Correlaciones parciales regularizadas"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-cor-vs-parcial" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -577,7 +618,7 @@ window.Quarto = {
 <img src="06-psicometria-de-redes_files/figure-html/fig-cor-vs-parcial-1.png" class="img-fluid figure-img" width="960">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cor-vs-parcial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;7.1: Izquierda: red de correlaciones (todo está conectado con todo). Derecha: red de correlaciones parciales regularizadas (EBICglasso). Azul = positiva, rojo = negativa. Colores de nodo = rasgo.
+Figura&nbsp;7.1: Izquierda: red de correlaciones. Derecha: red de correlaciones parciales regularizadas (EBICglasso). Azul = positiva, rojo = negativa. Colores de nodo = rasgo.
 </figcaption>
 </figure>
 </div>
@@ -585,27 +626,27 @@ Figura&nbsp;7.1: Izquierda: red de correlaciones (todo está conectado con todo)
 </div>
 <p><code>cor_auto</code> detecta que los ítems son ordinales y usa correlaciones policóricas. <code>EBICglasso</code> elige cuánta penalización aplicar con un criterio de información. Las dos cosas están explicadas en Epskamp, Borsboom &amp; Fried (2018), que es la referencia de trabajo para todo este bloque.</p>
 </section>
-<section id="leer-la-red" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="leer-la-red"><span class="header-section-number">7.3</span> Leer la red</h2>
+<section id="pesos-de-la-red" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="pesos-de-la-red"><span class="header-section-number">7.3</span> Pesos de la red</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> red<span class="sc">$</span>graph                                      <span class="co"># matriz de pesos (parciales)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(W[<span class="fu">upper.tri</span>(W)] <span class="sc">!=</span> <span class="dv">0</span>)                           <span class="co"># aristas no nulas, de 300 posibles</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> red_items<span class="sc">$</span>graph                                      <span class="co"># matriz de pesos (parciales)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(W[<span class="fu">upper.tri</span>(W)] <span class="sc">!=</span> <span class="dv">0</span>)                           <span class="co"># aristas no nulas, de 300</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 184</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>aristas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> <span class="fu">colnames</span>(W)[<span class="fu">which</span>(<span class="fu">upper.tri</span>(W), <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)[, <span class="dv">1</span>]],</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">b =</span> <span class="fu">colnames</span>(W)[<span class="fu">which</span>(<span class="fu">upper.tri</span>(W), <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)[, <span class="dv">2</span>]],</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">w =</span> W[<span class="fu">upper.tri</span>(W)]</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aristas[<span class="fu">order</span>(<span class="sc">-</span>aristas<span class="sc">$</span>w), ], <span class="dv">3</span>)               <span class="co"># positivas más fuertes</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>aristas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> <span class="fu">colnames</span>(W)[<span class="fu">which</span>(<span class="fu">upper.tri</span>(W), <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)[, <span class="dv">1</span>]],</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">b =</span> <span class="fu">colnames</span>(W)[<span class="fu">which</span>(<span class="fu">upper.tri</span>(W), <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)[, <span class="dv">2</span>]],</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">w =</span> W[<span class="fu">upper.tri</span>(W)]</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aristas[<span class="fu">order</span>(<span class="sc">-</span>aristas<span class="sc">$</span>w), ], <span class="dv">3</span>)               <span class="co"># positivas más fuertes</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     a  b         w
 136 N1 N2 0.5836995
 45  C4 C5 0.3075596
 171 N3 N4 0.3025740</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aristas[<span class="fu">order</span>(aristas<span class="sc">$</span>w), ], <span class="dv">3</span>)                <span class="co"># negativas más fuertes</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aristas[<span class="fu">order</span>(aristas<span class="sc">$</span>w), ], <span class="dv">3</span>)                <span class="co"># negativas más fuertes</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    a  b          w
 1  A1 A2 -0.2825201
@@ -613,13 +654,13 @@ Figura&nbsp;7.1: Izquierda: red de correlaciones (todo está conectado con todo)
 35 C2 C4 -0.2093765</code></pre>
 </div>
 </div>
-<p>La arista más fuerte es N1–N2 (“me enojo fácilmente” y “me irrito fácilmente”): son casi el mismo ítem. Las negativas más fuertes son A1–A2 y E2–E4, pares donde un ítem está redactado al revés del otro. Leer las aristas fuertes es lo primero que hay que hacer con una red estimada: muchas veces dicen más sobre la redacción de los ítems que sobre la psicología.</p>
+<p>La arista más fuerte es N1–N2 (“me enojo fácilmente” y “me irrito fácilmente”, son casi el mismo ítem). Las negativas más fuertes son A1–A2 y E2–E4, pares donde un ítem está redactado al revés del otro. Lo primero que hay que hacer es leer las aristas fuertes para distinguir la redacción de los ítems y la psicología.</p>
 </section>
 <section id="strength-y-su-estabilidad" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="strength-y-su-estabilidad"><span class="header-section-number">7.4</span> Strength y su estabilidad</h2>
-<p><em>Strength</em> es la suma de los valores absolutos de las aristas de un nodo. Es la única centralidad que vamos a usar, y en la Parte 3 se explica por qué.</p>
+<p><em>Strength</em> es la suma de los valores absolutos de las aristas de un nodo. Es la única centralidad que vamos a usar.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">centralityPlot</span>(red, <span class="at">include =</span> <span class="st">"Strength"</span>, <span class="at">orderBy =</span> <span class="st">"Strength"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">centralityPlot</span>(red_items, <span class="at">include =</span> <span class="st">"Strength"</span>, <span class="at">orderBy =</span> <span class="st">"Strength"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-strength" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -633,606 +674,37 @@ Figura&nbsp;7.2: Strength de cada ítem, estandarizada.
 </div>
 </div>
 </div>
-<p>Un valor de <em>strength</em> estimado en una muestra no es el valor verdadero. Para saber si el orden de los nodos es confiable, se re-estima la red quitando personas al azar (<strong>bootstrap por casos</strong>) y se mide cuánto se parece el <em>strength</em> al original. El <strong>coeficiente CS</strong> es la fracción máxima de personas que se puede quitar manteniendo una correlación de 0.7 con el original en el 95% de las réplicas. Epskamp et al.&nbsp;sugieren CS &gt; 0.5 para interpretar el orden, y CS &gt; 0.25 como mínimo.</p>
+<p>Un valor de <em>strength</em> estimado en una muestra no es el valor verdadero. Para saber si el orden de los nodos es confiable, se re-estima la red quitando personas al azar (<strong>bootstrap por casos</strong>) y se mide cuánto se parece el <em>strength</em> al original.</p>
+<p>El <strong>coeficiente CS</strong> (<em>correlation stability</em>) es la fracción máxima de personas que se puede quitar manteniendo una correlación de 0.7 con el original en el 95% de las réplicas. Epskamp et al.&nbsp;sugieren CS &gt; 0.5 para interpretar el orden, y CS &gt; 0.25 como mínimo.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>boot_casos <span class="ot">&lt;-</span> <span class="fu">bootnet</span>(red, <span class="at">nBoots =</span> <span class="dv">200</span>, <span class="at">type =</span> <span class="st">"case"</span>, <span class="at">statistics =</span> <span class="st">"strength"</span>, <span class="at">nCores =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |=                                                                     |   1%
-  |                                                                            
-  |=                                                                     |   2%
-  |                                                                            
-  |==                                                                    |   2%
-  |                                                                            
-  |==                                                                    |   3%
-  |                                                                            
-  |==                                                                    |   4%
-  |                                                                            
-  |===                                                                   |   4%
-  |                                                                            
-  |====                                                                  |   5%
-  |                                                                            
-  |====                                                                  |   6%
-  |                                                                            
-  |=====                                                                 |   6%
-  |                                                                            
-  |=====                                                                 |   7%
-  |                                                                            
-  |=====                                                                 |   8%
-  |                                                                            
-  |======                                                                |   8%
-  |                                                                            
-  |======                                                                |   9%
-  |                                                                            
-  |=======                                                               |  10%
-  |                                                                            
-  |========                                                              |  11%
-  |                                                                            
-  |========                                                              |  12%
-  |                                                                            
-  |=========                                                             |  12%
-  |                                                                            
-  |=========                                                             |  13%
-  |                                                                            
-  |=========                                                             |  14%
-  |                                                                            
-  |==========                                                            |  14%
-  |                                                                            
-  |==========                                                            |  15%
-  |                                                                            
-  |===========                                                           |  16%
-  |                                                                            
-  |============                                                          |  16%
-  |                                                                            
-  |============                                                          |  17%
-  |                                                                            
-  |============                                                          |  18%
-  |                                                                            
-  |=============                                                         |  18%
-  |                                                                            
-  |=============                                                         |  19%
-  |                                                                            
-  |==============                                                        |  20%
-  |                                                                            
-  |===============                                                       |  21%
-  |                                                                            
-  |===============                                                       |  22%
-  |                                                                            
-  |================                                                      |  22%
-  |                                                                            
-  |================                                                      |  23%
-  |                                                                            
-  |================                                                      |  24%
-  |                                                                            
-  |=================                                                     |  24%
-  |                                                                            
-  |==================                                                    |  25%
-  |                                                                            
-  |==================                                                    |  26%
-  |                                                                            
-  |===================                                                   |  26%
-  |                                                                            
-  |===================                                                   |  27%
-  |                                                                            
-  |===================                                                   |  28%
-  |                                                                            
-  |====================                                                  |  28%
-  |                                                                            
-  |====================                                                  |  29%
-  |                                                                            
-  |=====================                                                 |  30%
-  |                                                                            
-  |======================                                                |  31%
-  |                                                                            
-  |======================                                                |  32%
-  |                                                                            
-  |=======================                                               |  32%
-  |                                                                            
-  |=======================                                               |  33%
-  |                                                                            
-  |=======================                                               |  34%
-  |                                                                            
-  |========================                                              |  34%
-  |                                                                            
-  |========================                                              |  35%
-  |                                                                            
-  |=========================                                             |  36%
-  |                                                                            
-  |==========================                                            |  36%
-  |                                                                            
-  |==========================                                            |  37%
-  |                                                                            
-  |==========================                                            |  38%
-  |                                                                            
-  |===========================                                           |  38%
-  |                                                                            
-  |===========================                                           |  39%
-  |                                                                            
-  |============================                                          |  40%
-  |                                                                            
-  |=============================                                         |  41%
-  |                                                                            
-  |=============================                                         |  42%
-  |                                                                            
-  |==============================                                        |  42%
-  |                                                                            
-  |==============================                                        |  43%
-  |                                                                            
-  |==============================                                        |  44%
-  |                                                                            
-  |===============================                                       |  44%
-  |                                                                            
-  |================================                                      |  45%
-  |                                                                            
-  |================================                                      |  46%
-  |                                                                            
-  |=================================                                     |  46%
-  |                                                                            
-  |=================================                                     |  47%
-  |                                                                            
-  |=================================                                     |  48%
-  |                                                                            
-  |==================================                                    |  48%
-  |                                                                            
-  |==================================                                    |  49%
-  |                                                                            
-  |===================================                                   |  50%
-  |                                                                            
-  |====================================                                  |  51%
-  |                                                                            
-  |====================================                                  |  52%
-  |                                                                            
-  |=====================================                                 |  52%
-  |                                                                            
-  |=====================================                                 |  53%
-  |                                                                            
-  |=====================================                                 |  54%
-  |                                                                            
-  |======================================                                |  54%
-  |                                                                            
-  |======================================                                |  55%
-  |                                                                            
-  |=======================================                               |  56%
-  |                                                                            
-  |========================================                              |  56%
-  |                                                                            
-  |========================================                              |  57%
-  |                                                                            
-  |========================================                              |  58%
-  |                                                                            
-  |=========================================                             |  58%
-  |                                                                            
-  |=========================================                             |  59%
-  |                                                                            
-  |==========================================                            |  60%
-  |                                                                            
-  |===========================================                           |  61%
-  |                                                                            
-  |===========================================                           |  62%
-  |                                                                            
-  |============================================                          |  62%
-  |                                                                            
-  |============================================                          |  63%
-  |                                                                            
-  |============================================                          |  64%
-  |                                                                            
-  |=============================================                         |  64%
-  |                                                                            
-  |==============================================                        |  65%
-  |                                                                            
-  |==============================================                        |  66%
-  |                                                                            
-  |===============================================                       |  66%
-  |                                                                            
-  |===============================================                       |  67%
-  |                                                                            
-  |===============================================                       |  68%
-  |                                                                            
-  |================================================                      |  68%
-  |                                                                            
-  |================================================                      |  69%
-  |                                                                            
-  |=================================================                     |  70%
-  |                                                                            
-  |==================================================                    |  71%
-  |                                                                            
-  |==================================================                    |  72%
-  |                                                                            
-  |===================================================                   |  72%
-  |                                                                            
-  |===================================================                   |  73%
-  |                                                                            
-  |===================================================                   |  74%
-  |                                                                            
-  |====================================================                  |  74%
-  |                                                                            
-  |====================================================                  |  75%
-  |                                                                            
-  |=====================================================                 |  76%
-  |                                                                            
-  |======================================================                |  76%
-  |                                                                            
-  |======================================================                |  77%
-  |                                                                            
-  |======================================================                |  78%
-  |                                                                            
-  |=======================================================               |  78%
-  |                                                                            
-  |=======================================================               |  79%
-  |                                                                            
-  |========================================================              |  80%
-  |                                                                            
-  |=========================================================             |  81%
-  |                                                                            
-  |=========================================================             |  82%
-  |                                                                            
-  |==========================================================            |  82%
-  |                                                                            
-  |==========================================================            |  83%
-  |                                                                            
-  |==========================================================            |  84%
-  |                                                                            
-  |===========================================================           |  84%
-  |                                                                            
-  |============================================================          |  85%
-  |                                                                            
-  |============================================================          |  86%
-  |                                                                            
-  |=============================================================         |  86%
-  |                                                                            
-  |=============================================================         |  87%
-  |                                                                            
-  |=============================================================         |  88%
-  |                                                                            
-  |==============================================================        |  88%
-  |                                                                            
-  |==============================================================        |  89%
-  |                                                                            
-  |===============================================================       |  90%
-  |                                                                            
-  |================================================================      |  91%
-  |                                                                            
-  |================================================================      |  92%
-  |                                                                            
-  |=================================================================     |  92%
-  |                                                                            
-  |=================================================================     |  93%
-  |                                                                            
-  |=================================================================     |  94%
-  |                                                                            
-  |==================================================================    |  94%
-  |                                                                            
-  |==================================================================    |  95%
-  |                                                                            
-  |===================================================================   |  96%
-  |                                                                            
-  |====================================================================  |  96%
-  |                                                                            
-  |====================================================================  |  97%
-  |                                                                            
-  |====================================================================  |  98%
-  |                                                                            
-  |===================================================================== |  98%
-  |                                                                            
-  |===================================================================== |  99%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |=                                                                     |   1%
-  |                                                                            
-  |=                                                                     |   2%
-  |                                                                            
-  |==                                                                    |   2%
-  |                                                                            
-  |==                                                                    |   3%
-  |                                                                            
-  |==                                                                    |   4%
-  |                                                                            
-  |===                                                                   |   4%
-  |                                                                            
-  |====                                                                  |   5%
-  |                                                                            
-  |====                                                                  |   6%
-  |                                                                            
-  |=====                                                                 |   6%
-  |                                                                            
-  |=====                                                                 |   7%
-  |                                                                            
-  |=====                                                                 |   8%
-  |                                                                            
-  |======                                                                |   8%
-  |                                                                            
-  |======                                                                |   9%
-  |                                                                            
-  |=======                                                               |  10%
-  |                                                                            
-  |========                                                              |  11%
-  |                                                                            
-  |========                                                              |  12%
-  |                                                                            
-  |=========                                                             |  12%
-  |                                                                            
-  |=========                                                             |  13%
-  |                                                                            
-  |=========                                                             |  14%
-  |                                                                            
-  |==========                                                            |  14%
-  |                                                                            
-  |==========                                                            |  15%
-  |                                                                            
-  |===========                                                           |  16%
-  |                                                                            
-  |============                                                          |  16%
-  |                                                                            
-  |============                                                          |  17%
-  |                                                                            
-  |============                                                          |  18%
-  |                                                                            
-  |=============                                                         |  18%
-  |                                                                            
-  |=============                                                         |  19%
-  |                                                                            
-  |==============                                                        |  20%
-  |                                                                            
-  |===============                                                       |  21%
-  |                                                                            
-  |===============                                                       |  22%
-  |                                                                            
-  |================                                                      |  22%
-  |                                                                            
-  |================                                                      |  23%
-  |                                                                            
-  |================                                                      |  24%
-  |                                                                            
-  |=================                                                     |  24%
-  |                                                                            
-  |==================                                                    |  25%
-  |                                                                            
-  |==================                                                    |  26%
-  |                                                                            
-  |===================                                                   |  26%
-  |                                                                            
-  |===================                                                   |  27%
-  |                                                                            
-  |===================                                                   |  28%
-  |                                                                            
-  |====================                                                  |  28%
-  |                                                                            
-  |====================                                                  |  29%
-  |                                                                            
-  |=====================                                                 |  30%
-  |                                                                            
-  |======================                                                |  31%
-  |                                                                            
-  |======================                                                |  32%
-  |                                                                            
-  |=======================                                               |  32%
-  |                                                                            
-  |=======================                                               |  33%
-  |                                                                            
-  |=======================                                               |  34%
-  |                                                                            
-  |========================                                              |  34%
-  |                                                                            
-  |========================                                              |  35%
-  |                                                                            
-  |=========================                                             |  36%
-  |                                                                            
-  |==========================                                            |  36%
-  |                                                                            
-  |==========================                                            |  37%
-  |                                                                            
-  |==========================                                            |  38%
-  |                                                                            
-  |===========================                                           |  38%
-  |                                                                            
-  |===========================                                           |  39%
-  |                                                                            
-  |============================                                          |  40%
-  |                                                                            
-  |=============================                                         |  41%
-  |                                                                            
-  |=============================                                         |  42%
-  |                                                                            
-  |==============================                                        |  42%
-  |                                                                            
-  |==============================                                        |  43%
-  |                                                                            
-  |==============================                                        |  44%
-  |                                                                            
-  |===============================                                       |  44%
-  |                                                                            
-  |================================                                      |  45%
-  |                                                                            
-  |================================                                      |  46%
-  |                                                                            
-  |=================================                                     |  46%
-  |                                                                            
-  |=================================                                     |  47%
-  |                                                                            
-  |=================================                                     |  48%
-  |                                                                            
-  |==================================                                    |  48%
-  |                                                                            
-  |==================================                                    |  49%
-  |                                                                            
-  |===================================                                   |  50%
-  |                                                                            
-  |====================================                                  |  51%
-  |                                                                            
-  |====================================                                  |  52%
-  |                                                                            
-  |=====================================                                 |  52%
-  |                                                                            
-  |=====================================                                 |  53%
-  |                                                                            
-  |=====================================                                 |  54%
-  |                                                                            
-  |======================================                                |  54%
-  |                                                                            
-  |======================================                                |  55%
-  |                                                                            
-  |=======================================                               |  56%
-  |                                                                            
-  |========================================                              |  56%
-  |                                                                            
-  |========================================                              |  57%
-  |                                                                            
-  |========================================                              |  58%
-  |                                                                            
-  |=========================================                             |  58%
-  |                                                                            
-  |=========================================                             |  59%
-  |                                                                            
-  |==========================================                            |  60%
-  |                                                                            
-  |===========================================                           |  61%
-  |                                                                            
-  |===========================================                           |  62%
-  |                                                                            
-  |============================================                          |  62%
-  |                                                                            
-  |============================================                          |  63%
-  |                                                                            
-  |============================================                          |  64%
-  |                                                                            
-  |=============================================                         |  64%
-  |                                                                            
-  |==============================================                        |  65%
-  |                                                                            
-  |==============================================                        |  66%
-  |                                                                            
-  |===============================================                       |  66%
-  |                                                                            
-  |===============================================                       |  67%
-  |                                                                            
-  |===============================================                       |  68%
-  |                                                                            
-  |================================================                      |  68%
-  |                                                                            
-  |================================================                      |  69%
-  |                                                                            
-  |=================================================                     |  70%
-  |                                                                            
-  |==================================================                    |  71%
-  |                                                                            
-  |==================================================                    |  72%
-  |                                                                            
-  |===================================================                   |  72%
-  |                                                                            
-  |===================================================                   |  73%
-  |                                                                            
-  |===================================================                   |  74%
-  |                                                                            
-  |====================================================                  |  74%
-  |                                                                            
-  |====================================================                  |  75%
-  |                                                                            
-  |=====================================================                 |  76%
-  |                                                                            
-  |======================================================                |  76%
-  |                                                                            
-  |======================================================                |  77%
-  |                                                                            
-  |======================================================                |  78%
-  |                                                                            
-  |=======================================================               |  78%
-  |                                                                            
-  |=======================================================               |  79%
-  |                                                                            
-  |========================================================              |  80%
-  |                                                                            
-  |=========================================================             |  81%
-  |                                                                            
-  |=========================================================             |  82%
-  |                                                                            
-  |==========================================================            |  82%
-  |                                                                            
-  |==========================================================            |  83%
-  |                                                                            
-  |==========================================================            |  84%
-  |                                                                            
-  |===========================================================           |  84%
-  |                                                                            
-  |============================================================          |  85%
-  |                                                                            
-  |============================================================          |  86%
-  |                                                                            
-  |=============================================================         |  86%
-  |                                                                            
-  |=============================================================         |  87%
-  |                                                                            
-  |=============================================================         |  88%
-  |                                                                            
-  |==============================================================        |  88%
-  |                                                                            
-  |==============================================================        |  89%
-  |                                                                            
-  |===============================================================       |  90%
-  |                                                                            
-  |================================================================      |  91%
-  |                                                                            
-  |================================================================      |  92%
-  |                                                                            
-  |=================================================================     |  92%
-  |                                                                            
-  |=================================================================     |  93%
-  |                                                                            
-  |=================================================================     |  94%
-  |                                                                            
-  |==================================================================    |  94%
-  |                                                                            
-  |==================================================================    |  95%
-  |                                                                            
-  |===================================================================   |  96%
-  |                                                                            
-  |====================================================================  |  96%
-  |                                                                            
-  |====================================================================  |  97%
-  |                                                                            
-  |====================================================================  |  98%
-  |                                                                            
-  |===================================================================== |  98%
-  |                                                                            
-  |===================================================================== |  99%
-  |                                                                            
-  |======================================================================| 100%</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corStability</span>(boot_casos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>boot_casos <span class="ot">&lt;-</span> <span class="fu">bootnet</span>(red_items, <span class="at">nBoots =</span> <span class="dv">200</span>, <span class="at">type =</span> <span class="st">"case"</span>, <span class="at">statistics =</span> <span class="st">"strength"</span>, <span class="at">nCores =</span> <span class="dv">8</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">corStability</span>(boot_casos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Correlation Stability Analysis === 
 
 Sampling levels tested:
    nPerson Drop%  n
-1      609  75.0 25
-2      798  67.2 17
-3      988  59.4 16
-4     1177  51.7 23
-5     1367  43.9 18
-6     1556  36.1 31
-7     1746  28.3 16
-8     1935  20.6 14
-9     2125  12.8 18
-10    2314   5.0 22
+1      609  75.0 20
+2      798  67.2 23
+3      988  59.4 15
+4     1177  51.7 15
+5     1367  43.9 19
+6     1556  36.1 17
+7     1746  28.3 29
+8     1935  20.6 25
+9     2125  12.8 16
+10    2314   5.0 21
 
 Maximum drop proportions to retain correlation of 0.7 in at least 95% of the samples:
 
-strength: 0.517 
-  - For more accuracy, run bootnet(..., caseMin = 0.439, caseMax = 0.594) 
+strength: 0.594 
+  - For more accuracy, run bootnet(..., caseMin = 0.517, caseMax = 0.672) 
 
 Accuracy can also be increased by increasing both 'nBoots' and 'caseN'.</code></pre>
 </div>
 </div>
-<p>CS ≈ 0.6: podemos quitar al 60% de la muestra y el orden de <em>strength</em> se mantiene. Con 2.436 personas era esperable. Con 200, no lo sería.</p>
+<p>La tabla prueba diez niveles de recorte (quitar el 5%, el 13%, …, el 75% de las personas) y en cada nivel re-estima la red unas 20 veces. El CS es el mayor recorte que todavía cumple la regla. Con 200 réplicas la estimación es gruesa (entre 0.5 y 0.6 según la semilla y el número de núcleos), pero está sobre 0.5: podemos quitar a la mitad de la muestra y el orden de <em>strength</em> se mantiene. Con 2.436 personas era esperable. Con 200, no lo sería.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1243,20 +715,47 @@ Accuracy can also be increased by increasing both 'nBoots' and 'caseN'.</code></
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Jorge presentó el Ising como intuición para variables binarias. La regla es: <strong>Ising solo para ítems binarios</strong>; para ítems continuos u ordinales, el GGM que acabamos de estimar. Si los ítems son Likert y se quiere Ising, hay que dicotomizarlos (por ejemplo, por la mediana) y se pierde información. En <code>bfi</code>, la red Ising sobre los ítems dicotomizados (<code>IsingFit</code>) tiene menos aristas (118 contra 184) pero los pesos correlacionan 0.94 con los del GGM: la estructura es la misma, la resolución es menor.</p>
+<p>El modelo Ising se usa solo para <strong>ítems binarios</strong>; para ítems continuos u ordinales, usamos GGM. Si los ítems son Likert y se quiere Ising, hay que dicotomizarlos y se pierde información. En los datos <code>bfi</code>, la red Ising sobre los ítems dicotomizados (<code>IsingFit</code>) tiene menos aristas (118 contra 184) pero los pesos correlacionan 0.94 con los del GGM. O sea la estructura es la misma, pero la resolución es menor.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="red-vs.-análisis-factorial" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> Red vs.&nbsp;análisis factorial</h1>
-<p>Estos son los datos de la Ayudantía 2: 220 personas, 12 ítems Likert. A diferencia de <code>bfi</code>, aquí <strong>sabemos cómo se fabricaron</strong>: tres factores latentes (ánimo, ansiedad, aislamiento) correlacionados entre 0.30 y 0.45, cada ítem con carga 0.75 en su factor y cargas cruzadas entre 0.05 y 0.15, luego cortados en cinco categorías. No hay ninguna arista “directa” entre ítems en el proceso generador: toda la covarianza pasa por los factores.</p>
+<p>Ahora un dato fabricado por nosotros: 220 personas, 12 ítems Likert. A diferencia de <code>bfi</code>, aquí <strong>sabemos cómo se hicieron</strong>: tres factores latentes (ánimo, ansiedad, aislamiento) correlacionados, cada ítem con carga 0.75 en su factor y 0.10 en los otros dos, y el resultado cortado en cinco categorías de igual tamaño. No hay ninguna arista directa entre ítems en el proceso generador: toda la covarianza pasa por los factores.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>n   <span class="ot">&lt;-</span> <span class="dv">220</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">1.00</span>, <span class="fl">0.45</span>, <span class="fl">0.35</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.45</span>, <span class="fl">1.00</span>, <span class="fl">0.30</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.35</span>, <span class="fl">0.30</span>, <span class="fl">1.00</span>), <span class="dv">3</span>, <span class="dv">3</span>)              <span class="co"># correlación entre factores</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>F   <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(n, <span class="at">mu =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="at">Sigma =</span> Phi)  <span class="co"># puntaje latente de cada persona</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>L   <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fl">0.10</span>, <span class="dv">12</span>, <span class="dv">3</span>)                            <span class="co"># cargas cruzadas</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>L[<span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each =</span> <span class="dv">4</span>))] <span class="ot">&lt;-</span> <span class="fl">0.75</span>            <span class="co"># carga en el factor propio</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>X   <span class="ot">&lt;-</span> F <span class="sc">%*%</span> <span class="fu">t</span>(L) <span class="sc">+</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> <span class="dv">12</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.75</span><span class="sc">^</span><span class="dv">2</span>)), n, <span class="dv">12</span>)   <span class="co"># + error</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>likert <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">apply</span>(X, <span class="dv">2</span>, <span class="cf">function</span>(x)                            <span class="co"># a 5 categorías</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.integer</span>(<span class="fu">cut</span>(x, <span class="fu">quantile</span>(x, <span class="dv">0</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">/</span> <span class="dv">5</span>), <span class="at">labels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">include.lowest =</span> <span class="cn">TRUE</span>))))</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(likert) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"animo"</span>, <span class="st">"ansiedad"</span>, <span class="st">"aislam"</span>), <span class="at">each =</span> <span class="dv">4</span>), <span class="st">"_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(likert, <span class="st">"datos/ejemplo_items_likert.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(likert, <span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  animo_1 animo_2 animo_3 animo_4 ansiedad_1 ansiedad_2 ansiedad_3 ansiedad_4
+1       2       3       4       2          2          4          1          1
+2       4       5       5       2          3          3          2          4
+3       2       3       1       2          3          3          4          2
+  aislam_1 aislam_2 aislam_3 aislam_4
+1        2        1        2        3
+2        5        5        5        5
+3        3        5        3        5</code></pre>
+</div>
+</div>
 <section id="cuando-dicen-lo-mismo" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="cuando-dicen-lo-mismo"><span class="header-section-number">8.1</span> Cuando dicen lo mismo</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>likert <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datos/semana2_items_likert.csv"</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ega <span class="ot">&lt;-</span> <span class="fu">EGA</span>(likert, <span class="at">model =</span> <span class="st">"glasso"</span>, <span class="at">plot.EGA =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>ega<span class="sc">$</span>n.dim</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EGA: estima la red (GGM con glasso, igual que arriba) y le busca comunidades</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ega <span class="ot">&lt;-</span> <span class="fu">EGA</span>(likert, <span class="at">model =</span> <span class="st">"glasso"</span>, <span class="at">plot.EGA =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ega<span class="sc">$</span>n.dim</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
@@ -1274,35 +773,36 @@ Figura&nbsp;8.1: Red estimada sobre el Likert fabricado. Los colores son las com
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>efa <span class="ot">&lt;-</span> <span class="fu">fa</span>(likert, <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">"oblimin"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análisis factorial exploratorio con 3 factores</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>efa <span class="ot">&lt;-</span> <span class="fu">fa</span>(likert, <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">"oblimin"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required namespace: GPArotation</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa<span class="sc">$</span>loadings, <span class="at">cutoff =</span> <span class="fl">0.3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa<span class="sc">$</span>loadings, <span class="at">cutoff =</span> <span class="fl">0.3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Loadings:
            MR2    MR1    MR3   
-animo_1                   0.686
-animo_2                   0.636
-animo_3                   0.828
-animo_4                   0.769
-ansiedad_1         0.831       
-ansiedad_2         0.735       
-ansiedad_3         0.746       
-ansiedad_4         0.701       
-aislam_1    0.809              
-aislam_2    0.780              
-aislam_3    0.800              
-aislam_4    0.779              
+animo_1            0.645       
+animo_2            0.683       
+animo_3            0.820       
+animo_4            0.701       
+ansiedad_1                0.842
+ansiedad_2                0.646
+ansiedad_3                0.687
+ansiedad_4                0.630
+aislam_1    0.786              
+aislam_2    0.767              
+aislam_3    0.792              
+aislam_4    0.735              
 
                  MR2   MR1   MR3
-SS loadings    2.529 2.346 2.180
-Proportion Var 0.211 0.195 0.182
-Cumulative Var 0.211 0.406 0.588</code></pre>
+SS loadings    2.393 2.098 2.058
+Proportion Var 0.199 0.175 0.172
+Cumulative Var 0.199 0.374 0.546</code></pre>
 </div>
 </div>
-<p>EGA encuentra tres comunidades y son exactamente los tres factores. El análisis factorial con tres factores da cargas limpias y ajuste casi perfecto. Los dos métodos recuperan la misma estructura, y eso <strong>no es casualidad</strong>: un factor común genera una red donde todos sus ítems están conectados entre sí con aristas positivas. Bajo un modelo de factores, red y factorial son dos descripciones de la misma matriz de covarianza (van Bork et al.&nbsp;2019). Esta es la crítica principal de Neal et al.&nbsp;(2022) a la psicometría de redes, y es correcta en este caso.</p>
+<p>EGA encuentra tres comunidades y son exactamente los tres factores. El análisis factorial con tres factores da cargas limpias y ajuste casi perfecto. Los dos métodos recuperan la misma estructura, y eso <strong>no es casualidad</strong>: un factor común genera una red donde todos sus ítems están conectados entre sí con aristas positivas. Bajo un modelo de factores, la red y el factorial son dos descripciones de la misma matriz de covarianza (esta es la crítica principal de Neal et al.&nbsp;(2022) a la psicometría de redes, y es correcta en este caso).</p>
 </section>
 <section id="cuando-no-dicen-lo-mismo" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="cuando-no-dicen-lo-mismo"><span class="header-section-number">8.2</span> Cuando no dicen lo mismo</h2>
@@ -1312,31 +812,31 @@ Cumulative Var 0.211 0.406 0.588</code></pre>
 <li><strong>Mundo 2, cadena</strong>: <span class="math inline">\(X_1 \to X_2 \to X_3 \to X_4 \to X_5\)</span>, cada una causada solo por la anterior (coeficiente 0.7). No hay variable latente.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>f      <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>factor <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(j) <span class="fl">0.7</span> <span class="sc">*</span> f <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.49</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n))</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>cadena <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, n, <span class="dv">5</span>)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>cadena[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>) cadena[, j] <span class="ot">&lt;-</span> <span class="fl">0.7</span> <span class="sc">*</span> cadena[, j <span class="sc">-</span> <span class="dv">1</span>] <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.49</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(factor) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(cadena) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>n      <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>f      <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>factor <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(j) <span class="fl">0.7</span> <span class="sc">*</span> f <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.49</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>cadena <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, n, <span class="dv">5</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>cadena[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>) cadena[, j] <span class="ot">&lt;-</span> <span class="fl">0.7</span> <span class="sc">*</span> cadena[, j <span class="sc">-</span> <span class="dv">1</span>] <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.49</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(factor) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(cadena) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>red_factor <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(<span class="fu">as.data.frame</span>(factor), <span class="at">default =</span> <span class="st">"EBICglasso"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>red_cadena <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(<span class="fu">as.data.frame</span>(cadena), <span class="at">default =</span> <span class="st">"EBICglasso"</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>verdad_factor <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="st">"F"</span>), <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="st">"F"</span>)))</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>verdad_factor[<span class="st">"F"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fl">0.7</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>verdad_cadena <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)))</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>verdad_cadena[<span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>)] <span class="ot">&lt;-</span> <span class="fl">0.7</span></span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">qgraph</span>(verdad_factor, <span class="at">directed =</span> <span class="cn">TRUE</span>, <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">title =</span> <span class="st">"Verdad: factor común"</span>,</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"circle"</span>, <span class="dv">5</span>), <span class="st">"square"</span>), <span class="at">theme =</span> <span class="st">"colorblind"</span>)</span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">qgraph</span>(verdad_cadena, <span class="at">directed =</span> <span class="cn">TRUE</span>, <span class="at">layout =</span> <span class="st">"circle"</span>, <span class="at">title =</span> <span class="st">"Verdad: cadena"</span>, <span class="at">theme =</span> <span class="st">"colorblind"</span>)</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(red_factor, <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">title =</span> <span class="st">"Red estimada"</span>)</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(red_cadena, <span class="at">layout =</span> <span class="st">"circle"</span>, <span class="at">title =</span> <span class="st">"Red estimada"</span>)</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>red_factor <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(<span class="fu">as.data.frame</span>(factor), <span class="at">default =</span> <span class="st">"EBICglasso"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>red_cadena <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(<span class="fu">as.data.frame</span>(cadena), <span class="at">default =</span> <span class="st">"EBICglasso"</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>verdad_factor <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="st">"F"</span>), <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="st">"F"</span>)))</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>verdad_factor[<span class="st">"F"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fl">0.7</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>verdad_cadena <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)))</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>verdad_cadena[<span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>)] <span class="ot">&lt;-</span> <span class="fl">0.7</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="fu">qgraph</span>(verdad_factor, <span class="at">directed =</span> <span class="cn">TRUE</span>, <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">title =</span> <span class="st">"Verdad: factor común"</span>,</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"circle"</span>, <span class="dv">5</span>), <span class="st">"square"</span>), <span class="at">theme =</span> <span class="st">"colorblind"</span>)</span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="fu">qgraph</span>(verdad_cadena, <span class="at">directed =</span> <span class="cn">TRUE</span>, <span class="at">layout =</span> <span class="st">"circle"</span>, <span class="at">title =</span> <span class="st">"Verdad: cadena"</span>, <span class="at">theme =</span> <span class="st">"colorblind"</span>)</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(red_factor, <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">title =</span> <span class="st">"Red estimada"</span>)</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(red_cadena, <span class="at">layout =</span> <span class="st">"circle"</span>, <span class="at">title =</span> <span class="st">"Red estimada"</span>)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div id="fig-dos-mundos" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1352,22 +852,22 @@ Figura&nbsp;8.2: Arriba: los dos procesos generadores. Abajo: la red estimada en
 </div>
 <p>Ahora el análisis factorial con un factor sobre cada mundo:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">eigen</span>(<span class="fu">cor</span>(factor))<span class="sc">$</span>values, <span class="dv">2</span>)                 <span class="co"># autovalores, mundo factor</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">eigen</span>(<span class="fu">cor</span>(factor))<span class="sc">$</span>values, <span class="dv">2</span>)                 <span class="co"># autovalores, mundo factor</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.96 0.55 0.53 0.49 0.47</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">eigen</span>(<span class="fu">cor</span>(cadena))<span class="sc">$</span>values, <span class="dv">2</span>)                 <span class="co"># autovalores, mundo cadena</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">eigen</span>(<span class="fu">cor</span>(cadena))<span class="sc">$</span>values, <span class="dv">2</span>)                 <span class="co"># autovalores, mundo cadena</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.08 1.04 0.42 0.27 0.19</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>efa_factor <span class="ot">&lt;-</span> <span class="fu">fa</span>(factor, <span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>efa_cadena <span class="ot">&lt;-</span> <span class="fu">fa</span>(cadena, <span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(<span class="at">factor =</span> <span class="fu">unname</span>(efa_factor<span class="sc">$</span>RMSEA[<span class="dv">1</span>]), <span class="at">cadena =</span> <span class="fu">unname</span>(efa_cadena<span class="sc">$</span>RMSEA[<span class="dv">1</span>])), <span class="dv">3</span>)   <span class="co"># RMSEA</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>efa_factor <span class="ot">&lt;-</span> <span class="fu">fa</span>(factor, <span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>efa_cadena <span class="ot">&lt;-</span> <span class="fu">fa</span>(cadena, <span class="at">nfactors =</span> <span class="dv">1</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(<span class="at">factor =</span> <span class="fu">unname</span>(efa_factor<span class="sc">$</span>RMSEA[<span class="dv">1</span>]), <span class="at">cadena =</span> <span class="fu">unname</span>(efa_cadena<span class="sc">$</span>RMSEA[<span class="dv">1</span>])), <span class="dv">3</span>)   <span class="co"># RMSEA</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>factor cadena 
  0.000  0.366 </code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(<span class="at">factor =</span> efa_factor<span class="sc">$</span>TLI, <span class="at">cadena =</span> efa_cadena<span class="sc">$</span>TLI), <span class="dv">3</span>)                            <span class="co"># TLI</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">c</span>(<span class="at">factor =</span> efa_factor<span class="sc">$</span>TLI, <span class="at">cadena =</span> efa_cadena<span class="sc">$</span>TLI), <span class="dv">3</span>)                            <span class="co"># TLI</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>factor cadena 
  1.004  0.499 </code></pre>
@@ -1397,13 +897,13 @@ Figura&nbsp;8.2: Arriba: los dos procesos generadores. Abajo: la red estimada en
 <p>El debate entre Neal et al.&nbsp;(2022) y Borsboom et al.&nbsp;(2022) se puede resumir en tres reglas para escribir resultados.</p>
 <ol type="1">
 <li><strong>Datos entre personas no hablan de procesos dentro de una persona.</strong> La red de <code>bfi</code> dice que, en la población, quienes puntúan alto en N1 tienden a puntuar alto en N2 controlando por el resto. No dice que en una persona el enojo lleve a la irritación. Para eso se necesitan datos longitudinales de la misma persona.</li>
-<li><strong>Dependencia condicional no es efecto de intervención.</strong> Una arista N1–N2 es compatible con N1 → N2, con N2 → N1 y con una causa común no medida. Jorge lo cerró con Pearl: la red estimada es el punto de partida para plantear hipótesis causales, no su prueba.</li>
-<li><strong>No toda centralidad de redes de actores tiene sentido aquí.</strong> <em>Strength</em> sí: suma de asociaciones directas. <em>Betweenness</em> y <em>closeness</em> asumen que algo “viaja” por caminos más cortos, y en una red de correlaciones parciales no hay nada que viaje (Bringmann et al.&nbsp;2019). Si un paper de redes psicométricas reporta <em>betweenness</em>, hay que preguntarse qué cree que está midiendo.</li>
+<li><strong>Dependencia condicional no es efecto de intervención.</strong> Una arista N1–N2 es compatible con N1 → N2, con N2 → N1 y con una causa común no medida. La red estimada es el punto de partida para plantear hipótesis causales, no su prueba (Pearl, 2000).</li>
+<li><strong>No toda centralidad de redes de actores tiene sentido aquí.</strong> <em>Strength</em> sí: suma de asociaciones directas. <em>Betweenness</em> y <em>closeness</em> asumen que algo <em>“viaja”</em> por caminos más cortos, y en una red de correlaciones parciales no hay nada que viaje (Bringmann et al.&nbsp;2019).</li>
 </ol>
 </section>
 <section id="caso-real-mismo-puntaje-distinta-red" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="caso-real-mismo-puntaje-distinta-red"><span class="header-section-number">9.2</span> Caso real: mismo puntaje, distinta red</h2>
-<p>Fábrega &amp; Olivera analizan 17.272 evaluaciones de riesgo de reincidencia (instrumento IGI, Gendarmería de Chile). El instrumento suma ítems binarios y clasifica a las personas por el total. La pregunta: ¿dos personas con el mismo puntaje tienen la misma configuración de ítems? Para responderla, agrupan a las personas por ventanas de puntaje, estiman una red Ising dentro de cada ventana, y comparan las redes con bootstrap. El resultado es que <strong>puntajes iguales esconden redes distintas</strong>, y que las configuraciones distintas predicen distinta reincidencia. El mismo método de este capítulo, aplicado a datos administrativos y no a un cuestionario de personalidad: la equivalencia de puntaje no implica equivalencia de configuración.</p>
+<p>Fábrega &amp; Olivera analizan 17.272 evaluaciones de riesgo de reincidencia (instrumento IGI, Gendarmería de Chile). El instrumento suma ítems binarios y clasifica a las personas por el total. La pregunta: ¿dos personas con el mismo puntaje tienen la misma configuración de ítems? Para responderla, agrupan a las personas por ventanas de puntaje, estiman una red Ising dentro de cada ventana, y comparan las redes con bootstrap. El resultado es que <strong>puntajes iguales esconden redes distintas</strong>, y que las configuraciones distintas predicen distinta reincidencia.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1418,7 +918,7 @@ Figura&nbsp;8.2: Arriba: los dos procesos generadores. Abajo: la red estimada en
 <li>Vuelve a estimar la red de <code>bfi</code> con <code>estimateNetwork(..., threshold = TRUE)</code>. ¿Cuántas aristas sobreviven? ¿Cambian las tres más fuertes?</li>
 <li>Toma una submuestra de 200 personas de <code>bfi</code> y repite el bootstrap por casos. ¿Qué CS obtienes? Compáralo con el umbral de 0.25.</li>
 <li>En el mundo cadena, cambia el coeficiente 0.7 por 0.3. ¿Sigue la red recuperando la cadena? ¿Sigue el factorial “encontrando” un factor?</li>
-<li>Agrega al Likert fabricado una arista directa entre <code>animo_1</code> y <code>ansiedad_1</code> (por ejemplo, suma a <code>ansiedad_1</code> una fracción de <code>animo_1</code>). ¿La ve EGA? ¿La ve el factorial?</li>
+<li>En la receta del Likert fabricado, agrega una arista directa entre dos ítems de factores distintos (por ejemplo, suma a la columna 5 de <code>X</code> una fracción de la columna 1 antes de cortar). ¿La ve EGA? ¿La ve el factorial?</li>
 </ol>
 </div>
 </div>
