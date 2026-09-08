@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Aníbal Olivera Morales">
+
+<title>6&nbsp; Psicometría de redes – Redes Sociales — DCCS 2026</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./referencias.html" rel="next">
+<link href="./05-contagio-social-en-redes.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bf8030b5a8b8f2de5bceddfb8bf38a1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-2a6abe4c656e78118c5caf32e94a2824.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-bf8030b5a8b8f2de5bceddfb8bf38a1d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-psicometria-de-redes.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Psicometría de redes</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Redes Sociales — DCCS 2026</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/aoliveram/Redes-Sociales-2026" title="Ejecutar el código" class="quarto-navigation-tool px-1" aria-label="Ejecutar el código"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Alternar modo oscuro"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Buscar"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bienvenida</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-setup-computacional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Kit computacional recomendado para el investigador</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-fundamentos-matematicos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamentos matemáticos en teoría de redes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-mecanismos-de-formacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Mecanismos de Formación</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-inferencia-qap-y-ergm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Inferencia en redes: QAP y ERGM</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-contagio-social-en-redes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Contagio social en redes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-psicometria-de-redes.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Psicometría de redes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./referencias.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Referencias</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Apéndices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./vocabulario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vocabulario</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anexos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Anexos</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Tabla de contenidos</h2>
+   
+  <ul>
+  <li><a href="#repaso-de-los-ítems-a-la-red" id="toc-repaso-de-los-ítems-a-la-red" class="nav-link active" data-scroll-target="#repaso-de-los-ítems-a-la-red"><span class="header-section-number">7</span> Repaso: de los ítems a la red</a>
+  <ul class="collapse">
+  <li><a href="#los-datos" id="toc-los-datos" class="nav-link" data-scroll-target="#los-datos"><span class="header-section-number">7.1</span> Los datos</a></li>
+  <li><a href="#correlación-no-es-dependencia-condicional" id="toc-correlación-no-es-dependencia-condicional" class="nav-link" data-scroll-target="#correlación-no-es-dependencia-condicional"><span class="header-section-number">7.2</span> Correlación no es dependencia condicional</a></li>
+  <li><a href="#pesos-de-la-red" id="toc-pesos-de-la-red" class="nav-link" data-scroll-target="#pesos-de-la-red"><span class="header-section-number">7.3</span> Pesos de la red</a></li>
+  <li><a href="#strength-y-su-estabilidad" id="toc-strength-y-su-estabilidad" class="nav-link" data-scroll-target="#strength-y-su-estabilidad"><span class="header-section-number">7.4</span> Strength y su estabilidad</a></li>
+  </ul></li>
+  <li><a href="#red-vs.-análisis-factorial" id="toc-red-vs.-análisis-factorial" class="nav-link" data-scroll-target="#red-vs.-análisis-factorial"><span class="header-section-number">8</span> Red vs.&nbsp;análisis factorial</a>
+  <ul class="collapse">
+  <li><a href="#cuando-dicen-lo-mismo" id="toc-cuando-dicen-lo-mismo" class="nav-link" data-scroll-target="#cuando-dicen-lo-mismo"><span class="header-section-number">8.1</span> Cuando dicen lo mismo</a></li>
+  <li><a href="#cuando-no-dicen-lo-mismo" id="toc-cuando-no-dicen-lo-mismo" class="nav-link" data-scroll-target="#cuando-no-dicen-lo-mismo"><span class="header-section-number">8.2</span> Cuando no dicen lo mismo</a>
+  <ul class="collapse">
+  <li><a href="#primero-el-análisis-factorial" id="toc-primero-el-análisis-factorial" class="nav-link" data-scroll-target="#primero-el-análisis-factorial"><span class="header-section-number">8.2.1</span> Primero, el análisis factorial</a></li>
+  <li><a href="#segundo-la-psicometría-de-redes" id="toc-segundo-la-psicometría-de-redes" class="nav-link" data-scroll-target="#segundo-la-psicometría-de-redes"><span class="header-section-number">8.2.2</span> Segundo, la psicometría de redes</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#ejemplo-de-aplicación" id="toc-ejemplo-de-aplicación" class="nav-link" data-scroll-target="#ejemplo-de-aplicación"><span class="header-section-number">9</span> Ejemplo de aplicación</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Psicometría de redes</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Autor/a</div>
+    <div class="quarto-title-meta-contents">
+             <p>Aníbal Olivera Morales </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Fecha de publicación</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">septiembre 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Qué haremos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hasta ahora la red era <strong>el dato</strong>. Ahora <strong>la red no se observa, se estima.</strong> Nodos = ítems, aristas = dependencias condicionales estimadas.</p>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 37%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sección</th>
+<th>Contenido</th>
+<th>Datos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1. Repaso</td>
+<td>Correlación → correlación parcial regularizada → <em>strength</em> → estabilidad</td>
+<td><code>psych::bfi</code></td>
+</tr>
+<tr class="even">
+<td>2. Red vs.&nbsp;factor</td>
+<td>Cuándo coinciden y cuándo no</td>
+<td>Likert fabricado + simulación</td>
+</tr>
+<tr class="odd">
+<td>3. Ejemplo de aplicación</td>
+<td>El mismo método sobre datos administrativos</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)     <span class="co"># datos bfi y análisis factorial</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qgraph)    <span class="co"># dibujar redes de variables</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bootnet)   <span class="co"># estimar la red y su estabilidad</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EGAnet)    <span class="co"># comunidades de ítems</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="repaso-de-los-ítems-a-la-red" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Repaso: de los ítems a la red</h1>
+<section id="los-datos" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="los-datos"><span class="header-section-number">7.1</span> Los datos</h2>
+<p><code>bfi</code> son 2.800 personas que respondieron 25 ítems de personalidad (escala 1–6), cinco ítems por rasgo: <strong>A</strong>mabilidad, <strong>C</strong>onciencia, <strong>E</strong>xtraversión, <strong>N</strong>euroticismo y <strong>A</strong>pertura. Es el dataset de los <em>tutoriales</em> de <code>qgraph</code> y <code>bootnet</code>, y su estructura de cinco factores está bien establecida.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(bfi)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(bfi)                                     <span class="co"># 25 ítems + género, educación y edad</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "A1"        "A2"        "A3"        "A4"        "A5"        "C1"       
+ [7] "C2"        "C3"        "C4"        "C5"        "E1"        "E2"       
+[13] "E3"        "E4"        "E5"        "N1"        "N2"        "N3"       
+[19] "N4"        "N5"        "O1"        "O2"        "O3"        "O4"       
+[25] "O5"        "gender"    "education" "age"      </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> bfi[, <span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>]                           <span class="co"># nos quedamos solo con los ítems</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>items <span class="ot">&lt;-</span> items[<span class="fu">complete.cases</span>(items), ]        <span class="co"># y con las respuestas completas</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(items)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2436   25</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(items, <span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      A1 A2 A3 A4 A5 C1 C2 C3 C4 C5 E1 E2 E3 E4 E5 N1 N2 N3 N4 N5 O1 O2 O3 O4
+61617  2  4  3  4  4  2  3  3  4  4  3  3  3  4  4  3  4  2  2  3  3  6  3  4
+61618  2  4  5  2  5  5  4  4  3  4  1  1  6  4  3  3  3  3  5  5  4  2  4  3
+61620  5  4  5  4  4  4  5  4  2  5  2  4  4  4  5  4  5  4  2  3  4  2  5  5
+      O5
+61617  3
+61618  3
+61620  2</code></pre>
+</div>
+</div>
+<p>Las 25 preguntas, con su rasgo y su sentido (<code>Keying</code> = −1 significa que el ítem está redactado al revés):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>bfi.dictionary[<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="fu">c</span>(<span class="st">"Item"</span>, <span class="st">"Big6"</span>, <span class="st">"Keying"</span>)]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                        Item                Big6 Keying
+A1 Am indifferent to the feelings of others.       Agreeableness     -1
+A2         Inquire about others' well-being.       Agreeableness      1
+A3               Know how to comfort others.       Agreeableness      1
+A4                            Love children.       Agreeableness      1
+A5                 Make people feel at ease.       Agreeableness      1
+C1                   Am exacting in my work.   Conscientiousness      1
+C2     Continue until everything is perfect.   Conscientiousness      1
+C3            Do things according to a plan.   Conscientiousness      1
+C4           Do things in a half-way manner.   Conscientiousness     -1
+C5                            Waste my time.   Conscientiousness     -1
+E1                         Don't talk a lot.        Extraversion     -1
+E2     Find it difficult to approach others.        Extraversion     -1
+E3             Know how to captivate people.        Extraversion      1
+E4                      Make friends easily.        Extraversion      1
+E5                              Take charge.        Extraversion      1
+N1                         Get angry easily. Emotional Stability     -1
+N2                     Get irritated easily. Emotional Stability     -1
+N3                Have frequent mood swings. Emotional Stability     -1
+N4                          Often feel blue. Emotional Stability     -1
+N5                             Panic easily. Emotional Stability     -1
+O1                         Am full of ideas.            Openness      1
+O2         Avoid difficult reading material.            Openness     -1
+O3 Carry the conversation to a higher level.            Openness      1
+O4          Spend time reflecting on things.            Openness      1
+O5     Will not probe deeply into a subject.            Openness     -1</code></pre>
+</div>
+</div>
+</section>
+<section id="correlación-no-es-dependencia-condicional" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="correlación-no-es-dependencia-condicional"><span class="header-section-number">7.2</span> Correlación no es dependencia condicional</h2>
+<p>Una <strong>correlación</strong> entre dos ítems puede venir de un tercero que mueve a ambos. Una <strong>correlación parcial</strong> es la asociación entre dos ítems después de controlar por todos los demás. La red psicométrica dibuja las parciales.</p>
+<p>Y como con 25 ítems hay 300 parciales (muchas de ellas ruido) se aplica una penalización (<strong>graphical lasso</strong>) que lleva las pequeñas exactamente a cero. El resultado se llama <em>Gaussian Graphical Model</em> (<strong>GGM</strong> ) regularizado.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>red_items <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(items, <span class="at">default =</span> <span class="st">"EBICglasso"</span>, <span class="at">corMethod =</span> <span class="st">"cor_auto"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>grupos <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">A =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">C =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">E =</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">15</span>, <span class="at">N =</span> <span class="dv">16</span><span class="sc">:</span><span class="dv">20</span>, <span class="at">O =</span> <span class="dv">21</span><span class="sc">:</span><span class="dv">25</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">qgraph</span>(<span class="fu">cor_auto</span>(items), <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">groups =</span> grupos, <span class="at">legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Correlaciones"</span>, <span class="at">theme =</span> <span class="st">"colorblind"</span>)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(red_items, <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">groups =</span> grupos, <span class="at">legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">title =</span> <span class="st">"Correlaciones parciales regularizadas"</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-cor-vs-parcial" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cor-vs-parcial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-psicometria-de-redes_files/figure-html/fig-cor-vs-parcial-1.png" class="img-fluid figure-img" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cor-vs-parcial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.1: Izquierda: red de correlaciones. Derecha: red de correlaciones parciales regularizadas (EBICglasso). Azul = positiva, rojo = negativa. Colores de nodo = rasgo.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><code>cor_auto</code> detecta que los ítems son ordinales y usa correlaciones policóricas. <code>EBICglasso</code> elige cuánta penalización aplicar con un criterio de información. Las dos cosas están explicadas en Epskamp, Borsboom &amp; Fried (2018), que es la referencia de trabajo para todo este bloque.</p>
+<p><em>pregunta 1</em></p>
+<p><em>pregunta 2</em></p>
+</section>
+<section id="pesos-de-la-red" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="pesos-de-la-red"><span class="header-section-number">7.3</span> Pesos de la red</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>W <span class="ot">&lt;-</span> red_items<span class="sc">$</span>graph                                      <span class="co"># matriz de pesos (parciales)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(W[<span class="fu">upper.tri</span>(W)] <span class="sc">!=</span> <span class="dv">0</span>)                           <span class="co"># aristas no nulas, de 300</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 184</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>aristas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> <span class="fu">colnames</span>(W)[<span class="fu">which</span>(<span class="fu">upper.tri</span>(W), <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)[, <span class="dv">1</span>]],</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">b =</span> <span class="fu">colnames</span>(W)[<span class="fu">which</span>(<span class="fu">upper.tri</span>(W), <span class="at">arr.ind =</span> <span class="cn">TRUE</span>)[, <span class="dv">2</span>]],</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">w =</span> W[<span class="fu">upper.tri</span>(W)]</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aristas[<span class="fu">order</span>(<span class="sc">-</span>aristas<span class="sc">$</span>w), ], <span class="dv">3</span>)               <span class="co"># positivas más fuertes</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     a  b         w
+136 N1 N2 0.5836995
+45  C4 C5 0.3075596
+171 N3 N4 0.3025740</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aristas[<span class="fu">order</span>(aristas<span class="sc">$</span>w), ], <span class="dv">3</span>)                <span class="co"># negativas más fuertes</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    a  b          w
+1  A1 A2 -0.2825201
+90 E2 E4 -0.2814401
+35 C2 C4 -0.2093765</code></pre>
+</div>
+</div>
+<p>La arista más fuerte es N1–N2 (“me enojo fácilmente” y “me irrito fácilmente”, son casi el mismo ítem). Las negativas más fuertes son A1–A2 y E2–E4, pares donde un ítem está redactado al revés del otro. Lo primero que hay que hacer es leer las aristas fuertes para distinguir la redacción de los ítems y la psicología.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Advertencia</span>Qué dice y qué no dice una arista
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La arista N1–N2 dice que, <strong>en la población</strong>, quienes puntúan alto en N1 tienden a puntuar alto en N2 controlando por los otros 23 ítems. No dice que en una persona el enojo lleve a la irritación. Los datos son entre personas; un proceso dentro de una persona necesita medir a la misma persona muchas veces (datos longitudinales).</p>
+</div>
+</div>
+</section>
+<section id="strength-y-su-estabilidad" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="strength-y-su-estabilidad"><span class="header-section-number">7.4</span> Strength y su estabilidad</h2>
+<p><em>Strength</em> es la suma de los valores absolutos de las aristas de un nodo. Es la única centralidad que vamos a usar, y hay una razón: <em>betweenness</em> y <em>closeness</em> asumen que algo “viaja” por los caminos más cortos de la red, y en una red de correlaciones parciales no hay nada que viaje (Bringmann et al.&nbsp;2019). <em>Strength</em> solo suma asociaciones directas, y eso sí tiene sentido aquí.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">centralityPlot</span>(red_items, <span class="at">include =</span> <span class="st">"Strength"</span>, <span class="at">orderBy =</span> <span class="st">"Strength"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-strength" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-strength-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-psicometria-de-redes_files/figure-html/fig-strength-1.png" class="img-fluid figure-img" width="480">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-strength-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.2: Strength de cada ítem, estandarizada.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Un valor de <em>strength</em> estimado en una muestra no es el valor verdadero. Para saber si el orden de los nodos es confiable, se re-estima la red quitando personas al azar (<strong>bootstrap por casos</strong>) y se mide cuánto se parece el <em>strength</em> al original.</p>
+<p>El <strong>coeficiente CS</strong> (<em>correlation stability</em>) es la fracción máxima de personas que se puede quitar manteniendo una correlación de 0.7 con el original en el 95% de las réplicas. Epskamp et al.&nbsp;sugieren CS &gt; 0.5 para interpretar el orden, y CS &gt; 0.25 como mínimo.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>boot_casos <span class="ot">&lt;-</span> <span class="fu">bootnet</span>(red_items, <span class="at">nBoots =</span> <span class="dv">200</span>, <span class="at">type =</span> <span class="st">"case"</span>, <span class="at">statistics =</span> <span class="st">"strength"</span>, <span class="at">nCores =</span> <span class="dv">8</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">corStability</span>(boot_casos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>=== Correlation Stability Analysis === 
+
+Sampling levels tested:
+   nPerson Drop%  n
+1      609  75.0 28
+2      798  67.2 15
+3      988  59.4 25
+4     1177  51.7 22
+5     1367  43.9 20
+6     1556  36.1 17
+7     1746  28.3 20
+8     1935  20.6 12
+9     2125  12.8 21
+10    2314   5.0 20
+
+Maximum drop proportions to retain correlation of 0.7 in at least 95% of the samples:
+
+strength: 0.594 
+  - For more accuracy, run bootnet(..., caseMin = 0.517, caseMax = 0.672) 
+
+Accuracy can also be increased by increasing both 'nBoots' and 'caseN'.</code></pre>
+</div>
+</div>
+<p>La tabla prueba diez niveles de recorte (quitar el 5%, el 13%, …, el 75% de las personas) y en cada nivel re-estima la red unas 20 veces. El CS es el mayor recorte que todavía cumple la regla. Con 200 réplicas la estimación es gruesa (entre 0.5 y 0.6 según la semilla y el número de núcleos), pero está sobre 0.5: podemos quitar a la mitad de la muestra y el orden de <em>strength</em> se mantiene. Con 2.436 personas era esperable. Pasa el test de estabilidad y podemos interpretar <em>strength</em>.</p>
+<p><em>pregunta 3</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>¿Y el modelo de Ising?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El modelo Ising se usa solo para <strong>ítems binarios</strong>; para ítems continuos u ordinales, usamos GGM. Si los ítems son Likert y se quiere Ising, hay que dicotomizarlos y se pierde información. En los datos <code>bfi</code>, la red Ising sobre los ítems dicotomizados (<code>IsingFit</code>) tiene menos aristas (118 contra 184) pero los pesos correlacionan 0.94 con los del GGM. O sea la estructura es la misma, pero la resolución es menor.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="red-vs.-análisis-factorial" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Red vs.&nbsp;análisis factorial</h1>
+<p>Ahora un dato fabricado por nosotros: 220 personas, 12 ítems Likert. A diferencia de <code>bfi</code>, aquí <strong>sabemos cómo se hicieron</strong>: tres factores latentes (ánimo, ansiedad, aislamiento) correlacionados, cada ítem con carga 0.75 en su factor y 0.10 en los otros dos, y el resultado cortado en cinco categorías de igual tamaño. No hay ninguna arista directa entre ítems en el proceso generador: toda la covarianza pasa por los factores.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>n   <span class="ot">&lt;-</span> <span class="dv">220</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">1.00</span>, <span class="fl">0.45</span>, <span class="fl">0.35</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.45</span>, <span class="fl">1.00</span>, <span class="fl">0.30</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.35</span>, <span class="fl">0.30</span>, <span class="fl">1.00</span>), <span class="dv">3</span>, <span class="dv">3</span>)           <span class="co"># correlación entre factores</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>F   <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(n, <span class="at">mu =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="at">Sigma =</span> Phi)<span class="co"># puntaje latente por persona</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>L   <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fl">0.10</span>, <span class="dv">12</span>, <span class="dv">3</span>)                            <span class="co"># cargas cruzadas</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>L[<span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each =</span> <span class="dv">4</span>))] <span class="ot">&lt;-</span> <span class="fl">0.75</span>            <span class="co"># carga en el factor propio</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>X   <span class="ot">&lt;-</span> F <span class="sc">%*%</span> <span class="fu">t</span>(L) <span class="sc">+</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> <span class="dv">12</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.75</span><span class="sc">^</span><span class="dv">2</span>)), n, <span class="dv">12</span>)<span class="co"># +error</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>likert <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">apply</span>(X, <span class="dv">2</span>, <span class="cf">function</span>(x)       <span class="co"># a 5 categorías</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.integer</span>(<span class="fu">cut</span>(x, <span class="fu">quantile</span>(x, <span class="dv">0</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">/</span> <span class="dv">5</span>), <span class="at">labels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">include.lowest =</span> <span class="cn">TRUE</span>))))</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(likert) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"animo"</span>, <span class="st">"ansiedad"</span>, <span class="st">"aislam"</span>), <span class="at">each =</span> <span class="dv">4</span>), <span class="st">"_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(likert, <span class="st">"datos/ejemplo_items_likert.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(likert, <span class="dv">3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  animo_1 animo_2 animo_3 animo_4 ansiedad_1 ansiedad_2 ansiedad_3 ansiedad_4
+1       2       3       4       2          2          4          1          1
+2       4       5       5       2          3          3          2          4
+3       2       3       1       2          3          3          4          2
+  aislam_1 aislam_2 aislam_3 aislam_4
+1        2        1        2        3
+2        5        5        5        5
+3        3        5        3        5</code></pre>
+</div>
+</div>
+<section id="cuando-dicen-lo-mismo" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="cuando-dicen-lo-mismo"><span class="header-section-number">8.1</span> Cuando dicen lo mismo</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EGA: estima la red (GGM con glasso, igual que arriba) y le busca comunidades</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ega <span class="ot">&lt;-</span> <span class="fu">EGA</span>(likert, <span class="at">model =</span> <span class="st">"glasso"</span>, <span class="at">plot.EGA =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ega<span class="sc">$</span>n.dim</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="cell-output-display">
+<div id="fig-likert-ega" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-likert-ega-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-psicometria-de-redes_files/figure-html/fig-likert-ega-1.png" class="img-fluid figure-img" width="480">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-likert-ega-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;8.1: Red estimada sobre el Likert fabricado. Los colores son las comunidades que encuentra EGA, sin que le digamos cuántas hay.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Análisis factorial exploratorio con 3 factores</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>efa <span class="ot">&lt;-</span> <span class="fu">fa</span>(likert, <span class="at">nfactors =</span> <span class="dv">3</span>, <span class="at">rotate =</span> <span class="st">"oblimin"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required namespace: GPArotation</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa<span class="sc">$</span>loadings, <span class="at">cutoff =</span> <span class="fl">0.3</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Loadings:
+           MR2    MR1    MR3   
+animo_1            0.645       
+animo_2            0.683       
+animo_3            0.820       
+animo_4            0.701       
+ansiedad_1                0.842
+ansiedad_2                0.646
+ansiedad_3                0.687
+ansiedad_4                0.630
+aislam_1    0.786              
+aislam_2    0.767              
+aislam_3    0.792              
+aislam_4    0.735              
+
+                 MR2   MR1   MR3
+SS loadings    2.393 2.098 2.058
+Proportion Var 0.199 0.175 0.172
+Cumulative Var 0.199 0.374 0.546</code></pre>
+</div>
+</div>
+<p>EGA encuentra tres comunidades y son exactamente los tres factores. El análisis factorial con tres factores da cargas limpias y ajuste casi perfecto. Los dos métodos recuperan la misma estructura, y eso <strong>no es casualidad</strong>: un factor común genera una red donde todos sus ítems están conectados entre sí con aristas positivas. Bajo un modelo de factores, la red y el factorial son dos descripciones de la misma matriz de covarianza (esta es la crítica principal de Neal et al.&nbsp;2022 a la psicometría de redes, y es correcta en este caso).</p>
+</section>
+<section id="cuando-no-dicen-lo-mismo" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="cuando-no-dicen-lo-mismo"><span class="header-section-number">8.2</span> Cuando no dicen lo mismo</h2>
+<p>Entonces, ¿para qué la red? Porque hay estructuras que un factor no puede representar y una red sí. Simulamos dos mundos con cinco variables cada uno:</p>
+<ul>
+<li><strong>Mundo 1, factor común</strong>: una variable latente <span class="math inline">\(f\)</span> causa a las cinco, <span class="math inline">\(X_j = 0.7\,f + \varepsilon_j\)</span>.</li>
+<li><strong>Mundo 2, cadena</strong>: <span class="math inline">\(X_1 \to X_2 \to X_3 \to X_4 \to X_5\)</span>, cada una causada solo por la anterior, <span class="math inline">\(X_j = 0.7\,X_{j-1} + \varepsilon_j\)</span>. No hay variable latente.</li>
+</ul>
+<p>En ambos mundos las variables tienen varianza 1 y los pares vecinos correlacionan 0.49. La diferencia está en lo que pasa al controlar: en el mundo factor, ninguna correlación desaparece al controlar por las demás (todas comparten <span class="math inline">\(f\)</span>); en la cadena, <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_3\)</span> se vuelven independientes al controlar por <span class="math inline">\(X_2\)</span>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>n      <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>f      <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>factor <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(j) <span class="fl">0.7</span> <span class="sc">*</span> f <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.49</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n))</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>cadena <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, n, <span class="dv">5</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>cadena[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>       cadena[, j] <span class="ot">&lt;-</span> <span class="fl">0.7</span> <span class="sc">*</span> cadena[, j <span class="sc">-</span> <span class="dv">1</span>] <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.49</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(factor) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(cadena) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="primero-el-análisis-factorial" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="primero-el-análisis-factorial"><span class="header-section-number">8.2.1</span> Primero, el análisis factorial</h3>
+<p>Un <strong>factor</strong> es una variable que no medimos pero que explica por qué varios ítems se mueven juntos. El análisis factorial busca cuántas de esas variables hacen falta para reproducir la matriz de correlaciones. La herramienta habitual para decidir cuántos factores hay son los <strong>autovalores</strong> de la matriz de correlaciones: cada autovalor es la cantidad de varianza (en unidades de ítems) que un factor logra explicar.</p>
+<p>Con 5 ítems los autovalores suman 5. Si hay un solo factor fuerte, el primer autovalor es grande y los otros cuatro son pequeños. La regla de Kaiser, la más usada, dice: <strong>hay tantos factores como autovalores mayores que 1</strong>, porque un factor que explica menos que un solo ítem no vale la pena.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">eigen</span>(<span class="fu">cor</span>(factor))<span class="sc">$</span>values, <span class="dv">2</span>)                 <span class="co"># mundo factor</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.96 0.55 0.53 0.49 0.47</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">eigen</span>(<span class="fu">cor</span>(cadena))<span class="sc">$</span>values, <span class="dv">2</span>)                 <span class="co"># mundo cadena</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.08 1.04 0.42 0.27 0.19</code></pre>
+</div>
+</div>
+<p>En el mundo factor: un factor, como corresponde. En el mundo cadena: un autovalor de 3.08, y un segundo apenas sobre 1. Con la regla de Kaiser, el análisis factorial concluye que hay <strong>un factor dominante</strong> en un mundo donde no hay ninguna variable latente. Las cargas también engañan: van de 0.6 a 0.9, que en un cuestionario real se leerían como un factor bien medido.</p>
+</section>
+<section id="segundo-la-psicometría-de-redes" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="segundo-la-psicometría-de-redes"><span class="header-section-number">8.2.2</span> Segundo, la psicometría de redes</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>red_factor <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(<span class="fu">as.data.frame</span>(factor), <span class="at">default =</span> <span class="st">"EBICglasso"</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>red_cadena <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(<span class="fu">as.data.frame</span>(cadena), <span class="at">default =</span> <span class="st">"EBICglasso"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>verdad_factor <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="st">"F"</span>), <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="st">"F"</span>)))</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>verdad_factor[<span class="st">"F"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fl">0.7</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>verdad_cadena <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">0</span>, <span class="dv">5</span>, <span class="dv">5</span>, <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>), <span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)))</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>verdad_cadena[<span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>)] <span class="ot">&lt;-</span> <span class="fl">0.7</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="fu">qgraph</span>(verdad_factor, <span class="at">directed =</span> <span class="cn">TRUE</span>, <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">title =</span> <span class="st">"Verdad: factor común"</span>,</span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">shape =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"circle"</span>, <span class="dv">5</span>), <span class="st">"square"</span>), <span class="at">theme =</span> <span class="st">"colorblind"</span>)</span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="fu">qgraph</span>(verdad_cadena, <span class="at">directed =</span> <span class="cn">TRUE</span>, <span class="at">layout =</span> <span class="st">"circle"</span>, <span class="at">title =</span> <span class="st">"Verdad: cadena"</span>, <span class="at">theme =</span> <span class="st">"colorblind"</span>)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(red_factor, <span class="at">layout =</span> <span class="st">"spring"</span>, <span class="at">title =</span> <span class="st">"Red estimada"</span>)</span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(red_cadena, <span class="at">layout =</span> <span class="st">"circle"</span>, <span class="at">title =</span> <span class="st">"Red estimada"</span>)</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-dos-mundos" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dos-mundos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="06-psicometria-de-redes_files/figure-html/fig-dos-mundos-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dos-mundos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;8.2: Arriba: los dos procesos generadores. Abajo: la red estimada en cada mundo. La red recupera la estructura verdadera en ambos casos.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En el mundo factor la red es completa: los cinco ítems conectados entre sí, que es como se ve una causa común cuando se dibujan correlaciones parciales. En el mundo cadena la red es la cadena exacta: cuatro aristas, ninguna extra. La red distingue lo que el análisis factorial confundió.</p>
+<p>La red estimada de la cadena <strong>no tiene flechas</strong>. Una correlación parcial es simétrica, así que la red es no dirigida por construcción. Peor: <span class="math inline">\(X_1 \to X_2 \to X_3\)</span>, <span class="math inline">\(X_1 \leftarrow X_2 \leftarrow X_3\)</span> y <span class="math inline">\(X_1 \leftarrow X_2 \to X_3\)</span> producen exactamente las mismas correlaciones y las mismas independencias condicionales, así que <em>ningún método</em> las distingue con estos datos. Orientar aristas requiere datos longuitudinales, donde la red estimada es el punto de partida para plantear hipótesis causales (Pearl 2000).</p>
+</section>
+</section>
+</section>
+<section id="ejemplo-de-aplicación" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Ejemplo de aplicación</h1>
+<p>Fábrega &amp; Olivera (2026), <a href="https://link.springer.com/article/10.1007/s41109-026-00815-1"><em>Same score, different network</em></a>, analizan 17.272 evaluaciones de riesgo de reincidencia (instrumento IGI, Gendarmería de Chile). El instrumento suma ítems binarios y clasifica a las personas por el total. La pregunta: ¿dos personas con el mismo puntaje tienen la misma configuración de ítems?</p>
+<p>Para responderla, agrupan a las personas por ventanas de puntaje, estiman una red Ising dentro de cada ventana (los ítems son binarios, así que aquí el Ising sí corresponde), y comparan las redes con bootstrap. El resultado: <strong>puntajes iguales esconden redes distintas</strong>, y las configuraciones distintas predicen distinta reincidencia. Es el mismo método de este capítulo aplicado a datos administrativos, no a un cuestionario de personalidad.</p>
+<p><em>pregunta 4</em></p>
+<p><em>pregunta 5</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Nota</span>Para jugar
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Vuelve a estimar la red de <code>bfi</code> con <code>estimateNetwork(..., threshold = TRUE)</code>. ¿Cuántas aristas sobreviven? ¿Cambian las tres más fuertes?</li>
+<li>Toma una submuestra de 200 personas de <code>bfi</code> y repite el bootstrap por casos. ¿Qué CS obtienes? Compáralo con el umbral de 0.25.</li>
+<li>En el mundo cadena, cambia el coeficiente 0.7 por 0.3. ¿Sigue la red recuperando la cadena? ¿Sigue el factorial “encontrando” un factor?</li>
+<li>En la receta del Likert fabricado, agrega una arista directa entre dos ítems de factores distintos (por ejemplo, suma a la columna 5 de <code>X</code> una fracción de la columna 1 antes de cortar). ¿La ve EGA? ¿La ve el factorial?</li>
+</ol>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiado");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiado");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aoliveram\.github\.io\/Redes-Sociales-2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-contagio-social-en-redes.html" class="pagination-link" aria-label="Contagio social en redes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Contagio social en redes</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./referencias.html" class="pagination-link" aria-label="Referencias">
+        <span class="nav-page-text">Referencias</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

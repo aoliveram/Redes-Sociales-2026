@@ -1,0 +1,275 @@
+---
+author: "Aníbal Olivera Morales"
+date: "2026-09-15"
+---
+
+# Psicometría de redes
+
+::: {.callout-tip icon="false"}
+## Qué haremos
+
+Hasta ahora la red era **el dato**. Ahora **la red no se observa, se estima.** Nodos = ítems, aristas = dependencias condicionales estimadas. 
+:::
+
+| Sección | Contenido | Datos |
+|--|---|---|
+| 1. Repaso | Correlación → correlación parcial regularizada → *strength* → estabilidad | `psych::bfi` |
+| 2. Red vs. factor | Cuándo coinciden y cuándo no | Likert fabricado + simulación |
+| 3. Ejemplo de aplicación | El mismo método sobre datos administrativos | — |
+
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+library(psych)     # datos bfi y análisis factorial
+library(qgraph)    # dibujar redes de variables
+library(bootnet)   # estimar la red y su estabilidad
+library(EGAnet)    # comunidades de ítems
+```
+
+# Repaso: de los ítems a la red
+
+## Los datos
+
+`bfi` son 2.800 personas que respondieron 25 ítems de personalidad (escala 1–6), cinco ítems por rasgo: **A**mabilidad, **C**onciencia, **E**xtraversión, **N**euroticismo y **A**pertura. Es el dataset de los *tutoriales* de `qgraph` y `bootnet`, y su estructura de cinco factores está bien establecida.
+
+```{r}
+#| label: datos-bfi
+data(bfi)
+names(bfi)                                     # 25 ítems + género, educación y edad
+items <- bfi[, 1:25]                           # nos quedamos solo con los ítems
+items <- items[complete.cases(items), ]        # y con las respuestas completas
+dim(items)
+head(items, 3)
+```
+
+Las 25 preguntas, con su rasgo y su sentido (`Keying` = −1 significa que el ítem está redactado al revés):
+
+```{r}
+#| label: items-bfi
+bfi.dictionary[1:25, c("Item", "Big6", "Keying")]
+```
+
+## Correlación no es dependencia condicional
+
+Una **correlación** entre dos ítems puede venir de un tercero que mueve a ambos. Una **correlación parcial** es la asociación entre dos ítems después de controlar por todos los demás. La red psicométrica dibuja las parciales.
+
+Y como con 25 ítems hay 300 parciales (muchas de ellas ruido) se aplica una penalización (**graphical lasso**) que lleva las pequeñas exactamente a cero. El resultado se llama *Gaussian Graphical Model* (**GGM** ) regularizado.
+
+```{r}
+#| label: fig-cor-vs-parcial
+#| fig-cap: "Izquierda: red de correlaciones. Derecha: red de correlaciones parciales regularizadas (EBICglasso). Azul = positiva, rojo = negativa. Colores de nodo = rasgo."
+#| fig-height: 5
+#| fig-width: 10
+#| message: false
+#| warning: false
+set.seed(1)
+red_items <- estimateNetwork(items, default = "EBICglasso", corMethod = "cor_auto")
+
+grupos <- list(A = 1:5, C = 6:10, E = 11:15, N = 16:20, O = 21:25)
+
+op <- par(mfrow = c(1, 2))
+qgraph(cor_auto(items), layout = "spring", groups = grupos, legend = FALSE,
+       title = "Correlaciones", theme = "colorblind")
+plot(red_items, layout = "spring", groups = grupos, legend = FALSE,
+     title = "Correlaciones parciales regularizadas")
+par(op)
+```
+
+`cor_auto` detecta que los ítems son ordinales y usa correlaciones policóricas. `EBICglasso` elige cuánta penalización aplicar con un criterio de información. Las dos cosas están explicadas en Epskamp, Borsboom & Fried (2018), que es la referencia de trabajo para todo este bloque.
+
+*pregunta 1*
+
+*pregunta 2*
+
+## Pesos de la red
+
+```{r}
+#| label: leer-red
+W <- red_items$graph                                      # matriz de pesos (parciales)
+sum(W[upper.tri(W)] != 0)                           # aristas no nulas, de 300
+
+aristas <- data.frame(
+  a = colnames(W)[which(upper.tri(W), arr.ind = TRUE)[, 1]],
+  b = colnames(W)[which(upper.tri(W), arr.ind = TRUE)[, 2]],
+  w = W[upper.tri(W)]
+)
+head(aristas[order(-aristas$w), ], 3)               # positivas más fuertes
+head(aristas[order(aristas$w), ], 3)                # negativas más fuertes
+```
+
+La arista más fuerte es N1–N2 ("me enojo fácilmente" y "me irrito fácilmente", son casi el mismo ítem). Las negativas más fuertes son A1–A2 y E2–E4, pares donde un ítem está redactado al revés del otro. Lo primero que hay que hacer es leer las aristas fuertes para distinguir  la redacción de los ítems y la psicología.
+
+::: callout-warning
+## Qué dice y qué no dice una arista
+
+La arista N1–N2 dice que, **en la población**, quienes puntúan alto en N1 tienden a puntuar alto en N2 controlando por los otros 23 ítems. No dice que en una persona el enojo lleve a la irritación. Los datos son entre personas; un proceso dentro de una persona necesita medir a la misma persona muchas veces (datos longitudinales).
+:::
+
+## Strength y su estabilidad
+
+*Strength* es la suma de los valores absolutos de las aristas de un nodo. Es la única centralidad que vamos a usar, y hay una razón: *betweenness* y *closeness* asumen que algo "viaja" por los caminos más cortos de la red, y en una red de correlaciones parciales no hay nada que viaje (Bringmann et al. 2019). *Strength* solo suma asociaciones directas, y eso sí tiene sentido aquí.
+
+```{r}
+#| label: fig-strength
+#| fig-cap: "Strength de cada ítem, estandarizada."
+#| fig-height: 5
+#| fig-width: 5
+centralityPlot(red_items, include = "Strength", orderBy = "Strength")
+```
+
+Un valor de *strength* estimado en una muestra no es el valor verdadero. Para saber si el orden de los nodos es confiable, se re-estima la red quitando personas al azar (**bootstrap por casos**) y se mide cuánto se parece el *strength* al original. 
+
+El **coeficiente CS** (*correlation stability*) es la fracción máxima de personas que se puede quitar manteniendo una correlación de 0.7 con el original en el 95% de las réplicas. Epskamp et al. sugieren CS > 0.5 para interpretar el orden, y CS > 0.25 como mínimo.
+
+```{r}
+#| label: cs
+#| message: false
+#| warning: false
+set.seed(2)
+boot_casos <- bootnet(red_items, nBoots = 200, type = "case", statistics = "strength", nCores = 8)
+corStability(boot_casos)
+```
+
+La tabla prueba diez niveles de recorte (quitar el 5%, el 13%, …, el 75% de las personas) y en cada nivel re-estima la red unas 20 veces. El CS es el mayor recorte que todavía cumple la regla. Con 200 réplicas la estimación es gruesa (entre 0.5 y 0.6 según la semilla y el número de núcleos), pero está sobre 0.5: podemos quitar a la mitad de la muestra y el orden de *strength* se mantiene. Con 2.436 personas era esperable. Pasa el test de estabilidad y podemos interpretar *strength*.
+
+*pregunta 3*
+
+::: callout-note
+## ¿Y el modelo de Ising?
+
+El modelo Ising se usa solo para **ítems binarios**; para ítems continuos u ordinales, usamos GGM. Si los ítems son Likert y se quiere Ising, hay que dicotomizarlos y se pierde información. En los datos `bfi`, la red Ising sobre los ítems dicotomizados (`IsingFit`) tiene menos aristas (118 contra 184) pero los pesos correlacionan 0.94 con los del GGM. O sea la estructura es la misma, pero la resolución es menor.
+:::
+
+# Red vs. análisis factorial
+
+Ahora un dato fabricado por nosotros: 220 personas, 12 ítems Likert. A diferencia de `bfi`, aquí **sabemos cómo se hicieron**: tres factores latentes (ánimo, ansiedad, aislamiento) correlacionados, cada ítem con carga 0.75 en su factor y 0.10 en los otros dos, y el resultado cortado en cinco categorías de igual tamaño. No hay ninguna arista directa entre ítems en el proceso generador: toda la covarianza pasa por los factores.
+
+```{r}
+#| label: fabricar-likert
+set.seed(2026)
+n   <- 220
+Phi <- matrix(c(1.00, 0.45, 0.35,
+                0.45, 1.00, 0.30,
+                0.35, 0.30, 1.00), 3, 3)           # correlación entre factores
+F   <- MASS::mvrnorm(n, mu = rep(0, 3), Sigma = Phi)# puntaje latente por persona
+L   <- matrix(0.10, 12, 3)                            # cargas cruzadas
+L[cbind(1:12, rep(1:3, each = 4))] <- 0.75            # carga en el factor propio
+X   <- F %*% t(L) + matrix(rnorm(n * 12, sd = sqrt(1 - 0.75^2)), n, 12)# +error
+
+likert <- as.data.frame(apply(X, 2, function(x)       # a 5 categorías
+  as.integer(cut(x, quantile(x, 0:5 / 5), labels = 1:5, include.lowest = TRUE))))
+names(likert) <- paste0(rep(c("animo", "ansiedad", "aislam"), each = 4), "_", 1:4)
+write.csv(likert, "datos/ejemplo_items_likert.csv", row.names = FALSE)
+head(likert, 3)
+```
+
+## Cuando dicen lo mismo
+
+```{r}
+#| label: fig-likert-ega
+#| fig-cap: "Red estimada sobre el Likert fabricado. Los colores son las comunidades que encuentra EGA, sin que le digamos cuántas hay."
+#| fig-height: 4.5
+#| fig-width: 5
+#| message: false
+#| warning: false
+# EGA: estima la red (GGM con glasso, igual que arriba) y le busca comunidades
+ega <- EGA(likert, model = "glasso", plot.EGA = TRUE)
+ega$n.dim
+```
+
+```{r}
+#| label: likert-efa
+# Análisis factorial exploratorio con 3 factores
+efa <- fa(likert, nfactors = 3, rotate = "oblimin")
+print(efa$loadings, cutoff = 0.3)
+```
+
+EGA encuentra tres comunidades y son exactamente los tres factores. El análisis factorial con tres factores da cargas limpias y ajuste casi perfecto. Los dos métodos recuperan la misma estructura, y eso **no es casualidad**: un factor común genera una red donde todos sus ítems están conectados entre sí con aristas positivas. Bajo un modelo de factores, la red y el factorial son dos descripciones de la misma matriz de covarianza (esta es la crítica principal de Neal et al. 2022 a la psicometría de redes, y es correcta en este caso).
+
+## Cuando no dicen lo mismo
+
+Entonces, ¿para qué la red? Porque hay estructuras que un factor no puede representar y una red sí. Simulamos dos mundos con cinco variables cada uno:
+
+- **Mundo 1, factor común**: una variable latente $f$ causa a las cinco, $X_j = 0.7\,f + \varepsilon_j$.
+- **Mundo 2, cadena**: $X_1 \to X_2 \to X_3 \to X_4 \to X_5$, cada una causada solo por la anterior, $X_j = 0.7\,X_{j-1} + \varepsilon_j$. No hay variable latente.
+
+En ambos mundos las variables tienen varianza 1 y los pares vecinos correlacionan 0.49. La diferencia está en lo que pasa al controlar: en el mundo factor, ninguna correlación desaparece al controlar por las demás (todas comparten $f$); en la cadena, $X_1$ y $X_3$ se vuelven independientes al controlar por $X_2$.
+
+```{r}
+#| label: dos-mundos-sim
+set.seed(7)
+n      <- 1000
+f      <- rnorm(n)
+factor <- sapply(1:5, function(j) 0.7 * f + sqrt(1 - 0.49) * rnorm(n))
+cadena <- matrix(NA, n, 5)
+cadena[, 1] <- rnorm(n)
+for (j in 2:5) {
+       cadena[, j] <- 0.7 * cadena[, j - 1] + sqrt(1 - 0.49) * rnorm(n)
+}
+colnames(factor) <- colnames(cadena) <- paste0("X", 1:5)
+```
+
+### Primero, el análisis factorial
+
+Un **factor** es una variable que no medimos pero que explica por qué varios ítems se mueven juntos. El análisis factorial busca cuántas de esas variables hacen falta para reproducir la matriz de correlaciones. La herramienta habitual para decidir cuántos factores hay son los **autovalores** de la matriz de correlaciones: cada autovalor es la cantidad de varianza (en unidades de ítems) que un factor logra explicar. 
+
+Con 5 ítems los autovalores suman 5. Si hay un solo factor fuerte, el primer autovalor es grande y los otros cuatro son pequeños. La regla de Kaiser, la más usada, dice: **hay tantos factores como autovalores mayores que 1**, porque un factor que explica menos que un solo ítem no vale la pena.
+
+```{r}
+#| label: dos-mundos-autovalores
+round(eigen(cor(factor))$values, 2)                 # mundo factor
+round(eigen(cor(cadena))$values, 2)                 # mundo cadena
+```
+
+En el mundo factor: un factor, como corresponde. En el mundo cadena: un autovalor de 3.08, y un segundo apenas sobre 1. Con la regla de Kaiser, el análisis factorial concluye que hay **un factor dominante** en un mundo donde no hay ninguna variable latente. Las cargas también engañan: van de 0.6 a 0.9, que en un cuestionario real se leerían como un factor bien medido.
+
+### Segundo, la psicometría de redes
+
+```{r}
+#| label: fig-dos-mundos
+#| fig-cap: "Arriba: los dos procesos generadores. Abajo: la red estimada en cada mundo. La red recupera la estructura verdadera en ambos casos."
+#| fig-height: 6
+#| fig-width: 8
+#| message: false
+#| warning: false
+red_factor <- estimateNetwork(as.data.frame(factor), default = "EBICglasso")
+red_cadena <- estimateNetwork(as.data.frame(cadena), default = "EBICglasso")
+
+verdad_factor <- matrix(0, 6, 6, dimnames = list(c(paste0("X", 1:5), "F"), c(paste0("X", 1:5), "F")))
+verdad_factor["F", 1:5] <- 0.7
+verdad_cadena <- matrix(0, 5, 5, dimnames = list(paste0("X", 1:5), paste0("X", 1:5)))
+verdad_cadena[cbind(1:4, 2:5)] <- 0.7
+
+op <- par(mfrow = c(2, 2))
+qgraph(verdad_factor, directed = TRUE, layout = "spring", title = "Verdad: factor común",
+       shape = c(rep("circle", 5), "square"), theme = "colorblind")
+qgraph(verdad_cadena, directed = TRUE, layout = "circle", title = "Verdad: cadena", theme = "colorblind")
+plot(red_factor, layout = "spring", title = "Red estimada")
+plot(red_cadena, layout = "circle", title = "Red estimada")
+par(op)
+```
+
+En el mundo factor la red es completa: los cinco ítems conectados entre sí, que es como se ve una causa común cuando se dibujan correlaciones parciales. En el mundo cadena la red es la cadena exacta: cuatro aristas, ninguna extra. La red distingue lo que el análisis factorial confundió.
+
+La red estimada de la cadena **no tiene flechas**. Una correlación parcial es simétrica, así que la red es no dirigida por construcción. Peor: $X_1 \to X_2 \to X_3$, $X_1 \leftarrow X_2 \leftarrow X_3$ y $X_1 \leftarrow X_2 \to X_3$ producen exactamente las mismas correlaciones y las mismas independencias condicionales, así que *ningún método* las distingue con estos datos. Orientar aristas requiere datos longuitudinales, donde la red estimada es el punto de partida para plantear hipótesis causales (Pearl 2000).
+
+
+# Ejemplo de aplicación
+
+Fábrega & Olivera (2026), [*Same score, different network*](https://link.springer.com/article/10.1007/s41109-026-00815-1), analizan 17.272 evaluaciones de riesgo de reincidencia (instrumento IGI, Gendarmería de Chile). El instrumento suma ítems binarios y clasifica a las personas por el total. La pregunta: ¿dos personas con el mismo puntaje tienen la misma configuración de ítems?
+
+Para responderla, agrupan a las personas por ventanas de puntaje, estiman una red Ising dentro de cada ventana (los ítems son binarios, así que aquí el Ising sí corresponde), y comparan las redes con bootstrap. El resultado: **puntajes iguales esconden redes distintas**, y las configuraciones distintas predicen distinta reincidencia. Es el mismo método de este capítulo aplicado a datos administrativos, no a un cuestionario de personalidad.
+
+*pregunta 4*
+
+*pregunta 5*
+
+::: {.callout-note}
+## Para jugar
+
+1. Vuelve a estimar la red de `bfi` con `estimateNetwork(..., threshold = TRUE)`. ¿Cuántas aristas sobreviven? ¿Cambian las tres más fuertes?
+2. Toma una submuestra de 200 personas de `bfi` y repite el bootstrap por casos. ¿Qué CS obtienes? Compáralo con el umbral de 0.25.
+3. En el mundo cadena, cambia el coeficiente 0.7 por 0.3. ¿Sigue la red recuperando la cadena? ¿Sigue el factorial "encontrando" un factor?
+4. En la receta del Likert fabricado, agrega una arista directa entre dos ítems de factores distintos (por ejemplo, suma a la columna 5 de `X` una fracción de la columna 1 antes de cortar). ¿La ve EGA? ¿La ve el factorial?
+:::
