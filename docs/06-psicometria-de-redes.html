@@ -439,8 +439,8 @@ window.Quarto = {
   <li><a href="#límites" id="toc-límites" class="nav-link" data-scroll-target="#límites"><span class="header-section-number">9</span> Límites</a>
   <ul class="collapse">
   <li><a href="#tres-reglas" id="toc-tres-reglas" class="nav-link" data-scroll-target="#tres-reglas"><span class="header-section-number">9.1</span> Tres reglas</a></li>
-  <li><a href="#caso-real-mismo-puntaje-distinta-red" id="toc-caso-real-mismo-puntaje-distinta-red" class="nav-link" data-scroll-target="#caso-real-mismo-puntaje-distinta-red"><span class="header-section-number">9.2</span> Caso real: mismo puntaje, distinta red</a></li>
   </ul></li>
+  <li><a href="#ejemplo-de-aplicación" id="toc-ejemplo-de-aplicación" class="nav-link" data-scroll-target="#ejemplo-de-aplicación"><span class="header-section-number">10</span> Ejemplo de aplicación</a></li>
   </ul>
 </nav>
     </div>
@@ -509,7 +509,7 @@ window.Quarto = {
 <tr class="odd">
 <td>1. Repaso</td>
 <td>Correlación → correlación parcial regularizada → <em>strength</em> → estabilidad</td>
-<td><code>psych::bfi</code> (reales)</td>
+<td><code>psych::bfi</code></td>
 </tr>
 <tr class="even">
 <td>2. Red vs.&nbsp;factor</td>
@@ -685,16 +685,16 @@ Figura&nbsp;7.2: Strength de cada ítem, estandarizada.
 
 Sampling levels tested:
    nPerson Drop%  n
-1      609  75.0 20
-2      798  67.2 23
-3      988  59.4 15
-4     1177  51.7 15
-5     1367  43.9 19
-6     1556  36.1 17
-7     1746  28.3 29
-8     1935  20.6 25
-9     2125  12.8 16
-10    2314   5.0 21
+1      609  75.0 14
+2      798  67.2 18
+3      988  59.4 18
+4     1177  51.7 23
+5     1367  43.9 17
+6     1556  36.1 21
+7     1746  28.3 22
+8     1935  20.6 23
+9     2125  12.8 22
+10    2314   5.0 22
 
 Maximum drop proportions to retain correlation of 0.7 in at least 95% of the samples:
 
@@ -704,7 +704,7 @@ strength: 0.594
 Accuracy can also be increased by increasing both 'nBoots' and 'caseN'.</code></pre>
 </div>
 </div>
-<p>La tabla prueba diez niveles de recorte (quitar el 5%, el 13%, …, el 75% de las personas) y en cada nivel re-estima la red unas 20 veces. El CS es el mayor recorte que todavía cumple la regla. Con 200 réplicas la estimación es gruesa (entre 0.5 y 0.6 según la semilla y el número de núcleos), pero está sobre 0.5: podemos quitar a la mitad de la muestra y el orden de <em>strength</em> se mantiene. Con 2.436 personas era esperable. Con 200, no lo sería.</p>
+<p>La tabla prueba diez niveles de recorte (quitar el 5%, el 13%, …, el 75% de las personas) y en cada nivel re-estima la red unas 20 veces. El CS es el mayor recorte que todavía cumple la regla. Con 200 réplicas la estimación es gruesa (entre 0.5 y 0.6 según la semilla y el número de núcleos), pero está sobre 0.5: podemos quitar a la mitad de la muestra y el orden de <em>strength</em> se mantiene. Con 2.436 personas era esperable. Pasa el test de estabilidad y podemos interpretar <em>strength</em>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -728,13 +728,13 @@ Accuracy can also be increased by increasing both 'nBoots' and 'caseN'.</code></
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>n   <span class="ot">&lt;-</span> <span class="dv">220</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Phi <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">1.00</span>, <span class="fl">0.45</span>, <span class="fl">0.35</span>,</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.45</span>, <span class="fl">1.00</span>, <span class="fl">0.30</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.35</span>, <span class="fl">0.30</span>, <span class="fl">1.00</span>), <span class="dv">3</span>, <span class="dv">3</span>)              <span class="co"># correlación entre factores</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>F   <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(n, <span class="at">mu =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="at">Sigma =</span> Phi)  <span class="co"># puntaje latente de cada persona</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                <span class="fl">0.35</span>, <span class="fl">0.30</span>, <span class="fl">1.00</span>), <span class="dv">3</span>, <span class="dv">3</span>)           <span class="co"># correlación entre factores</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>F   <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">mvrnorm</span>(n, <span class="at">mu =</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">3</span>), <span class="at">Sigma =</span> Phi)<span class="co"># puntaje latente por persona</span></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>L   <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fl">0.10</span>, <span class="dv">12</span>, <span class="dv">3</span>)                            <span class="co"># cargas cruzadas</span></span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>L[<span class="fu">cbind</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">each =</span> <span class="dv">4</span>))] <span class="ot">&lt;-</span> <span class="fl">0.75</span>            <span class="co"># carga en el factor propio</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>X   <span class="ot">&lt;-</span> F <span class="sc">%*%</span> <span class="fu">t</span>(L) <span class="sc">+</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> <span class="dv">12</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.75</span><span class="sc">^</span><span class="dv">2</span>)), n, <span class="dv">12</span>)   <span class="co"># + error</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>X   <span class="ot">&lt;-</span> F <span class="sc">%*%</span> <span class="fu">t</span>(L) <span class="sc">+</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> <span class="dv">12</span>, <span class="at">sd =</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.75</span><span class="sc">^</span><span class="dv">2</span>)), n, <span class="dv">12</span>)<span class="co"># +error</span></span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>likert <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">apply</span>(X, <span class="dv">2</span>, <span class="cf">function</span>(x)                            <span class="co"># a 5 categorías</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>likert <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">apply</span>(X, <span class="dv">2</span>, <span class="cf">function</span>(x)       <span class="co"># a 5 categorías</span></span>
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.integer</span>(<span class="fu">cut</span>(x, <span class="fu">quantile</span>(x, <span class="dv">0</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">/</span> <span class="dv">5</span>), <span class="at">labels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">include.lowest =</span> <span class="cn">TRUE</span>))))</span>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(likert) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"animo"</span>, <span class="st">"ansiedad"</span>, <span class="st">"aislam"</span>), <span class="at">each =</span> <span class="dv">4</span>), <span class="st">"_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)</span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(likert, <span class="st">"datos/ejemplo_items_likert.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
@@ -802,7 +802,7 @@ Proportion Var 0.199 0.175 0.172
 Cumulative Var 0.199 0.374 0.546</code></pre>
 </div>
 </div>
-<p>EGA encuentra tres comunidades y son exactamente los tres factores. El análisis factorial con tres factores da cargas limpias y ajuste casi perfecto. Los dos métodos recuperan la misma estructura, y eso <strong>no es casualidad</strong>: un factor común genera una red donde todos sus ítems están conectados entre sí con aristas positivas. Bajo un modelo de factores, la red y el factorial son dos descripciones de la misma matriz de covarianza (esta es la crítica principal de Neal et al.&nbsp;(2022) a la psicometría de redes, y es correcta en este caso).</p>
+<p>EGA encuentra tres comunidades y son exactamente los tres factores. El análisis factorial con tres factores da cargas limpias y ajuste casi perfecto. Los dos métodos recuperan la misma estructura, y eso <strong>no es casualidad</strong>: un factor común genera una red donde todos sus ítems están conectados entre sí con aristas positivas. Bajo un modelo de factores, la red y el factorial son dos descripciones de la misma matriz de covarianza (esta es la crítica principal de Neal et al.&nbsp;2022 a la psicometría de redes, y es correcta en este caso).</p>
 </section>
 <section id="cuando-no-dicen-lo-mismo" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="cuando-no-dicen-lo-mismo"><span class="header-section-number">8.2</span> Cuando no dicen lo mismo</h2>
@@ -818,8 +818,10 @@ Cumulative Var 0.199 0.374 0.546</code></pre>
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>factor <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="cf">function</span>(j) <span class="fl">0.7</span> <span class="sc">*</span> f <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.49</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n))</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>cadena <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, n, <span class="dv">5</span>)</span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>cadena[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>) cadena[, j] <span class="ot">&lt;-</span> <span class="fl">0.7</span> <span class="sc">*</span> cadena[, j <span class="sc">-</span> <span class="dv">1</span>] <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.49</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(factor) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(cadena) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>) {</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>       cadena[, j] <span class="ot">&lt;-</span> <span class="fl">0.7</span> <span class="sc">*</span> cadena[, j <span class="sc">-</span> <span class="dv">1</span>] <span class="sc">+</span> <span class="fu">sqrt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.49</span>) <span class="sc">*</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(factor) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(cadena) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"X"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>red_factor <span class="ot">&lt;-</span> <span class="fu">estimateNetwork</span>(<span class="fu">as.data.frame</span>(factor), <span class="at">default =</span> <span class="st">"EBICglasso"</span>)</span>
@@ -901,9 +903,11 @@ Figura&nbsp;8.2: Arriba: los dos procesos generadores. Abajo: la red estimada en
 <li><strong>No toda centralidad de redes de actores tiene sentido aquí.</strong> <em>Strength</em> sí: suma de asociaciones directas. <em>Betweenness</em> y <em>closeness</em> asumen que algo <em>“viaja”</em> por caminos más cortos, y en una red de correlaciones parciales no hay nada que viaje (Bringmann et al.&nbsp;2019).</li>
 </ol>
 </section>
-<section id="caso-real-mismo-puntaje-distinta-red" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="caso-real-mismo-puntaje-distinta-red"><span class="header-section-number">9.2</span> Caso real: mismo puntaje, distinta red</h2>
-<p>Fábrega &amp; Olivera analizan 17.272 evaluaciones de riesgo de reincidencia (instrumento IGI, Gendarmería de Chile). El instrumento suma ítems binarios y clasifica a las personas por el total. La pregunta: ¿dos personas con el mismo puntaje tienen la misma configuración de ítems? Para responderla, agrupan a las personas por ventanas de puntaje, estiman una red Ising dentro de cada ventana, y comparan las redes con bootstrap. El resultado es que <strong>puntajes iguales esconden redes distintas</strong>, y que las configuraciones distintas predicen distinta reincidencia.</p>
+</section>
+<section id="ejemplo-de-aplicación" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Ejemplo de aplicación</h1>
+<p>Fábrega &amp; Olivera (2026), <a href="https://link.springer.com/article/10.1007/s41109-026-00815-1"><em>Same score, different network</em></a>, analizan 17.272 evaluaciones de riesgo de reincidencia (instrumento IGI, Gendarmería de Chile). El instrumento suma ítems binarios y clasifica a las personas por el total. La pregunta: ¿dos personas con el mismo puntaje tienen la misma configuración de ítems?</p>
+<p>Para responderla, agrupan a las personas por ventanas de puntaje, estiman una red Ising dentro de cada ventana (los ítems son binarios, así que aquí el Ising sí corresponde), y comparan las redes con bootstrap. El resultado: <strong>puntajes iguales esconden redes distintas</strong>, y las configuraciones distintas predicen distinta reincidencia. Es el mismo método de este capítulo aplicado a datos administrativos, no a un cuestionario de personalidad.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -924,7 +928,6 @@ Figura&nbsp;8.2: Arriba: los dos procesos generadores. Abajo: la red estimada en
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
