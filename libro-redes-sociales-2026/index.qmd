@@ -1,6 +1,6 @@
 # Bienvenida {.unnumbered}
 
-Este es el libro de ayudantías del curso *Teoría de Redes Sociales* (DCCS 2026), dictado por el Jorge Fábrega y Aníbal Olivera.
+En este libro encontrarás el material que seguiremos en el curso de Redes Sociales 2026, dictado en DCCS (Doctorado en Ciencias de la Complejidad Social).
 
 El curso dura 3 semanas (6 sesiones, lunes y miércoles) y cada semana culmina en una entrega práctica breve. Este libro tiene la estructura:
 
@@ -20,8 +20,9 @@ Para estudiantes de primer año del doctorado, que vienen de orígenes muy diver
 | [Mecanismos de formación](03-mecanismos-de-formacion.qmd) | Por qué existen los lazos: homofilia, reciprocidad, triadas, popularidad. |
 | [Inferencia: QAP y ERGM](04-inferencia-qap-y-ergm.qmd) | Cómo saber si un patrón es real. Permutaciones de etiquetas y modelos exponenciales. |
 | [Contagio social](05-contagio-social-en-redes.qmd) | Cómo se difunden conductas: umbrales, contagio complejo, dónde sembrar, `netdiffuseR`. |
+| [Psicometría de redes](06-psicometria-de-redes.qmd) | De ítems a red: correlación parcial, `EBICglasso`, estabilidad, y su relación con el análisis factorial clásico. |
 
-Al final hay un [anexo sobre transiciones de fase](anexos.qmd), que explica de dónde viene el lenguaje de *tipping points* e irreversibilidad que se usa en el capítulo de contagio.
+Al final hay dos apéndices: un [vocabulario](vocabulario.qmd) con los términos del curso, y un [anexo sobre transiciones de fase](anexos.qmd) que explica de dónde viene el lenguaje de *tipping points* e irreversibilidad que se usa en el capítulo de contagio.
 
 Cada capítulo trae recuadros **Para jugar**: variaciones del código que conviene correr por cuenta propia. Ahí es donde se aprende.
 
